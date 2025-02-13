@@ -142,5 +142,5 @@ int main(int argc, char** argv)
    glutMouseFunc(mouse);
    glutKeyboardFunc(key);
    glutMainLoop();
-   return 0;   /* ANSI C requires main to return int. */
+   return 0;
 }

@@ -196,5 +196,5 @@ main(int argc, char **argv)
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutKeyboardFunc(key);
     glutMainLoop();
-    return 0;             /* ANSI C requires main to return int. */
+    return 0;
 }
