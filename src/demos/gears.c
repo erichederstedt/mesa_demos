@@ -401,5 +401,5 @@ int main(int argc, char *argv[])
   update_idle_func();
 
   glutMainLoop();
-  return 0;             /* ANSI C requires main to return int. */
+  return 0;
 }

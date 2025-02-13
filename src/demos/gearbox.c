@@ -484,5 +484,5 @@ main(int argc, char *argv[])
    glutVisibilityFunc(visible);
 
    glutMainLoop();
-   return 0;             /* ANSI C requires main to return int. */
+   return 0;
 }

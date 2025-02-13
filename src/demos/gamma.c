@@ -155,5 +155,5 @@ main(int argc, char **argv)
   glutKeyboardFunc(key_esc);
 
   glutMainLoop();
-  return 0;             /* ANSI C requires main to return int. */
+  return 0;
 }
