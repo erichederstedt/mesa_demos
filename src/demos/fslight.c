@@ -99,7 +99,7 @@ Redisplay(void)
    if (anim) {
       GLint t = glutGet(GLUT_ELAPSED_TIME);
       if (t - t0 >= 5000) {
-         GLfloat seconds =(GLfloat)(t - t0) / 1000.0f;
+         GLfloat seconds = (GLfloat)(t - t0) / 1000.0f;
          GLfloat fps = frames / seconds;
          printf("%d frames in %6.3f seconds = %6.3f FPS\n",
                 frames, seconds, fps);
