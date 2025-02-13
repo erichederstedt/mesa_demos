@@ -202,5 +202,5 @@ int main(int argc, char** argv)
     usage();
     glutMainLoop();
     gladLoaderUnloadGL();
-    return 0;             /* ANSI C requires main to return int. */
+    return 0;
 }
