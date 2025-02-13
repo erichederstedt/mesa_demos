@@ -11,7 +11,7 @@
 #include <math.h>
 #include <string.h>
 
-#if defined (WIN32)|| defined(_WIN32)
+#ifdef _WIN32
 #include <windows.h>
 #include <mmsystem.h>
 #endif
