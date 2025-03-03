@@ -779,20 +779,6 @@ print_limits(const char *oglstring, const struct ext_functions *extfuncs)
       }
    }
 
-   /* these don't fit into the above mechanism, unfortunately */
-   if (GLAD_GL_ARB_imaging) {
-      GLint d;
-      printf("  GL_ARB_imaging:\n");
-      extfuncs->GetConvolutionParameteriv(GL_CONVOLUTION_2D,
-                                          GL_MAX_CONVOLUTION_WIDTH, &d);
-      printf("    GL_MAX_CONVOLUTION_WIDTH = %d\n", d);
-      extfuncs->GetConvolutionParameteriv(GL_CONVOLUTION_2D,
-                                          GL_MAX_CONVOLUTION_HEIGHT, &d);
-      printf("    GL_MAX_CONVOLUTION_HEIGHT = %d\n", d);
-      glGetIntegerv(GL_MAX_COLOR_MATRIX_STACK_DEPTH, &d);
-      printf("    GL_MAX_COLOR_MATRIX_STACK_DEPTH = %d\n", d);
-   }
-
    if (GLAD_GL_ARB_texture_compression) {
       GLint j, n;
       GLint *formats;

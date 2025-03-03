@@ -508,7 +508,6 @@ doOneContext(EGLDisplay d,
          struct ext_functions funcs = {
             .GetProgramivARB = glGetProgramivARB,
             .GetStringi = glGetStringi,
-            .GetConvolutionParameteriv = glGetConvolutionParameteriv,
          };
          print_limits(api_name, &funcs);
       }

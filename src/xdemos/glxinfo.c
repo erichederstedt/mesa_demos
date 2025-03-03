@@ -489,8 +489,6 @@ print_screen_info(Display *dpy, int scrnum,
          glXGetProcAddressARB((GLubyte *) "glGetProgramivARB");
       extfuncs.GetStringi = (PFNGLGETSTRINGIPROC)
          glXGetProcAddressARB((GLubyte *) "glGetStringi");
-      extfuncs.GetConvolutionParameteriv = (PFNGLGETCONVOLUTIONPARAMETERIVPROC)
-         glXGetProcAddressARB((GLubyte *) "glGetConvolutionParameteriv");
 
       if (!glXQueryVersion(dpy, & glxVersionMajor, & glxVersionMinor)) {
          fprintf(stderr, "Error: glXQueryVersion failed\n");

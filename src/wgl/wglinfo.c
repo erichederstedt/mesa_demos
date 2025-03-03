@@ -215,7 +215,6 @@ print_screen_info(HDC _hdc, const struct options *opts, GLboolean coreProfile)
 
       extfuncs.GetProgramivARB = glGetProgramivARB;
       extfuncs.GetStringi = glGetStringi;
-      extfuncs.GetConvolutionParameteriv = glGetConvolutionParameteriv;
 
       glVendor = (const char *) glGetString(GL_VENDOR);
       glRenderer = (const char *) glGetString(GL_RENDERER);

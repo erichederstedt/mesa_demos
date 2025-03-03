@@ -40,7 +40,6 @@ struct ext_functions
 {
    PFNGLGETPROGRAMIVARBPROC GetProgramivARB;
    PFNGLGETSTRINGIPROC GetStringi;
-   PFNGLGETCONVOLUTIONPARAMETERIVPROC GetConvolutionParameteriv;
 };
 
 
