@@ -263,7 +263,6 @@ MouseButton(int button, int state, int x, int y)
 
 static void Init( int argc, char *argv[] )
 {
-   GLboolean convolve = GL_FALSE;
    GLboolean fullscreen = GL_FALSE;
    int i;
 
@@ -274,20 +273,10 @@ static void Init( int argc, char *argv[] )
          printf("GL_VENDOR     = %s\n", (char *) glGetString(GL_VENDOR));
          printf("GL_EXTENSIONS = %s\n", (char *) glGetString(GL_EXTENSIONS));
       }
-      else if (strcmp(argv[i], "-c")==0) {
-         convolve = GL_TRUE;
-      }
       else if (strcmp(argv[i], "-f")==0) {
          fullscreen = GL_TRUE;
       }
    }
-
-   if (convolve && !glutExtensionSupported("GL_ARB_imaging")) {
-      fprintf(stderr,
-              "GL_ARB_imaging is not supported, disabling convolution.\n");
-      exit(1);
-   }
-
 
    if (fullscreen)
       glutFullScreen();
@@ -390,50 +379,11 @@ static void Init( int argc, char *argv[] )
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-   if (convolve) {
-      /* use convolution to blur the texture to simulate a dull finish
-       * on the object.
-       */
-      GLubyte *img;
-      GLenum format;
-      GLint w, h;
-      GLfloat filter[FILTER_SIZE][FILTER_SIZE][4];
 
-      for (h = 0; h < FILTER_SIZE; h++) {
-         for (w = 0; w < FILTER_SIZE; w++) {
-            const GLfloat k = 1.0 / (FILTER_SIZE * FILTER_SIZE);
-            filter[h][w][0] = k;
-            filter[h][w][1] = k;
-            filter[h][w][2] = k;
-            filter[h][w][3] = k;
-         }
-      }
-
-      glEnable(GL_CONVOLUTION_2D);
-      glConvolutionParameteri(GL_CONVOLUTION_2D,
-                              GL_CONVOLUTION_BORDER_MODE, GL_CONSTANT_BORDER);
-      glConvolutionFilter2D(GL_CONVOLUTION_2D, GL_RGBA,
-                            FILTER_SIZE, FILTER_SIZE,
-                            GL_RGBA, GL_FLOAT, filter);
-
-      img = LoadRGBImage(SPECULAR_TEXTURE_FILE, &w, &h, &format);
-      if (!img) {
-         printf("Error: couldn't load texture image file %s\n",
-                SPECULAR_TEXTURE_FILE);
-         exit(1);
-      }
-
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0,
-                   format, GL_UNSIGNED_BYTE, img);
-      free(img);
-   }
-   else {
-      /* regular path */
-      if (!LoadRGBMipmaps(SPECULAR_TEXTURE_FILE, GL_RGB)) {
-         printf("Error: couldn't load texture image file %s\n",
-                SPECULAR_TEXTURE_FILE);
-         exit(1);
-      }
+   if (!LoadRGBMipmaps(SPECULAR_TEXTURE_FILE, GL_RGB)) {
+      printf("Error: couldn't load texture image file %s\n",
+               SPECULAR_TEXTURE_FILE);
+      exit(1);
    }
 
    /* misc */
