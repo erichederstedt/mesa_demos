@@ -1,3 +1,4 @@
+option('gl',                     type : 'feature')
 option('with-glut',              type : 'string', deprecated: true)
 option('egl',                    type : 'feature')
 option('gles1',                  type : 'feature')

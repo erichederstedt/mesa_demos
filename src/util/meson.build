@@ -22,10 +22,13 @@ inc_util = include_directories('.')
 
 files_libutil = files(
   'glinfo_common.c',
-  'showbuffer.c',
   'trackball.c',
   'matrix.c',
 )
+
+if dep_glu.found()
+  files_libutil += files('showbuffer.c')
+endif
 
 _deps = [dep_glu, dep_m]
 if dep_glut.found()
@@ -50,6 +53,7 @@ _libreadtex = static_library(
   files('readtex.c'),
   include_directories: inc_glad,
   dependencies: _deps + [dep_png],
+  build_by_default: false,
 )
 idep_readtex = declare_dependency(
   link_with: [_libreadtex],

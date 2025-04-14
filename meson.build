@@ -44,12 +44,21 @@ add_project_arguments(
 dep_m = cc.find_library('m', required : false)
 dep_winmm = cc.find_library('winmm', required : false)
 
+with_gl = get_option('gl').allowed()
+with_glvnd = get_option('glvnd') \
+    .require(with_gl, error_message : 'glvnd requires gl') \
+    .allowed()
+
 dep_gl = dependency('opengl',
   method : 'pkg-config',
-  required : get_option('glvnd')
+  required : with_glvnd,
+  disabler : true,
 )
 if not dep_gl.found()
-  dep_gl = dependency('gl')
+  dep_gl = dependency('gl',
+    required : with_gl,
+    disabler : true,
+  )
 endif
 
 dep_epoll = dependency('epoll-shim', required : false)
