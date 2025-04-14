@@ -18,45 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-_deps = [dep_gl, dep_m, idep_util]
-
-if target_machine.system() == 'linux'
-  executable(
-    'dmabufshare', files('dmabufshare.c'),
-    dependencies: [_deps, idep_glad, idep_eglut],
-    install: true
-  )
-endif
 executable(
-  'eglgears', files('eglgears.c'),
-  dependencies: [_deps, dep_glu, idep_eglut],
+  'eglinfo', 'eglinfo.c',
+  dependencies: [dep_egl, idep_glad, idep_util],
+  include_directories: [inc_glad],
   install: true
 )
-executable(
-  'egltri', files('egltri.c'),
-  dependencies: [_deps, dep_glu, idep_eglut],
-  install: true
-)
-executable(
-  'xeglgears', files('xeglgears.c'),
-  dependencies: [_deps, dep_glu, dep_egl, dep_x11],
-  install: true
-)
-executable(
-  'xeglthreads', files('xeglthreads.c'),
-  dependencies: [_deps, dep_egl, dep_x11],
-  install: true
-)
-
-executable(
-  'eglkms', 'eglkms.c',
-  dependencies: [_deps, dep_drm, dep_gbm, dep_egl],
-  install: true
-)
-
-executable(
-  'peglgears', 'peglgears.c',
-  dependencies: [dep_gl, dep_glu, dep_egl, dep_m, idep_util],
-  install: true
-)
-
