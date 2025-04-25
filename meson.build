@@ -137,22 +137,7 @@ if not cc.has_function('dlopen')
   dep_dl = cc.find_library('dl', required : host_machine.system() != 'windows')
 endif
 
-with_glut = get_option('with-glut')
-if with_glut != ''
-  glut_libdir = with_glut / 'lib'
-  glut_incdir = include_directories(with_glut / 'include', is_system: true)
-
-  _libglut = cc.find_library(
-    'glut',
-    dirs: glut_libdir,
-    has_headers: 'GL/glut.h',
-    header_include_directories: glut_incdir)
-
-  dep_glut = declare_dependency(
-    dependencies: _libglut,
-    include_directories: glut_incdir
-  )
-elif not get_option('glut').disabled()
+if not get_option('glut').disabled()
   dep_glut = dependency('glut', required: false)
   if not dep_glut.found()
     dep_glut = cc.find_library(
