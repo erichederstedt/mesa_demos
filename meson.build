@@ -116,7 +116,7 @@ if not dep_glu.found() and host_machine.system() != 'darwin'
     _glu_name = 'glu32'
   endif
   dep_glu = cc.find_library(_glu_name, has_headers: 'GL/glu.h',
-    required : dep_x11.found())
+    required : dep_gl.found() and dep_x11.found())
 endif
 
 dep_glx = dependency('glx', required: false, disabler : true)
