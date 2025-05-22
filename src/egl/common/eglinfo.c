@@ -634,8 +634,11 @@ doOneDevice(EGLDeviceEXT d, int i, struct options opts)
    if (opts.mode != Brief)
       PrintDeviceExtensions(d, opts.single_line);
 
-   return doOneDisplay(eglGetPlatformDisplayEXT(EGL_PLATFORM_DEVICE_EXT, d, NULL),
-                       "Platform Device", opts);
+   /* The EXT version is used here for EGL 1.4 compatibility */
+   EGLDisplay disp = eglGetPlatformDisplayEXT(EGL_PLATFORM_DEVICE_EXT,
+                                              d,
+                                              NULL);
+   return doOneDisplay(disp, "Platform Device", opts);
 }
 
 
@@ -835,7 +838,7 @@ doExtExplicitDevice(struct options opts, const char *clientext)
             break;
 
          for (int k = 0; k < num_devices; k++) {
-            const EGLint attrib_list[] = {
+            const EGLAttrib attrib_list[] = {
                EGL_DEVICE_EXT, (EGLAttrib) devices[k],
                EGL_NONE
             };
@@ -844,9 +847,14 @@ doExtExplicitDevice(struct options opts, const char *clientext)
             snprintf(description, 64, "Device %d on %s",
                      k, platforms[i].human_name);
 
-            EGLDisplay d = eglGetPlatformDisplayEXT(platforms[i].platform_enum,
-                                                    EGL_DEFAULT_DISPLAY,
-                                                    attrib_list);
+            /* non-EXT version of eglGetPlatformDisplay() is used here
+             * deliberately. The EXT version receives attribs in EGLint[]
+             * which will truncate EGLDeviceEXT (a void* pointer) on
+             * 64-bit platforms
+             */
+            EGLDisplay d = eglGetPlatformDisplay(platforms[i].platform_enum,
+                                                 EGL_DEFAULT_DISPLAY,
+                                                 attrib_list);
             if (!d)
                break;
 
@@ -877,6 +885,7 @@ doExtPlatformBase(struct options opts, const char *clientext)
             break;
 
          if (extension_supported(name, clientext)) {
+            /* The EXT version is used here for EGL 1.4 compatibility */
             EGLDisplay d = eglGetPlatformDisplayEXT(platforms[i].platform_enum,
                                                     EGL_DEFAULT_DISPLAY,
                                                     NULL);
@@ -922,15 +931,15 @@ main(int argc, char *argv[])
       clientext = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
    }
 
-   if (opts.explicit_device &&
-       extension_supported("EGL_EXT_explicit_device", clientext)) {
-      ret += doExtExplicitDevice(opts, clientext);
-   }
-
    int platform_base_ret;
    if (extension_supported("EGL_EXT_platform_base", clientext) &&
        (platform_base_ret = doExtPlatformBase(opts, clientext)) >= 0) {
       ret += platform_base_ret;
+
+      if (opts.explicit_device &&
+          extension_supported("EGL_EXT_explicit_device", clientext)) {
+         ret += doExtExplicitDevice(opts, clientext);
+      }
    } else {
       ret = doOneDisplay(eglGetDisplay(EGL_DEFAULT_DISPLAY), "Default display", opts);
    }
