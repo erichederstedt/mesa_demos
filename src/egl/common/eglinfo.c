@@ -828,6 +828,8 @@ doExtExplicitDevice(struct options opts, const char *clientext)
       if (opts.platform != ALL && i != opts.platform)
          continue;
 
+      bool platform_supported = false;
+
       for (int j = 0; j < ELEMENTS(platforms[i].names); j++) {
          const char *name = platforms[i].names[j];
 
@@ -837,29 +839,35 @@ doExtExplicitDevice(struct options opts, const char *clientext)
          if (!extension_supported(name, clientext))
             break;
 
-         for (int k = 0; k < num_devices; k++) {
-            const EGLAttrib attrib_list[] = {
-               EGL_DEVICE_EXT, (EGLAttrib) devices[k],
-               EGL_NONE
-            };
-            char description[64];
+         platform_supported = true;
+         break;
+      }
 
-            snprintf(description, 64, "Device %d on %s",
-                     k, platforms[i].human_name);
+      if (!platform_supported)
+         break;
 
-            /* non-EXT version of eglGetPlatformDisplay() is used here
-             * deliberately. The EXT version receives attribs in EGLint[]
-             * which will truncate EGLDeviceEXT (a void* pointer) on
-             * 64-bit platforms
-             */
-            EGLDisplay d = eglGetPlatformDisplay(platforms[i].platform_enum,
-                                                 EGL_DEFAULT_DISPLAY,
-                                                 attrib_list);
-            if (!d)
-               break;
+      for (int k = 0; k < num_devices; k++) {
+         const EGLAttrib attrib_list[] = {
+            EGL_DEVICE_EXT, (EGLAttrib) devices[k],
+            EGL_NONE
+         };
+         char description[64];
 
-            ret += doOneDisplay(d, description, opts);
-         }
+         snprintf(description, 64, "Device %d on %s",
+                  k, platforms[i].human_name);
+
+         /* non-EXT version of eglGetPlatformDisplay() is used here
+          * deliberately. The EXT version receives attribs in EGLint[]
+          * which will truncate EGLDeviceEXT (a void* pointer) on
+          * 64-bit platforms
+          */
+         EGLDisplay d = eglGetPlatformDisplay(platforms[i].platform_enum,
+                                              EGL_DEFAULT_DISPLAY,
+                                              attrib_list);
+         if (!d)
+            continue;
+
+         ret += doOneDisplay(d, description, opts);
       }
    }
 
