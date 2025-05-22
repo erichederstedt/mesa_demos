@@ -95,7 +95,21 @@ static const struct platform platforms[] = {
       .human_name = "ANGLE",
       .platform_enum = EGL_PLATFORM_ANGLE_ANGLE,
    },
+
+   /* The last platform, Device, is specially handled in doExtPlatformBase().
+    * We need to have this pseudo-platform for the `-p` option to work, but
+    * to let normal code naturally skip over it, we leave the names[] array
+    * unpopulated. 
+    */
+   {
+      .names = { /* "EGL_EXT_platform_device" */ },
+      .short_name = "device",
+      .human_name = "Device",
+      .platform_enum = EGL_PLATFORM_DEVICE_EXT,
+   }
 };
+
+#define DEVICE_PLATFORM (ELEMENTS(platforms) - 1)
 
 struct eglconfig_info {
    EGLint id;
@@ -879,8 +893,13 @@ doExtPlatformBase(struct options opts, const char *clientext)
    if ((extension_supported("EGL_EXT_device_base", clientext) ||
         (extension_supported("EGL_EXT_device_enumeration", clientext) &&
          extension_supported("EGL_EXT_platform_device", clientext))) &&
-       opts.platform == ALL)
+       (opts.platform == ALL || opts.platform == DEVICE_PLATFORM)) {
       ret += doDevices("Device platform", opts);
+      found_platform_ext = true;
+   }
+
+   if (!found_platform_ext)
+      return -1;
 
    return ret;
 }
