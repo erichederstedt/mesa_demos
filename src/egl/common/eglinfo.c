@@ -128,6 +128,7 @@ struct options {
    InfoMode mode;
    EGLBoolean single_line;
    EGLBoolean limits;
+   EGLBoolean explicit_device;
 };
 
 /**
@@ -662,7 +663,8 @@ usage(void)
    printf("Usage: eglinfo [-h] [-B] [-s] [-v]");
    printf(" [-l]");
    printf(" [-a <api>]");
-   printf(" [-p <platform>]\n");
+   printf(" [-p <platform>]");
+   printf(" [-e]\n");
 
    /*
     * Detailed portion of the help message
@@ -687,6 +689,9 @@ usage(void)
       printf("%s, ", platforms[i].short_name);
    }
    printf("%s)\n", platforms[ELEMENTS(platforms) - 1].short_name);
+
+   printf("\t -e \t Print information of a specific device on each platform,\n");
+   printf("\t    \t if supported.\n");
 }
 
 static void
@@ -697,6 +702,7 @@ parse_args(int argc, char *argv[], struct options *opts)
    opts->mode = Normal;
    opts->single_line = 0;
    opts->limits = 0;
+   opts->explicit_device = 0;
 
    if (argc <= 1)
       return;
@@ -762,6 +768,10 @@ parse_args(int argc, char *argv[], struct options *opts)
          opts->mode = Verbose;
       }
 
+      else if (strcmp(argv[i], "-e") == 0) {
+         opts->explicit_device = 1;
+      }
+
       /* unknown */
       else {
          printf("Unknown option: %s\n", argv[i]);
@@ -783,9 +793,6 @@ doExtExplicitDevice(struct options opts, const char *clientext)
    EGLDeviceEXT *devices;
    EGLint max_devices, num_devices;
 
-   if (opts.platform != ALL)
-      return 0;
-
    if (!eglQueryDevicesEXT(0, NULL, &max_devices)) {
       printf("eglinfo: queryDevices failed\n");
       return 1;
@@ -801,6 +808,9 @@ doExtExplicitDevice(struct options opts, const char *clientext)
       num_devices = 0;
 
    for (int i = 0; i < ELEMENTS(platforms); i++) {
+      if (opts.platform != ALL && i != opts.platform)
+         continue;
+
       for (int j = 0; j < ELEMENTS(platforms[i].names); j++) {
          const char *name = platforms[i].names[j];
 
@@ -863,7 +873,7 @@ doExtPlatformBase(struct options opts, const char *clientext)
       }
    }
 
-   if (!found_platform_ext)
+   if (!found_platform_ext && opts.platform != DEVICE_PLATFORM)
       return -1;
 
    if ((extension_supported("EGL_EXT_device_base", clientext) ||
@@ -893,7 +903,8 @@ main(int argc, char *argv[])
       clientext = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
    }
 
-   if (extension_supported("EGL_EXT_explicit_device", clientext)) {
+   if (opts.explicit_device &&
+       extension_supported("EGL_EXT_explicit_device", clientext)) {
       ret += doExtExplicitDevice(opts, clientext);
    }
 
