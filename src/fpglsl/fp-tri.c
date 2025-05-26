@@ -273,32 +273,32 @@ static void Init( void )
 
       for (i = 0; i < 32; i++)
          for (j = 0; j < 32; j++)
-	 {
-	    /**
-	     ** +-----------+
-	     ** |     W     |
-	     ** |  +-----+  |
-	     ** |  |     |  |
-	     ** |  |  B  |  |
-	     ** |  |     |  |
-	     ** |  +-----+  |
-	     ** |           |
-	     ** +-----------+
-	     **/
-	    int i2 = i - height / 2;
-	    int j2 = j - width / 2;
-	    int h8 = height / 8;
-	    int w8 = width / 8;
-	    if ( -h8 <= i2 && i2 <= h8 && -w8 <= j2 && j2 <= w8 ) {
-	       data[i][j] = 0x00;
-	    } else if ( -2 * h8 <= i2 && i2 <= 2 * h8 && -2 * w8 <= j2 && j2 <= 2 * w8 ) {
-	       data[i][j] = 0x55;
-	    } else if ( -3 * h8 <= i2 && i2 <= 3 * h8 && -3 * w8 <= j2 && j2 <= 3 * w8 ) {
-	       data[i][j] = 0xaa;
-	    } else {
-	       data[i][j] = 0xff;
-	    }
-	 }
+         {
+            /**
+             ** +-----------+
+             ** |     W     |
+             ** |  +-----+  |
+             ** |  |     |  |
+             ** |  |  B  |  |
+             ** |  |     |  |
+             ** |  +-----+  |
+             ** |           |
+             ** +-----------+
+             **/
+            int i2 = i - height / 2;
+            int j2 = j - width / 2;
+            int h8 = height / 8;
+            int w8 = width / 8;
+            if ( -h8 <= i2 && i2 <= h8 && -w8 <= j2 && j2 <= w8 ) {
+               data[i][j] = 0x00;
+            } else if ( -2 * h8 <= i2 && i2 <= 2 * h8 && -2 * w8 <= j2 && j2 <= 2 * w8 ) {
+               data[i][j] = 0x55;
+            } else if ( -3 * h8 <= i2 && i2 <= 3 * h8 && -3 * w8 <= j2 && j2 <= 3 * w8 ) {
+               data[i][j] = 0xaa;
+            } else {
+               data[i][j] = 0xff;
+            }
+         }
 
       glTexImage2D( GL_TEXTURE_2D, 0,
                     GL_ALPHA8,
@@ -330,11 +330,11 @@ static void args(int argc, char *argv[])
          show_fps = 1;
       }
       else if (i == argc - 1) {
-	 filename = argv[i];
+         filename = argv[i];
       }
       else {
-	 usage(argv[0]);
-	 exit(1);
+         usage(argv[0]);
+         exit(1);
       }
    }
 }
