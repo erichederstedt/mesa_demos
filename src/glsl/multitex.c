@@ -317,7 +317,7 @@ InitTextures(void)
 
 static GLuint
 CreateAProgram(const char *vertProgFile, const char *fragProgFile,
-	       struct uniform_info *uniforms)
+               struct uniform_info *uniforms)
 {
    GLuint fragShader, vertShader, program;
 
