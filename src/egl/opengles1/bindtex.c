@@ -170,8 +170,8 @@ make_window(Display *x_dpy, const char *name,
    mask = CWBackPixel | CWBorderPixel | CWColormap | CWEventMask | CWOverrideRedirect;
 
    win = XCreateWindow( x_dpy, root, 0, 0, width, height,
-		        0, visInfo->depth, InputOutput,
-		        visInfo->visual, mask, &attr );
+                        0, visInfo->depth, InputOutput,
+                        visInfo->visual, mask, &attr );
 
    /* set hints and properties */
    {
@@ -436,7 +436,7 @@ main(int argc, char *argv[])
    x_dpy = XOpenDisplay(dpyName);
    if (!x_dpy) {
       printf("Error: couldn't open display %s\n",
-	     dpyName ? dpyName : getenv("DISPLAY"));
+             dpyName ? dpyName : getenv("DISPLAY"));
       return -1;
    }
 

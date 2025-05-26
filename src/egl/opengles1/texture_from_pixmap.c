@@ -474,8 +474,8 @@ make_x_window(struct app_data *data, const char *name,
    mask = CWBackPixel | CWBorderPixel | CWColormap | CWEventMask;
 
    win = XCreateWindow( data->xdpy, root, 0, 0, width * 2, height,
-		        0, visInfo->depth, InputOutput,
-		        visInfo->visual, mask, &attr );
+                        0, visInfo->depth, InputOutput,
+                        visInfo->visual, mask, &attr );
 
    /* set hints and properties */
    {
@@ -494,8 +494,8 @@ make_x_window(struct app_data *data, const char *name,
 
    attr.event_mask = 0x0;
    win = XCreateWindow( data->xdpy, win, width, 0, width, height,
-		        0, visInfo->depth, InputOutput,
-		        visInfo->visual, mask, &attr );
+                        0, visInfo->depth, InputOutput,
+                        visInfo->visual, mask, &attr );
    data->cube = win;
 
    eglBindAPI(EGL_OPENGL_ES_API);

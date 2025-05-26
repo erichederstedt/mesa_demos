@@ -62,11 +62,11 @@ setup_kms(int fd, struct kms *kms)
    for (i = 0; i < resources->count_connectors; i++) {
       connector = drmModeGetConnector(fd, resources->connectors[i]);
       if (connector == NULL)
-	 continue;
+         continue;
 
       if (connector->connection == DRM_MODE_CONNECTED &&
-	  connector->count_modes > 0)
-	 break;
+          connector->count_modes > 0)
+         break;
 
       drmModeFreeConnector(connector);
    }
@@ -80,10 +80,10 @@ setup_kms(int fd, struct kms *kms)
       encoder = drmModeGetEncoder(fd, resources->encoders[i]);
 
       if (encoder == NULL)
-	 continue;
+         continue;
 
       if (encoder->encoder_id == connector->encoder_id)
-	 break;
+         break;
 
       drmModeFreeEncoder(encoder);
    }
@@ -224,8 +224,8 @@ int main(int argc, char *argv[])
    }
 
    gs = gbm_surface_create(gbm, kms.mode.hdisplay, kms.mode.vdisplay,
-			   GBM_BO_FORMAT_XRGB8888,
-			   GBM_BO_USE_SCANOUT | GBM_BO_USE_RENDERING);
+                           GBM_BO_FORMAT_XRGB8888,
+                           GBM_BO_USE_SCANOUT | GBM_BO_USE_RENDERING);
    surface = eglCreateWindowSurface(dpy, config, (EGLNativeWindowType) gs, NULL);
 
    if (!eglMakeCurrent(dpy, surface, surface, ctx)) {
@@ -245,8 +245,8 @@ int main(int argc, char *argv[])
    printf("handle=%d, stride=%d\n", handle, stride);
 
    ret = drmModeAddFB(fd,
-		      kms.mode.hdisplay, kms.mode.vdisplay,
-		      24, 32, stride, handle, &kms.fb_id);
+                      kms.mode.hdisplay, kms.mode.vdisplay,
+                      24, 32, stride, handle, &kms.fb_id);
    if (ret) {
       fprintf(stderr, "failed to create fb\n");
       goto rm_fb;
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
       goto rm_fb;
 
    ret = drmModeSetCrtc(fd, kms.encoder->crtc_id, kms.fb_id, 0, 0,
-			&kms.connector->connector_id, 1, &kms.mode);
+                        &kms.connector->connector_id, 1, &kms.mode);
    if (ret) {
       fprintf(stderr, "failed to set mode: %m\n");
       goto free_saved_crtc;
