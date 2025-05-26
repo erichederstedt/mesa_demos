@@ -18,9 +18,9 @@
 #include "shaderutil.h"
 
 
-static char *Model_file = NULL;		/* name of the obect file */
+static char *Model_file = NULL;   /* name of the obect file */
 static GLMmodel *Model;
-static GLfloat Scale = 4.0;			/* scaling factor */
+static GLfloat Scale = 4.0;       /* scaling factor */
 static GLboolean Performance = GL_FALSE;
 static GLboolean Stats = GL_FALSE;
 static GLboolean Animate = GL_TRUE;
