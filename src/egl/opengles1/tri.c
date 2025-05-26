@@ -151,7 +151,7 @@ test_query_matrix(void)
    rv = (*procQueryMatrixx)(mantissa, exponent);
    for (i = 0; i < 16; i++) {
       if (rv & (1<<i)) {
-        printf("matrix[%d] invalid\n", i);
+         printf("matrix[%d] invalid\n", i);
       }
       else {
          printf("matrix[%d] = %f * 2^(%d)\n", i, mantissa[i]/65536.0, exponent[i]);

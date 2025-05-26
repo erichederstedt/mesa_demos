@@ -58,7 +58,9 @@ init_window(struct eglut_window *win, const char *title,
    EGLint vid;
 
    if (!eglGetConfigAttrib(_eglut->dpy,
-            win->config, EGL_NATIVE_VISUAL_ID, &vid))
+                           win->config,
+                           EGL_NATIVE_VISUAL_ID,
+                           &vid))
       _eglutFatal("failed to get visual id");
 
    /* The X window visual must match the EGL config */
@@ -95,7 +97,8 @@ init_window(struct eglut_window *win, const char *title,
       sizehints.flags = USSize | USPosition;
       XSetNormalHints(_eglut->native_dpy, xwin, &sizehints);
       XSetStandardProperties(_eglut->native_dpy, xwin,
-            title, title, None, (char **) NULL, 0, &sizehints);
+                             title, title, None, (char **) NULL, 0,
+                             &sizehints);
    }
 
    XMapWindow(_eglut->native_dpy, xwin);

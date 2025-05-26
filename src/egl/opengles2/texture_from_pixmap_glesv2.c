@@ -136,13 +136,13 @@ struct app_data {
 static unsigned int
 nearest_pot(unsigned int n)
 {
-    int k;
-    if (n == 0)
-        return 1;
-    for (k = sizeof(unsigned int) * 8 - 1; ((1U << k) & n) == 0; k--);
-    if (((1U << (k - 1)) & n) == 0)
-        return (1U) << k;
-    return (1U) << (k + 1);
+   int k;
+   if (n == 0)
+      return 1;
+   for (k = sizeof(unsigned int) * 8 - 1; ((1U << k) & n) == 0; k--);
+   if (((1U << (k - 1)) & n) == 0)
+      return (1U) << k;
+   return (1U) << (k + 1);
 }
 
 static void

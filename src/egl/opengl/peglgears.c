@@ -369,7 +369,7 @@ main(int argc, char *argv[])
    GLboolean printInfo = GL_FALSE;
    EGLint width = 300, height = 300;
 
-        /* parse cmd line args */
+   /* parse cmd line args */
    for (i = 1; i < argc; i++) {
       if (strcmp(argv[i], "-info") == 0) {
          printInfo = GL_TRUE;

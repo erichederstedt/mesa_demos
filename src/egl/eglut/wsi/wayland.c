@@ -444,7 +444,9 @@ init_window(struct eglut_window *win, const char *title,
 
    EGLint alpha_size;
    if (!eglGetConfigAttrib(_eglut->dpy,
-            win->config, EGL_ALPHA_SIZE, &alpha_size))
+                           win->config,
+                           EGL_ALPHA_SIZE,
+                           &alpha_size))
       _eglutFatal("failed to get alpha size");
    window.opaque = !alpha_size;
 

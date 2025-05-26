@@ -47,16 +47,16 @@ struct eglut_state *_eglut = &_eglut_state;
 void
 _eglutFatal(char *format, ...)
 {
-  va_list args;
+   va_list args;
 
-  va_start(args, format);
+   va_start(args, format);
 
-  fprintf(stderr, "EGLUT: ");
-  vfprintf(stderr, format, args);
-  va_end(args);
-  putc('\n', stderr);
+   fprintf(stderr, "EGLUT: ");
+   vfprintf(stderr, format, args);
+   va_end(args);
+   putc('\n', stderr);
 
-  exit(1);
+   exit(1);
 }
 
 /* return current time (in milliseconds) */
@@ -117,7 +117,8 @@ _eglutChooseConfig(void)
    config_attribs[i] = EGL_NONE;
 
    if (!eglChooseConfig(_eglut->dpy,
-            config_attribs, &config, 1, &num_configs) || !num_configs)
+                        config_attribs, &config, 1, &num_configs) ||
+       !num_configs)
       _eglutFatal("failed to choose a config");
 
    return config;
@@ -162,11 +163,15 @@ _eglutCreateWindow(const char *title, int x, int y, int w, int h)
    switch (_eglut->surface_type) {
    case EGL_WINDOW_BIT:
       win->surface = eglCreateWindowSurface(_eglut->dpy,
-            win->config, win->native.u.window, NULL);
+                                            win->config,
+                                            win->native.u.window,
+                                            NULL);
       break;
    case EGL_PIXMAP_BIT:
       win->surface = eglCreatePixmapSurface(_eglut->dpy,
-            win->config, win->native.u.pixmap, NULL);
+                                            win->config,
+                                            win->native.u.pixmap,
+                                            NULL);
       break;
    case EGL_PBUFFER_BIT:
       win->surface = win->native.u.surface;
@@ -220,9 +225,9 @@ eglutInit(int argc, char **argv)
    if (_eglut->verbose) {
       printf("EGL_VENDOR = %s\n", eglQueryString(_eglut->dpy, EGL_VENDOR));
       printf("EGL_EXTENSIONS = %s\n",
-            eglQueryString(_eglut->dpy, EGL_EXTENSIONS));
+             eglQueryString(_eglut->dpy, EGL_EXTENSIONS));
       printf("EGL_CLIENT_APIS = %s\n",
-            eglQueryString(_eglut->dpy, EGL_CLIENT_APIS));
+             eglQueryString(_eglut->dpy, EGL_CLIENT_APIS));
    }
 }
 

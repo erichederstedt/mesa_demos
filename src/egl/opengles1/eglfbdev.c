@@ -210,7 +210,7 @@ egl_init_for_fbdev(int fd, EGLBoolean verbose)
       printf("EGL_VERSION: %s\n", eglQueryString(egl_dpy, EGL_VERSION));
       printf("EGL_EXTENSIONS: %s\n", eglQueryString(egl_dpy, EGL_EXTENSIONS));
       printf("EGL_CLIENT_APIS: %s\n",
-            eglQueryString(egl_dpy, EGL_CLIENT_APIS));
+             eglQueryString(egl_dpy, EGL_CLIENT_APIS));
    }
 
    if (!eglChooseConfig(egl_dpy, NULL, &conf, 1, &num_configs) ||

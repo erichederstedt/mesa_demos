@@ -212,17 +212,17 @@ draw(void)
 static void
 idle(void)
 {
-  static double t0 = -1.;
-  double dt, t = eglutGet(EGLUT_ELAPSED_TIME) / 1000.0;
-  if (t0 < 0.0)
-    t0 = t;
-  dt = t - t0;
-  t0 = t;
+   static double t0 = -1.;
+   double dt, t = eglutGet(EGLUT_ELAPSED_TIME) / 1000.0;
+   if (t0 < 0.0)
+      t0 = t;
+   dt = t - t0;
+   t0 = t;
 
-  angle += 70.0 * dt;  /* 70 degrees per second */
-  angle = fmodf(angle, 360.0f); /* prevents eventual overflow */
+   angle += 70.0 * dt;  /* 70 degrees per second */
+   angle = fmodf(angle, 360.0f); /* prevents eventual overflow */
 
-  eglutPostRedisplay();
+   eglutPostRedisplay();
 }
 
 /* new window size or exposure */
