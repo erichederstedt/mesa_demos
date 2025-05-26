@@ -28,77 +28,77 @@ typedef unsigned int uint;
  */
 typedef struct _GLMmaterial
 {
-  char* name;           /* name of material */
-  float diffuse[4];     /* diffuse component */
-  float ambient[4];     /* ambient component */
-  float specular[4];    /* specular component */
-  float emmissive[4];   /* emmissive component */
-  float shininess;      /* specular exponent */
-  char *map_kd;         /* diffuse texture map file */
-  uint texture_kd;      /* diffuse texture map */
-  uint texture_ks;      /* specular texture map */
-  int uDiffuse, uAmbient, uSpecular, uShininess, uDiffTex, uSpecTex;
-  uint prog;
+   char* name;           /* name of material */
+   float diffuse[4];     /* diffuse component */
+   float ambient[4];     /* ambient component */
+   float specular[4];    /* specular component */
+   float emmissive[4];   /* emmissive component */
+   float shininess;      /* specular exponent */
+   char *map_kd;         /* diffuse texture map file */
+   uint texture_kd;      /* diffuse texture map */
+   uint texture_ks;      /* specular texture map */
+   int uDiffuse, uAmbient, uSpecular, uShininess, uDiffTex, uSpecTex;
+   uint prog;
 } GLMmaterial;
 
 /* GLMtriangle: Structure that defines a triangle in a model.
  */
 typedef struct {
-  uint vindices[3];   /* array of triangle vertex indices */
-  uint nindices[3];   /* array of triangle normal indices */
-  uint tindices[3];   /* array of triangle texcoord indices*/
-  uint findex;        /* index of triangle facet normal */
+   uint vindices[3];   /* array of triangle vertex indices */
+   uint nindices[3];   /* array of triangle normal indices */
+   uint tindices[3];   /* array of triangle texcoord indices*/
+   uint findex;        /* index of triangle facet normal */
 } GLMtriangle;
 
 /* GLMgroup: Structure that defines a group in a model.
  */
 typedef struct _GLMgroup {
-  char*             name;         /* name of this group */
-  uint            numtriangles;   /* number of triangles in this group */
-  uint*           triangles;      /* array of triangle indices */
-  uint            material;       /* index to material for group */
-  uint *          triIndexes;
-  uint            minIndex, maxIndex;
-  uint            indexVboOffset;   /* offset into index VBO for elements */
-  struct _GLMgroup* next;           /* pointer to next group in model */
+   char*             name;         /* name of this group */
+   uint            numtriangles;   /* number of triangles in this group */
+   uint*           triangles;      /* array of triangle indices */
+   uint            material;       /* index to material for group */
+   uint *          triIndexes;
+   uint            minIndex, maxIndex;
+   uint            indexVboOffset;   /* offset into index VBO for elements */
+   struct _GLMgroup* next;           /* pointer to next group in model */
 } GLMgroup;
 
 /* GLMmodel: Structure that defines a model.
  */
 typedef struct {
-  char*    pathname;          /* path to this model */
-  char*    mtllibname;        /* name of the material library */
+   char*    pathname;          /* path to this model */
+   char*    mtllibname;        /* name of the material library */
 
-  uint   numvertices;         /* number of vertices in model */
-  float* vertices;            /* array of vertices  */
+   uint   numvertices;         /* number of vertices in model */
+   float* vertices;            /* array of vertices  */
 
-  uint   numnormals;          /* number of normals in model */
-  float* normals;             /* array of normals */
+   uint   numnormals;          /* number of normals in model */
+   float* normals;             /* array of normals */
 
-  uint   numtexcoords;        /* number of texcoords in model */
-  float* texcoords;           /* array of texture coordinates */
+   uint   numtexcoords;        /* number of texcoords in model */
+   float* texcoords;           /* array of texture coordinates */
 
-  uint   numfacetnorms;       /* number of facetnorms in model */
-  float* facetnorms;          /* array of facetnorms */
+   uint   numfacetnorms;       /* number of facetnorms in model */
+   float* facetnorms;          /* array of facetnorms */
 
-  uint       numtriangles;    /* number of triangles in model */
-  GLMtriangle* triangles;     /* array of triangles */
+   uint       numtriangles;    /* number of triangles in model */
+   GLMtriangle* triangles;     /* array of triangles */
 
-  uint       nummaterials;    /* number of materials in model */
-  GLMmaterial* materials;     /* array of materials */
+   uint       nummaterials;    /* number of materials in model */
+   GLMmaterial* materials;     /* array of materials */
 
-  uint       numgroups;       /* number of groups in model */
-  GLMgroup*    groups;        /* linked list of groups */
+   uint       numgroups;       /* number of groups in model */
+   GLMgroup*    groups;        /* linked list of groups */
 
-  float position[3];          /* position of the model */
-  float scale;
+   float position[3];          /* position of the model */
+   float scale;
 
-  uint vbo;          /* OpenGL VBO for vertex data */
-  uint index_vbo;    /* VBO for index data */
-  uint vertexSize;   /* number of floats per vertex */
-  uint posOffset;    /* offset of position within vertex, in bytes */
-  uint normOffset;   /* offset of normal within vertex, in bytes */
-  uint texOffset;    /* offset of texcoord within vertex, in bytes */
+   uint vbo;          /* OpenGL VBO for vertex data */
+   uint index_vbo;    /* VBO for index data */
+   uint vertexSize;   /* number of floats per vertex */
+   uint posOffset;    /* offset of position within vertex, in bytes */
+   uint normOffset;   /* offset of normal within vertex, in bytes */
+   uint texOffset;    /* offset of texcoord within vertex, in bytes */
 } GLMmodel;
 
 

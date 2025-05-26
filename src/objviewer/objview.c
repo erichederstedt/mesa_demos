@@ -75,40 +75,40 @@ InitViewInfo(ViewInfo *view)
 static void
 text(GLuint x, GLuint y, GLfloat scale, char* format, ...)
 {
-  va_list args;
-  char buffer[255], *p;
-  GLfloat font_scale = 119.05 + 33.33;
-
-  va_start(args, format);
-  vsprintf(buffer, format, args);
-  va_end(args);
-
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-  glLoadIdentity();
-  gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
-
-  glMatrixMode(GL_MODELVIEW);
-  glPushMatrix();
-  glLoadIdentity();
-
-  glPushAttrib(GL_ENABLE_BIT);
-  glDisable(GL_LIGHTING);
-  glDisable(GL_TEXTURE_2D);
-  glDisable(GL_DEPTH_TEST);
-  glTranslatef(x, y, 0.0);
-
-  glScalef(scale/font_scale, scale/font_scale, scale/font_scale);
-
-  for(p = buffer; *p; p++)
-    glutStrokeCharacter(GLUT_STROKE_ROMAN, *p);
-
-  glPopAttrib();
-
-  glPopMatrix();
-  glMatrixMode(GL_PROJECTION);
-  glPopMatrix();
-  glMatrixMode(GL_MODELVIEW);
+   va_list args;
+   char buffer[255], *p;
+   GLfloat font_scale = 119.05 + 33.33;
+ 
+   va_start(args, format);
+   vsprintf(buffer, format, args);
+   va_end(args);
+ 
+   glMatrixMode(GL_PROJECTION);
+   glPushMatrix();
+   glLoadIdentity();
+   gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
+ 
+   glMatrixMode(GL_MODELVIEW);
+   glPushMatrix();
+   glLoadIdentity();
+ 
+   glPushAttrib(GL_ENABLE_BIT);
+   glDisable(GL_LIGHTING);
+   glDisable(GL_TEXTURE_2D);
+   glDisable(GL_DEPTH_TEST);
+   glTranslatef(x, y, 0.0);
+ 
+   glScalef(scale/font_scale, scale/font_scale, scale/font_scale);
+ 
+   for (p = buffer; *p; p++)
+      glutStrokeCharacter(GLUT_STROKE_ROMAN, *p);
+ 
+   glPopAttrib();
+ 
+   glPopMatrix();
+   glMatrixMode(GL_PROJECTION);
+   glPopMatrix();
+   glMatrixMode(GL_MODELVIEW);
 }
 
 
@@ -368,7 +368,7 @@ keyboard(unsigned char key, int x, int y)
 static void
 menu(int item)
 {
-    keyboard((unsigned char)item, 0, 0);
+   keyboard((unsigned char)item, 0, 0);
 }
 
 
