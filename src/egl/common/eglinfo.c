@@ -327,7 +327,7 @@ PrintConfigs(EGLDisplay d, InfoMode info)
 }
 
 static const char *
-PrintDisplayExtensions(EGLDisplay d, EGLBoolean single_line)
+PrintDisplayExtensions(EGLDisplay d, struct options opts)
 {
    const char *extensions;
 
@@ -339,10 +339,13 @@ PrintDisplayExtensions(EGLDisplay d, EGLBoolean single_line)
       printf("EGL driver name: %s\n", eglGetDisplayDriverName(d));
    }
 
-   puts(d == EGL_NO_DISPLAY ? "EGL client extensions string:" :
-                              "EGL extensions string:");
+   if (opts.mode != Brief) {
+      puts(d == EGL_NO_DISPLAY ? "EGL client extensions string:" :
+                                 "EGL extensions string:");
 
-   print_extension_list(extensions, single_line);
+      print_extension_list(extensions, opts.single_line);
+   }
+
    return extensions;
 }
 
@@ -543,8 +546,7 @@ doOneDisplay(EGLDisplay d, const char *name, struct options opts)
 
    const char *display_exts = eglQueryString(d, EGL_EXTENSIONS);
 
-   if (opts.mode != Brief)
-      PrintDisplayExtensions(d, opts.single_line);
+   PrintDisplayExtensions(d, opts);
 
    int khr_create_context = (maj == 1 && min >= 4) &&
       strstr(display_exts, "EGL_KHR_create_context") != 0;
@@ -904,7 +906,7 @@ main(int argc, char *argv[])
    gladLoaderLoadEGL(EGL_NO_DISPLAY);
 
    if (opts.mode != Brief) {
-      clientext = PrintDisplayExtensions(EGL_NO_DISPLAY, opts.single_line);
+      clientext = PrintDisplayExtensions(EGL_NO_DISPLAY, opts);
       printf("\n");
    } else {
       clientext = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
