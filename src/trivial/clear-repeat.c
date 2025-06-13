@@ -107,7 +107,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow(*argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();

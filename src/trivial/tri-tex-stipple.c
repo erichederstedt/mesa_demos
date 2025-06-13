@@ -36,11 +36,11 @@ Init(void)
       GLint s, t;
 
       for (s = 0; s < SIZE; s++) {
-	 for (t = 0; t < SIZE; t++) {
+         for (t = 0; t < SIZE; t++) {
             tex2d[t][s][0] = s*255/(SIZE-1);
             tex2d[t][s][1] = t*255/(SIZE-1);
             tex2d[t][s][2] = 0;
-	 }
+         }
       }
 
       glEnable(GL_TEXTURE_2D);

@@ -51,7 +51,7 @@ static void Init( void )
    glGenProgramsARB(1, &prognum);
    glBindProgramARB(GL_VERTEX_PROGRAM_ARB, prognum);
    glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,
-		      strlen(prog1), (const GLubyte *) prog1);
+                      strlen(prog1), (const GLubyte *) prog1);
 
    assert(glIsProgramARB(prognum));
    errnum = glGetError();

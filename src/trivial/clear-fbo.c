@@ -152,7 +152,7 @@ main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
     if (glutCreateWindow(argv[0]) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     gladLoaderLoadGL();

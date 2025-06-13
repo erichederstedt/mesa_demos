@@ -77,13 +77,13 @@ static void Key(unsigned char key, int x, int y)
 
 static unsigned iconv(int x, int y, int z, int w)
 {
-	unsigned val;
+        unsigned val;
 
-	val = i32to10(x);
-	val |= i32to10(y) << 10;
-	val |= i32to10(z) << 20;
-	val |= i32to2(w) << 30;
-	return val;
+        val = i32to10(x);
+        val |= i32to10(y) << 10;
+        val |= i32to10(z) << 20;
+        val |= i32to2(w) << 30;
+        return val;
 }
 #define conv(x,y,z,w) (((x) & 0x3ff) | ((y) & 0x3ff) << 10 | ((z) & 0x3ff)<< 20 | ((w) & 0x3) << 30)
 

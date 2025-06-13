@@ -37,10 +37,10 @@ static void Key(unsigned char key, int x, int y)
 {
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       default:
-	glutPostRedisplay();
-	return;
+        glutPostRedisplay();
+        return;
     }
 
 }
@@ -95,13 +95,13 @@ static GLenum Args(int argc, char **argv)
 
     for (i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    fprintf(stderr, "%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            fprintf(stderr, "%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( Width, Height );
@@ -124,11 +124,11 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow(argv[0]) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();
-	Reshape(Width, Height);
+        Reshape(Width, Height);
 
     glutReshapeFunc(Reshape);
     glutKeyboardFunc(Key);

@@ -17,13 +17,13 @@ GLboolean bgra = GL_FALSE;
 
 static unsigned iconv(int x, int y, int z, int w)
 {
-	unsigned val;
+        unsigned val;
 
-	val = i32to10(x);
-	val |= i32to10(y) << 10;
-	val |= i32to10(z) << 20;
-	val |= i32to2(w) << 30;
-	return val;
+        val = i32to10(x);
+        val |= i32to10(y) << 10;
+        val |= i32to10(z) << 20;
+        val |= i32to2(w) << 30;
+        return val;
 }
 #define conv(x,y,z,w) (((x) & 0x3ff) | ((y) & 0x3ff) << 10 | ((z) & 0x3ff)<< 20 | ((w) & 0x3) << 30)
 
@@ -75,7 +75,7 @@ static void Init( void )
    glGenProgramsARB(1, &prognum);
    glBindProgramARB(GL_VERTEX_PROGRAM_ARB, prognum);
    glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,
-		      strlen(prog1), (const GLubyte *) prog1);
+                      strlen(prog1), (const GLubyte *) prog1);
 
    assert(glIsProgramARB(prognum));
    errnum = glGetError();
@@ -150,7 +150,7 @@ static GLenum Args(int argc, char **argv)
 
    for (i = 1; i < argc; i++) {
       if (strcmp(argv[i], "-bgra") == 0) {
- 	 bgra = GL_TRUE;
+          bgra = GL_TRUE;
       } else {
          fprintf(stderr, "%s (Bad option).\n", argv[i]);
          return GL_FALSE;

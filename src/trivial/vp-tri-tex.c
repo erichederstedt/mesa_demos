@@ -24,7 +24,7 @@ static void Init( void )
 
    glBindProgramARB(GL_VERTEX_PROGRAM_ARB, prognum);
    glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,
-		      strlen(prog1), (const GLubyte *) prog1);
+                      strlen(prog1), (const GLubyte *) prog1);
 
    assert(glIsProgramARB(prognum));
    errnum = glGetError();
@@ -44,17 +44,17 @@ static void Init( void )
       GLint s, t;
 
       for (s = 0; s < SIZE; s++) {
-	 for (t = 0; t < SIZE; t++) {
+         for (t = 0; t < SIZE; t++) {
 #if 0
-	    tex2d[t][s][0] = (s < SIZE/2) ? 0 : 255;
-	    tex2d[t][s][1] = (t < SIZE/2) ? 0 : 255;
-	    tex2d[t][s][2] = 0;
+            tex2d[t][s][0] = (s < SIZE/2) ? 0 : 255;
+            tex2d[t][s][1] = (t < SIZE/2) ? 0 : 255;
+            tex2d[t][s][2] = 0;
 #else
-	    tex2d[t][s][0] = s*255/(SIZE-1);
-	    tex2d[t][s][1] = t*255/(SIZE-1);
-	    tex2d[t][s][2] = 0;
+            tex2d[t][s][0] = s*255/(SIZE-1);
+            tex2d[t][s][1] = t*255/(SIZE-1);
+            tex2d[t][s][2] = 0;
 #endif
-	 }
+         }
       }
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

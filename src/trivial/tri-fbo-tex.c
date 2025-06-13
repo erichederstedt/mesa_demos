@@ -60,7 +60,7 @@ RenderTexture(void)
 
       status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
       if (status != GL_FRAMEBUFFER_COMPLETE_EXT) {
-	 printf("Framebuffer incomplete!!!\n");
+         printf("Framebuffer incomplete!!!\n");
       }
 
       glViewport(0, 0, TexWidth, TexHeight);

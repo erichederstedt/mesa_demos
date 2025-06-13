@@ -132,7 +132,7 @@ static void Init( void )
    glGenProgramsARB(1, &prognum);
    glBindProgramARB(GL_VERTEX_PROGRAM_ARB, prognum);
    glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,
-		      strlen(prog1), (const GLubyte *) prog1);
+                      strlen(prog1), (const GLubyte *) prog1);
 
    assert(glIsProgramARB(prognum));
    errnum = glGetError();
@@ -148,7 +148,7 @@ static void Init( void )
 
    for (i = 0; i < 4; i++)
       for (j = 0; j < 4; j++)
-	 hverts[i * 4 + j] = _mesa_float_to_half(verts[i][j]);
+         hverts[i * 4 + j] = _mesa_float_to_half(verts[i][j]);
 
    glEnableClientState( GL_VERTEX_ARRAY );
    glEnableClientState( GL_COLOR_ARRAY );
