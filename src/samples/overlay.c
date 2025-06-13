@@ -249,15 +249,15 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 32:
+    case 32:
         flag = (flag == NORMAL) ? WEIRD : NORMAL;
         break;
-      case 't':
+    case 't':
         nitro = 1;
         break;
-      default:
+    default:
         return;
     }
 }

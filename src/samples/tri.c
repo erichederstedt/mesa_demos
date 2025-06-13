@@ -112,13 +112,13 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         zRotation += 0.5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         zRotation -= 0.5;
         break;
-      default:
+    default:
         return;
     }
 
@@ -129,61 +129,61 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 'Z':
+    case 'Z':
         zoom *= 0.75;
         break;
-      case 'z':
+    case 'z':
         zoom /= 0.75;
         if (zoom > 10) {
             zoom = 10;
         }
         break;
-      case '1':
+    case '1':
         glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
         break;
-      case '2':
+    case '2':
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         break;
-      case '3':
+    case '3':
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         break;
-      case '4':
+    case '4':
         state = POINT;
         break;
-      case '5':
+    case '5':
         state = LINE;
         break;
-      case '6':
+    case '6':
         state = SOLID;
         break;
-      case '7':
+    case '7':
         culling = !culling;
         break;
-      case '8':
+    case '8':
         winding = !winding;
         break;
-      case '9':
+    case '9':
         face = !face;
         break;
-      case 'v':
+    case 'v':
         showVerticies = !showVerticies;
         break;
-      case 's':
+    case 's':
         shade = !shade;
         (shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
         break;
-      case 'h':
+    case 'h':
         hideBottomTriangle = !hideBottomTriangle;
         break;
-      case 'o':
+    case 'o':
         outline = !outline;
         break;
-      case 'm':
+    case 'm':
         dithering = !dithering;
         break;
-      case '0':
+    case '0':
         aaMode = !aaMode;
         if (aaMode) {
             glEnable(GL_POLYGON_SMOOTH);
@@ -204,7 +204,7 @@ static void Key(unsigned char key, int x, int y)
             }
         }
         break;
-      default:
+    default:
         return;
     }
 
@@ -215,16 +215,16 @@ static void BeginPrim(void)
 {
 
     switch (state) {
-      case SOLID:
+    case SOLID:
         glBegin(GL_POLYGON);
         break;
-      case LINE:
+    case LINE:
         glBegin(GL_LINE_LOOP);
         break;
-      case POINT:
+    case POINT:
         glBegin(GL_POINTS);
         break;
-      default:
+    default:
         break;
     }
 }

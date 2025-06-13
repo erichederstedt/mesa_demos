@@ -60,9 +60,9 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 32:
+    case 32:
         cursor++;
         if (cursor > 19) {
             cursor = 0;

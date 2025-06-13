@@ -225,10 +225,10 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         free(image->data);
         exit(1);
-      case 32:
+    case 32:
         if (cCount > 1) {
             InitVList();
             cIndex[0] = 0;
@@ -238,7 +238,7 @@ static void Key(unsigned char key, int x, int y)
             op = OP_STRETCH;
         }
         break;
-      default:
+    default:
         return;
     }
 
@@ -278,16 +278,16 @@ static void Animate(void)
     t0 = t;
 
     switch (op) {
-      case OP_STRETCH:
+    case OP_STRETCH:
         Stretch();
         break;
-      case OP_DRAWPOINT:
+    case OP_DRAWPOINT:
         DrawPoint();
         break;
-      case OP_DRAWIMAGE:
+    case OP_DRAWIMAGE:
         DrawImage();
         break;
-      default:
+    default:
         break;
     }
 }

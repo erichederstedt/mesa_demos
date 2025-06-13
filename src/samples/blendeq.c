@@ -77,19 +77,19 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 'd':
+    case 'd':
         dithering = !dithering;
         break;
-      case 'l':
+    case 'l':
         if (supportlogops == 3)
            use11ops = (!use11ops);
         if (use11ops)
            printf("Using GL 1.1 color logic ops.\n");
         else printf("Using GL_EXT_blend_logic_op.\n");
         break;
-      default:
+    default:
         return;
     }
 

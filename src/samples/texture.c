@@ -307,19 +307,19 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         yRotation -= 0.5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         yRotation += 0.5;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         xRotation -= 0.5;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         xRotation += 0.5;
         break;
-      default:
+    default:
         return;
     }
 
@@ -330,17 +330,17 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
 
-      case 'T':
+    case 'T':
         zTranslate += 0.25;
         break;
-      case 't':
+    case 't':
         zTranslate -= 0.25;
         break;
 
-      case 's':
+    case 's':
         doSphere = !doSphere;
         if (doSphere) {
             glTexGeniv(GL_S, GL_TEXTURE_GEN_MODE, sphereMap);
@@ -353,31 +353,31 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case '0':
+    case '0':
         magFilter = nr;
         break;
-      case '1':
+    case '1':
         magFilter = ln;
         break;
-      case '2':
+    case '2':
         minFilter = nr;
         break;
-      case '3':
+    case '3':
         minFilter = ln;
         break;
-      case '4':
+    case '4':
         minFilter = nr_mipmap_nr;
         break;
-      case '5':
+    case '5':
         minFilter = nr_mipmap_ln;
         break;
-      case '6':
+    case '6':
         minFilter = ln_mipmap_nr;
         break;
-      case '7':
+    case '7':
         minFilter = ln_mipmap_ln;
         break;
-      default:
+    default:
         return;
     }
 

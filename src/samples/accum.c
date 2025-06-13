@@ -66,15 +66,15 @@ static void Key(unsigned char key, int x, int y)
     (void) x;
     (void) y;
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         break;
-      case '2':
+    case '2':
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         break;
-      default:
+    default:
         return;
     }
 

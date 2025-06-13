@@ -246,19 +246,19 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         rotX -= 5;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         rotX += 5;
         break;
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         rotY -= 5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         rotY += 5;
         break;
-      default:
+    default:
         return;
     }
 
@@ -269,7 +269,7 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
     }
 }

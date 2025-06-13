@@ -263,27 +263,27 @@ static void RenderEval(void)
     glShadeModel(GL_SMOOTH);
 
     switch (mapType) {
-      case EVAL:
+    case EVAL:
         switch (arrayType) {
-          case ONE_D:
+        case ONE_D:
             glDisable(GL_MAP2_VERTEX_4);
             glEnable(GL_MAP1_VERTEX_4);
             DrawPoints1();
             DrawMapEval1(0.1/VORDER);
             break;
-          case TWO_D:
+        case TWO_D:
             glDisable(GL_MAP1_VERTEX_4);
             glEnable(GL_MAP2_VERTEX_4);
             DrawPoints2();
             DrawMapEval2(0.1/VMAJOR_ORDER,0.1/VMINOR_ORDER);
             break;
-          default:
+        default:
             break;
         }
         break;
-      case MESH:
+    case MESH:
         switch (arrayType) {
-          case ONE_D:
+        case ONE_D:
             DrawPoints1();
             glDisable(GL_MAP2_VERTEX_4);
             glEnable (GL_MAP1_VERTEX_4);
@@ -296,7 +296,7 @@ static void RenderEval(void)
                 glEvalMesh1(GL_LINE, 0, 40);
             }
             break;
-          case TWO_D:
+        case TWO_D:
             DrawPoints2();
             glDisable(GL_MAP1_VERTEX_4);
             glEnable(GL_MAP2_VERTEX_4);
@@ -311,11 +311,11 @@ static void RenderEval(void)
                 glEvalMesh2(GL_LINE, 0, 20, 0, 20);
             }
             break;
-          default:
+        default:
             break;
         }
         break;
-      default:
+    default:
         break;
     }
 }
@@ -334,19 +334,19 @@ static void Reshape(int width, int height)
 static void Key2(int key, int x, int y)
 {
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         rotY -= 30;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         rotY += 30;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         rotX -= 30;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         rotX += 30;
         break;
-      default:
+    default:
         return;
     }
 
@@ -356,33 +356,33 @@ static void Key2(int key, int x, int y)
 static void Key(unsigned char key, int x, int y)
 {
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         arrayType = ONE_D;
         break;
-      case '2':
+    case '2':
         arrayType = TWO_D;
         break;
-      case 'e':
+    case 'e':
         mapType = EVAL;
         break;
-      case 'm':
+    case 'm':
         mapType = MESH;
         break;
-      case 'f':
+    case 'f':
         polygonFilled = !polygonFilled;
         break;
-      case 'p':
+    case 'p':
         mapPoint = !mapPoint;
         break;
-      case 'c':
+    case 'c':
         colorType = !colorType;
         break;
-      case 't':
+    case 't':
         textureType = !textureType;
         break;
-      case 'l':
+    case 'l':
         lighting =! lighting;
         if (lighting) {
             glEnable(GL_LIGHTING);
@@ -394,7 +394,7 @@ static void Key(unsigned char key, int x, int y)
             glDisable(GL_AUTO_NORMAL);
         }
         break;
-      default:
+    default:
         return;
     }
 

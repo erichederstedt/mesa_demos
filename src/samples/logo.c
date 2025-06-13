@@ -1347,19 +1347,19 @@ static void Key2(int key, int x, int y)
     (void) x;
     (void) y;
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         yRotation += 0.5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         yRotation -= 0.5;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         plane[3] += 2.0;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         plane[3] -= 2.0;
         break;
-      default:
+    default:
         return;
     }
 
@@ -1371,48 +1371,48 @@ static void Key(unsigned char key, int x, int y)
     (void) x;
     (void) y;
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
 
-      case 'Z':
+    case 'Z':
         zTranslation -= 1.0;
         break;
-      case 'z':
+    case 'z':
         zTranslation += 1.0;
         break;
 
-      case '1':
+    case '1':
         glPolygonMode(polyMode, GL_POINT);
         break;
-      case '2':
+    case '2':
         glPolygonMode(polyMode, GL_LINE);
         break;
-      case '3':
+    case '3':
         glPolygonMode(polyMode, GL_FILL);
         break;
-      case 'p':
+    case 'p':
         switch (polyMode) {
-          case GL_BACK:
+        case GL_BACK:
             polyMode = GL_FRONT;
             printf("PolygonMode GL_FRONT\n");
             break;
-          case GL_FRONT:
+        case GL_FRONT:
             polyMode = GL_FRONT_AND_BACK;
             printf("PolygonMode GL_FRONT_AND_BACK\n");
             break;
-          case GL_FRONT_AND_BACK:
+        case GL_FRONT_AND_BACK:
             polyMode = GL_BACK;
             printf("PolygonMode GL_BACK\n");
             break;
-          default:
+        default:
             break;
         }
         break;
 
-      case '4':
+    case '4':
         glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
         break;
-      case '5':
+    case '5':
         glEnable(GL_POLYGON_SMOOTH);
         if (rgb) {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -1422,7 +1422,7 @@ static void Key(unsigned char key, int x, int y)
             SetUpAntiAliasedGrayScale();
         }
         break;
-      case '6':
+    case '6':
         glDisable(GL_POLYGON_SMOOTH);
         if (rgb) {
             glBlendFunc(GL_ONE, GL_ZERO);
@@ -1433,12 +1433,12 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case '8':
+    case '8':
         dithering = !dithering;
         (dithering) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
         break;
 
-      case '9':
+    case '9':
         doStipple = !doStipple;
         if (doStipple) {
             glPolygonStipple(stipple);
@@ -1448,44 +1448,44 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case '0':
+    case '0':
         shade = !shade;
         (shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
         break;
 
-      case 'q':
+    case 'q':
         glDisable(GL_CULL_FACE);
         printf("disable culling\n");
         break;
-      case 'w':
+    case 'w':
         glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);
         printf("enable front face culling\n");
         break;
-      case 'e':
+    case 'e':
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
         printf("enable back face culling\n");
         break;
 
-      case 'r':
+    case 'r':
         glFrontFace(GL_CW);
         break;
-      case 't':
+    case 't':
         glFrontFace(GL_CCW);
         break;
-      case 'y':
+    case 'y':
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         glPixelStorei(GL_UNPACK_LSB_FIRST, 0);
         glPolygonStipple(stipple);
         break;
-      case 'u':
+    case 'u':
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         glPixelStorei(GL_UNPACK_LSB_FIRST, 1);
         glPolygonStipple(stipple);
         break;
 
-      case 'a':
+    case 'a':
         glEnable(GL_TEXTURE_2D);
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
@@ -1495,7 +1495,7 @@ static void Key(unsigned char key, int x, int y)
                      BRICKIMAGEHEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE,
                      (GLvoid *)brickImage);
         break;
-      case 's':
+    case 's':
         glEnable(GL_TEXTURE_2D);
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
@@ -1505,18 +1505,18 @@ static void Key(unsigned char key, int x, int y)
                      CHECKIMAGEHEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE,
                      (GLvoid *)checkImage);
         break;
-      case 'd':
+    case 'd':
         glDisable(GL_TEXTURE_2D);
         break;
 
-      case 'f':
+    case 'f':
         glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
         break;
-      case 'g':
+    case 'g':
         glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, modulate);
         break;
 
-      case 'n':
+    case 'n':
         /* added by BrianP */
         noDraw = !noDraw;
         if (noDraw) {
@@ -1532,7 +1532,7 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case 'l':
+    case 'l':
          /* Line Smooth - added by BrianP */
          LineSmooth = !LineSmooth;
          if (LineSmooth) {
@@ -1546,7 +1546,7 @@ static void Key(unsigned char key, int x, int y)
             glDisable(GL_BLEND);
          }
          break;
-      default:
+    default:
         return;
     }
 

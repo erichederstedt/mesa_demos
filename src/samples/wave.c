@@ -217,11 +217,11 @@ static void SetColorMap(void)
 
     for (i = 0; i < 2; i++) {
         switch (i) {
-          case 0:
+        case 0:
             color = green;
             indexes = colorIndexes1;
             break;
-          case 1:
+        case 1:
             color = red;
             indexes = colorIndexes2;
             break;
@@ -437,9 +437,9 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 'c':
+    case 'c':
         contouring++;
         if (contouring == 1) {
             static GLfloat map[4] = {0, 0, 20, 0};
@@ -471,7 +471,7 @@ static void Key(unsigned char key, int x, int y)
             glDisable(GL_TEXTURE_2D);
         }
         break;
-      case 's':
+    case 's':
         smooth = !smooth;
         if (smooth) {
             glShadeModel(GL_SMOOTH);
@@ -479,7 +479,7 @@ static void Key(unsigned char key, int x, int y)
             glShadeModel(GL_FLAT);
         }
         break;
-      case 'l':
+    case 'l':
         lighting = !lighting;
         if (lighting) {
             glEnable(GL_LIGHTING);
@@ -495,7 +495,7 @@ static void Key(unsigned char key, int x, int y)
             }
         }
         break;
-      case 'd':
+    case 'd':
         depth = !depth;
         if (depth) {
             glEnable(GL_DEPTH_TEST);
@@ -505,7 +505,7 @@ static void Key(unsigned char key, int x, int y)
             clearMask &= ~GL_DEPTH_BUFFER_BIT;
         }
         break;
-      case 32:
+    case 32:
         stepMode = !stepMode;
         if (stepMode) {
             glutIdleFunc(0);
@@ -513,15 +513,15 @@ static void Key(unsigned char key, int x, int y)
             glutIdleFunc(glut_post_redisplay_p);
         }
         break;
-      case 'n':
+    case 'n':
         if (stepMode) {
             nextFrame = 1;
         }
         break;
-      case 'a':
+    case 'a':
         spinMode = !spinMode;
         break;
-      default:
+    default:
         return;
     }
     glutPostRedisplay();

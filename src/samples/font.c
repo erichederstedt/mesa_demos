@@ -80,19 +80,19 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         shiftX -= 20.0;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         shiftX += 20.0;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         shiftY += 20.0;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         shiftY -= 20.0;
         break;
-      default:
+    default:
         return;
     }
 
@@ -103,81 +103,81 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
 
-      case 'n':
+    case 'n':
         shiftZ += 20.0;
         break;
-      case 'm':
+    case 'm':
         shiftZ -= 20.0;
         break;
 
-      case 'q':
+    case 'q':
         scaleX -= 0.1;
         if (scaleX < 0.1) {
             scaleX = 0.1;
         }
         break;
-      case 'w':
+    case 'w':
         scaleX += 0.1;
         break;
-      case 'a':
+    case 'a':
         scaleY -= 0.1;
         if (scaleY < 0.1) {
             scaleY = 0.1;
         }
         break;
-      case 's':
+    case 's':
         scaleY += 0.1;
         break;
-      case 'z':
+    case 'z':
         scaleZ -= 0.1;
         if (scaleZ < 0.1) {
             scaleZ = 0.1;
         }
         break;
-      case 'x':
+    case 'x':
         scaleZ += 0.1;
         break;
 
-      case 'e':
+    case 'e':
         angleX -= 5.0;
         if (angleX < 0.0) {
             angleX = 360.0 + angleX;
         }
         break;
-      case 'r':
+    case 'r':
         angleX += 5.0;
         if (angleX > 360.0) {
             angleX = angleX - 360.0;
         }
         break;
-      case 'd':
+    case 'd':
         angleY -= 5.0;
         if (angleY < 0.0) {
             angleY = 360.0 + angleY;
         }
         break;
-      case 'f':
+    case 'f':
         angleY += 5.0;
         if (angleY > 360.0) {
             angleY = angleY - 360.0;
         }
         break;
-      case 'c':
+    case 'c':
         angleZ -= 5.0;
         if (angleZ < 0.0) {
             angleZ = 360.0 + angleZ;
         }
         break;
-      case 'v':
+    case 'v':
         angleZ += 5.0;
         if (angleZ > 360.0) {
             angleZ = angleZ - 360.0;
         }
         break;
-      default:
+    default:
         return;
     }
 

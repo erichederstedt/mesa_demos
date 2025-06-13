@@ -801,27 +801,27 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         yRotation -= 0.5;
         autoRotate = GL_FALSE;
         ReInit();
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         yRotation += 0.5;
         autoRotate = GL_FALSE;
         ReInit();
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         xRotation -= 0.5;
         autoRotate = GL_FALSE;
         ReInit();
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         xRotation += 0.5;
         autoRotate = GL_FALSE;
         ReInit();
         break;
-      default:
+    default:
         return;
     }
     glutPostRedisplay();
@@ -831,11 +831,11 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
          /*        free(image->data);*/
         exit(1);
 
-      case 'a':
+    case 'a':
         autoRotate = !autoRotate;
         if (autoRotate)
            glutIdleFunc(Idle);
@@ -844,7 +844,7 @@ static void Key(unsigned char key, int x, int y)
 
         ReInit();
         break;
-      case 'o':
+    case 'o':
         if (genericObject == cube) {
           genericObject = cylinder;
         }
@@ -856,59 +856,59 @@ static void Key(unsigned char key, int x, int y)
         }
         ReInit();
         break;
-      case 'd':
+    case 'd':
         textureEnvironment = decal;
         ReInit();
         break;
-      case 'm':
+    case 'm':
         textureEnvironment = modulate;
         ReInit();
         break;
-      case 'l':
+    case 'l':
         isLit = !isLit;
         ReInit();
         break;
-      case 'f':
+    case 'f':
         isFogged = !isFogged;
         ReInit();
         break;
-      case 't':
+    case 't':
         doTexture = !doTexture;
         ReInit();
         break;
-      case '0':
+    case '0':
         magFilter = nnearest;
         ReInit();
         break;
-      case '1':
+    case '1':
         magFilter = linear;
         ReInit();
         break;
-      case '2':
+    case '2':
         minFilter = nnearest;
         ReInit();
         break;
-      case '3':
+    case '3':
         minFilter = linear;
         ReInit();
         break;
-      case '4':
+    case '4':
         minFilter = nearest_mipmap_nearest;
         ReInit();
         break;
-      case '5':
+    case '5':
         minFilter = nearest_mipmap_linear;
         ReInit();
         break;
-      case '6':
+    case '6':
         minFilter = linear_mipmap_nearest;
         ReInit();
         break;
-      case '7':
+    case '7':
         minFilter = linear_mipmap_linear;
         ReInit();
         break;
-      default:
+    default:
         return;
     }
     glutPostRedisplay();

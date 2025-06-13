@@ -186,19 +186,19 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         yRotation += 5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         yRotation -= 5;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         xRotation += 5;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         xRotation -= 5;
         break;
-      default:
+    default:
         return;
     }
 
@@ -209,30 +209,30 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
 
-      case 'X':
+    case 'X':
         zRotation += 5;
         break;
-      case 'x':
+    case 'x':
         zRotation -= 5;
         break;
 
-      case '1':
+    case '1':
         gluQuadricDrawStyle(quadObj, GLU_FILL);
         break;
-      case '2':
+    case '2':
         gluQuadricDrawStyle(quadObj, GLU_POINT);
         break;
-      case '3':
+    case '3':
         gluQuadricDrawStyle(quadObj, GLU_LINE);
         break;
-      case '4':
+    case '4':
         gluQuadricDrawStyle(quadObj, GLU_SILHOUETTE);
         break;
 
-      case '0':
+    case '0':
         shade = !shade;
         if (shade) {
             glShadeModel(GL_SMOOTH);
@@ -243,26 +243,26 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case 'A':
+    case 'A':
         stacks++;
         break;
-      case 'a':
+    case 'a':
         stacks--;
         break;
 
-      case 'S':
+    case 'S':
         slices++;
         break;
-      case 's':
+    case 's':
         slices--;
         break;
 
-      case 'd':
+    case 'd':
         switch(orientation) {
-          case GLU_OUTSIDE:
+        case GLU_OUTSIDE:
             orientation = GLU_INSIDE;
             break;
-          case GLU_INSIDE:
+        case GLU_INSIDE:
           default:
             orientation = GLU_OUTSIDE;
             break;
@@ -270,46 +270,46 @@ static void Key(unsigned char key, int x, int y)
         gluQuadricOrientation(quadObj, orientation);
         break;
 
-      case 'f':
+    case 'f':
         whichQuadric = (whichQuadric + 1) % 4;
         break;
 
-      case 'G':
+    case 'G':
         radius1 += 1;
         break;
-      case 'g':
+    case 'g':
         radius1 -= 1;
         break;
 
-      case 'J':
+    case 'J':
         radius2 += 1;
         break;
-      case 'j':
+    case 'j':
         radius2 -= 1;
         break;
 
-      case 'H':
+    case 'H':
         height += 2;
         break;
-      case 'h':
+    case 'h':
         height -= 2;
         break;
 
-      case 'K':
+    case 'K':
         angle1 += 5;
         break;
-      case 'k':
+    case 'k':
         angle1 -= 5;
         break;
 
-      case 'L':
+    case 'L':
         angle2 += 5;
         break;
-      case 'l':
+    case 'l':
         angle2 -= 5;
         break;
 
-      case 'z':
+    case 'z':
         texture = !texture;
         if (texture) {
             gluQuadricTexture(quadObj, GL_TRUE);
@@ -320,30 +320,30 @@ static void Key(unsigned char key, int x, int y)
         }
         break;
 
-      case 'q':
+    case 'q':
         glDisable(GL_CULL_FACE);
         break;
-      case 'w':
+    case 'w':
         glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);
         break;
-      case 'e':
+    case 'e':
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
         break;
 
-      case 'r':
+    case 'r':
         glFrontFace(GL_CW);
         break;
-      case 't':
+    case 't':
         glFrontFace(GL_CCW);
         break;
 
-      case 'y':
+    case 'y':
         doDither = !doDither;
         (doDither) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
         break;
-      default:
+    default:
         return;
     }
 
@@ -362,19 +362,19 @@ static void Draw(void)
 
     glColor3f(1.0, 1.0, 1.0);
     switch (whichQuadric) {
-      case 0:
+    case 0:
         glTranslatef(0, 0, -height/20.0);
         gluCylinder(quadObj, radius1/10.0, radius2/10.0, height/10.0,
                     slices, stacks);
         break;
-      case 1:
+    case 1:
         gluSphere(quadObj, radius1/10.0, slices, stacks);
         break;
-      case 2:
+    case 2:
         gluPartialDisk(quadObj, radius2/10.0, radius1/10.0, slices,
                        stacks, angle1, angle2);
         break;
-      case 3:
+    case 3:
         gluDisk(quadObj, radius2/10.0, radius1/10.0, slices, stacks);
         break;
     }

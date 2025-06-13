@@ -190,13 +190,13 @@ static void GrowTri(GLint h)
 
     for (i = 0; i < 3; i++) {
         switch (i) {
-          case 0:
+        case 0:
             oldV = objects[h].v1;
             break;
-          case 1:
+        case 1:
             oldV = objects[h].v2;
             break;
-          case 2:
+        case 2:
             oldV = objects[h].v3;
             break;
         }
@@ -308,7 +308,7 @@ static void DrawFeedback(GLint n)
     printf("Feedback results (%d floats):\n", n);
     for (i = 0; i < n; i++) {
         switch ((GLint)feedBuf[i]) {
-          case GL_POLYGON_TOKEN:
+        case GL_POLYGON_TOKEN:
             printf("Polygon");
             i++;
             if (i < n) {
@@ -325,21 +325,21 @@ static void DrawFeedback(GLint n)
             }
             i--;
             break;
-          case GL_LINE_TOKEN:
+        case GL_LINE_TOKEN:
             printf("Line:\n");
             i++;
             DumpFeedbackVert(&i, n);
             DumpFeedbackVert(&i, n);
             i--;
             break;
-          case GL_LINE_RESET_TOKEN:
+        case GL_LINE_RESET_TOKEN:
             printf("Line Reset:\n");
             i++;
             DumpFeedbackVert(&i, n);
             DumpFeedbackVert(&i, n);
             i--;
             break;
-          default:
+        default:
             printf("%9.2f\n", feedBuf[i]);
             break;
         }
@@ -388,13 +388,13 @@ static void DoFeedback(void)
 static void Key2(int key, int x, int y)
 {
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         zRotation += 0.5;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         zRotation -= 0.5;
         break;
-      default:
+    default:
         return;
     }
 
@@ -404,21 +404,21 @@ static void Key2(int key, int x, int y)
 static void Key(unsigned char key, int x, int y)
 {
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case 'Z':
+    case 'Z':
         zoom /= 0.75;
         break;
-      case 'z':
+    case 'z':
         zoom *= 0.75;
         break;
-      case 'f':
+    case 'f':
         DoFeedback();
         break;
-      case 'd':
+    case 'd':
         DrawZoom(x, y);
         break;
-      case 'l':
+    case 'l':
         linePoly = !linePoly;
         if (linePoly) {
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -426,7 +426,7 @@ static void Key(unsigned char key, int x, int y)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
         break;
-      default:
+    default:
         return;
     }
 

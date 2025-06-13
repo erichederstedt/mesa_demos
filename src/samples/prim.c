@@ -58,19 +58,19 @@ static void RotateColorMask(void)
 
     rotation = (rotation + 1) & 0x3;
     switch (rotation) {
-      case 0:
+    case 0:
         glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
         glIndexMask( 0xff );
         break;
-      case 1:
+    case 1:
         glColorMask(GL_FALSE, GL_TRUE, GL_TRUE, GL_TRUE);
         glIndexMask(0xFE);
         break;
-      case 2:
+    case 2:
         glColorMask(GL_TRUE, GL_FALSE, GL_TRUE, GL_TRUE);
         glIndexMask(0xFD);
         break;
-      case 3:
+    case 3:
         glColorMask(GL_TRUE, GL_TRUE, GL_FALSE, GL_TRUE);
         glIndexMask(0xFB);
         break;
@@ -81,18 +81,18 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         mode1 = !mode1;
         break;
-      case '2':
+    case '2':
         mode2 = !mode2;
         break;
-      case '3':
+    case '3':
         RotateColorMask();
         break;
-      default:
+    default:
         return;
     }
 

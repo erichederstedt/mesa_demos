@@ -86,24 +86,24 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         mode1 = !mode1;
         break;
-      case '2':
+    case '2':
         mode2 = !mode2;
         break;
-      case 'W':
+    case 'W':
         size++;
         break;
-      case 'w':
+    case 'w':
         size--;
         if (size < 1) {
             size = 1;
         }
         break;
-      default:
+    default:
         return;
     }
 

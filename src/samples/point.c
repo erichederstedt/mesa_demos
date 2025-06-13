@@ -84,19 +84,19 @@ static void Key2(int key, int x, int y)
 {
 
     switch (key) {
-      case GLUT_KEY_LEFT:
+    case GLUT_KEY_LEFT:
         point[0] -= 0.25;
         break;
-      case GLUT_KEY_RIGHT:
+    case GLUT_KEY_RIGHT:
         point[0] += 0.25;
         break;
-      case GLUT_KEY_UP:
+    case GLUT_KEY_UP:
         point[1] += 0.25;
         break;
-      case GLUT_KEY_DOWN:
+    case GLUT_KEY_DOWN:
         point[1] -= 0.25;
         break;
-      default:
+    default:
         return;
     }
 
@@ -107,21 +107,21 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         mode = !mode;
         break;
-      case 'W':
+    case 'W':
         size++;
         break;
-      case 'w':
+    case 'w':
         size--;
         if (size < 1) {
             size = 1;
         }
         break;
-      default:
+    default:
         return;
     }
 

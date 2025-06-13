@@ -92,15 +92,15 @@ static void Key(unsigned char key, int x, int y)
 {
 
     switch (key) {
-      case 27:
+    case 27:
         exit(1);
-      case '1':
+    case '1':
         antiAlias = !antiAlias;
         break;
-      case '2':
+    case '2':
         stipple = !stipple;
         break;
-      default:
+    default:
         return;
     }
 
