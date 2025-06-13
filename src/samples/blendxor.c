@@ -45,10 +45,10 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case 'd':
-	dithering = !dithering;
-	break;
+        dithering = !dithering;
+        break;
       case 'l':
         if (supportlogops == 3)
            use11ops = (!use11ops);
@@ -57,7 +57,7 @@ static void Key(unsigned char key, int x, int y)
         else printf("Using GL_EXT_blend_logic_op.\n");
         break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -125,7 +125,7 @@ static void Draw(void)
 
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -136,14 +136,14 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 400, 400);
@@ -168,7 +168,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Blend XOR") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     gladLoaderLoadGL();
@@ -177,20 +177,20 @@ int main(int argc, char **argv)
     s = (char *) glGetString(GL_EXTENSIONS);
     version = (char*) glGetString(GL_VERSION);
     if (!s)
-	exit(1);
+        exit(1);
     if (strstr(s,extName)) {
-	supportlogops = 1;
+        supportlogops = 1;
         use11ops = 0;
         printf("blend_logic_op extension available.\n");
     }
     if (strncmp(version,"1.1",3)>=0) {
-    	supportlogops += 2;
+            supportlogops += 2;
         use11ops = 1;
-	printf("1.1 color logic ops available.\n");
+        printf("1.1 color logic ops available.\n");
     }
     if (supportlogops == 0) {
-    	printf("Blend_logic_op extension and GL 1.1 not present.\n");
-	exit(1);
+            printf("Blend_logic_op extension and GL 1.1 not present.\n");
+        exit(1);
     }
 
     Init();
@@ -200,5 +200,5 @@ int main(int argc, char **argv)
     glutDisplayFunc(Draw);
     glutMainLoop();
     gladLoaderUnloadGL();
-	return 0;
+    return 0;
 }

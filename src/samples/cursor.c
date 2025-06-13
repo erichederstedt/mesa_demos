@@ -63,11 +63,11 @@ static void Key(unsigned char key, int x, int y)
       case 27:
         exit(1);
       case 32:
-	cursor++;
-	if (cursor > 19) {
-	    cursor = 0;
-	}
-	glutSetCursor(cursor);
+        cursor++;
+        if (cursor > 19) {
+            cursor = 0;
+        }
+        glutSetCursor(cursor);
     }
 }
 
@@ -77,20 +77,20 @@ static void Draw(void)
     glClear(GL_COLOR_BUFFER_BIT);
 
     glBegin(GL_POLYGON);
-	SetColor(COLOR_BLACK);
-	glVertex2i(0, 0);
-	SetColor(COLOR_RED);
-	glVertex2i(windX, 0);
-	SetColor(COLOR_GREEN);
-	glVertex2i(windX, windY);
-	SetColor(COLOR_BLUE);
-	glVertex2i(0, windY);
+        SetColor(COLOR_BLACK);
+        glVertex2i(0, 0);
+        SetColor(COLOR_RED);
+        glVertex2i(windX, 0);
+        SetColor(COLOR_GREEN);
+        glVertex2i(windX, windY);
+        SetColor(COLOR_BLUE);
+        glVertex2i(0, windY);
     glEnd();
 
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -102,18 +102,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -123,7 +123,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     windX = 300;
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(windType);
 
     if (glutCreateWindow("Cursor Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -146,5 +146,5 @@ int main(int argc, char **argv)
     glutKeyboardFunc(Key);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

@@ -164,35 +164,35 @@ static void Draw(void)
     SetColor(COLOR_WHITE);
     glRasterPos3fv(boxB);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits1);
+             OpenGL_bits1);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits2);
+             OpenGL_bits2);
 
     SetColor(COLOR_YELLOW);
     glRasterPos3fv(boxC);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits1);
+             OpenGL_bits1);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits2);
+             OpenGL_bits2);
 
     SetColor(COLOR_CYAN);
     glRasterPos3fv(boxD);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits1);
+             OpenGL_bits1);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits2);
+             OpenGL_bits2);
 
     SetColor(COLOR_RED);
     glRasterPos3fv(boxE);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits1);
+             OpenGL_bits1);
     glBitmap(OPENGL_WIDTH, OPENGL_HEIGHT, OPENGL_WIDTH, 0.0, OPENGL_WIDTH, 0.0,
-	     OpenGL_bits2);
+             OpenGL_bits2);
 
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -204,18 +204,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -235,7 +235,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(windType);
 
     if (glutCreateWindow("Bitmap Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -246,5 +246,5 @@ int main(int argc, char **argv)
     glutKeyboardFunc(Key);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

@@ -29,13 +29,13 @@
 
 
 #define PI 3.141592654
-#define	BLACK 0
-#define	GRAY 128
-#define	WHITE 255
+#define BLACK 0
+#define GRAY 128
+#define WHITE 255
 #define RD 0xA4,0x00,0x00,0xFF
 #define WT 0xFF,0xFF,0xFF,0xFF
-#define	brickImageWidth 16
-#define	brickImageHeight 16
+#define brickImageWidth 16
+#define brickImageHeight 16
 
 
 #include "loadppm.c"
@@ -117,7 +117,7 @@ static void Init(void)
     static PPMImage *image;
 
     if (!rgb) {
-	SetGreyRamp();
+        SetGreyRamp();
     }
     glClearColor(0.0, 0.0, 0.0, 0.0);
 
@@ -138,7 +138,7 @@ static void Init(void)
     glMaterialfv(GL_BACK, GL_SPECULAR, back_mat_specular);
     glMaterialfv(GL_BACK, GL_DIFFUSE, back_mat_diffuse);
     if (!rgb) {
-	glMaterialiv( GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
+        glMaterialiv( GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
     }
 
     glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
@@ -147,14 +147,14 @@ static void Init(void)
     glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
     glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
     if (texFileName) {
-	image = LoadPPM(texFileName);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, image->sizeX, image->sizeY,
-			  GL_RGB, GL_UNSIGNED_BYTE, image->data);
+        image = LoadPPM(texFileName);
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, image->sizeX, image->sizeY,
+                          GL_RGB, GL_UNSIGNED_BYTE, image->data);
     } else {
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, brickImageWidth, brickImageHeight,
-		     0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid *)brickImage);
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, brickImageWidth, brickImageHeight,
+                     0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid *)brickImage);
     }
 
     quadObj = gluNewQuadric();
@@ -187,19 +187,19 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_LEFT:
-	yRotation += 5;
-	break;
+        yRotation += 5;
+        break;
       case GLUT_KEY_RIGHT:
-	yRotation -= 5;
-	break;
+        yRotation -= 5;
+        break;
       case GLUT_KEY_UP:
-	xRotation += 5;
-	break;
+        xRotation += 5;
+        break;
       case GLUT_KEY_DOWN:
-	xRotation -= 5;
-	break;
+        xRotation -= 5;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -210,141 +210,141 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
 
       case 'X':
-	zRotation += 5;
-	break;
+        zRotation += 5;
+        break;
       case 'x':
-	zRotation -= 5;
-	break;
+        zRotation -= 5;
+        break;
 
       case '1':
-	gluQuadricDrawStyle(quadObj, GLU_FILL);
-	break;
+        gluQuadricDrawStyle(quadObj, GLU_FILL);
+        break;
       case '2':
-	gluQuadricDrawStyle(quadObj, GLU_POINT);
-	break;
+        gluQuadricDrawStyle(quadObj, GLU_POINT);
+        break;
       case '3':
-	gluQuadricDrawStyle(quadObj, GLU_LINE);
-	break;
+        gluQuadricDrawStyle(quadObj, GLU_LINE);
+        break;
       case '4':
-	gluQuadricDrawStyle(quadObj, GLU_SILHOUETTE);
-	break;
+        gluQuadricDrawStyle(quadObj, GLU_SILHOUETTE);
+        break;
 
       case '0':
-	shade = !shade;
-	if (shade) {
-	    glShadeModel(GL_SMOOTH);
-	    gluQuadricNormals(quadObj, GLU_SMOOTH);
-	} else {
-	    glShadeModel(GL_FLAT);
-	    gluQuadricNormals(quadObj, GLU_FLAT);
-	}
-	break;
+        shade = !shade;
+        if (shade) {
+            glShadeModel(GL_SMOOTH);
+            gluQuadricNormals(quadObj, GLU_SMOOTH);
+        } else {
+            glShadeModel(GL_FLAT);
+            gluQuadricNormals(quadObj, GLU_FLAT);
+        }
+        break;
 
       case 'A':
-	stacks++;
-	break;
+        stacks++;
+        break;
       case 'a':
-	stacks--;
-	break;
+        stacks--;
+        break;
 
       case 'S':
-	slices++;
-	break;
+        slices++;
+        break;
       case 's':
-	slices--;
-	break;
+        slices--;
+        break;
 
       case 'd':
-	switch(orientation) {
-	  case GLU_OUTSIDE:
-	    orientation = GLU_INSIDE;
-	    break;
-	  case GLU_INSIDE:
-	  default:
-	    orientation = GLU_OUTSIDE;
-	    break;
-	}
-	gluQuadricOrientation(quadObj, orientation);
-	break;
+        switch(orientation) {
+          case GLU_OUTSIDE:
+            orientation = GLU_INSIDE;
+            break;
+          case GLU_INSIDE:
+          default:
+            orientation = GLU_OUTSIDE;
+            break;
+        }
+        gluQuadricOrientation(quadObj, orientation);
+        break;
 
       case 'f':
-	whichQuadric = (whichQuadric + 1) % 4;
-	break;
+        whichQuadric = (whichQuadric + 1) % 4;
+        break;
 
       case 'G':
-	radius1 += 1;
-	break;
+        radius1 += 1;
+        break;
       case 'g':
-	radius1 -= 1;
-	break;
+        radius1 -= 1;
+        break;
 
       case 'J':
-	radius2 += 1;
-	break;
+        radius2 += 1;
+        break;
       case 'j':
-	radius2 -= 1;
-	break;
+        radius2 -= 1;
+        break;
 
       case 'H':
-	height += 2;
-	break;
+        height += 2;
+        break;
       case 'h':
-	height -= 2;
-	break;
+        height -= 2;
+        break;
 
       case 'K':
-	angle1 += 5;
-	break;
+        angle1 += 5;
+        break;
       case 'k':
-	angle1 -= 5;
-	break;
+        angle1 -= 5;
+        break;
 
       case 'L':
-	angle2 += 5;
-	break;
+        angle2 += 5;
+        break;
       case 'l':
-	angle2 -= 5;
-	break;
+        angle2 -= 5;
+        break;
 
       case 'z':
         texture = !texture;
-	if (texture) {
-	    gluQuadricTexture(quadObj, GL_TRUE);
-	    glEnable(GL_TEXTURE_2D);
-	} else {
-	    gluQuadricTexture(quadObj, GL_FALSE);
-	    glDisable(GL_TEXTURE_2D);
-	}
-	break;
+        if (texture) {
+            gluQuadricTexture(quadObj, GL_TRUE);
+            glEnable(GL_TEXTURE_2D);
+        } else {
+            gluQuadricTexture(quadObj, GL_FALSE);
+            glDisable(GL_TEXTURE_2D);
+        }
+        break;
 
       case 'q':
-	glDisable(GL_CULL_FACE);
-	break;
+        glDisable(GL_CULL_FACE);
+        break;
       case 'w':
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	break;
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+        break;
       case 'e':
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	break;
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        break;
 
       case 'r':
-	glFrontFace(GL_CW);
-	break;
+        glFrontFace(GL_CW);
+        break;
       case 't':
-	glFrontFace(GL_CCW);
-	break;
+        glFrontFace(GL_CCW);
+        break;
 
       case 'y':
-	doDither = !doDither;
-	(doDither) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
-	break;
+        doDither = !doDither;
+        (doDither) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -363,26 +363,26 @@ static void Draw(void)
     glColor3f(1.0, 1.0, 1.0);
     switch (whichQuadric) {
       case 0:
-	glTranslatef(0, 0, -height/20.0);
-	gluCylinder(quadObj, radius1/10.0, radius2/10.0, height/10.0,
-		    slices, stacks);
-	break;
+        glTranslatef(0, 0, -height/20.0);
+        gluCylinder(quadObj, radius1/10.0, radius2/10.0, height/10.0,
+                    slices, stacks);
+        break;
       case 1:
-	gluSphere(quadObj, radius1/10.0, slices, stacks);
-	break;
+        gluSphere(quadObj, radius1/10.0, slices, stacks);
+        break;
       case 2:
-	gluPartialDisk(quadObj, radius2/10.0, radius1/10.0, slices,
-		       stacks, angle1, angle2);
-	break;
+        gluPartialDisk(quadObj, radius2/10.0, radius1/10.0, slices,
+                       stacks, angle1, angle2);
+        break;
       case 3:
-	gluDisk(quadObj, radius2/10.0, radius1/10.0, slices, stacks);
-	break;
+        gluDisk(quadObj, radius2/10.0, radius1/10.0, slices, stacks);
+        break;
     }
 
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -394,25 +394,25 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else if (strcmp(argv[i], "-f") == 0) {
-	    if (i+1 >= argc || argv[i+1][0] == '-') {
-		printf("-f (No file name).\n");
-		return GL_FALSE;
-	    } else {
-		texFileName = argv[++i];
-	    }
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            if (i+1 >= argc || argv[i+1][0] == '-') {
+                printf("-f (No file name).\n");
+                return GL_FALSE;
+            } else {
+                texFileName = argv[++i];
+            }
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -424,7 +424,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -435,7 +435,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Quad Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -447,5 +447,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

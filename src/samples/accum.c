@@ -39,14 +39,14 @@ static void Init(void)
 
     thing1 = glGenLists(1);
     glNewList(thing1, GL_COMPILE);
-	glColor3f(1.0, 0.0, 0.0);
-	glRectf(-1.0, -1.0, 1.0, 0.0);
+        glColor3f(1.0, 0.0, 0.0);
+        glRectf(-1.0, -1.0, 1.0, 0.0);
     glEndList();
 
     thing2 = glGenLists(1);
     glNewList(thing2, GL_COMPILE);
-	glColor3f(0.0, 1.0, 0.0);
-	glRectf(0.0, -1.0, 1.0, 1.0);
+        glColor3f(0.0, 1.0, 0.0);
+        glRectf(0.0, -1.0, 1.0, 1.0);
     glEndList();
 }
 
@@ -67,15 +67,15 @@ static void Key(unsigned char key, int x, int y)
     (void) y;
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case '1':
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	break;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        break;
       case '2':
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	break;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -103,7 +103,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -114,14 +114,14 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -133,7 +133,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0);
@@ -144,7 +144,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Accum Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();
@@ -153,5 +153,5 @@ int main(int argc, char **argv)
     glutKeyboardFunc(Key);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

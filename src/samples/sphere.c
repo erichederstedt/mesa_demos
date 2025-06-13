@@ -62,373 +62,373 @@ int cube, cage, cylinder, torus, genericObject;
 
 float c[6][4][4][3] = {
     {
-	{
-	    {
-		1.0, 1.0, -1.0
-	    },
-	    {
-		0.0, 1.0, -1.0
-	    },
-	    {
-		0.0, 0.0, -1.0
-	    },
-	    {
-		1.0, 0.0, -1.0
-	    },
-	},
-	{
-	    {
-		0.0, 1.0, -1.0
-	    },
-	    {
-		-1.0, 1.0, -1.0
-	    },
-	    {
-		-1.0, 0.0, -1.0
-	    },
-	    {
-		0.0, 0.0, -1.0
-	    },
-	},
-	{
-	    {
-		0.0,  0.0, -1.0
-	    },
-	    {
-		-1.0, 0.0, -1.0
-	    },
-	    {
-		-1.0, -1.0, -1.0
-	    },
-	    {
-		0.0, -1.0, -1.0
-	    },
-	},
-	{
-	    {
-		1.0, 0.0, -1.0
-	    },
-	    {
-		0.0, 0.0, -1.0
-	    },
-	    {
-		0.0, -1.0, -1.0
-	    },
-	    {
-		1.0, -1.0, -1.0
-	    },
-	},
+        {
+            {
+                1.0, 1.0, -1.0
+            },
+            {
+                0.0, 1.0, -1.0
+            },
+            {
+                0.0, 0.0, -1.0
+            },
+            {
+                1.0, 0.0, -1.0
+            },
+        },
+        {
+            {
+                0.0, 1.0, -1.0
+            },
+            {
+                -1.0, 1.0, -1.0
+            },
+            {
+                -1.0, 0.0, -1.0
+            },
+            {
+                0.0, 0.0, -1.0
+            },
+        },
+        {
+            {
+                0.0,  0.0, -1.0
+            },
+            {
+                -1.0, 0.0, -1.0
+            },
+            {
+                -1.0, -1.0, -1.0
+            },
+            {
+                0.0, -1.0, -1.0
+            },
+        },
+        {
+            {
+                1.0, 0.0, -1.0
+            },
+            {
+                0.0, 0.0, -1.0
+            },
+            {
+                0.0, -1.0, -1.0
+            },
+            {
+                1.0, -1.0, -1.0
+            },
+        },
     },
     {
-	{
-	    {
-		1.0, 1.0, 1.0
-	    },
-	    {
-		1.0, 1.0, 0.0
-	    },
-	    {
-		1.0, 0.0, 0.0
-	    },
-	    {
-		1.0, 0.0, 1.0
-	    },
-	},
-	{
-	    {
-		1.0, 1.0, 0.0
-	    },
-	    {
-		1.0, 1.0, -1.0
-	    },
-	    {
-		1.0, 0.0, -1.0
-	    },
-	    {
-		1.0, 0.0, 0.0
-	    },
-	},
-	{
-	    {
-		1.0, 0.0, -1.0
-	    },
-	    {
-		1.0, -1.0, -1.0
-	    },
-	    {
-		1.0, -1.0, 0.0
-	    },
-	    {
-		1.0, 0.0, 0.0
-	    },
-	},
-	{
-	    {
-		1.0, 0.0, 0.0
-	    },
-	    {
-		1.0, -1.0, 0.0
-	    },
-	    {
-		1.0, -1.0, 1.0
-	    },
-	    {
-		1.0, 0.0, 1.0
-	    },
-	},
+        {
+            {
+                1.0, 1.0, 1.0
+            },
+            {
+                1.0, 1.0, 0.0
+            },
+            {
+                1.0, 0.0, 0.0
+            },
+            {
+                1.0, 0.0, 1.0
+            },
+        },
+        {
+            {
+                1.0, 1.0, 0.0
+            },
+            {
+                1.0, 1.0, -1.0
+            },
+            {
+                1.0, 0.0, -1.0
+            },
+            {
+                1.0, 0.0, 0.0
+            },
+        },
+        {
+            {
+                1.0, 0.0, -1.0
+            },
+            {
+                1.0, -1.0, -1.0
+            },
+            {
+                1.0, -1.0, 0.0
+            },
+            {
+                1.0, 0.0, 0.0
+            },
+        },
+        {
+            {
+                1.0, 0.0, 0.0
+            },
+            {
+                1.0, -1.0, 0.0
+            },
+            {
+                1.0, -1.0, 1.0
+            },
+            {
+                1.0, 0.0, 1.0
+            },
+        },
     },
     {
-	{
-	    {
-		-1.0, 1.0, 1.0
-	    },
-	    {
-		0.0, 1.0, 1.0
-	    },
-	    {
-		0.0, 0.0, 1.0
-	    },
-	    {
-		-1.0, 0.0, 1.0
-	    },
-	},
-	{
-	    {
-		0.0, 1.0, 1.0
-	    },
-	    {
-		1.0, 1.0, 1.0
-	    },
-	    {
-		1.0, 0.0, 1.0
-	    },
-	    {
-		0.0, 0.0, 1.0
-	    },
-	},
-	{
-	    {
-		1.0, 0.0, 1.0
-	    },
-	    {
-		1.0, -1.0, 1.0
-	    },
-	    {
-		0.0, -1.0, 1.0
-	    },
-	    {
-		0.0, 0.0, 1.0
-	    },
-	},
-	{
-	    {
-		0.0, -1.0, 1.0
-	    },
-	    {
-		-1.0, -1.0, 1.0
-	    },
-	    {
-		-1.0, 0.0, 1.0
-	    },
-	    {
-		0.0, 0.0, 1.0
-	    },
-	},
+        {
+            {
+                -1.0, 1.0, 1.0
+            },
+            {
+                0.0, 1.0, 1.0
+            },
+            {
+                0.0, 0.0, 1.0
+            },
+            {
+                -1.0, 0.0, 1.0
+            },
+        },
+        {
+            {
+                0.0, 1.0, 1.0
+            },
+            {
+                1.0, 1.0, 1.0
+            },
+            {
+                1.0, 0.0, 1.0
+            },
+            {
+                0.0, 0.0, 1.0
+            },
+        },
+        {
+            {
+                1.0, 0.0, 1.0
+            },
+            {
+                1.0, -1.0, 1.0
+            },
+            {
+                0.0, -1.0, 1.0
+            },
+            {
+                0.0, 0.0, 1.0
+            },
+        },
+        {
+            {
+                0.0, -1.0, 1.0
+            },
+            {
+                -1.0, -1.0, 1.0
+            },
+            {
+                -1.0, 0.0, 1.0
+            },
+            {
+                0.0, 0.0, 1.0
+            },
+        },
     },
     {
-	{
-	    {
-		-1.0, 1.0, -1.0
-	    },
-	    {
-		-1.0, 1.0, 0.0
-	    },
-	    {
-		-1.0, 0.0, 0.0
-	    },
-	    {
-		-1.0, 0.0, -1.0
-	    },
-	},
-	{
-	    {
-		-1.0, 1.0, 0.0
-	    },
-	    {
-		-1.0, 1.0, 1.0
-	    },
-	    {
-		-1.0, 0.0, 1.0
-	    },
-	    {
-		-1.0, 0.0, 0.0
-	    },
-	},
-	{
-	    {
-		-1.0, 0.0, 1.0
-	    },
-	    {
-		-1.0, -1.0, 1.0
-	    },
-	    {
-		-1.0, -1.0, 0.0
-	    },
-	    {
-		-1.0, 0.0, 0.0
-	    },
-	},
-	{
-	    {
-		-1.0, -1.0, 0.0
-	    },
-	    {
-		-1.0, -1.0, -1.0
-	    },
-	    {
-		-1.0, 0.0, -1.0
-	    },
-	    {
-		-1.0, 0.0, 0.0
-	    },
-	},
+        {
+            {
+                -1.0, 1.0, -1.0
+            },
+            {
+                -1.0, 1.0, 0.0
+            },
+            {
+                -1.0, 0.0, 0.0
+            },
+            {
+                -1.0, 0.0, -1.0
+            },
+        },
+        {
+            {
+                -1.0, 1.0, 0.0
+            },
+            {
+                -1.0, 1.0, 1.0
+            },
+            {
+                -1.0, 0.0, 1.0
+            },
+            {
+                -1.0, 0.0, 0.0
+            },
+        },
+        {
+            {
+                -1.0, 0.0, 1.0
+            },
+            {
+                -1.0, -1.0, 1.0
+            },
+            {
+                -1.0, -1.0, 0.0
+            },
+            {
+                -1.0, 0.0, 0.0
+            },
+        },
+        {
+            {
+                -1.0, -1.0, 0.0
+            },
+            {
+                -1.0, -1.0, -1.0
+            },
+            {
+                -1.0, 0.0, -1.0
+            },
+            {
+                -1.0, 0.0, 0.0
+            },
+        },
     },
     {
-	{
-	    {
-		-1.0, 1.0, 1.0
-	    },
-	    {
-		-1.0, 1.0, 0.0
-	    },
-	    {
-		0.0, 1.0, 0.0
-	    },
-	    {
-		0.0, 1.0, 1.0
-	    },
-	},
-	{
-	    {
-		-1.0, 1.0, 0.0
-	    },
-	    {
-		-1.0, 1.0, -1.0
-	    },
-	    {
-		0.0, 1.0, -1.0
-	    },
-	    {
-		0.0, 1.0, 0.0
-	    },
-	},
-	{
-	    {
-		0.0, 1.0, -1.0
-	    },
-	    {
-		1.0, 1.0, -1.0
-	    },
-	    {
-		1.0, 1.0, 0.0
-	    },
-	    {
-		0.0, 1.0, 0.0
-	    },
-	},
-	{
-	    {
-		1.0, 1.0, 0.0
-	    },
-	    {
-		1.0, 1.0, 1.0
-	    },
-	    {
-		0.0, 1.0, 1.0
-	    },
-	    {
-		0.0, 1.0, 0.0
-	    },
-	},
+        {
+            {
+                -1.0, 1.0, 1.0
+            },
+            {
+                -1.0, 1.0, 0.0
+            },
+            {
+                0.0, 1.0, 0.0
+            },
+            {
+                0.0, 1.0, 1.0
+            },
+        },
+        {
+            {
+                -1.0, 1.0, 0.0
+            },
+            {
+                -1.0, 1.0, -1.0
+            },
+            {
+                0.0, 1.0, -1.0
+            },
+            {
+                0.0, 1.0, 0.0
+            },
+        },
+        {
+            {
+                0.0, 1.0, -1.0
+            },
+            {
+                1.0, 1.0, -1.0
+            },
+            {
+                1.0, 1.0, 0.0
+            },
+            {
+                0.0, 1.0, 0.0
+            },
+        },
+        {
+            {
+                1.0, 1.0, 0.0
+            },
+            {
+                1.0, 1.0, 1.0
+            },
+            {
+                0.0, 1.0, 1.0
+            },
+            {
+                0.0, 1.0, 0.0
+            },
+        },
     },
     {
-	{
-	    {
-		-1.0, -1.0, -1.0
-	    },
-	    {
-		-1.0, -1.0, 0.0
-	    },
-	    {
-		0.0, -1.0, 0.0
-	    },
-	    {
-		0.0, -1.0, -1.0
-	    },
-	},
-	{
-	    {
-		-1.0, -1.0, 0.0
-	    },
-	    {
-		-1.0, -1.0, 1.0
-	    },
-	    {
-		0.0, -1.0, 1.0
-	    },
-	    {
-		0.0, -1.0, 0.0
-	    },
-	},
-	{
-	    {
-		0.0, -1.0, 1.0
-	    },
-	    {
-		1.0, -1.0, 1.0
-	    },
-	    {
-		1.0, -1.0, 0.0
-	    },
-	    {
-		0.0, -1.0, 0.0
-	    },
-	},
-	{
-	    {
-		1.0, -1.0, 0.0
-	    },
-	    {
-		1.0, -1.0, -1.0
-	    },
-	    {
-		0.0, -1.0, -1.0
-	    },
-	    {
-		0.0, -1.0, 0.0
-	    },
-	},
+        {
+            {
+                -1.0, -1.0, -1.0
+            },
+            {
+                -1.0, -1.0, 0.0
+            },
+            {
+                0.0, -1.0, 0.0
+            },
+            {
+                0.0, -1.0, -1.0
+            },
+        },
+        {
+            {
+                -1.0, -1.0, 0.0
+            },
+            {
+                -1.0, -1.0, 1.0
+            },
+            {
+                0.0, -1.0, 1.0
+            },
+            {
+                0.0, -1.0, 0.0
+            },
+        },
+        {
+            {
+                0.0, -1.0, 1.0
+            },
+            {
+                1.0, -1.0, 1.0
+            },
+            {
+                1.0, -1.0, 0.0
+            },
+            {
+                0.0, -1.0, 0.0
+            },
+        },
+        {
+            {
+                1.0, -1.0, 0.0
+            },
+            {
+                1.0, -1.0, -1.0
+            },
+            {
+                0.0, -1.0, -1.0
+            },
+            {
+                0.0, -1.0, 0.0
+            },
+        },
     }
 };
 
 float n[6][3] = {
     {
-	0.0, 0.0, -1.0
+        0.0, 0.0, -1.0
     },
     {
-	1.0, 0.0, 0.0
+        1.0, 0.0, 0.0
     },
     {
-	0.0, 0.0, 1.0
+        0.0, 0.0, 1.0
     },
     {
-	-1.0, 0.0, 0.0
+        -1.0, 0.0, 0.0
     },
     {
-	0.0, 1.0, 0.0
+        0.0, 1.0, 0.0
     },
     {
-	0.0, -1.0, 0.0
+        0.0, -1.0, 0.0
     }
 };
 
@@ -438,32 +438,32 @@ static void BuildCylinder(int numEdges)
     float x[100], y[100], angle;
 
     for (i = 0; i <= numEdges; i++) {
-	angle = i * 2.0 * M_PI / numEdges;
-	x[i] = cos(angle);   /* was cosf() */
-	y[i] = sin(angle);   /* was sinf() */
+        angle = i * 2.0 * M_PI / numEdges;
+        x[i] = cos(angle);   /* was cosf() */
+        y[i] = sin(angle);   /* was sinf() */
     }
 
     glNewList(cylinder, GL_COMPILE);
     glBegin(GL_TRIANGLE_STRIP);
-	for (i = 0; i <= numEdges; i++) {
-	    glNormal3f(x[i], y[i], 0.0);
-	    glVertex3f(x[i], y[i], bottom);
-	    glVertex3f(x[i], y[i], top);
-	}
+        for (i = 0; i <= numEdges; i++) {
+            glNormal3f(x[i], y[i], 0.0);
+            glVertex3f(x[i], y[i], bottom);
+            glVertex3f(x[i], y[i], top);
+        }
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-	glNormal3f(0.0, 0.0, 1.0);
-	glVertex3f(0.0, 0.0, top);
-	for (i = 0; i <= numEdges; i++) {
-	    glVertex3f(x[i], -y[i], top);
-	}
+        glNormal3f(0.0, 0.0, 1.0);
+        glVertex3f(0.0, 0.0, top);
+        for (i = 0; i <= numEdges; i++) {
+            glVertex3f(x[i], -y[i], top);
+        }
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-	glNormal3f(0.0, 0.0, -1.0);
-	glVertex3f(0.0, 0.0, bottom);
-	for (i = 0; i <= numEdges; i++) {
-	    glVertex3f(x[i], y[i], bottom);
-	}
+        glNormal3f(0.0, 0.0, -1.0);
+        glVertex3f(0.0, 0.0, bottom);
+        for (i = 0; i <= numEdges; i++) {
+            glVertex3f(x[i], y[i], bottom);
+        }
     glEnd();
     glEndList();
 }
@@ -477,24 +477,24 @@ static void BuildTorus(float rc, int numc, float rt, int numt)
 
     glNewList(torus, GL_COMPILE);
     for (i = 0; i < numc; i++) {
-	glBegin(GL_QUAD_STRIP);
+        glBegin(GL_QUAD_STRIP);
         for (j = 0; j <= numt; j++) {
-	    for (k = 0; k <= 1; k++) {
-		s = (i + k) % numc + 0.5;
-		t = j % numt;
+            for (k = 0; k <= 1; k++) {
+                s = (i + k) % numc + 0.5;
+                t = j % numt;
 
-		x = cos(t*twopi/numt) * cos(s*twopi/numc);
-		y = sin(t*twopi/numt) * cos(s*twopi/numc);
-		z = sin(s*twopi/numc);
-		glNormal3f(x, y, z);
+                x = cos(t*twopi/numt) * cos(s*twopi/numc);
+                y = sin(t*twopi/numt) * cos(s*twopi/numc);
+                z = sin(s*twopi/numc);
+                glNormal3f(x, y, z);
 
-		x = (rt + rc * cos(s*twopi/numc)) * cos(t*twopi/numt);
-		y = (rt + rc * cos(s*twopi/numc)) * sin(t*twopi/numt);
-		z = rc * sin(s*twopi/numc);
-		glVertex3f(x, y, z);
-	    }
+                x = (rt + rc * cos(s*twopi/numc)) * cos(t*twopi/numt);
+                y = (rt + rc * cos(s*twopi/numc)) * sin(t*twopi/numt);
+                z = rc * sin(s*twopi/numc);
+                glVertex3f(x, y, z);
+            }
         }
-	glEnd();
+        glEnd();
     }
     glEndList();
 }
@@ -518,77 +518,77 @@ static void BuildCage(void)
     glNewList(cage, GL_COMPILE);
     for (i = 0; i < 10; i++) {
 
-	/*
-	** Back
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(left+i*inc, top,    back);
-	    glVertex3f(left+i*inc, bottom, back);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(right, bottom+i*inc, back);
-	    glVertex3f(left,  bottom+i*inc, back);
-	glEnd();
+        /*
+        ** Back
+        */
+        glBegin(GL_LINES);
+            glVertex3f(left+i*inc, top,    back);
+            glVertex3f(left+i*inc, bottom, back);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(right, bottom+i*inc, back);
+            glVertex3f(left,  bottom+i*inc, back);
+        glEnd();
 
-	/*
-	** Front
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(left+i*inc, top,    front);
-	    glVertex3f(left+i*inc, bottom, front);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(right, bottom+i*inc, front);
-	    glVertex3f(left,  bottom+i*inc, front);
-	glEnd();
+        /*
+        ** Front
+        */
+        glBegin(GL_LINES);
+            glVertex3f(left+i*inc, top,    front);
+            glVertex3f(left+i*inc, bottom, front);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(right, bottom+i*inc, front);
+            glVertex3f(left,  bottom+i*inc, front);
+        glEnd();
 
-	/*
-	** Left
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(left, bottom+i*inc, front);
-	    glVertex3f(left, bottom+i*inc, back);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(left, top,    back+i*inc);
-	    glVertex3f(left, bottom, back+i*inc);
-	glEnd();
+        /*
+        ** Left
+        */
+        glBegin(GL_LINES);
+            glVertex3f(left, bottom+i*inc, front);
+            glVertex3f(left, bottom+i*inc, back);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(left, top,    back+i*inc);
+            glVertex3f(left, bottom, back+i*inc);
+        glEnd();
 
-	/*
-	** Right
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(right, top-i*inc, front);
-	    glVertex3f(right, top-i*inc, back);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(right, top,    back+i*inc);
-	    glVertex3f(right, bottom, back+i*inc);
-	glEnd();
+        /*
+        ** Right
+        */
+        glBegin(GL_LINES);
+            glVertex3f(right, top-i*inc, front);
+            glVertex3f(right, top-i*inc, back);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(right, top,    back+i*inc);
+            glVertex3f(right, bottom, back+i*inc);
+        glEnd();
 
-	/*
-	** Top
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(left+i*inc, top, front);
-	    glVertex3f(left+i*inc, top, back);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(right, top, back+i*inc);
-	    glVertex3f(left,  top, back+i*inc);
-	glEnd();
+        /*
+        ** Top
+        */
+        glBegin(GL_LINES);
+            glVertex3f(left+i*inc, top, front);
+            glVertex3f(left+i*inc, top, back);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(right, top, back+i*inc);
+            glVertex3f(left,  top, back+i*inc);
+        glEnd();
 
-	/*
-	** Bottom
-	*/
-	glBegin(GL_LINES);
-	    glVertex3f(right-i*inc, bottom, front);
-	    glVertex3f(right-i*inc, bottom, back);
-	glEnd();
-	glBegin(GL_LINES);
-	    glVertex3f(right, bottom, back+i*inc);
-	    glVertex3f(left,  bottom, back+i*inc);
-	glEnd();
+        /*
+        ** Bottom
+        */
+        glBegin(GL_LINES);
+            glVertex3f(right-i*inc, bottom, front);
+            glVertex3f(right-i*inc, bottom, back);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(right, bottom, back+i*inc);
+            glVertex3f(left,  bottom, back+i*inc);
+        glEnd();
     }
     glEndList();
 }
@@ -599,15 +599,15 @@ static void BuildCube(void)
 
     glNewList(cube, GL_COMPILE);
     for (i = 0; i < 6; i++) {
-	for (j = 0; j < 4; j++) {
-	    glNormal3fv(n[i]);
-	    glBegin(GL_POLYGON);
-		glVertex3fv(c[i][j][0]);
-		glVertex3fv(c[i][j][1]);
-		glVertex3fv(c[i][j][2]);
-		glVertex3fv(c[i][j][3]);
-	    glEnd();
-	}
+        for (j = 0; j < 4; j++) {
+            glNormal3fv(n[i]);
+            glBegin(GL_POLYGON);
+                glVertex3fv(c[i][j][0]);
+                glVertex3fv(c[i][j][1]);
+                glVertex3fv(c[i][j][2]);
+                glVertex3fv(c[i][j][3]);
+            glEnd();
+        }
     }
     glEndList();
 }
@@ -720,15 +720,15 @@ static void Init(void)
 static void ReInit(void)
 {
     if (genericObject == torus) {
-	glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
     } else  {
-	glDisable(GL_DEPTH_TEST);
+        glDisable(GL_DEPTH_TEST);
     }
-	glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
 
 #if 0
     if (isFogged) {
-	textureEnvironment = modulate;
+        textureEnvironment = modulate;
     }
 #endif
 
@@ -743,9 +743,9 @@ static void Draw(void)
 
     /* draw cage */
     if (isFogged)
-	glEnable(GL_FOG);
+        glEnable(GL_FOG);
     else
-	glDisable(GL_FOG);
+        glDisable(GL_FOG);
     glColor3f(1, 1, 1);
     glDisable(GL_LIGHTING);
     glDisable(GL_TEXTURE_2D);
@@ -753,7 +753,7 @@ static void Draw(void)
 
     /* draw object */
     if (isLit)
-	glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHTING);
     else
        glColor3f(1.0, 0.5, 0.2);
     if (doTexture)
@@ -802,27 +802,27 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_LEFT:
-	yRotation -= 0.5;
-	autoRotate = GL_FALSE;
-	ReInit();
-	break;
+        yRotation -= 0.5;
+        autoRotate = GL_FALSE;
+        ReInit();
+        break;
       case GLUT_KEY_RIGHT:
-	yRotation += 0.5;
-	autoRotate = GL_FALSE;
-	ReInit();
-	break;
+        yRotation += 0.5;
+        autoRotate = GL_FALSE;
+        ReInit();
+        break;
       case GLUT_KEY_UP:
-	xRotation -= 0.5;
-	autoRotate = GL_FALSE;
-	ReInit();
-	break;
+        xRotation -= 0.5;
+        autoRotate = GL_FALSE;
+        ReInit();
+        break;
       case GLUT_KEY_DOWN:
-	xRotation += 0.5;
-	autoRotate = GL_FALSE;
-	ReInit();
-	break;
+        xRotation += 0.5;
+        autoRotate = GL_FALSE;
+        ReInit();
+        break;
       default:
-	return;
+        return;
     }
     glutPostRedisplay();
 }
@@ -832,18 +832,18 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-         /*	free(image->data);*/
-	exit(1);
+         /*        free(image->data);*/
+        exit(1);
 
       case 'a':
-	autoRotate = !autoRotate;
+        autoRotate = !autoRotate;
         if (autoRotate)
            glutIdleFunc(Idle);
         else
            glutIdleFunc(NULL);
 
-	ReInit();
-	break;
+        ReInit();
+        break;
       case 'o':
         if (genericObject == cube) {
           genericObject = cylinder;
@@ -854,62 +854,62 @@ static void Key(unsigned char key, int x, int y)
         else {
           genericObject = cube;
         }
-	ReInit();
-	break;
+        ReInit();
+        break;
       case 'd':
-	textureEnvironment = decal;
-	ReInit();
-	break;
+        textureEnvironment = decal;
+        ReInit();
+        break;
       case 'm':
-	textureEnvironment = modulate;
-	ReInit();
-	break;
+        textureEnvironment = modulate;
+        ReInit();
+        break;
       case 'l':
-	isLit = !isLit;
-	ReInit();
-	break;
+        isLit = !isLit;
+        ReInit();
+        break;
       case 'f':
-	isFogged = !isFogged;
-	ReInit();
-	break;
+        isFogged = !isFogged;
+        ReInit();
+        break;
       case 't':
         doTexture = !doTexture;
-	ReInit();
-	break;
+        ReInit();
+        break;
       case '0':
-	magFilter = nnearest;
-	ReInit();
-	break;
+        magFilter = nnearest;
+        ReInit();
+        break;
       case '1':
-	magFilter = linear;
-	ReInit();
-	break;
+        magFilter = linear;
+        ReInit();
+        break;
       case '2':
-	minFilter = nnearest;
-	ReInit();
-	break;
+        minFilter = nnearest;
+        ReInit();
+        break;
       case '3':
-	minFilter = linear;
-	ReInit();
-	break;
+        minFilter = linear;
+        ReInit();
+        break;
       case '4':
-	minFilter = nearest_mipmap_nearest;
-	ReInit();
-	break;
+        minFilter = nearest_mipmap_nearest;
+        ReInit();
+        break;
       case '5':
-	minFilter = nearest_mipmap_linear;
-	ReInit();
-	break;
+        minFilter = nearest_mipmap_linear;
+        ReInit();
+        break;
       case '6':
-	minFilter = linear_mipmap_nearest;
-	ReInit();
-	break;
+        minFilter = linear_mipmap_nearest;
+        ReInit();
+        break;
       case '7':
-	minFilter = linear_mipmap_linear;
-	ReInit();
-	break;
+        minFilter = linear_mipmap_linear;
+        ReInit();
+        break;
       default:
-	return;
+        return;
     }
     glutPostRedisplay();
 }
@@ -921,21 +921,21 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_TRUE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else if (strcmp(argv[i], "-f") == 0) {
-	    if (i+1 >= argc || argv[i+1][0] == '-') {
-		printf("-f (No file name).\n");
-		return GL_FALSE;
-	    } else {
-		imageFileName = argv[++i];
-	    }
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            if (i+1 >= argc || argv[i+1][0] == '-') {
+                printf("-f (No file name).\n");
+                return GL_FALSE;
+            } else {
+                imageFileName = argv[++i];
+            }
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -947,12 +947,12 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     if (imageFileName == 0) {
-	printf("No image file.\n");
-	exit(1);
+        printf("No image file.\n");
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( W, H);
@@ -974,5 +974,5 @@ int main(int argc, char **argv)
     glutIdleFunc(Idle);
 
     glutMainLoop();
-	return 0;
+    return 0;
 }

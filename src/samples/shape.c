@@ -155,19 +155,19 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_LEFT:
-	shiftX -= 20.0;
-	break;
+        shiftX -= 20.0;
+        break;
       case GLUT_KEY_RIGHT:
-	shiftX += 20.0;
-	break;
+        shiftX += 20.0;
+        break;
       case GLUT_KEY_UP:
-	shiftY += 20.0;
-	break;
+        shiftY += 20.0;
+        break;
       case GLUT_KEY_DOWN:
-	shiftY -= 20.0;
-	break;
+        shiftY -= 20.0;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -181,85 +181,85 @@ static void Key(unsigned char key, int x, int y)
         exit(1);
 
       case 32:
-	objectIndex++;
-	if (objectIndex > 17) {
-	    objectIndex = 0;
-	}
-	break;
+        objectIndex++;
+        if (objectIndex > 17) {
+            objectIndex = 0;
+        }
+        break;
 
       case 'n':
-	shiftZ += 20.0;
-	break;
+        shiftZ += 20.0;
+        break;
       case 'm':
-	shiftZ -= 20.0;
-	break;
+        shiftZ -= 20.0;
+        break;
 
       case 'q':
-	scaleX -= 0.1;
-	if (scaleX < 0.1) {
-	    scaleX = 0.1;
-	}
-	break;
+        scaleX -= 0.1;
+        if (scaleX < 0.1) {
+            scaleX = 0.1;
+        }
+        break;
       case 'w':
-	scaleX += 0.1;
-	break;
+        scaleX += 0.1;
+        break;
       case 'a':
-	scaleY -= 0.1;
-	if (scaleY < 0.1) {
-	    scaleY = 0.1;
-	}
-	break;
+        scaleY -= 0.1;
+        if (scaleY < 0.1) {
+            scaleY = 0.1;
+        }
+        break;
       case 's':
-	scaleY += 0.1;
-	break;
+        scaleY += 0.1;
+        break;
       case 'z':
-	scaleZ -= 0.1;
-	if (scaleZ < 0.1) {
-	    scaleZ = 0.1;
-	}
-	break;
+        scaleZ -= 0.1;
+        if (scaleZ < 0.1) {
+            scaleZ = 0.1;
+        }
+        break;
       case 'x':
-	scaleZ += 0.1;
-	break;
+        scaleZ += 0.1;
+        break;
 
       case 'e':
-	angleX -= 5.0;
-	if (angleX < 0.0) {
-	    angleX = 360.0 + angleX;
-	}
-	break;
+        angleX -= 5.0;
+        if (angleX < 0.0) {
+            angleX = 360.0 + angleX;
+        }
+        break;
       case 'r':
-	angleX += 5.0;
-	if (angleX > 360.0) {
-	    angleX = angleX - 360.0;
-	}
-	break;
+        angleX += 5.0;
+        if (angleX > 360.0) {
+            angleX = angleX - 360.0;
+        }
+        break;
       case 'd':
-	angleY -= 5.0;
-	if (angleY < 0.0) {
-	    angleY = 360.0 + angleY;
-	}
-	break;
+        angleY -= 5.0;
+        if (angleY < 0.0) {
+            angleY = 360.0 + angleY;
+        }
+        break;
       case 'f':
-	angleY += 5.0;
-	if (angleY > 360.0) {
-	    angleY = angleY - 360.0;
-	}
-	break;
+        angleY += 5.0;
+        if (angleY > 360.0) {
+            angleY = angleY - 360.0;
+        }
+        break;
       case 'c':
-	angleZ -= 5.0;
-	if (angleZ < 0.0) {
-	    angleZ = 360.0 + angleZ;
-	}
-	break;
+        angleZ -= 5.0;
+        if (angleZ < 0.0) {
+            angleZ = 360.0 + angleZ;
+        }
+        break;
       case 'v':
-	angleZ += 5.0;
-	if (angleZ > 360.0) {
-	    angleZ = angleZ - 360.0;
-	}
-	break;
+        angleZ += 5.0;
+        if (angleZ > 360.0) {
+            angleZ = angleZ - 360.0;
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -286,7 +286,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -298,18 +298,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -319,7 +319,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 400, 400);
@@ -329,7 +329,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(windType);
 
     if (glutCreateWindow("Font Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -341,5 +341,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

@@ -70,16 +70,16 @@ static void Key(unsigned char key, int x, int y)
       case 27:
         exit(1);
       case 'Z':
-	zoom += 0.2;
-	break;
+        zoom += 0.2;
+        break;
       case 'z':
-	zoom -= 0.2;
-	if (zoom < 0.2) {
-	    zoom = 0.2;
-	}
-	break;
+        zoom -= 0.2;
+        if (zoom < 0.2) {
+            zoom = 0.2;
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -88,7 +88,7 @@ static void Key(unsigned char key, int x, int y)
 static void Mouse(int button, int state, int mouseX, int mouseY)
 {
     if (state != GLUT_DOWN)
-	return;
+        return;
     x = (GLint)mouseX;
     y = (GLint)mouseY;
 
@@ -109,7 +109,7 @@ static void Draw(void)
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glPixelZoom(1.0, 1.0);
     glDrawPixels(image->sizeX, image->sizeY, GL_RGB, GL_UNSIGNED_BYTE,
-		 image->data);
+                 image->data);
 
     dst[0] = x;
     dst[1] = windH - y;
@@ -118,12 +118,12 @@ static void Draw(void)
 
     glPixelZoom(zoom, zoom);
     glCopyPixels(src[0], src[1],
-		 image->sizeX, image->sizeY, GL_COLOR);
+                 image->sizeX, image->sizeY, GL_COLOR);
 
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -134,21 +134,21 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else if (strcmp(argv[i], "-f") == 0) {
-	    if (i+1 >= argc || argv[i+1][0] == '-') {
-		printf("-f (No file name).\n");
-		return GL_FALSE;
-	    } else {
-		fileName = argv[++i];
-	    }
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            if (i+1 >= argc || argv[i+1][0] == '-') {
+                printf("-f (No file name).\n");
+                return GL_FALSE;
+            } else {
+                fileName = argv[++i];
+            }
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -160,12 +160,12 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     if (fileName == 0) {
-	printf("No image file.\n");
-	exit(1);
+        printf("No image file.\n");
+        exit(1);
     }
 
     image = LoadPPM(fileName);
@@ -179,7 +179,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Copy Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     gladLoaderLoadGL();
@@ -191,5 +191,5 @@ int main(int argc, char **argv)
     glutDisplayFunc(Draw);
     glutMainLoop();
     gladLoaderUnloadGL();
-	return 0;
+    return 0;
 }

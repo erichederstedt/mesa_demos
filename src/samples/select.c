@@ -33,9 +33,9 @@
 #define MAXOBJS 10000
 #define MAXSELECT 100
 #define MAXFEED 300
-#define	SOLID 1
-#define	LINE 2
-#define	POINT 3
+#define SOLID 1
+#define LINE 2
+#define POINT 3
 
 
 GLint windW, windH;
@@ -62,27 +62,27 @@ static void InitObjects(GLint num)
     float x, y;
 
     if (num > MAXOBJS) {
-	num = MAXOBJS;
+        num = MAXOBJS;
     }
     if (num < 1) {
-	num = 1;
+        num = 1;
     }
     objectCount = num;
 
     srand((unsigned int)time(NULL));
     for (i = 0; i < num; i++) {
-	x = (rand() % 300) - 150;
-	y = (rand() % 300) - 150;
+        x = (rand() % 300) - 150;
+        y = (rand() % 300) - 150;
 
-	objects[i].v1[0] = x + (rand() % 50) - 25;
-	objects[i].v2[0] = x + (rand() % 50) - 25;
-	objects[i].v3[0] = x + (rand() % 50) - 25;
-	objects[i].v1[1] = y + (rand() % 50) - 25;
-	objects[i].v2[1] = y + (rand() % 50) - 25;
-	objects[i].v3[1] = y + (rand() % 50) - 25;
-	objects[i].color[0] = ((rand() % 100) + 50) / 150.0;
-	objects[i].color[1] = ((rand() % 100) + 50) / 150.0;
-	objects[i].color[2] = ((rand() % 100) + 50) / 150.0;
+        objects[i].v1[0] = x + (rand() % 50) - 25;
+        objects[i].v2[0] = x + (rand() % 50) - 25;
+        objects[i].v3[0] = x + (rand() % 50) - 25;
+        objects[i].v1[1] = y + (rand() % 50) - 25;
+        objects[i].v2[1] = y + (rand() % 50) - 25;
+        objects[i].v3[1] = y + (rand() % 50) - 25;
+        objects[i].color[0] = ((rand() % 100) + 50) / 150.0;
+        objects[i].color[1] = ((rand() % 100) + 50) / 150.0;
+        objects[i].color[2] = ((rand() % 100) + 50) / 150.0;
     }
 }
 
@@ -112,15 +112,15 @@ static void Render(GLenum mode)
     GLint i;
 
     for (i = 0; i < objectCount; i++) {
-	if (mode == GL_SELECT) {
-	    glLoadName(i);
-	}
-	glColor3fv(objects[i].color);
-	glBegin(GL_POLYGON);
-	    glVertex2fv(objects[i].v1);
-	    glVertex2fv(objects[i].v2);
-	    glVertex2fv(objects[i].v3);
-	glEnd();
+        if (mode == GL_SELECT) {
+            glLoadName(i);
+        }
+        glColor3fv(objects[i].color);
+        glBegin(GL_POLYGON);
+            glVertex2fv(objects[i].v1);
+            glVertex2fv(objects[i].v2);
+            glVertex2fv(objects[i].v3);
+        glEnd();
     }
 }
 
@@ -156,7 +156,7 @@ static GLint DoSelect(GLint x, GLint y)
 
     hits = glRenderMode(GL_RENDER);
     if (hits <= 0) {
-	return -1;
+        return -1;
     }
 
     return selectBuf[(hits-1)*4+3];
@@ -189,19 +189,19 @@ static void GrowTri(GLint h)
     v[1] /= 3;
 
     for (i = 0; i < 3; i++) {
-	switch (i) {
-	  case 0:
-	    oldV = objects[h].v1;
-	    break;
-	  case 1:
-	    oldV = objects[h].v2;
-	    break;
-	  case 2:
-	    oldV = objects[h].v3;
-	    break;
-	}
-	oldV[0] = 1.5 * (oldV[0] - v[0]) + v[0];
-	oldV[1] = 1.5 * (oldV[1] - v[1]) + v[1];
+        switch (i) {
+          case 0:
+            oldV = objects[h].v1;
+            break;
+          case 1:
+            oldV = objects[h].v2;
+            break;
+          case 2:
+            oldV = objects[h].v3;
+            break;
+        }
+        oldV[0] = 1.5 * (oldV[0] - v[0]) + v[0];
+        oldV[1] = 1.5 * (oldV[1] - v[1]) + v[1];
     }
 }
 
@@ -210,19 +210,19 @@ static void Mouse(int button, int state, int mouseX, int mouseY)
     GLint hit;
 
     if (state != GLUT_DOWN)
-	return;
+        return;
 
     hit = DoSelect((GLint)mouseX, (GLint)mouseY);
     if (hit != -1) {
-	if (button == GLUT_LEFT_BUTTON) {
-	    RecolorTri(hit);
-	}
-	if (button == GLUT_MIDDLE_BUTTON) {
-	    GrowTri(hit);
-	}
-	if (button == GLUT_RIGHT_BUTTON) {
-	    DeleteTri(hit);
-	}
+        if (button == GLUT_LEFT_BUTTON) {
+            RecolorTri(hit);
+        }
+        if (button == GLUT_MIDDLE_BUTTON) {
+            GrowTri(hit);
+        }
+        if (button == GLUT_RIGHT_BUTTON) {
+            DeleteTri(hit);
+        }
     }
 
     glutPostRedisplay();
@@ -285,17 +285,17 @@ static void DumpFeedbackVert(GLint *i, GLint n)
 
     index = *i;
     if (index+7 > n) {
-	*i = n;
-	printf("  ???\n");
-	return;
+        *i = n;
+        printf("  ???\n");
+        return;
     }
     printf("  (%g %g %g), color = (%4.2f %4.2f %4.2f)\n",
-	   feedBuf[index],
-	   feedBuf[index+1],
-	   feedBuf[index+2],
-	   feedBuf[index+3],
-	   feedBuf[index+4],
-	   feedBuf[index+5]);
+           feedBuf[index],
+           feedBuf[index+1],
+           feedBuf[index+2],
+           feedBuf[index+3],
+           feedBuf[index+4],
+           feedBuf[index+5]);
     index += 7;
     *i = index;
 }
@@ -307,45 +307,45 @@ static void DrawFeedback(GLint n)
 
     printf("Feedback results (%d floats):\n", n);
     for (i = 0; i < n; i++) {
-	switch ((GLint)feedBuf[i]) {
-	  case GL_POLYGON_TOKEN:
-	    printf("Polygon");
-	    i++;
-	    if (i < n) {
-		verts = (GLint)feedBuf[i];
-		i++;
-		printf(": %d vertices", verts);
-	    } else {
-		verts = 0;
-	    }
-	    printf("\n");
-	    while (verts) {
-		DumpFeedbackVert(&i, n);
-		verts--;
-	    }
-	    i--;
-	    break;
-	  case GL_LINE_TOKEN:
-	    printf("Line:\n");
-	    i++;
-	    DumpFeedbackVert(&i, n);
-	    DumpFeedbackVert(&i, n);
-	    i--;
-	    break;
-	  case GL_LINE_RESET_TOKEN:
-	    printf("Line Reset:\n");
-	    i++;
-	    DumpFeedbackVert(&i, n);
-	    DumpFeedbackVert(&i, n);
-	    i--;
-	    break;
-	  default:
-	    printf("%9.2f\n", feedBuf[i]);
-	    break;
-	}
+        switch ((GLint)feedBuf[i]) {
+          case GL_POLYGON_TOKEN:
+            printf("Polygon");
+            i++;
+            if (i < n) {
+                verts = (GLint)feedBuf[i];
+                i++;
+                printf(": %d vertices", verts);
+            } else {
+                verts = 0;
+            }
+            printf("\n");
+            while (verts) {
+                DumpFeedbackVert(&i, n);
+                verts--;
+            }
+            i--;
+            break;
+          case GL_LINE_TOKEN:
+            printf("Line:\n");
+            i++;
+            DumpFeedbackVert(&i, n);
+            DumpFeedbackVert(&i, n);
+            i--;
+            break;
+          case GL_LINE_RESET_TOKEN:
+            printf("Line Reset:\n");
+            i++;
+            DumpFeedbackVert(&i, n);
+            DumpFeedbackVert(&i, n);
+            i--;
+            break;
+          default:
+            printf("%9.2f\n", feedBuf[i]);
+            break;
+        }
     }
     if (i == MAXFEED) {
-	printf("...\n");
+        printf("...\n");
     }
     printf("\n");
 }
@@ -379,7 +379,7 @@ static void DoFeedback(void)
 
     x = glRenderMode(GL_RENDER);
     if (x == -1) {
-	x = MAXFEED;
+        x = MAXFEED;
     }
 
     DrawFeedback((GLint)x);
@@ -389,13 +389,13 @@ static void Key2(int key, int x, int y)
 {
     switch (key) {
       case GLUT_KEY_LEFT:
-	zRotation += 0.5;
-	break;
+        zRotation += 0.5;
+        break;
       case GLUT_KEY_RIGHT:
-	zRotation -= 0.5;
-	break;
+        zRotation -= 0.5;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -405,29 +405,29 @@ static void Key(unsigned char key, int x, int y)
 {
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case 'Z':
-	zoom /= 0.75;
-	break;
+        zoom /= 0.75;
+        break;
       case 'z':
-	zoom *= 0.75;
-	break;
+        zoom *= 0.75;
+        break;
       case 'f':
-	DoFeedback();
-	break;
+        DoFeedback();
+        break;
       case 'd':
-	DrawZoom(x, y);
-	break;
+        DrawZoom(x, y);
+        break;
       case 'l':
-	linePoly = !linePoly;
-	if (linePoly) {
-	    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	} else {
-	    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	break;
+        linePoly = !linePoly;
+        if (linePoly) {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        } else {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -447,7 +447,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Select Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();
@@ -458,5 +458,5 @@ int main(int argc, char **argv)
     glutMouseFunc(Mouse);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

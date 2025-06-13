@@ -72,16 +72,16 @@ static void DrawImage(void)
 
     glRasterPos2i(0, 0);
     glDrawPixels(image->sizeX, image->sizeY, GL_RGB, GL_UNSIGNED_BYTE,
-		 image->data);
+                 image->data);
 
     glFlush();
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 
     glRasterPos2i(0, 0);
     glDrawPixels(image->sizeX, image->sizeY, GL_RGB, GL_UNSIGNED_BYTE,
-		 image->data);
+                 image->data);
 }
 
 static void DrawPoint(void)
@@ -91,14 +91,14 @@ static void DrawPoint(void)
     glColor3f(1.0, 0.0, 1.0);
     glPointSize(3.0);
     glBegin(GL_POINTS);
-	for (i = 0; i < cCount; i++) {
-	    glVertex2f(cList[i].x, cList[i].y);
-	}
+        for (i = 0; i < cCount; i++) {
+            glVertex2f(cList[i].x, cList[i].y);
+        }
     glEnd();
 
     glFlush();
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -166,58 +166,58 @@ static void Stretch(void)
 {
 
     glBegin(GL_TRIANGLES);
-	glTexCoord2f(vList[0].tX, vList[0].tY);
-	glVertex2f(vList[0].x, vList[0].y);
-	glTexCoord2f(vList[1].tX, vList[1].tY);
-	glVertex2f(vList[1].x, vList[1].y);
-	glTexCoord2f(vList[4].tX, vList[4].tY);
-	glVertex2f(vList[4].x, vList[4].y);
+        glTexCoord2f(vList[0].tX, vList[0].tY);
+        glVertex2f(vList[0].x, vList[0].y);
+        glTexCoord2f(vList[1].tX, vList[1].tY);
+        glVertex2f(vList[1].x, vList[1].y);
+        glTexCoord2f(vList[4].tX, vList[4].tY);
+        glVertex2f(vList[4].x, vList[4].y);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-	glTexCoord2f(vList[1].tX, vList[1].tY);
-	glVertex2f(vList[1].x, vList[1].y);
-	glTexCoord2f(vList[2].tX, vList[2].tY);
-	glVertex2f(vList[2].x, vList[2].y);
-	glTexCoord2f(vList[4].tX, vList[4].tY);
-	glVertex2f(vList[4].x, vList[4].y);
+        glTexCoord2f(vList[1].tX, vList[1].tY);
+        glVertex2f(vList[1].x, vList[1].y);
+        glTexCoord2f(vList[2].tX, vList[2].tY);
+        glVertex2f(vList[2].x, vList[2].y);
+        glTexCoord2f(vList[4].tX, vList[4].tY);
+        glVertex2f(vList[4].x, vList[4].y);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-	glTexCoord2f(vList[2].tX, vList[2].tY);
-	glVertex2f(vList[2].x, vList[2].y);
-	glTexCoord2f(vList[3].tX, vList[3].tY);
-	glVertex2f(vList[3].x, vList[3].y);
-	glTexCoord2f(vList[4].tX, vList[4].tY);
-	glVertex2f(vList[4].x, vList[4].y);
+        glTexCoord2f(vList[2].tX, vList[2].tY);
+        glVertex2f(vList[2].x, vList[2].y);
+        glTexCoord2f(vList[3].tX, vList[3].tY);
+        glVertex2f(vList[3].x, vList[3].y);
+        glTexCoord2f(vList[4].tX, vList[4].tY);
+        glVertex2f(vList[4].x, vList[4].y);
     glEnd();
 
     glBegin(GL_TRIANGLES);
-	glTexCoord2f(vList[3].tX, vList[3].tY);
-	glVertex2f(vList[3].x, vList[3].y);
-	glTexCoord2f(vList[0].tX, vList[0].tY);
-	glVertex2f(vList[0].x, vList[0].y);
-	glTexCoord2f(vList[4].tX, vList[4].tY);
-	glVertex2f(vList[4].x, vList[4].y);
+        glTexCoord2f(vList[3].tX, vList[3].tY);
+        glVertex2f(vList[3].x, vList[3].y);
+        glTexCoord2f(vList[0].tX, vList[0].tY);
+        glVertex2f(vList[0].x, vList[0].y);
+        glTexCoord2f(vList[4].tX, vList[4].tY);
+        glVertex2f(vList[4].x, vList[4].y);
     glEnd();
 
     glFlush();
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 
     if (++cStep < STEPCOUNT) {
-	vList[4].x += vList[4].dX;
-	vList[4].y += vList[4].dY;
+        vList[4].x += vList[4].dX;
+        vList[4].y += vList[4].dY;
     } else {
-	cIndex[0] = cIndex[1];
-	cIndex[1] = cIndex[1] + 1;
-	if (cIndex[1] == cCount) {
-	    cIndex[1] = 0;
-	}
-	vList[4].dX = (cList[cIndex[1]].x - cList[cIndex[0]].x) / STEPCOUNT;
-	vList[4].dY = (cList[cIndex[1]].y - cList[cIndex[0]].y) / STEPCOUNT;
-	cStep = 0;
+        cIndex[0] = cIndex[1];
+        cIndex[1] = cIndex[1] + 1;
+        if (cIndex[1] == cCount) {
+            cIndex[1] = 0;
+        }
+        vList[4].dX = (cList[cIndex[1]].x - cList[cIndex[0]].x) / STEPCOUNT;
+        vList[4].dY = (cList[cIndex[1]].y - cList[cIndex[0]].y) / STEPCOUNT;
+        cStep = 0;
     }
 }
 
@@ -226,20 +226,20 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	free(image->data);
+        free(image->data);
         exit(1);
       case 32:
-	if (cCount > 1) {
-	    InitVList();
-	    cIndex[0] = 0;
-	    cIndex[1] = 1;
-	    cStep = 0;
-	    glEnable(GL_TEXTURE_2D);
-	    op = OP_STRETCH;
-	}
-	break;
+        if (cCount > 1) {
+            InitVList();
+            cIndex[0] = 0;
+            cIndex[1] = 1;
+            cStep = 0;
+            glEnable(GL_TEXTURE_2D);
+            op = OP_STRETCH;
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -249,15 +249,15 @@ static void Mouse(int button, int state, int mouseX, int mouseY)
 {
 
     if (state != GLUT_DOWN)
-	return;
+        return;
 
     if (op == OP_STRETCH) {
-	glDisable(GL_TEXTURE_2D);
-	cCount = 0;
-	op = OP_DRAWIMAGE;
+        glDisable(GL_TEXTURE_2D);
+        cCount = 0;
+        op = OP_DRAWIMAGE;
     } else {
-	SetPoint(mouseX, imageSizeY-mouseY);
-	op = OP_DRAWPOINT;
+        SetPoint(mouseX, imageSizeY-mouseY);
+        op = OP_DRAWPOINT;
     }
 
     glutPostRedisplay();
@@ -279,14 +279,14 @@ static void Animate(void)
 
     switch (op) {
       case OP_STRETCH:
-	Stretch();
-	break;
+        Stretch();
+        break;
       case OP_DRAWPOINT:
-	DrawPoint();
-	break;
+        DrawPoint();
+        break;
       case OP_DRAWIMAGE:
-	DrawImage();
-	break;
+        DrawImage();
+        break;
       default:
         break;
     }
@@ -299,21 +299,21 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_TRUE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else if (strcmp(argv[i], "-f") == 0) {
-	    if (i+1 >= argc || argv[i+1][0] == '-') {
-		printf("-f (No file name).\n");
-		return GL_FALSE;
-	    } else {
-		fileName = argv[++i];
-	    }
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            if (i+1 >= argc || argv[i+1][0] == '-') {
+                printf("-f (No file name).\n");
+                return GL_FALSE;
+            } else {
+                fileName = argv[++i];
+            }
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -334,12 +334,12 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     if (fileName == 0) {
-	printf("No image file.\n");
-	exit(1);
+        printf("No image file.\n");
+        exit(1);
     }
 
     image = LoadPPM(fileName);
@@ -386,5 +386,5 @@ int main(int argc, char **argv)
     glutDisplayFunc(Animate);
     glutIdleFunc(glut_post_redisplay_p);
     glutMainLoop();
-	return 0;
+    return 0;
 }

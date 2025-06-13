@@ -55,7 +55,7 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
     }
 }
 
@@ -69,9 +69,9 @@ static void Draw(void)
 
     glColor3ub(200, 0, 0);
     glBegin(GL_POLYGON);
-	glVertex3i(-4, -4, 0);
-	glVertex3i( 4, -4, 0);
-	glVertex3i( 0,  4, 0);
+        glVertex3i(-4, -4, 0);
+        glVertex3i( 4, -4, 0);
+        glVertex3i( 0,  4, 0);
     glEnd();
 
     glStencilFunc(GL_EQUAL, 1, 1);
@@ -79,10 +79,10 @@ static void Draw(void)
 
     glColor3ub(0, 200, 0);
     glBegin(GL_POLYGON);
-	glVertex3i(3, 3, 0);
-	glVertex3i(-3, 3, 0);
-	glVertex3i(-3, -3, 0);
-	glVertex3i(3, -3, 0);
+        glVertex3i(3, 3, 0);
+        glVertex3i(-3, 3, 0);
+        glVertex3i(-3, -3, 0);
+        glVertex3i(3, -3, 0);
     glEnd();
 
     glStencilFunc(GL_EQUAL, 1, 1);
@@ -90,10 +90,10 @@ static void Draw(void)
 
     glColor3ub(0, 0, 200);
     glBegin(GL_POLYGON);
-	glVertex3i(3, 3, 0);
-	glVertex3i(-3, 3, 0);
-	glVertex3i(-3, -3, 0);
-	glVertex3i(3, -3, 0);
+        glVertex3i(3, 3, 0);
+        glVertex3i(-3, 3, 0);
+        glVertex3i(-3, -3, 0);
+        glVertex3i(3, -3, 0);
     glEnd();
 
     glFlush();
@@ -105,11 +105,11 @@ static GLenum Args(int argc, char **argv)
 
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-dr") == 0) {
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-dr") == 0) {
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Stencil Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();
@@ -139,5 +139,5 @@ int main(int argc, char **argv)
     glutKeyboardFunc(Key);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

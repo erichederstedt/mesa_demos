@@ -48,7 +48,7 @@ static void DrawString(const char *string)
     int i;
 
     for (i = 0; string[i]; i++)
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]);
+        glutBitmapCharacter(GLUT_BITMAP_9_BY_15, string[i]);
 }
 
 static void Init(void)
@@ -78,10 +78,10 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case 'd':
-	dithering = !dithering;
-	break;
+        dithering = !dithering;
+        break;
       case 'l':
         if (supportlogops == 3)
            use11ops = (!use11ops);
@@ -90,7 +90,7 @@ static void Key(unsigned char key, int x, int y)
         else printf("Using GL_EXT_blend_logic_op.\n");
         break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -110,12 +110,12 @@ static void PrintColorStrings( void )
         sprintf(colorString, "(0x%x, 0x%x, 0x%x)",
                 ubbuf[0], ubbuf[1], ubbuf[2]);
         glRasterPos2f(xleft, i);
-	DrawString(colorString);
+        DrawString(colorString);
         glReadPixels(xright, i+10, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, ubbuf);
         sprintf(colorString, "(0x%x, 0x%x, 0x%x)",
                 ubbuf[0], ubbuf[1], ubbuf[2]);
         glRasterPos2f(xright, i);
-	DrawString(colorString);
+        DrawString(colorString);
     }
 }
 
@@ -232,14 +232,14 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -256,7 +256,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 800, 520);
@@ -266,7 +266,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Blend Equation") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     gladLoaderLoadGL();
@@ -275,28 +275,28 @@ int main(int argc, char **argv)
     s = (char *) glGetString(GL_EXTENSIONS);
     version = (char*) glGetString(GL_VERSION);
     if (!s)
-	exit(1);
+        exit(1);
     if (strstr(s,extName1)) {
-	supportlogops = 1;
+        supportlogops = 1;
         use11ops = 0;
         printf("blend_logic_op extension available.\n");
     }
     if (strncmp(version,"1.1",3)>=0) {
-    	supportlogops += 2;
+            supportlogops += 2;
         use11ops = 1;
-	printf("1.1 color logic ops available.\n");
+        printf("1.1 color logic ops available.\n");
     }
     if (supportlogops == 0) {
-    	printf("Blend_logic_op extension and GL 1.1 not present.\n");
-	exit(1);
+            printf("Blend_logic_op extension and GL 1.1 not present.\n");
+        exit(1);
     }
     if (strstr(s,extName2) == 0) {
-	printf("Blend_minmax extension is not present.\n");
-	exit(1);
+        printf("Blend_minmax extension is not present.\n");
+        exit(1);
     }
     if (strstr(s,extName3) == 0) {
-	printf("Blend_subtract extension is not present.\n");
-	exit(1);
+        printf("Blend_subtract extension is not present.\n");
+        exit(1);
     }
 
     Init();

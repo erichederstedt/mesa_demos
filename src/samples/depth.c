@@ -65,10 +65,10 @@ static void Init(void)
     glClearIndex(0.0);
 
     if (!rgb) {
-	for (i = 0; i < 16; i++) {
-	    glutSetColor(i+CI_OFFSET_1, 0.0, 0.0, i/15.0);
-	    glutSetColor(i+CI_OFFSET_2, 0.0, i/15.0, 0.0);
-	}
+        for (i = 0; i < 16; i++) {
+            glutSetColor(i+CI_OFFSET_1, 0.0, 0.0, i/15.0);
+            glutSetColor(i+CI_OFFSET_2, 0.0, i/15.0, 0.0);
+        }
     }
 
     glPolygonStipple(stippleBits);
@@ -93,15 +93,15 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case '1':
-	antiAlias = !antiAlias;
-	break;
+        antiAlias = !antiAlias;
+        break;
       case '2':
-	stipple = !stipple;
-	break;
+        stipple = !stipple;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -114,41 +114,41 @@ static void Draw(void)
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
     if (antiAlias) {
-	ci1 = CI_OFFSET_1;
-	ci2 = CI_OFFSET_2;
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	glEnable(GL_BLEND);
-	glEnable(GL_POLYGON_SMOOTH);
-	glDisable(GL_DEPTH_TEST);
+        ci1 = CI_OFFSET_1;
+        ci2 = CI_OFFSET_2;
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        glEnable(GL_BLEND);
+        glEnable(GL_POLYGON_SMOOTH);
+        glDisable(GL_DEPTH_TEST);
     } else {
-	ci1 = COLOR_BLUE;
-	ci2 = COLOR_GREEN;
-	glDisable(GL_BLEND);
-	glDisable(GL_POLYGON_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
+        ci1 = COLOR_BLUE;
+        ci2 = COLOR_GREEN;
+        glDisable(GL_BLEND);
+        glDisable(GL_POLYGON_SMOOTH);
+        glEnable(GL_DEPTH_TEST);
     }
 
     if (stipple) {
-	glEnable(GL_POLYGON_STIPPLE);
+        glEnable(GL_POLYGON_STIPPLE);
     } else {
-	glDisable(GL_POLYGON_STIPPLE);
+        glDisable(GL_POLYGON_STIPPLE);
     }
 
     glBegin(GL_TRIANGLES);
-	(rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexi(ci1);
-	glVertex3f( 0.9, -0.9, -30.0);
-	glVertex3f( 0.9,  0.9, -30.0);
-	glVertex3f(-0.9,  0.0, -30.0);
-	(rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexi(ci2);
-	glVertex3f(-0.9, -0.9, -40.0);
-	glVertex3f(-0.9,  0.9, -40.0);
-	glVertex3f( 0.9,  0.0, -25.0);
+        (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexi(ci1);
+        glVertex3f( 0.9, -0.9, -30.0);
+        glVertex3f( 0.9,  0.9, -30.0);
+        glVertex3f(-0.9,  0.0, -30.0);
+        (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexi(ci2);
+        glVertex3f(-0.9, -0.9, -40.0);
+        glVertex3f(-0.9,  0.9, -40.0);
+        glVertex3f( 0.9,  0.0, -25.0);
     glEnd();
 
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -160,18 +160,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -194,7 +194,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Depth Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -205,5 +205,5 @@ int main(int argc, char **argv)
     glutKeyboardFunc(Key);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

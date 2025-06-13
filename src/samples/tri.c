@@ -28,9 +28,9 @@
 #include "glut_wrap.h"
 
 
-#define	SOLID 1
-#define	LINE 2
-#define	POINT 3
+#define SOLID 1
+#define LINE 2
+#define POINT 3
 
 
 GLenum rgb, doubleBuffer, windType;
@@ -77,27 +77,27 @@ static void Init(void)
     glEnable(GL_SCISSOR_TEST);
 
     if (!rgb) {
-	for (j = 0; j <= 12; j++) {
-	    if (j <= 6) {
-		percent1 = j / 6.0;
-		r = 1.0 - 0.8 * percent1;
-		g = 0.2 + 0.8 * percent1;
-		b = 0.2;
-	    } else {
-		percent1 = (j - 6) / 6.0;
-		r = 0.2;
-		g = 1.0 - 0.8 * percent1;
-		b = 0.2 + 0.8 * percent1;
-	    }
-	    glutSetColor(j+18, r, g, b);
-	    for (i = 0; i < 16; i++) {
-		percent2 = i / 15.0;
-		glutSetColor(j*16+1+32, r*percent2, g*percent2, b*percent2);
-	    }
-	}
-	color1 = 18;
-	color2 = 24;
-	color3 = 30;
+        for (j = 0; j <= 12; j++) {
+            if (j <= 6) {
+                percent1 = j / 6.0;
+                r = 1.0 - 0.8 * percent1;
+                g = 0.2 + 0.8 * percent1;
+                b = 0.2;
+            } else {
+                percent1 = (j - 6) / 6.0;
+                r = 0.2;
+                g = 1.0 - 0.8 * percent1;
+                b = 0.2 + 0.8 * percent1;
+            }
+            glutSetColor(j+18, r, g, b);
+            for (i = 0; i < 16; i++) {
+                percent2 = i / 15.0;
+                glutSetColor(j*16+1+32, r*percent2, g*percent2, b*percent2);
+            }
+        }
+        color1 = 18;
+        color2 = 24;
+        color3 = 30;
     }
 }
 
@@ -113,13 +113,13 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_LEFT:
-	zRotation += 0.5;
-	break;
+        zRotation += 0.5;
+        break;
       case GLUT_KEY_RIGHT:
-	zRotation -= 0.5;
-	break;
+        zRotation -= 0.5;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -130,82 +130,82 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case 'Z':
-	zoom *= 0.75;
-	break;
+        zoom *= 0.75;
+        break;
       case 'z':
-	zoom /= 0.75;
-	if (zoom > 10) {
-	    zoom = 10;
-	}
-	break;
+        zoom /= 0.75;
+        if (zoom > 10) {
+            zoom = 10;
+        }
+        break;
       case '1':
-	glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-	break;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+        break;
       case '2':
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	break;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        break;
       case '3':
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	break;
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        break;
       case '4':
-	state = POINT;
-	break;
+        state = POINT;
+        break;
       case '5':
-	state = LINE;
-	break;
+        state = LINE;
+        break;
       case '6':
-	state = SOLID;
-	break;
+        state = SOLID;
+        break;
       case '7':
-	culling = !culling;
-	break;
+        culling = !culling;
+        break;
       case '8':
-	winding = !winding;
-	break;
+        winding = !winding;
+        break;
       case '9':
-	face = !face;
-	break;
+        face = !face;
+        break;
       case 'v':
-	showVerticies = !showVerticies;
-	break;
+        showVerticies = !showVerticies;
+        break;
       case 's':
-	shade = !shade;
-	(shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
-	break;
+        shade = !shade;
+        (shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
+        break;
       case 'h':
-	hideBottomTriangle = !hideBottomTriangle;
-	break;
+        hideBottomTriangle = !hideBottomTriangle;
+        break;
       case 'o':
-	outline = !outline;
-	break;
+        outline = !outline;
+        break;
       case 'm':
-	dithering = !dithering;
-	break;
+        dithering = !dithering;
+        break;
       case '0':
-	aaMode = !aaMode;
-	if (aaMode) {
-	    glEnable(GL_POLYGON_SMOOTH);
-	    glEnable(GL_BLEND);
-	    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	    if (!rgb) {
-		color1 = 32;
-		color2 = 128;
-		color3 = 224;
-	    }
-	} else {
-	    glDisable(GL_POLYGON_SMOOTH);
-	    glDisable(GL_BLEND);
-	    if (!rgb) {
-		color1 = 18;
-		color2 = 24;
-		color3 = 30;
-	    }
-	}
-	break;
+        aaMode = !aaMode;
+        if (aaMode) {
+            glEnable(GL_POLYGON_SMOOTH);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            if (!rgb) {
+                color1 = 32;
+                color2 = 128;
+                color3 = 224;
+            }
+        } else {
+            glDisable(GL_POLYGON_SMOOTH);
+            glDisable(GL_BLEND);
+            if (!rgb) {
+                color1 = 18;
+                color2 = 24;
+                color3 = 30;
+            }
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -216,14 +216,14 @@ static void BeginPrim(void)
 
     switch (state) {
       case SOLID:
-	glBegin(GL_POLYGON);
-	break;
+        glBegin(GL_POLYGON);
+        break;
       case LINE:
-	glBegin(GL_LINE_LOOP);
-	break;
+        glBegin(GL_LINE_LOOP);
+        break;
       case POINT:
-	glBegin(GL_POINTS);
-	break;
+        glBegin(GL_POINTS);
+        break;
       default:
         break;
     }
@@ -258,35 +258,35 @@ static void Draw(void)
 
     SetColor(COLOR_GREEN);
     glBegin(GL_LINE_LOOP);
-	glVertex3fv(boxA);
-	glVertex3fv(boxB);
-	glVertex3fv(boxC);
-	glVertex3fv(boxD);
+        glVertex3fv(boxA);
+        glVertex3fv(boxB);
+        glVertex3fv(boxC);
+        glVertex3fv(boxD);
     glEnd();
 
     if (!hideBottomTriangle) {
-	glPushMatrix();
+        glPushMatrix();
 
-	glScalef(zoom, zoom, zoom);
-	glRotatef(zRotation, 0, 0, 1);
+        glScalef(zoom, zoom, zoom);
+        glRotatef(zRotation, 0, 0, 1);
 
-	SetColor(COLOR_BLUE);
-	BeginPrim();
-	    glVertex3fv(p0);
-	    glVertex3fv(p1);
-	    glVertex3fv(p2);
-	EndPrim();
+        SetColor(COLOR_BLUE);
+        BeginPrim();
+            glVertex3fv(p0);
+            glVertex3fv(p1);
+            glVertex3fv(p2);
+        EndPrim();
 
-	if (showVerticies) {
-	    (rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
-	    glRectf(p0[0]-2, p0[1]-2, p0[0]+2, p0[1]+2);
-	    (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
-	    glRectf(p1[0]-2, p1[1]-2, p1[0]+2, p1[1]+2);
-	    (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
-	    glRectf(p2[0]-2, p2[1]-2, p2[0]+2, p2[1]+2);
-	}
+        if (showVerticies) {
+            (rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
+            glRectf(p0[0]-2, p0[1]-2, p0[0]+2, p0[1]+2);
+            (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
+            glRectf(p1[0]-2, p1[1]-2, p1[0]+2, p1[1]+2);
+            (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
+            glRectf(p2[0]-2, p2[1]-2, p2[0]+2, p2[1]+2);
+        }
 
-	glPopMatrix();
+        glPopMatrix();
     }
 
     scaleX = (float)(windW - 20) / 2 / 175 * (175 - 100) + 10;
@@ -314,12 +314,12 @@ static void Draw(void)
 
     SetColor(COLOR_RED);
     BeginPrim();
-	(rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
-	glVertex3fv(p0);
-	(rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
-	glVertex3fv(p1);
-	(rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
-	glVertex3fv(p2);
+        (rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
+        glVertex3fv(p0);
+        (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
+        glVertex3fv(p1);
+        (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
+        glVertex3fv(p2);
     EndPrim();
 
     glPointSize(1);
@@ -329,12 +329,12 @@ static void Draw(void)
     glBlendFunc(GL_ONE, GL_ZERO);
 
     if (outline) {
-	SetColor(COLOR_WHITE);
-	glBegin(GL_LINE_LOOP);
-	    glVertex3fv(p0);
-	    glVertex3fv(p1);
-	    glVertex3fv(p2);
-	glEnd();
+        SetColor(COLOR_WHITE);
+        glBegin(GL_LINE_LOOP);
+            glVertex3fv(p0);
+            glVertex3fv(p1);
+            glVertex3fv(p2);
+        glEnd();
     }
 
     glPopMatrix();
@@ -342,7 +342,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -354,18 +354,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -375,7 +375,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     windW = 600;
@@ -387,7 +387,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(windType);
 
     if (glutCreateWindow("Triangle Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -399,5 +399,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

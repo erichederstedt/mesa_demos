@@ -271,22 +271,22 @@ read_rgb_texture(char *name, int *width, int *height)
 
 int main(int argc, char **argv)
 {
-	int width = 0;
-	int height = 0;
-	GLubyte *data;
+        int width = 0;
+        int height = 0;
+        GLubyte *data;
         char buff[32];
         int n;
         FILE *fo;
 
-	if (argc != 3)
-	{
-		fprintf(stderr, "usage: %s <infile.rgb> <outfile.p6>\n", argv[0]);
-		return 1;
-	}
+        if (argc != 3)
+        {
+                fprintf(stderr, "usage: %s <infile.rgb> <outfile.p6>\n", argv[0]);
+                return 1;
+        }
 
-	data = read_rgb_texture(argv[1], &width, &height);
+        data = read_rgb_texture(argv[1], &width, &height);
 
-	n = sprintf(buff, "P6\n%d %d\n255\n", width, height);
+        n = sprintf(buff, "P6\n%d %d\n255\n", width, height);
 
         /* [dBorca] avoid LF to CRLF conversion */
         if ((fo = fopen(argv[2], "wb")) == NULL) {
@@ -294,10 +294,10 @@ int main(int argc, char **argv)
            exit(1);
         }
 
-	fwrite(buff, n, 1, fo);
-	fwrite(data, width * 3, height, fo);
+        fwrite(buff, n, 1, fo);
+        fwrite(data, width * 3, height, fo);
 
         fclose(fo);
 
-	return 0;
+    return 0;
 }

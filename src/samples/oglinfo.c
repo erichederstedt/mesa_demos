@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 
   if(string)
     printf("GLX Extensions (client & server): %s\n",
-	   string);
+           string);
   else {
     fprintf(stderr, "Error: glXQueryExtensionsString() failed.\n");
     return 1;
@@ -130,9 +130,9 @@ int main(int argc, char **argv)
    swa.border_pixel = 0;
    swa.event_mask = StructureNotifyMask;
    win = XCreateWindow(dpy, root, 0, 0, 1, 1, 0, vis->depth,
-		       InputOutput,vis->visual,
-		       CWBorderPixel|CWColormap|CWEventMask,
-		       &swa);
+                       InputOutput,vis->visual,
+                       CWBorderPixel|CWColormap|CWEventMask,
+                       &swa);
 
    glXMakeCurrent(dpy,win,ctx);
 

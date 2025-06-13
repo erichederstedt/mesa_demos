@@ -29,18 +29,18 @@
 #include "glut_wrap.h"
 
 
-#define	BLACK 0
-#define	GRAY 128
-#define	WHITE 255
+#define BLACK 0
+#define GRAY 128
+#define WHITE 255
 #define BL 0x00
 #define WH 0xFF
 #define RD 0xA4,0x00,0x00,0xFF
 #define WT 0xFF,0xFF,0xFF,0xFF
 
-#define	CHECKIMAGEWIDTH 8
-#define	CHECKIMAGEHEIGHT 8
-#define	BRICKIMAGEWIDTH 16
-#define	BRICKIMAGEHEIGHT 16
+#define CHECKIMAGEWIDTH 8
+#define CHECKIMAGEHEIGHT 8
+#define BRICKIMAGEWIDTH 16
+#define BRICKIMAGEHEIGHT 16
 
 
 GLenum rgb, doubleBuffer;
@@ -158,786 +158,786 @@ GLubyte stipple[4*32] = {
 
 float tscp[18][2] = {
     {
-	0.0, 0.0
+        0.0, 0.0
     },
     {
-	1.0, 0.0
+        1.0, 0.0
     },
     {
-	0.0, 0.125
+        0.0, 0.125
     },
     {
-	1.0, 0.125
+        1.0, 0.125
     },
     {
-	0.0, 0.250
+        0.0, 0.250
     },
     {
-	1.0, 0.25
+        1.0, 0.25
     },
     {
-	0.0, 0.375
+        0.0, 0.375
     },
     {
-	1.0, 0.375
+        1.0, 0.375
     },
     {
-	0.0, 0.50
+        0.0, 0.50
     },
     {
-	1.0, 0.50
+        1.0, 0.50
     },
     {
-	0.0, 0.625
+        0.0, 0.625
     },
     {
-	1.0, 0.625
+        1.0, 0.625
     },
     {
-	0.0, 0.75
+        0.0, 0.75
     },
     {
-	1.0, 0.75
+        1.0, 0.75
     },
     {
-	0.0, 0.875
+        0.0, 0.875
     },
     {
-	1.0, 0.875
+        1.0, 0.875
     },
     {
-	0.0, 1.0
+        0.0, 1.0
     },
     {
-	1.0, 1.0
+        1.0, 1.0
     }
 };
 float scp[18][3] = {
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 5.000000
+        1.000000, 0.000000, 5.000000
     },
     {
-	0.707107, 0.707107, 0.000000
+        0.707107, 0.707107, 0.000000
     },
     {
-	0.707107, 0.707107, 5.000000
+        0.707107, 0.707107, 5.000000
     },
     {
-	0.000000, 1.000000, 0.000000
+        0.000000, 1.000000, 0.000000
     },
     {
-	0.000000, 1.000000, 5.000000
+        0.000000, 1.000000, 5.000000
     },
     {
-	-0.707107, 0.707107, 0.000000
+        -0.707107, 0.707107, 0.000000
     },
     {
-	-0.707107, 0.707107, 5.000000
+        -0.707107, 0.707107, 5.000000
     },
     {
-	-1.000000, 0.000000, 0.000000
+        -1.000000, 0.000000, 0.000000
     },
     {
-	-1.000000, 0.000000, 5.000000
+        -1.000000, 0.000000, 5.000000
     },
     {
-	-0.707107, -0.707107, 0.000000
+        -0.707107, -0.707107, 0.000000
     },
     {
-	-0.707107, -0.707107, 5.000000
+        -0.707107, -0.707107, 5.000000
     },
     {
-	0.000000, -1.000000, 0.000000
+        0.000000, -1.000000, 0.000000
     },
     {
-	0.000000, -1.000000, 5.000000
+        0.000000, -1.000000, 5.000000
     },
     {
-	0.707107, -0.707107, 0.000000
+        0.707107, -0.707107, 0.000000
     },
     {
-	0.707107, -0.707107, 5.000000
+        0.707107, -0.707107, 5.000000
     },
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 5.000000
+        1.000000, 0.000000, 5.000000
     }
 };
 float dcp[18][3] = {
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 7.000000
+        1.000000, 0.000000, 7.000000
     },
     {
-	0.707107, 0.707107, 0.000000
+        0.707107, 0.707107, 0.000000
     },
     {
-	0.707107, 0.707107, 7.000000
+        0.707107, 0.707107, 7.000000
     },
     {
-	0.000000, 1.000000, 0.000000
+        0.000000, 1.000000, 0.000000
     },
     {
-	0.000000, 1.000000, 7.000000
+        0.000000, 1.000000, 7.000000
     },
     {
-	-0.707107, 0.707107, 0.000000
+        -0.707107, 0.707107, 0.000000
     },
     {
-	-0.707107, 0.707107, 7.000000
+        -0.707107, 0.707107, 7.000000
     },
     {
-	-1.000000, 0.000000, 0.000000
+        -1.000000, 0.000000, 0.000000
     },
     {
-	-1.000000, 0.000000, 7.000000
+        -1.000000, 0.000000, 7.000000
     },
     {
-	-0.707107, -0.707107, 0.000000
+        -0.707107, -0.707107, 0.000000
     },
     {
-	-0.707107, -0.707107, 7.000000
+        -0.707107, -0.707107, 7.000000
     },
     {
-	0.000000, -1.000000, 0.000000
+        0.000000, -1.000000, 0.000000
     },
     {
-	0.000000, -1.000000, 7.000000
+        0.000000, -1.000000, 7.000000
     },
     {
-	0.707107, -0.707107, 0.000000
+        0.707107, -0.707107, 0.000000
     },
     {
-	0.707107, -0.707107, 7.000000
+        0.707107, -0.707107, 7.000000
     },
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 7.000000
+        1.000000, 0.000000, 7.000000
     }
 };
 float ep[7][9][3] = {
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.707107, 0.000000
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.707107, 0.000000
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.707107, 0.000000
-	},
-	{
-	    0.000000, -1.000000, 0.000000
-	},
-	{
-	    0.707107, -0.707107, 0.000000
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.707107, 0.000000
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.707107, 0.000000
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.707107, 0.000000
+        },
+        {
+            0.000000, -1.000000, 0.000000
+        },
+        {
+            0.707107, -0.707107, 0.000000
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.034074, 0.258819
-	},
-	{
-	    0.707107, 0.717087, 0.075806
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.717087, 0.075806
-	},
-	{
-	    -1.000000, 0.034074, 0.258819
-	},
-	{
-	    -0.707107, -0.648939, 0.441832
-	},
-	{
-	    0.000000, -0.931852, 0.517638
-	},
-	{
-	    0.707107, -0.648939, 0.441832
-	},
-	{
-	    1.000000, 0.034074, 0.258819
-	}
+        {
+            1.000000, 0.034074, 0.258819
+        },
+        {
+            0.707107, 0.717087, 0.075806
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.717087, 0.075806
+        },
+        {
+            -1.000000, 0.034074, 0.258819
+        },
+        {
+            -0.707107, -0.648939, 0.441832
+        },
+        {
+            0.000000, -0.931852, 0.517638
+        },
+        {
+            0.707107, -0.648939, 0.441832
+        },
+        {
+            1.000000, 0.034074, 0.258819
+        }
     },
     {
-	{
-	    1.000000, 0.133975, 0.500000
-	},
-	{
-	    0.707107, 0.746347, 0.146447
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.746347, 0.146447
-	},
-	{
-	    -1.000000, 0.133975, 0.500000
-	},
-	{
-	    -0.707107, -0.478398, 0.853553
-	},
-	{
-	    0.000000, -0.732051, 1.000000
-	},
-	{
-	    0.707107, -0.478398, 0.853553
-	},
-	{
-	    1.000000, 0.133975, 0.500000
-	}
+        {
+            1.000000, 0.133975, 0.500000
+        },
+        {
+            0.707107, 0.746347, 0.146447
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.746347, 0.146447
+        },
+        {
+            -1.000000, 0.133975, 0.500000
+        },
+        {
+            -0.707107, -0.478398, 0.853553
+        },
+        {
+            0.000000, -0.732051, 1.000000
+        },
+        {
+            0.707107, -0.478398, 0.853553
+        },
+        {
+            1.000000, 0.133975, 0.500000
+        }
     },
     {
-	{
-	    1.000000, 0.292893, 0.707107
-	},
-	{
-	    0.707107, 0.792893, 0.207107
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.792893, 0.207107
-	},
-	{
-	    -1.000000, 0.292893, 0.707107
-	},
-	{
-	    -0.707107, -0.207107, 1.207107
-	},
-	{
-	    0.000000, -0.414214, 1.414214
-	},
-	{
-	    0.707107, -0.207107, 1.207107
-	},
-	{
-	    1.000000, 0.292893, 0.707107
-	}
+        {
+            1.000000, 0.292893, 0.707107
+        },
+        {
+            0.707107, 0.792893, 0.207107
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.792893, 0.207107
+        },
+        {
+            -1.000000, 0.292893, 0.707107
+        },
+        {
+            -0.707107, -0.207107, 1.207107
+        },
+        {
+            0.000000, -0.414214, 1.414214
+        },
+        {
+            0.707107, -0.207107, 1.207107
+        },
+        {
+            1.000000, 0.292893, 0.707107
+        }
     },
     {
-	{
-	    1.000000, 0.500000, 0.866025
-	},
-	{
-	    0.707107, 0.853553, 0.253653
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.853553, 0.253653
-	},
-	{
-	    -1.000000, 0.500000, 0.866025
-	},
-	{
-	    -0.707107, 0.146447, 1.478398
-	},
-	{
-	    0.000000, 0.000000, 1.732051
-	},
-	{
-	    0.707107, 0.146447, 1.478398
-	},
-	{
-	    1.000000, 0.500000, 0.866025
-	}
+        {
+            1.000000, 0.500000, 0.866025
+        },
+        {
+            0.707107, 0.853553, 0.253653
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.853553, 0.253653
+        },
+        {
+            -1.000000, 0.500000, 0.866025
+        },
+        {
+            -0.707107, 0.146447, 1.478398
+        },
+        {
+            0.000000, 0.000000, 1.732051
+        },
+        {
+            0.707107, 0.146447, 1.478398
+        },
+        {
+            1.000000, 0.500000, 0.866025
+        }
     },
     {
-	{
-	    1.000000, 0.741181, 0.965926
-	},
-	{
-	    0.707107, 0.924194, 0.282913
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.924194, 0.282913
-	},
-	{
-	    -1.000000, 0.741181, 0.965926
-	},
-	{
-	    -0.707107, 0.558168, 1.648939
-	},
-	{
-	    0.000000, 0.482362, 1.931852
-	},
-	{
-	    0.707107, 0.558168, 1.648939
-	},
-	{
-	    1.000000, 0.741181, 0.965926
-	}
+        {
+            1.000000, 0.741181, 0.965926
+        },
+        {
+            0.707107, 0.924194, 0.282913
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.924194, 0.282913
+        },
+        {
+            -1.000000, 0.741181, 0.965926
+        },
+        {
+            -0.707107, 0.558168, 1.648939
+        },
+        {
+            0.000000, 0.482362, 1.931852
+        },
+        {
+            0.707107, 0.558168, 1.648939
+        },
+        {
+            1.000000, 0.741181, 0.965926
+        }
     },
     {
-	{
-	    1.000000, 1.000000, 1.000000
-	},
-	{
-	    0.707107, 1.000000, 0.292893
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 1.000000, 0.292893
-	},
-	{
-	    -1.000000, 1.000000, 1.000000
-	},
-	{
-	    -0.707107, 1.000000, 1.707107
-	},
-	{
-	    0.000000, 1.000000, 2.000000
-	},
-	{
-	    0.707107, 1.000000, 1.707107
-	},
-	{
-	    1.000000, 1.000000, 1.000000
-	}
+        {
+            1.000000, 1.000000, 1.000000
+        },
+        {
+            0.707107, 1.000000, 0.292893
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 1.000000, 0.292893
+        },
+        {
+            -1.000000, 1.000000, 1.000000
+        },
+        {
+            -0.707107, 1.000000, 1.707107
+        },
+        {
+            0.000000, 1.000000, 2.000000
+        },
+        {
+            0.707107, 1.000000, 1.707107
+        },
+        {
+            1.000000, 1.000000, 1.000000
+        }
     }
 };
 float en[7][9][3] = {
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.707107, 0.000000
-	},
-	{
-	    0.000000, 1.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.707107, 0.000000
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.707107, 0.000000
-	},
-	{
-	    0.000000, -1.000000, 0.000000
-	},
-	{
-	    0.707107, -0.707107, 0.000000
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.707107, 0.000000
+        },
+        {
+            0.000000, 1.000000, 0.000000
+        },
+        {
+            -0.707107, 0.707107, 0.000000
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.707107, 0.000000
+        },
+        {
+            0.000000, -1.000000, 0.000000
+        },
+        {
+            0.707107, -0.707107, 0.000000
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.683013, -0.183013
-	},
-	{
-	    0.000000, 0.965926, -0.258819
-	},
-	{
-	    -0.707107, 0.683013, -0.183013
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.683013, 0.183013
-	},
-	{
-	    0.000000, -0.965926, 0.258819
-	},
-	{
-	    0.707107, -0.683013, 0.183013
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.683013, -0.183013
+        },
+        {
+            0.000000, 0.965926, -0.258819
+        },
+        {
+            -0.707107, 0.683013, -0.183013
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.683013, 0.183013
+        },
+        {
+            0.000000, -0.965926, 0.258819
+        },
+        {
+            0.707107, -0.683013, 0.183013
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.612372, -0.353553
-	},
-	{
-	    0.000000, 0.866025, -0.500000
-	},
-	{
-	    -0.707107, 0.612372, -0.353553
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.612372, 0.353553
-	},
-	{
-	    0.000000, -0.866025, 0.500000
-	},
-	{
-	    0.707107, -0.612372, 0.353553
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.612372, -0.353553
+        },
+        {
+            0.000000, 0.866025, -0.500000
+        },
+        {
+            -0.707107, 0.612372, -0.353553
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.612372, 0.353553
+        },
+        {
+            0.000000, -0.866025, 0.500000
+        },
+        {
+            0.707107, -0.612372, 0.353553
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	   /* These 3 lines added by BEP */
-	    0.707107, 0.500000, -0.500000
-	},
-	{
-	    0.000000, 0.707107, -0.707107
-	},
-	{
-	    -0.707107, 0.500000, -0.500000
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.500000, 0.500000
-	},
-	{
-	    0.000000, -0.707107, 0.707107
-	},
-	{
-	    0.707107, -0.500000, 0.500000
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+           /* These 3 lines added by BEP */
+            0.707107, 0.500000, -0.500000
+        },
+        {
+            0.000000, 0.707107, -0.707107
+        },
+        {
+            -0.707107, 0.500000, -0.500000
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.500000, 0.500000
+        },
+        {
+            0.000000, -0.707107, 0.707107
+        },
+        {
+            0.707107, -0.500000, 0.500000
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.353553, -0.612372
-	},
-	{
-	    0.000000, 0.500000, -0.866025
-	},
-	{
-	    -0.707107, 0.353553, -0.612372
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.353553, 0.612372
-	},
-	{
-	    0.000000, -0.500000, 0.866025
-	},
-	{
-	    0.707107, -0.353553, 0.612372
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.353553, -0.612372
+        },
+        {
+            0.000000, 0.500000, -0.866025
+        },
+        {
+            -0.707107, 0.353553, -0.612372
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.353553, 0.612372
+        },
+        {
+            0.000000, -0.500000, 0.866025
+        },
+        {
+            0.707107, -0.353553, 0.612372
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.183013, -0.683013
-	},
-	{
-	    0.000000, 0.258819, -0.965926
-	},
-	{
-	    -0.707107, 0.183013, -0.683013
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, -0.183013, 0.683013
-	},
-	{
-	    0.000000, -0.258819, 0.965926
-	},
-	{
-	    0.707107, -0.183013, 0.683013
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.183013, -0.683013
+        },
+        {
+            0.000000, 0.258819, -0.965926
+        },
+        {
+            -0.707107, 0.183013, -0.683013
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, -0.183013, 0.683013
+        },
+        {
+            0.000000, -0.258819, 0.965926
+        },
+        {
+            0.707107, -0.183013, 0.683013
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     },
     {
-	{
-	    1.000000, 0.000000, 0.000000
-	},
-	{
-	    0.707107, 0.000000, -0.707107
-	},
-	{
-	    0.000000, 0.000000, -1.000000
-	},
-	{
-	    -0.707107, 0.000000, -0.707107
-	},
-	{
-	    -1.000000, 0.000000, 0.000000
-	},
-	{
-	    -0.707107, 0.000000, 0.707107
-	},
-	{
-	    0.000000, 0.000000, 1.000000
-	},
-	{
-	    0.707107, 0.000000, 0.707107
-	},
-	{
-	    1.000000, 0.000000, 0.000000
-	}
+        {
+            1.000000, 0.000000, 0.000000
+        },
+        {
+            0.707107, 0.000000, -0.707107
+        },
+        {
+            0.000000, 0.000000, -1.000000
+        },
+        {
+            -0.707107, 0.000000, -0.707107
+        },
+        {
+            -1.000000, 0.000000, 0.000000
+        },
+        {
+            -0.707107, 0.000000, 0.707107
+        },
+        {
+            0.000000, 0.000000, 1.000000
+        },
+        {
+            0.707107, 0.000000, 0.707107
+        },
+        {
+            1.000000, 0.000000, 0.000000
+        }
     }
 };
 float tep[7][9][2] = {
     {
-	{
-	    0,     0.0
-	},
-	{
-	    0.125, 0.0
-	},
-	{
-	    0.25,  0.0
-	},
-	{
-	    0.375, 0.0
-	},
-	{
-	    0.5,   0.0
-	},
-	{
-	    0.625, 0.0
-	},
-	{
-	    0.75,  0.0
-	},
-	{
-	    0.875, 0.0
-	},
-	{
-	    1.0,   0.0
-	}
+        {
+            0,     0.0
+        },
+        {
+            0.125, 0.0
+        },
+        {
+            0.25,  0.0
+        },
+        {
+            0.375, 0.0
+        },
+        {
+            0.5,   0.0
+        },
+        {
+            0.625, 0.0
+        },
+        {
+            0.75,  0.0
+        },
+        {
+            0.875, 0.0
+        },
+        {
+            1.0,   0.0
+        }
     },
     {
-	{
-	    0,     0.16667
-	},
-	{
-	    0.125, 0.16667
-	},
-	{
-	    0.25,  0.16667
-	},
-	{
-	    0.375, 0.16667
-	},
-	{
-	    0.5,   0.16667
-	},
-	{
-	    0.625, 0.16667
-	},
-	{
-	    0.75,  0.16667
-	},
-	{
-	    0.875, 0.16667
-	},
-	{
-	    1.0,   0.16667
-	}
+        {
+            0,     0.16667
+        },
+        {
+            0.125, 0.16667
+        },
+        {
+            0.25,  0.16667
+        },
+        {
+            0.375, 0.16667
+        },
+        {
+            0.5,   0.16667
+        },
+        {
+            0.625, 0.16667
+        },
+        {
+            0.75,  0.16667
+        },
+        {
+            0.875, 0.16667
+        },
+        {
+            1.0,   0.16667
+        }
     },
     {
-	{
-	    0,     0.33333
-	},
-	{
-	    0.125, 0.33333
-	},
-	{
-	    0.25,  0.33333
-	},
-	{
-	    0.375, 0.33333
-	},
-	{
-	    0.5,   0.33333
-	},
-	{
-	    0.625, 0.33333
-	},
-	{
-	    0.75,  0.33333
-	},
-	{
-	    0.875, 0.33333
-	},
-	{
-	    1.0,   0.33333
-	}
+        {
+            0,     0.33333
+        },
+        {
+            0.125, 0.33333
+        },
+        {
+            0.25,  0.33333
+        },
+        {
+            0.375, 0.33333
+        },
+        {
+            0.5,   0.33333
+        },
+        {
+            0.625, 0.33333
+        },
+        {
+            0.75,  0.33333
+        },
+        {
+            0.875, 0.33333
+        },
+        {
+            1.0,   0.33333
+        }
     },
     {
-	{
-	    0,     0.5
-	},
-	{
-	    0.125, 0.5
-	},
-	{
-	    0.25,  0.5
-	},
-	{
-	    0.375, 0.5
-	},
-	{
-	    0.5,   0.5
-	},
-	{
-	    0.625, 0.5
-	},
-	{
-	    0.75,  0.5
-	},
-	{
-	    0.875, 0.5
-	},
-	{
-	    1.0,   0.5
-	}
+        {
+            0,     0.5
+        },
+        {
+            0.125, 0.5
+        },
+        {
+            0.25,  0.5
+        },
+        {
+            0.375, 0.5
+        },
+        {
+            0.5,   0.5
+        },
+        {
+            0.625, 0.5
+        },
+        {
+            0.75,  0.5
+        },
+        {
+            0.875, 0.5
+        },
+        {
+            1.0,   0.5
+        }
     },
     {
-	{
-	    0,     0.6667
-	},
-	{
-	    0.125, 0.6667
-	},
-	{
-	    0.25,  0.6667
-	},
-	{
-	    0.375, 0.6667
-	},
-	{
-	    0.5,   0.6667
-	},
-	{
-	    0.625, 0.6667
-	},
-	{
-	    0.75,  0.6667
-	},
-	{
-	    0.875, 0.6667
-	},
-	{
-	    1.0,   0.6667
-	}
+        {
+            0,     0.6667
+        },
+        {
+            0.125, 0.6667
+        },
+        {
+            0.25,  0.6667
+        },
+        {
+            0.375, 0.6667
+        },
+        {
+            0.5,   0.6667
+        },
+        {
+            0.625, 0.6667
+        },
+        {
+            0.75,  0.6667
+        },
+        {
+            0.875, 0.6667
+        },
+        {
+            1.0,   0.6667
+        }
     },
     {
-	{
-	    0,     0.83333
-	},
-	{
-	    0.125, 0.83333
-	},
-	{
-	    0.25,  0.83333
-	},
-	{
-	    0.375, 0.83333
-	},
-	{
-	    0.5,   0.83333
-	},
-	{
-	    0.625, 0.83333
-	},
-	{
-	    0.75,  0.83333
-	},
-	{
-	    0.875, 0.83333
-	},
-	{
-	    1.0,   0.83333
-	}
+        {
+            0,     0.83333
+        },
+        {
+            0.125, 0.83333
+        },
+        {
+            0.25,  0.83333
+        },
+        {
+            0.375, 0.83333
+        },
+        {
+            0.5,   0.83333
+        },
+        {
+            0.625, 0.83333
+        },
+        {
+            0.75,  0.83333
+        },
+        {
+            0.875, 0.83333
+        },
+        {
+            1.0,   0.83333
+        }
     },
     {
-	{
-	    0,     1.0
-	},
-	{
-	    0.125, 1.0
-	},
-	{
-	    0.25,  1.0
-	},
-	{
-	    0.375, 1.0
-	},
-	{
-	    0.5,   1.0
-	},
-	{
-	    0.625, 1.0
-	},
-	{
-	    0.75,  1.0
-	},
-	{
-	    0.875, 1.0
-	},
-	{
-	    1.0,   1.0
-	}
+        {
+            0,     1.0
+        },
+        {
+            0.125, 1.0
+        },
+        {
+            0.25,  1.0
+        },
+        {
+            0.375, 1.0
+        },
+        {
+            0.5,   1.0
+        },
+        {
+            0.625, 1.0
+        },
+        {
+            0.75,  1.0
+        },
+        {
+            0.875, 1.0
+        },
+        {
+            1.0,   1.0
+        }
     }
 };
 
@@ -948,10 +948,10 @@ static void SetUpAntiAliasedGrayScale(void)
     GLint i, j;
 
     for (i = 0; i < 16; i++) {
-	color = (2 * i + 1) / 32.0;
-	for (j = 0; j < 16; j++) {
-	    glutSetColor(i*16+j, color*j/15.0, color*j/15.0, color*j/15.0);
-	}
+        color = (2 * i + 1) / 32.0;
+        for (j = 0; j < 16; j++) {
+            glutSetColor(i*16+j, color*j/15.0, color*j/15.0, color*j/15.0);
+        }
     }
 }
 
@@ -1016,24 +1016,24 @@ static void BuildDoubleCylinder(void)
     glNewList(doubleCylinder, GL_COMPILE);
 
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(dcp[0]); glTexCoord2fv(tscp[0]); glVertex3fv(dcp[0]);
-	glNormal3fv(dcp[0]); glTexCoord2fv(tscp[1]); glVertex3fv(dcp[1]);
-	glNormal3fv(dcp[2]); glTexCoord2fv(tscp[2]); glVertex3fv(dcp[2]);
-	glNormal3fv(dcp[2]); glTexCoord2fv(tscp[3]); glVertex3fv(dcp[3]);
-	glNormal3fv(dcp[4]); glTexCoord2fv(tscp[4]); glVertex3fv(dcp[4]);
-	glNormal3fv(dcp[4]); glTexCoord2fv(tscp[5]); glVertex3fv(dcp[5]);
-	glNormal3fv(dcp[6]); glTexCoord2fv(tscp[6]); glVertex3fv(dcp[6]);
-	glNormal3fv(dcp[6]); glTexCoord2fv(tscp[7]); glVertex3fv(dcp[7]);
-	glNormal3fv(dcp[8]); glTexCoord2fv(tscp[8]); glVertex3fv(dcp[8]);
-	glNormal3fv(dcp[8]); glTexCoord2fv(tscp[9]); glVertex3fv(dcp[9]);
-	glNormal3fv(dcp[10]); glTexCoord2fv(tscp[10]); glVertex3fv(dcp[10]);
-	glNormal3fv(dcp[10]); glTexCoord2fv(tscp[11]); glVertex3fv(dcp[11]);
-	glNormal3fv(dcp[12]); glTexCoord2fv(tscp[12]); glVertex3fv(dcp[12]);
-	glNormal3fv(dcp[12]); glTexCoord2fv(tscp[13]); glVertex3fv(dcp[13]);
-	glNormal3fv(dcp[14]); glTexCoord2fv(tscp[14]); glVertex3fv(dcp[14]);
-	glNormal3fv(dcp[14]); glTexCoord2fv(tscp[15]); glVertex3fv(dcp[15]);
-	glNormal3fv(dcp[16]); glTexCoord2fv(tscp[16]); glVertex3fv(dcp[16]);
-	glNormal3fv(dcp[16]); glTexCoord2fv(tscp[17]); glVertex3fv(dcp[17]);
+        glNormal3fv(dcp[0]); glTexCoord2fv(tscp[0]); glVertex3fv(dcp[0]);
+        glNormal3fv(dcp[0]); glTexCoord2fv(tscp[1]); glVertex3fv(dcp[1]);
+        glNormal3fv(dcp[2]); glTexCoord2fv(tscp[2]); glVertex3fv(dcp[2]);
+        glNormal3fv(dcp[2]); glTexCoord2fv(tscp[3]); glVertex3fv(dcp[3]);
+        glNormal3fv(dcp[4]); glTexCoord2fv(tscp[4]); glVertex3fv(dcp[4]);
+        glNormal3fv(dcp[4]); glTexCoord2fv(tscp[5]); glVertex3fv(dcp[5]);
+        glNormal3fv(dcp[6]); glTexCoord2fv(tscp[6]); glVertex3fv(dcp[6]);
+        glNormal3fv(dcp[6]); glTexCoord2fv(tscp[7]); glVertex3fv(dcp[7]);
+        glNormal3fv(dcp[8]); glTexCoord2fv(tscp[8]); glVertex3fv(dcp[8]);
+        glNormal3fv(dcp[8]); glTexCoord2fv(tscp[9]); glVertex3fv(dcp[9]);
+        glNormal3fv(dcp[10]); glTexCoord2fv(tscp[10]); glVertex3fv(dcp[10]);
+        glNormal3fv(dcp[10]); glTexCoord2fv(tscp[11]); glVertex3fv(dcp[11]);
+        glNormal3fv(dcp[12]); glTexCoord2fv(tscp[12]); glVertex3fv(dcp[12]);
+        glNormal3fv(dcp[12]); glTexCoord2fv(tscp[13]); glVertex3fv(dcp[13]);
+        glNormal3fv(dcp[14]); glTexCoord2fv(tscp[14]); glVertex3fv(dcp[14]);
+        glNormal3fv(dcp[14]); glTexCoord2fv(tscp[15]); glVertex3fv(dcp[15]);
+        glNormal3fv(dcp[16]); glTexCoord2fv(tscp[16]); glVertex3fv(dcp[16]);
+        glNormal3fv(dcp[16]); glTexCoord2fv(tscp[17]); glVertex3fv(dcp[17]);
     glEnd();
 
     glEndList();
@@ -1045,124 +1045,124 @@ static void BuildElbow(void)
     glNewList(elbow, GL_COMPILE);
 
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[0][0]); glTexCoord2fv(tep[0][0]); glVertex3fv(ep[0][0]);
-	glNormal3fv(en[1][0]); glTexCoord2fv(tep[1][0]); glVertex3fv(ep[1][0]);
-	glNormal3fv(en[0][1]); glTexCoord2fv(tep[0][1]); glVertex3fv(ep[0][1]);
-	glNormal3fv(en[1][1]); glTexCoord2fv(tep[1][1]); glVertex3fv(ep[1][1]);
-	glNormal3fv(en[0][2]); glTexCoord2fv(tep[0][2]); glVertex3fv(ep[0][2]);
-	glNormal3fv(en[1][2]); glTexCoord2fv(tep[1][2]); glVertex3fv(ep[1][2]);
-	glNormal3fv(en[0][3]); glTexCoord2fv(tep[0][3]); glVertex3fv(ep[0][3]);
-	glNormal3fv(en[1][3]); glTexCoord2fv(tep[1][3]); glVertex3fv(ep[1][3]);
-	glNormal3fv(en[0][4]); glTexCoord2fv(tep[0][4]); glVertex3fv(ep[0][4]);
-	glNormal3fv(en[1][4]); glTexCoord2fv(tep[1][4]); glVertex3fv(ep[1][4]);
-	glNormal3fv(en[0][5]); glTexCoord2fv(tep[0][5]); glVertex3fv(ep[0][5]);
-	glNormal3fv(en[1][5]); glTexCoord2fv(tep[1][5]); glVertex3fv(ep[1][5]);
-	glNormal3fv(en[0][6]); glTexCoord2fv(tep[0][6]); glVertex3fv(ep[0][6]);
-	glNormal3fv(en[1][6]); glTexCoord2fv(tep[1][6]); glVertex3fv(ep[1][6]);
-	glNormal3fv(en[0][7]); glTexCoord2fv(tep[0][7]); glVertex3fv(ep[0][7]);
-	glNormal3fv(en[1][7]); glTexCoord2fv(tep[1][7]); glVertex3fv(ep[1][7]);
-	glNormal3fv(en[0][8]); glTexCoord2fv(tep[0][8]); glVertex3fv(ep[0][8]);
-	glNormal3fv(en[1][8]); glTexCoord2fv(tep[1][8]); glVertex3fv(ep[1][8]);
+        glNormal3fv(en[0][0]); glTexCoord2fv(tep[0][0]); glVertex3fv(ep[0][0]);
+        glNormal3fv(en[1][0]); glTexCoord2fv(tep[1][0]); glVertex3fv(ep[1][0]);
+        glNormal3fv(en[0][1]); glTexCoord2fv(tep[0][1]); glVertex3fv(ep[0][1]);
+        glNormal3fv(en[1][1]); glTexCoord2fv(tep[1][1]); glVertex3fv(ep[1][1]);
+        glNormal3fv(en[0][2]); glTexCoord2fv(tep[0][2]); glVertex3fv(ep[0][2]);
+        glNormal3fv(en[1][2]); glTexCoord2fv(tep[1][2]); glVertex3fv(ep[1][2]);
+        glNormal3fv(en[0][3]); glTexCoord2fv(tep[0][3]); glVertex3fv(ep[0][3]);
+        glNormal3fv(en[1][3]); glTexCoord2fv(tep[1][3]); glVertex3fv(ep[1][3]);
+        glNormal3fv(en[0][4]); glTexCoord2fv(tep[0][4]); glVertex3fv(ep[0][4]);
+        glNormal3fv(en[1][4]); glTexCoord2fv(tep[1][4]); glVertex3fv(ep[1][4]);
+        glNormal3fv(en[0][5]); glTexCoord2fv(tep[0][5]); glVertex3fv(ep[0][5]);
+        glNormal3fv(en[1][5]); glTexCoord2fv(tep[1][5]); glVertex3fv(ep[1][5]);
+        glNormal3fv(en[0][6]); glTexCoord2fv(tep[0][6]); glVertex3fv(ep[0][6]);
+        glNormal3fv(en[1][6]); glTexCoord2fv(tep[1][6]); glVertex3fv(ep[1][6]);
+        glNormal3fv(en[0][7]); glTexCoord2fv(tep[0][7]); glVertex3fv(ep[0][7]);
+        glNormal3fv(en[1][7]); glTexCoord2fv(tep[1][7]); glVertex3fv(ep[1][7]);
+        glNormal3fv(en[0][8]); glTexCoord2fv(tep[0][8]); glVertex3fv(ep[0][8]);
+        glNormal3fv(en[1][8]); glTexCoord2fv(tep[1][8]); glVertex3fv(ep[1][8]);
     glEnd();
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[1][0]); glTexCoord2fv(tep[1][0]); glVertex3fv(ep[1][0]);
-	glNormal3fv(en[2][0]); glTexCoord2fv(tep[2][0]); glVertex3fv(ep[2][0]);
-	glNormal3fv(en[1][1]); glTexCoord2fv(tep[1][1]); glVertex3fv(ep[1][1]);
-	glNormal3fv(en[2][1]); glTexCoord2fv(tep[2][1]); glVertex3fv(ep[2][1]);
-	glNormal3fv(en[1][2]); glTexCoord2fv(tep[1][2]); glVertex3fv(ep[1][2]);
-	glNormal3fv(en[2][2]); glTexCoord2fv(tep[2][2]); glVertex3fv(ep[2][2]);
-	glNormal3fv(en[1][3]); glTexCoord2fv(tep[1][3]); glVertex3fv(ep[1][3]);
-	glNormal3fv(en[2][3]); glTexCoord2fv(tep[2][3]); glVertex3fv(ep[2][3]);
-	glNormal3fv(en[1][4]); glTexCoord2fv(tep[1][4]); glVertex3fv(ep[1][4]);
-	glNormal3fv(en[2][4]); glTexCoord2fv(tep[2][4]); glVertex3fv(ep[2][4]);
-	glNormal3fv(en[1][5]); glTexCoord2fv(tep[1][5]); glVertex3fv(ep[1][5]);
-	glNormal3fv(en[2][5]); glTexCoord2fv(tep[2][5]); glVertex3fv(ep[2][5]);
-	glNormal3fv(en[1][6]); glTexCoord2fv(tep[1][6]); glVertex3fv(ep[1][6]);
-	glNormal3fv(en[2][6]); glTexCoord2fv(tep[2][6]); glVertex3fv(ep[2][6]);
-	glNormal3fv(en[1][7]); glTexCoord2fv(tep[1][7]); glVertex3fv(ep[1][7]);
-	glNormal3fv(en[2][7]); glTexCoord2fv(tep[2][7]); glVertex3fv(ep[2][7]);
-	glNormal3fv(en[1][8]); glTexCoord2fv(tep[1][8]); glVertex3fv(ep[1][8]);
-	glNormal3fv(en[2][8]); glTexCoord2fv(tep[2][8]); glVertex3fv(ep[2][8]);
+        glNormal3fv(en[1][0]); glTexCoord2fv(tep[1][0]); glVertex3fv(ep[1][0]);
+        glNormal3fv(en[2][0]); glTexCoord2fv(tep[2][0]); glVertex3fv(ep[2][0]);
+        glNormal3fv(en[1][1]); glTexCoord2fv(tep[1][1]); glVertex3fv(ep[1][1]);
+        glNormal3fv(en[2][1]); glTexCoord2fv(tep[2][1]); glVertex3fv(ep[2][1]);
+        glNormal3fv(en[1][2]); glTexCoord2fv(tep[1][2]); glVertex3fv(ep[1][2]);
+        glNormal3fv(en[2][2]); glTexCoord2fv(tep[2][2]); glVertex3fv(ep[2][2]);
+        glNormal3fv(en[1][3]); glTexCoord2fv(tep[1][3]); glVertex3fv(ep[1][3]);
+        glNormal3fv(en[2][3]); glTexCoord2fv(tep[2][3]); glVertex3fv(ep[2][3]);
+        glNormal3fv(en[1][4]); glTexCoord2fv(tep[1][4]); glVertex3fv(ep[1][4]);
+        glNormal3fv(en[2][4]); glTexCoord2fv(tep[2][4]); glVertex3fv(ep[2][4]);
+        glNormal3fv(en[1][5]); glTexCoord2fv(tep[1][5]); glVertex3fv(ep[1][5]);
+        glNormal3fv(en[2][5]); glTexCoord2fv(tep[2][5]); glVertex3fv(ep[2][5]);
+        glNormal3fv(en[1][6]); glTexCoord2fv(tep[1][6]); glVertex3fv(ep[1][6]);
+        glNormal3fv(en[2][6]); glTexCoord2fv(tep[2][6]); glVertex3fv(ep[2][6]);
+        glNormal3fv(en[1][7]); glTexCoord2fv(tep[1][7]); glVertex3fv(ep[1][7]);
+        glNormal3fv(en[2][7]); glTexCoord2fv(tep[2][7]); glVertex3fv(ep[2][7]);
+        glNormal3fv(en[1][8]); glTexCoord2fv(tep[1][8]); glVertex3fv(ep[1][8]);
+        glNormal3fv(en[2][8]); glTexCoord2fv(tep[2][8]); glVertex3fv(ep[2][8]);
     glEnd();
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[2][0]); glTexCoord2fv(tep[2][0]); glVertex3fv(ep[2][0]);
-	glNormal3fv(en[3][0]); glTexCoord2fv(tep[3][0]); glVertex3fv(ep[3][0]);
-	glNormal3fv(en[2][1]); glTexCoord2fv(tep[2][1]); glVertex3fv(ep[2][1]);
-	glNormal3fv(en[3][1]); glTexCoord2fv(tep[3][1]); glVertex3fv(ep[3][1]);
-	glNormal3fv(en[2][2]); glTexCoord2fv(tep[2][2]); glVertex3fv(ep[2][2]);
-	glNormal3fv(en[3][2]); glTexCoord2fv(tep[3][2]); glVertex3fv(ep[3][2]);
-	glNormal3fv(en[2][3]); glTexCoord2fv(tep[2][3]); glVertex3fv(ep[2][3]);
-	glNormal3fv(en[3][3]); glTexCoord2fv(tep[3][3]); glVertex3fv(ep[3][3]);
-	glNormal3fv(en[2][4]); glTexCoord2fv(tep[2][4]); glVertex3fv(ep[2][4]);
-	glNormal3fv(en[3][4]); glTexCoord2fv(tep[3][4]); glVertex3fv(ep[3][4]);
-	glNormal3fv(en[2][5]); glTexCoord2fv(tep[2][5]); glVertex3fv(ep[2][5]);
-	glNormal3fv(en[3][5]); glTexCoord2fv(tep[3][5]); glVertex3fv(ep[3][5]);
-	glNormal3fv(en[2][6]); glTexCoord2fv(tep[2][6]); glVertex3fv(ep[2][6]);
-	glNormal3fv(en[3][6]); glTexCoord2fv(tep[3][6]); glVertex3fv(ep[3][6]);
-	glNormal3fv(en[2][7]); glTexCoord2fv(tep[2][7]); glVertex3fv(ep[2][7]);
-	glNormal3fv(en[3][7]); glTexCoord2fv(tep[3][7]); glVertex3fv(ep[3][7]);
-	glNormal3fv(en[2][8]); glTexCoord2fv(tep[2][8]); glVertex3fv(ep[2][8]);
-	glNormal3fv(en[3][8]); glTexCoord2fv(tep[3][8]); glVertex3fv(ep[3][8]);
+        glNormal3fv(en[2][0]); glTexCoord2fv(tep[2][0]); glVertex3fv(ep[2][0]);
+        glNormal3fv(en[3][0]); glTexCoord2fv(tep[3][0]); glVertex3fv(ep[3][0]);
+        glNormal3fv(en[2][1]); glTexCoord2fv(tep[2][1]); glVertex3fv(ep[2][1]);
+        glNormal3fv(en[3][1]); glTexCoord2fv(tep[3][1]); glVertex3fv(ep[3][1]);
+        glNormal3fv(en[2][2]); glTexCoord2fv(tep[2][2]); glVertex3fv(ep[2][2]);
+        glNormal3fv(en[3][2]); glTexCoord2fv(tep[3][2]); glVertex3fv(ep[3][2]);
+        glNormal3fv(en[2][3]); glTexCoord2fv(tep[2][3]); glVertex3fv(ep[2][3]);
+        glNormal3fv(en[3][3]); glTexCoord2fv(tep[3][3]); glVertex3fv(ep[3][3]);
+        glNormal3fv(en[2][4]); glTexCoord2fv(tep[2][4]); glVertex3fv(ep[2][4]);
+        glNormal3fv(en[3][4]); glTexCoord2fv(tep[3][4]); glVertex3fv(ep[3][4]);
+        glNormal3fv(en[2][5]); glTexCoord2fv(tep[2][5]); glVertex3fv(ep[2][5]);
+        glNormal3fv(en[3][5]); glTexCoord2fv(tep[3][5]); glVertex3fv(ep[3][5]);
+        glNormal3fv(en[2][6]); glTexCoord2fv(tep[2][6]); glVertex3fv(ep[2][6]);
+        glNormal3fv(en[3][6]); glTexCoord2fv(tep[3][6]); glVertex3fv(ep[3][6]);
+        glNormal3fv(en[2][7]); glTexCoord2fv(tep[2][7]); glVertex3fv(ep[2][7]);
+        glNormal3fv(en[3][7]); glTexCoord2fv(tep[3][7]); glVertex3fv(ep[3][7]);
+        glNormal3fv(en[2][8]); glTexCoord2fv(tep[2][8]); glVertex3fv(ep[2][8]);
+        glNormal3fv(en[3][8]); glTexCoord2fv(tep[3][8]); glVertex3fv(ep[3][8]);
     glEnd();
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[3][0]); glTexCoord2fv(tep[3][0]); glVertex3fv(ep[3][0]);
-	glNormal3fv(en[4][0]); glTexCoord2fv(tep[4][0]); glVertex3fv(ep[4][0]);
-	glNormal3fv(en[3][1]); glTexCoord2fv(tep[3][1]); glVertex3fv(ep[3][1]);
-	glNormal3fv(en[4][1]); glTexCoord2fv(tep[4][1]); glVertex3fv(ep[4][1]);
-	glNormal3fv(en[3][2]); glTexCoord2fv(tep[3][2]); glVertex3fv(ep[3][2]);
-	glNormal3fv(en[4][2]); glTexCoord2fv(tep[4][2]); glVertex3fv(ep[4][2]);
-	glNormal3fv(en[3][3]); glTexCoord2fv(tep[3][3]); glVertex3fv(ep[3][3]);
-	glNormal3fv(en[4][3]); glTexCoord2fv(tep[4][3]); glVertex3fv(ep[4][3]);
-	glNormal3fv(en[3][4]); glTexCoord2fv(tep[3][4]); glVertex3fv(ep[3][4]);
-	glNormal3fv(en[4][4]); glTexCoord2fv(tep[4][4]); glVertex3fv(ep[4][4]);
-	glNormal3fv(en[3][5]); glTexCoord2fv(tep[3][5]); glVertex3fv(ep[3][5]);
-	glNormal3fv(en[4][5]); glTexCoord2fv(tep[4][5]); glVertex3fv(ep[4][5]);
-	glNormal3fv(en[3][6]); glTexCoord2fv(tep[3][6]); glVertex3fv(ep[3][6]);
-	glNormal3fv(en[4][6]); glTexCoord2fv(tep[4][6]); glVertex3fv(ep[4][6]);
-	glNormal3fv(en[3][7]); glTexCoord2fv(tep[3][7]); glVertex3fv(ep[3][7]);
-	glNormal3fv(en[4][7]); glTexCoord2fv(tep[4][7]); glVertex3fv(ep[4][7]);
-	glNormal3fv(en[3][8]); glTexCoord2fv(tep[3][8]); glVertex3fv(ep[3][8]);
-	glNormal3fv(en[4][8]); glTexCoord2fv(tep[4][8]); glVertex3fv(ep[4][8]);
+        glNormal3fv(en[3][0]); glTexCoord2fv(tep[3][0]); glVertex3fv(ep[3][0]);
+        glNormal3fv(en[4][0]); glTexCoord2fv(tep[4][0]); glVertex3fv(ep[4][0]);
+        glNormal3fv(en[3][1]); glTexCoord2fv(tep[3][1]); glVertex3fv(ep[3][1]);
+        glNormal3fv(en[4][1]); glTexCoord2fv(tep[4][1]); glVertex3fv(ep[4][1]);
+        glNormal3fv(en[3][2]); glTexCoord2fv(tep[3][2]); glVertex3fv(ep[3][2]);
+        glNormal3fv(en[4][2]); glTexCoord2fv(tep[4][2]); glVertex3fv(ep[4][2]);
+        glNormal3fv(en[3][3]); glTexCoord2fv(tep[3][3]); glVertex3fv(ep[3][3]);
+        glNormal3fv(en[4][3]); glTexCoord2fv(tep[4][3]); glVertex3fv(ep[4][3]);
+        glNormal3fv(en[3][4]); glTexCoord2fv(tep[3][4]); glVertex3fv(ep[3][4]);
+        glNormal3fv(en[4][4]); glTexCoord2fv(tep[4][4]); glVertex3fv(ep[4][4]);
+        glNormal3fv(en[3][5]); glTexCoord2fv(tep[3][5]); glVertex3fv(ep[3][5]);
+        glNormal3fv(en[4][5]); glTexCoord2fv(tep[4][5]); glVertex3fv(ep[4][5]);
+        glNormal3fv(en[3][6]); glTexCoord2fv(tep[3][6]); glVertex3fv(ep[3][6]);
+        glNormal3fv(en[4][6]); glTexCoord2fv(tep[4][6]); glVertex3fv(ep[4][6]);
+        glNormal3fv(en[3][7]); glTexCoord2fv(tep[3][7]); glVertex3fv(ep[3][7]);
+        glNormal3fv(en[4][7]); glTexCoord2fv(tep[4][7]); glVertex3fv(ep[4][7]);
+        glNormal3fv(en[3][8]); glTexCoord2fv(tep[3][8]); glVertex3fv(ep[3][8]);
+        glNormal3fv(en[4][8]); glTexCoord2fv(tep[4][8]); glVertex3fv(ep[4][8]);
     glEnd();
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[4][0]); glTexCoord2fv(tep[4][0]); glVertex3fv(ep[4][0]);
-	glNormal3fv(en[5][0]); glTexCoord2fv(tep[5][0]); glVertex3fv(ep[5][0]);
-	glNormal3fv(en[4][1]); glTexCoord2fv(tep[4][1]); glVertex3fv(ep[4][1]);
-	glNormal3fv(en[5][1]); glTexCoord2fv(tep[5][1]); glVertex3fv(ep[5][1]);
-	glNormal3fv(en[4][2]); glTexCoord2fv(tep[4][2]); glVertex3fv(ep[4][2]);
-	glNormal3fv(en[5][2]); glTexCoord2fv(tep[5][2]); glVertex3fv(ep[5][2]);
-	glNormal3fv(en[4][3]); glTexCoord2fv(tep[4][3]); glVertex3fv(ep[4][3]);
-	glNormal3fv(en[5][3]); glTexCoord2fv(tep[5][3]); glVertex3fv(ep[5][3]);
-	glNormal3fv(en[4][4]); glTexCoord2fv(tep[4][4]); glVertex3fv(ep[4][4]);
-	glNormal3fv(en[5][4]); glTexCoord2fv(tep[5][4]); glVertex3fv(ep[5][4]);
-	glNormal3fv(en[4][5]); glTexCoord2fv(tep[4][5]); glVertex3fv(ep[4][5]);
-	glNormal3fv(en[5][5]); glTexCoord2fv(tep[5][5]); glVertex3fv(ep[5][5]);
-	glNormal3fv(en[4][6]); glTexCoord2fv(tep[4][6]); glVertex3fv(ep[4][6]);
-	glNormal3fv(en[5][6]); glTexCoord2fv(tep[5][6]); glVertex3fv(ep[5][6]);
-	glNormal3fv(en[4][7]); glTexCoord2fv(tep[4][7]); glVertex3fv(ep[4][7]);
-	glNormal3fv(en[5][7]); glTexCoord2fv(tep[5][7]); glVertex3fv(ep[5][7]);
-	glNormal3fv(en[4][8]); glTexCoord2fv(tep[4][8]); glVertex3fv(ep[4][8]);
-	glNormal3fv(en[5][8]); glTexCoord2fv(tep[5][8]); glVertex3fv(ep[5][8]);
+        glNormal3fv(en[4][0]); glTexCoord2fv(tep[4][0]); glVertex3fv(ep[4][0]);
+        glNormal3fv(en[5][0]); glTexCoord2fv(tep[5][0]); glVertex3fv(ep[5][0]);
+        glNormal3fv(en[4][1]); glTexCoord2fv(tep[4][1]); glVertex3fv(ep[4][1]);
+        glNormal3fv(en[5][1]); glTexCoord2fv(tep[5][1]); glVertex3fv(ep[5][1]);
+        glNormal3fv(en[4][2]); glTexCoord2fv(tep[4][2]); glVertex3fv(ep[4][2]);
+        glNormal3fv(en[5][2]); glTexCoord2fv(tep[5][2]); glVertex3fv(ep[5][2]);
+        glNormal3fv(en[4][3]); glTexCoord2fv(tep[4][3]); glVertex3fv(ep[4][3]);
+        glNormal3fv(en[5][3]); glTexCoord2fv(tep[5][3]); glVertex3fv(ep[5][3]);
+        glNormal3fv(en[4][4]); glTexCoord2fv(tep[4][4]); glVertex3fv(ep[4][4]);
+        glNormal3fv(en[5][4]); glTexCoord2fv(tep[5][4]); glVertex3fv(ep[5][4]);
+        glNormal3fv(en[4][5]); glTexCoord2fv(tep[4][5]); glVertex3fv(ep[4][5]);
+        glNormal3fv(en[5][5]); glTexCoord2fv(tep[5][5]); glVertex3fv(ep[5][5]);
+        glNormal3fv(en[4][6]); glTexCoord2fv(tep[4][6]); glVertex3fv(ep[4][6]);
+        glNormal3fv(en[5][6]); glTexCoord2fv(tep[5][6]); glVertex3fv(ep[5][6]);
+        glNormal3fv(en[4][7]); glTexCoord2fv(tep[4][7]); glVertex3fv(ep[4][7]);
+        glNormal3fv(en[5][7]); glTexCoord2fv(tep[5][7]); glVertex3fv(ep[5][7]);
+        glNormal3fv(en[4][8]); glTexCoord2fv(tep[4][8]); glVertex3fv(ep[4][8]);
+        glNormal3fv(en[5][8]); glTexCoord2fv(tep[5][8]); glVertex3fv(ep[5][8]);
     glEnd();
     glBegin(GL_TRIANGLE_STRIP);
-	glNormal3fv(en[5][0]); glTexCoord2fv(tep[5][0]); glVertex3fv(ep[5][0]);
-	glNormal3fv(en[6][0]); glTexCoord2fv(tep[6][0]); glVertex3fv(ep[6][0]);
-	glNormal3fv(en[5][1]); glTexCoord2fv(tep[5][1]); glVertex3fv(ep[5][1]);
-	glNormal3fv(en[6][1]); glTexCoord2fv(tep[6][1]); glVertex3fv(ep[6][1]);
-	glNormal3fv(en[5][2]); glTexCoord2fv(tep[5][2]); glVertex3fv(ep[5][2]);
-	glNormal3fv(en[6][2]); glTexCoord2fv(tep[6][2]); glVertex3fv(ep[6][2]);
-	glNormal3fv(en[5][3]); glTexCoord2fv(tep[5][3]); glVertex3fv(ep[5][3]);
-	glNormal3fv(en[6][3]); glTexCoord2fv(tep[6][3]); glVertex3fv(ep[6][3]);
-	glNormal3fv(en[5][4]); glTexCoord2fv(tep[5][4]); glVertex3fv(ep[5][4]);
-	glNormal3fv(en[6][4]); glTexCoord2fv(tep[6][4]); glVertex3fv(ep[6][4]);
-	glNormal3fv(en[5][5]); glTexCoord2fv(tep[5][5]); glVertex3fv(ep[5][5]);
-	glNormal3fv(en[6][5]); glTexCoord2fv(tep[6][5]); glVertex3fv(ep[6][5]);
-	glNormal3fv(en[5][6]); glTexCoord2fv(tep[5][6]); glVertex3fv(ep[5][6]);
-	glNormal3fv(en[6][6]); glTexCoord2fv(tep[6][6]); glVertex3fv(ep[6][6]);
-	glNormal3fv(en[5][7]); glTexCoord2fv(tep[5][7]); glVertex3fv(ep[5][7]);
-	glNormal3fv(en[6][7]); glTexCoord2fv(tep[6][7]); glVertex3fv(ep[6][7]);
-	glNormal3fv(en[5][8]); glTexCoord2fv(tep[5][8]); glVertex3fv(ep[5][8]);
-	glNormal3fv(en[6][8]); glTexCoord2fv(tep[6][8]); glVertex3fv(ep[6][8]);
+        glNormal3fv(en[5][0]); glTexCoord2fv(tep[5][0]); glVertex3fv(ep[5][0]);
+        glNormal3fv(en[6][0]); glTexCoord2fv(tep[6][0]); glVertex3fv(ep[6][0]);
+        glNormal3fv(en[5][1]); glTexCoord2fv(tep[5][1]); glVertex3fv(ep[5][1]);
+        glNormal3fv(en[6][1]); glTexCoord2fv(tep[6][1]); glVertex3fv(ep[6][1]);
+        glNormal3fv(en[5][2]); glTexCoord2fv(tep[5][2]); glVertex3fv(ep[5][2]);
+        glNormal3fv(en[6][2]); glTexCoord2fv(tep[6][2]); glVertex3fv(ep[6][2]);
+        glNormal3fv(en[5][3]); glTexCoord2fv(tep[5][3]); glVertex3fv(ep[5][3]);
+        glNormal3fv(en[6][3]); glTexCoord2fv(tep[6][3]); glVertex3fv(ep[6][3]);
+        glNormal3fv(en[5][4]); glTexCoord2fv(tep[5][4]); glVertex3fv(ep[5][4]);
+        glNormal3fv(en[6][4]); glTexCoord2fv(tep[6][4]); glVertex3fv(ep[6][4]);
+        glNormal3fv(en[5][5]); glTexCoord2fv(tep[5][5]); glVertex3fv(ep[5][5]);
+        glNormal3fv(en[6][5]); glTexCoord2fv(tep[6][5]); glVertex3fv(ep[6][5]);
+        glNormal3fv(en[5][6]); glTexCoord2fv(tep[5][6]); glVertex3fv(ep[5][6]);
+        glNormal3fv(en[6][6]); glTexCoord2fv(tep[6][6]); glVertex3fv(ep[6][6]);
+        glNormal3fv(en[5][7]); glTexCoord2fv(tep[5][7]); glVertex3fv(ep[5][7]);
+        glNormal3fv(en[6][7]); glTexCoord2fv(tep[6][7]); glVertex3fv(ep[6][7]);
+        glNormal3fv(en[5][8]); glTexCoord2fv(tep[5][8]); glVertex3fv(ep[5][8]);
+        glNormal3fv(en[6][8]); glTexCoord2fv(tep[6][8]); glVertex3fv(ep[6][8]);
     glEnd();
 
     glEndList();
@@ -1302,26 +1302,26 @@ static void Init(void)
     glEnable(GL_CLIP_PLANE0);
 
     if (rgb) {
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH, CHECKIMAGEHEIGHT, 0,
-		     GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)checkImage);
-	glEnable(GL_TEXTURE_2D);
+        glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH, CHECKIMAGEHEIGHT, 0,
+                     GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)checkImage);
+        glEnable(GL_TEXTURE_2D);
 
-	glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glEnable(GL_CULL_FACE);
     } else {
-	SetGreyRamp();
+        SetGreyRamp();
         /* commented out by BrianP because it's the wrong way to handle a 4-bit visual!
-	if (doubleBuffer) {
-	    colorIndexes[1] = 10;
-	    colorIndexes[2] = 15;
-	}
+        if (doubleBuffer) {
+            colorIndexes[1] = 10;
+            colorIndexes[2] = 15;
+        }
         */
-	glMaterialiv(GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
+        glMaterialiv(GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
     }
 
     BuildLists();
@@ -1348,19 +1348,19 @@ static void Key2(int key, int x, int y)
     (void) y;
     switch (key) {
       case GLUT_KEY_LEFT:
-	yRotation += 0.5;
-	break;
+        yRotation += 0.5;
+        break;
       case GLUT_KEY_RIGHT:
-	yRotation -= 0.5;
-	break;
+        yRotation -= 0.5;
+        break;
       case GLUT_KEY_UP:
-	plane[3] += 2.0;
-	break;
+        plane[3] += 2.0;
+        break;
       case GLUT_KEY_DOWN:
-	plane[3] -= 2.0;
-	break;
+        plane[3] -= 2.0;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -1372,149 +1372,149 @@ static void Key(unsigned char key, int x, int y)
     (void) y;
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
 
       case 'Z':
-	zTranslation -= 1.0;
-	break;
+        zTranslation -= 1.0;
+        break;
       case 'z':
-	zTranslation += 1.0;
-	break;
+        zTranslation += 1.0;
+        break;
 
       case '1':
-	glPolygonMode(polyMode, GL_POINT);
-	break;
+        glPolygonMode(polyMode, GL_POINT);
+        break;
       case '2':
-	glPolygonMode(polyMode, GL_LINE);
-	break;
+        glPolygonMode(polyMode, GL_LINE);
+        break;
       case '3':
-	glPolygonMode(polyMode, GL_FILL);
-	break;
+        glPolygonMode(polyMode, GL_FILL);
+        break;
       case 'p':
-	switch (polyMode) {
-	  case GL_BACK:
-	    polyMode = GL_FRONT;
+        switch (polyMode) {
+          case GL_BACK:
+            polyMode = GL_FRONT;
             printf("PolygonMode GL_FRONT\n");
-	    break;
-	  case GL_FRONT:
-	    polyMode = GL_FRONT_AND_BACK;
+            break;
+          case GL_FRONT:
+            polyMode = GL_FRONT_AND_BACK;
             printf("PolygonMode GL_FRONT_AND_BACK\n");
-	    break;
-	  case GL_FRONT_AND_BACK:
-	    polyMode = GL_BACK;
+            break;
+          case GL_FRONT_AND_BACK:
+            polyMode = GL_BACK;
             printf("PolygonMode GL_BACK\n");
-	    break;
+            break;
           default:
             break;
-	}
-	break;
+        }
+        break;
 
       case '4':
-	glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-	break;
+        glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+        break;
       case '5':
-	glEnable(GL_POLYGON_SMOOTH);
-	if (rgb) {
-	    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	    glEnable(GL_BLEND);
-	    glDisable(GL_DEPTH_TEST);
-	} else {
-	    SetUpAntiAliasedGrayScale();
-	}
-	break;
+        glEnable(GL_POLYGON_SMOOTH);
+        if (rgb) {
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            glEnable(GL_BLEND);
+            glDisable(GL_DEPTH_TEST);
+        } else {
+            SetUpAntiAliasedGrayScale();
+        }
+        break;
       case '6':
-	glDisable(GL_POLYGON_SMOOTH);
-	if (rgb) {
-	    glBlendFunc(GL_ONE, GL_ZERO);
-	    glDisable(GL_BLEND);
-	    glEnable(GL_DEPTH_TEST);
-	} else {
-	    SetGreyRamp();
-	}
-	break;
+        glDisable(GL_POLYGON_SMOOTH);
+        if (rgb) {
+            glBlendFunc(GL_ONE, GL_ZERO);
+            glDisable(GL_BLEND);
+            glEnable(GL_DEPTH_TEST);
+        } else {
+            SetGreyRamp();
+        }
+        break;
 
       case '8':
-	dithering = !dithering;
-	(dithering) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
-	break;
+        dithering = !dithering;
+        (dithering) ? glEnable(GL_DITHER) : glDisable(GL_DITHER);
+        break;
 
       case '9':
-	doStipple = !doStipple;
-	if (doStipple) {
-	    glPolygonStipple(stipple);
-	    glEnable(GL_POLYGON_STIPPLE);
-	} else {
-	    glDisable(GL_POLYGON_STIPPLE);
-	}
-	break;
+        doStipple = !doStipple;
+        if (doStipple) {
+            glPolygonStipple(stipple);
+            glEnable(GL_POLYGON_STIPPLE);
+        } else {
+            glDisable(GL_POLYGON_STIPPLE);
+        }
+        break;
 
       case '0':
-	shade = !shade;
-	(shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
-	break;
+        shade = !shade;
+        (shade) ? glShadeModel(GL_SMOOTH) : glShadeModel(GL_FLAT);
+        break;
 
       case 'q':
-	glDisable(GL_CULL_FACE);
+        glDisable(GL_CULL_FACE);
         printf("disable culling\n");
-	break;
+        break;
       case 'w':
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
         printf("enable front face culling\n");
-	break;
+        break;
       case 'e':
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
         printf("enable back face culling\n");
-	break;
+        break;
 
       case 'r':
-	glFrontFace(GL_CW);
-	break;
+        glFrontFace(GL_CW);
+        break;
       case 't':
-	glFrontFace(GL_CCW);
-	break;
+        glFrontFace(GL_CCW);
+        break;
       case 'y':
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glPixelStorei(GL_UNPACK_LSB_FIRST, 0);
-	glPolygonStipple(stipple);
-	break;
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        glPixelStorei(GL_UNPACK_LSB_FIRST, 0);
+        glPolygonStipple(stipple);
+        break;
       case 'u':
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glPixelStorei(GL_UNPACK_LSB_FIRST, 1);
-	glPolygonStipple(stipple);
-	break;
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        glPixelStorei(GL_UNPACK_LSB_FIRST, 1);
+        glPolygonStipple(stipple);
+        break;
 
       case 'a':
-	glEnable(GL_TEXTURE_2D);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, BRICKIMAGEWIDTH,
-		     BRICKIMAGEHEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-		     (GLvoid *)brickImage);
-	break;
+        glEnable(GL_TEXTURE_2D);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, BRICKIMAGEWIDTH,
+                     BRICKIMAGEHEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     (GLvoid *)brickImage);
+        break;
       case 's':
-	glEnable(GL_TEXTURE_2D);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH,
-		     CHECKIMAGEHEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE,
-		     (GLvoid *)checkImage);
-	break;
+        glEnable(GL_TEXTURE_2D);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
+        glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH,
+                     CHECKIMAGEHEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE,
+                     (GLvoid *)checkImage);
+        break;
       case 'd':
-	glDisable(GL_TEXTURE_2D);
-	break;
+        glDisable(GL_TEXTURE_2D);
+        break;
 
       case 'f':
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
-	break;
+        glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
+        break;
       case 'g':
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, modulate);
-	break;
+        glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, modulate);
+        break;
 
       case 'n':
         /* added by BrianP */
@@ -1537,17 +1537,17 @@ static void Key(unsigned char key, int x, int y)
          LineSmooth = !LineSmooth;
          if (LineSmooth) {
             glEnable(GL_LINE_SMOOTH);
-	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glEnable(GL_BLEND);
          }
          else {
             glDisable(GL_LINE_SMOOTH);
-	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glDisable(GL_BLEND);
          }
          break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -1571,7 +1571,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -1583,18 +1583,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -1606,7 +1606,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -1617,7 +1617,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Logo Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -1629,5 +1629,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

@@ -56,147 +56,147 @@ INREAL tknots[T_NUMKNOTS] = {
 };
 Point ctlpoints[S_NUMPOINTS][T_NUMPOINTS] = {
     {
-	{
-	    4.0, 2.0, 2.0, 1.0
-	},
-	{
-	    4.0, 1.6, 2.5, 1.0
-	},
-	{
-	    4.0, 2.0, 3.0, 1.0
-	}
+        {
+            4.0, 2.0, 2.0, 1.0
+        },
+        {
+            4.0, 1.6, 2.5, 1.0
+        },
+        {
+            4.0, 2.0, 3.0, 1.0
+        }
     },
     {
-	{
-	    5.0, 4.0, 2.0, 1.0
-	},
-	{
-	    5.0, 4.0, 2.5, 1.0
-	},
-	{
-	    5.0, 4.0, 3.0, 1.0
-	}
+        {
+            5.0, 4.0, 2.0, 1.0
+        },
+        {
+            5.0, 4.0, 2.5, 1.0
+        },
+        {
+            5.0, 4.0, 3.0, 1.0
+        }
     },
     {
-	{
-	    6.0, 5.0, 2.0, 1.0
-	},
-	{
-	    6.0, 5.0, 2.5, 1.0
-	},
-	{
-	    6.0, 5.0, 3.0, 1.0
-	}
+        {
+            6.0, 5.0, 2.0, 1.0
+        },
+        {
+            6.0, 5.0, 2.5, 1.0
+        },
+        {
+            6.0, 5.0, 3.0, 1.0
+        }
     },
     {
-	{
-	    SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
-	}
+        {
+            SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
+        },
+        {
+            SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
+        },
+        {
+            SQRT_TWO*6.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
+        }
     },
     {
-	{
-	    5.2, 6.7, 2.0, 1.0
-	},
-	{
-	    5.2, 6.7, 2.5, 1.0
-	},
-	{
-	    5.2, 6.7, 3.0, 1.0
-	}
+        {
+            5.2, 6.7, 2.0, 1.0
+        },
+        {
+            5.2, 6.7, 2.5, 1.0
+        },
+        {
+            5.2, 6.7, 3.0, 1.0
+        }
     },
     {
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
-	}
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
+        },
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
+        },
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
+        }
     },
     {
-	{
-	    4.0, 5.2, 2.0, 1.0
-	},
-	{
-	    4.0, 4.6, 2.5, 1.0
-	},
-	{
-	    4.0, 5.2, 3.0, 1.0
-	}
+        {
+            4.0, 5.2, 2.0, 1.0
+        },
+        {
+            4.0, 4.6, 2.5, 1.0
+        },
+        {
+            4.0, 5.2, 3.0, 1.0
+        }
     },
     {
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
-	}
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
+        },
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
+        },
+        {
+            SQRT_TWO*4.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
+        }
     },
     {
-	{
-	    2.8, 6.7, 2.0, 1.0
-	},
-	{
-	    2.8, 6.7, 2.5, 1.0
-	},
-	{
-	    2.8, 6.7, 3.0, 1.0
-	}
+        {
+            2.8, 6.7, 2.0, 1.0
+        },
+        {
+            2.8, 6.7, 2.5, 1.0
+        },
+        {
+            2.8, 6.7, 3.0, 1.0
+        }
     },
     {
-	{
-	    SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
-	},
-	{
-	    SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
-	}
+        {
+            SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*2.0, SQRT_TWO
+        },
+        {
+            SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*2.5, SQRT_TWO
+        },
+        {
+            SQRT_TWO*2.0, SQRT_TWO*6.0, SQRT_TWO*3.0, SQRT_TWO
+        }
     },
     {
-	{
-	    2.0, 5.0, 2.0, 1.0
-	},
-	{
-	    2.0, 5.0, 2.5, 1.0
-	},
-	{
-	    2.0, 5.0, 3.0, 1.0
-	}
+        {
+            2.0, 5.0, 2.0, 1.0
+        },
+        {
+            2.0, 5.0, 2.5, 1.0
+        },
+        {
+            2.0, 5.0, 3.0, 1.0
+        }
     },
     {
-	{
-	    3.0, 4.0, 2.0, 1.0
-	},
-	{
-	    3.0, 4.0, 2.5, 1.0
-	},
-	{
-	    3.0, 4.0, 3.0, 1.0
-	}
+        {
+            3.0, 4.0, 2.0, 1.0
+        },
+        {
+            3.0, 4.0, 2.5, 1.0
+        },
+        {
+            3.0, 4.0, 3.0, 1.0
+        }
     },
     {
-	{
-	    4.0, 2.0, 2.0, 1.0
-	},
-	{
-	    4.0, 1.6, 2.5, 1.0
-	},
-	{
-	    4.0, 2.0, 3.0, 1.0
-	}
+        {
+            4.0, 2.0, 2.0, 1.0
+        },
+        {
+            4.0, 1.6, 2.5, 1.0
+        },
+        {
+            4.0, 2.0, 3.0, 1.0
+        }
     }
 };
 GLUnurbsObj *theNurbs;
@@ -206,8 +206,8 @@ static void GLAPIENTRY ErrorCallback(GLenum which)
 {
 
     if (which != expectedError) {
-	fprintf(stderr, "Unexpected error occured (%d):\n", which);
-	fprintf(stderr, "    %s\n", (char *) gluErrorString(which));
+        fprintf(stderr, "Unexpected error occured (%d):\n", which);
+        fprintf(stderr, "    %s\n", (char *) gluErrorString(which));
     }
 }
 
@@ -247,19 +247,19 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_DOWN:
-	rotX -= 5;
-	break;
+        rotX -= 5;
+        break;
       case GLUT_KEY_UP:
-	rotX += 5;
-	break;
+        rotX += 5;
+        break;
       case GLUT_KEY_LEFT:
-	rotY -= 5;
-	break;
+        rotY -= 5;
+        break;
       case GLUT_KEY_RIGHT:
-	rotY += 5;
-	break;
+        rotY += 5;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -270,7 +270,7 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
     }
 }
 
@@ -288,8 +288,8 @@ static void Draw(void)
 
     gluBeginSurface(theNurbs);
     gluNurbsSurface(theNurbs, S_NUMKNOTS, sknots, T_NUMKNOTS, tknots,
-		    4*T_NUMPOINTS, 4, &ctlpoints[0][0][0], S_ORDER,
-		    T_ORDER, GL_MAP2_VERTEX_4);
+                    4*T_NUMPOINTS, 4, &ctlpoints[0][0][0], S_ORDER,
+                    T_ORDER, GL_MAP2_VERTEX_4);
     gluEndSurface(theNurbs);
 
     glPopMatrix();
@@ -297,7 +297,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -308,14 +308,14 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_FALSE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -327,7 +327,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -337,7 +337,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("NURBS Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     Init();
@@ -347,5 +347,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }

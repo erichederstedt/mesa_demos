@@ -40,58 +40,58 @@ GLint cubeList = 1;
 
 float scp[18][3] = {
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 5.000000
+        1.000000, 0.000000, 5.000000
     },
     {
-	0.707107, 0.707107, 0.000000
+        0.707107, 0.707107, 0.000000
     },
     {
-	0.707107, 0.707107, 5.000000
+        0.707107, 0.707107, 5.000000
     },
     {
-	0.000000, 1.000000, 0.000000
+        0.000000, 1.000000, 0.000000
     },
     {
-	0.000000, 1.000000, 5.000000
+        0.000000, 1.000000, 5.000000
     },
     {
-	-0.707107, 0.707107, 0.000000
+        -0.707107, 0.707107, 0.000000
     },
     {
-	-0.707107, 0.707107, 5.000000
+        -0.707107, 0.707107, 5.000000
     },
     {
-	-1.000000, 0.000000, 0.000000
+        -1.000000, 0.000000, 0.000000
     },
     {
-	-1.000000, 0.000000, 5.000000
+        -1.000000, 0.000000, 5.000000
     },
     {
-	-0.707107, -0.707107, 0.000000
+        -0.707107, -0.707107, 0.000000
     },
     {
-	-0.707107, -0.707107, 5.000000
+        -0.707107, -0.707107, 5.000000
     },
     {
-	0.000000, -1.000000, 0.000000
+        0.000000, -1.000000, 0.000000
     },
     {
-	0.000000, -1.000000, 5.000000
+        0.000000, -1.000000, 5.000000
     },
     {
-	0.707107, -0.707107, 0.000000
+        0.707107, -0.707107, 0.000000
     },
     {
-	0.707107, -0.707107, 5.000000
+        0.707107, -0.707107, 5.000000
     },
     {
-	1.000000, 0.000000, 0.000000
+        1.000000, 0.000000, 0.000000
     },
     {
-	1.000000, 0.000000, 5.000000
+        1.000000, 0.000000, 5.000000
     },
 };
 
@@ -100,26 +100,26 @@ static void Build_lists(void)
 {
 
     glNewList(cubeList, GL_COMPILE);
-	glBegin(GL_TRIANGLE_STRIP);
-	   glNormal3fv(scp[0]); glVertex3fv(scp[0]);
-	   glNormal3fv(scp[0]); glVertex3fv(scp[1]);
-	   glNormal3fv(scp[2]); glVertex3fv(scp[2]);
-	   glNormal3fv(scp[2]); glVertex3fv(scp[3]);
-	   glNormal3fv(scp[4]); glVertex3fv(scp[4]);
-	   glNormal3fv(scp[4]); glVertex3fv(scp[5]);
-	   glNormal3fv(scp[6]); glVertex3fv(scp[6]);
-	   glNormal3fv(scp[6]); glVertex3fv(scp[7]);
-	   glNormal3fv(scp[8]); glVertex3fv(scp[8]);
-	   glNormal3fv(scp[8]); glVertex3fv(scp[9]);
-	   glNormal3fv(scp[10]); glVertex3fv(scp[10]);
-	   glNormal3fv(scp[10]); glVertex3fv(scp[11]);
-	   glNormal3fv(scp[12]); glVertex3fv(scp[12]);
-	   glNormal3fv(scp[12]); glVertex3fv(scp[13]);
-	   glNormal3fv(scp[14]); glVertex3fv(scp[14]);
-	   glNormal3fv(scp[14]); glVertex3fv(scp[15]);
-	   glNormal3fv(scp[16]); glVertex3fv(scp[16]);
-	   glNormal3fv(scp[16]); glVertex3fv(scp[17]);
-	glEnd();
+        glBegin(GL_TRIANGLE_STRIP);
+           glNormal3fv(scp[0]); glVertex3fv(scp[0]);
+           glNormal3fv(scp[0]); glVertex3fv(scp[1]);
+           glNormal3fv(scp[2]); glVertex3fv(scp[2]);
+           glNormal3fv(scp[2]); glVertex3fv(scp[3]);
+           glNormal3fv(scp[4]); glVertex3fv(scp[4]);
+           glNormal3fv(scp[4]); glVertex3fv(scp[5]);
+           glNormal3fv(scp[6]); glVertex3fv(scp[6]);
+           glNormal3fv(scp[6]); glVertex3fv(scp[7]);
+           glNormal3fv(scp[8]); glVertex3fv(scp[8]);
+           glNormal3fv(scp[8]); glVertex3fv(scp[9]);
+           glNormal3fv(scp[10]); glVertex3fv(scp[10]);
+           glNormal3fv(scp[10]); glVertex3fv(scp[11]);
+           glNormal3fv(scp[12]); glVertex3fv(scp[12]);
+           glNormal3fv(scp[12]); glVertex3fv(scp[13]);
+           glNormal3fv(scp[14]); glVertex3fv(scp[14]);
+           glNormal3fv(scp[14]); glVertex3fv(scp[15]);
+           glNormal3fv(scp[16]); glVertex3fv(scp[16]);
+           glNormal3fv(scp[16]); glVertex3fv(scp[17]);
+        glEnd();
     glEndList();
 }
 
@@ -160,12 +160,12 @@ static void Init(void)
     glFogi(GL_FOG_MODE, GL_EXP);
     glFogf(GL_FOG_DENSITY, fogDensity);
     if (rgb) {
-	glFogfv(GL_FOG_COLOR, fog_color);
-	glClearColor(0.8, 0.8, 0.8, 1.0);
+        glFogfv(GL_FOG_COLOR, fog_color);
+        glClearColor(0.8, 0.8, 0.8, 1.0);
     } else {
-	glFogi(GL_FOG_INDEX, 1<<5);
-	SetFogRamp(5, 3);
-	glClearIndex(128);
+        glFogi(GL_FOG_INDEX, 1<<5);
+        SetFogRamp(5, 3);
+        glClearIndex(128);
     }
 
     Build_lists();
@@ -187,19 +187,19 @@ static void Key2(int key, int x, int y)
 
     switch (key) {
       case GLUT_KEY_UP:
-	rotX -= 5;
-	break;
+        rotX -= 5;
+        break;
       case GLUT_KEY_DOWN:
-	rotX += 5;
-	break;
+        rotX += 5;
+        break;
       case GLUT_KEY_LEFT:
-	rotY -= 5;
-	break;
+        rotY -= 5;
+        break;
       case GLUT_KEY_RIGHT:
-	rotY += 5;
-	break;
+        rotY += 5;
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -210,21 +210,21 @@ static void Key(unsigned char key, int x, int y)
 
     switch (key) {
       case 27:
-	exit(1);
+        exit(1);
       case 'D':
-	if (rgb) {
-	    fogDensity *= 1.10;
-	    glFogf(GL_FOG_DENSITY, fogDensity);
-	}
-	break;
+        if (rgb) {
+            fogDensity *= 1.10;
+            glFogf(GL_FOG_DENSITY, fogDensity);
+        }
+        break;
       case 'd':
-	if (rgb) {
-	    fogDensity /= 1.10;
-	    glFogf(GL_FOG_DENSITY, fogDensity);
-	}
-	break;
+        if (rgb) {
+            fogDensity /= 1.10;
+            glFogf(GL_FOG_DENSITY, fogDensity);
+        }
+        break;
       default:
-	return;
+        return;
     }
 
     glutPostRedisplay();
@@ -249,7 +249,7 @@ static void Draw(void)
     glFlush();
 
     if (doubleBuffer) {
-	glutSwapBuffers();
+        glutSwapBuffers();
     }
 }
 
@@ -261,18 +261,18 @@ static GLenum Args(int argc, char **argv)
     doubleBuffer = GL_TRUE;
 
     for (i = 1; i < argc; i++) {
-	if (strcmp(argv[i], "-ci") == 0) {
-	    rgb = GL_FALSE;
-	} else if (strcmp(argv[i], "-rgb") == 0) {
-	    rgb = GL_TRUE;
-	} else if (strcmp(argv[i], "-sb") == 0) {
-	    doubleBuffer = GL_FALSE;
-	} else if (strcmp(argv[i], "-db") == 0) {
-	    doubleBuffer = GL_TRUE;
-	} else {
-	    printf("%s (Bad option).\n", argv[i]);
-	    return GL_FALSE;
-	}
+        if (strcmp(argv[i], "-ci") == 0) {
+            rgb = GL_FALSE;
+        } else if (strcmp(argv[i], "-rgb") == 0) {
+            rgb = GL_TRUE;
+        } else if (strcmp(argv[i], "-sb") == 0) {
+            doubleBuffer = GL_FALSE;
+        } else if (strcmp(argv[i], "-db") == 0) {
+            doubleBuffer = GL_TRUE;
+        } else {
+            printf("%s (Bad option).\n", argv[i]);
+            return GL_FALSE;
+        }
     }
     return GL_TRUE;
 }
@@ -284,7 +284,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv);
 
     if (Args(argc, argv) == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
@@ -295,7 +295,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(type);
 
     if (glutCreateWindow("Fog Test") == GL_FALSE) {
-	exit(1);
+        exit(1);
     }
 
     InitMap();
@@ -307,5 +307,5 @@ int main(int argc, char **argv)
     glutSpecialFunc(Key2);
     glutDisplayFunc(Draw);
     glutMainLoop();
-	return 0;
+    return 0;
 }
