@@ -42,154 +42,154 @@ GLint x, y;
 static void Init(void)
 {
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+   glClearColor(0.0, 0.0, 0.0, 0.0);
 
-    x = 0;
-    y = windH;
-    zoom = 1.8;
+   x = 0;
+   y = windH;
+   zoom = 1.8;
 }
 
 static void Reshape(int width, int height)
 {
 
-    windW = (GLint)width;
-    windH = (GLint)height;
+   windW = (GLint)width;
+   windH = (GLint)height;
 
-    glViewport(0, 0, windW, windH);
+   glViewport(0, 0, windW, windH);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0, windW, 0, windH);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluOrtho2D(0, windW, 0, windH);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-    case 27:
-        exit(1);
-    case 'Z':
-        zoom += 0.2;
-        break;
-    case 'z':
-        zoom -= 0.2;
-        if (zoom < 0.2) {
-            zoom = 0.2;
-        }
-        break;
-    default:
-        return;
-    }
+   switch (key) {
+   case 27:
+      exit(1);
+   case 'Z':
+      zoom += 0.2;
+      break;
+   case 'z':
+      zoom -= 0.2;
+      if (zoom < 0.2) {
+         zoom = 0.2;
+      }
+      break;
+   default:
+      return;
+   }
 
-    glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 static void Mouse(int button, int state, int mouseX, int mouseY)
 {
-    if (state != GLUT_DOWN)
-        return;
-    x = (GLint)mouseX;
-    y = (GLint)mouseY;
+   if (state != GLUT_DOWN)
+      return;
+   x = (GLint)mouseX;
+   y = (GLint)mouseY;
 
-    glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 static void Draw(void)
 {
-    GLint src[3], dst[3];
+   GLint src[3], dst[3];
 
-    glClear(GL_COLOR_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT);
 
-    src[0] = (int) ((windW / 2.0) - (image->sizeX / 2.0));
-    src[1] = (int) ((windH / 2.0) - (image->sizeY / 2.0));
-    src[2] = 0;
-    glWindowPos3ivARB(src);
+   src[0] = (int) ((windW / 2.0) - (image->sizeX / 2.0));
+   src[1] = (int) ((windH / 2.0) - (image->sizeY / 2.0));
+   src[2] = 0;
+   glWindowPos3ivARB(src);
 
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glPixelZoom(1.0, 1.0);
-    glDrawPixels(image->sizeX, image->sizeY, GL_RGB, GL_UNSIGNED_BYTE,
+   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+   glPixelZoom(1.0, 1.0);
+   glDrawPixels(image->sizeX, image->sizeY, GL_RGB, GL_UNSIGNED_BYTE,
                  image->data);
 
-    dst[0] = x;
-    dst[1] = windH - y;
-    dst[2] = 0;
-    glWindowPos3ivARB(dst);
+   dst[0] = x;
+   dst[1] = windH - y;
+   dst[2] = 0;
+   glWindowPos3ivARB(dst);
 
-    glPixelZoom(zoom, zoom);
-    glCopyPixels(src[0], src[1],
+   glPixelZoom(zoom, zoom);
+   glCopyPixels(src[0], src[1],
                  image->sizeX, image->sizeY, GL_COLOR);
 
-    glFlush();
+   glFlush();
 
-    if (doubleBuffer) {
-        glutSwapBuffers();
-    }
+   if (doubleBuffer) {
+      glutSwapBuffers();
+   }
 }
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
-    doubleBuffer = GL_FALSE;
+   doubleBuffer = GL_FALSE;
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-sb") == 0) {
-            doubleBuffer = GL_FALSE;
-        } else if (strcmp(argv[i], "-db") == 0) {
-            doubleBuffer = GL_TRUE;
-        } else if (strcmp(argv[i], "-f") == 0) {
-            if (i+1 >= argc || argv[i+1][0] == '-') {
-                printf("-f (No file name).\n");
-                return GL_FALSE;
-            } else {
-                fileName = argv[++i];
-            }
-        } else {
-            printf("%s (Bad option).\n", argv[i]);
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-sb") == 0) {
+         doubleBuffer = GL_FALSE;
+      } else if (strcmp(argv[i], "-db") == 0) {
+         doubleBuffer = GL_TRUE;
+      } else if (strcmp(argv[i], "-f") == 0) {
+         if (i+1 >= argc || argv[i+1][0] == '-') {
+            printf("-f (No file name).\n");
             return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+         } else {
+            fileName = argv[++i];
+         }
+      } else {
+         printf("%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 int main(int argc, char **argv)
 {
-    GLenum type;
+   GLenum type;
 
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    if (fileName == 0) {
-        printf("No image file.\n");
-        exit(1);
-    }
+   if (fileName == 0) {
+      printf("No image file.\n");
+      exit(1);
+   }
 
-    image = LoadPPM(fileName);
+   image = LoadPPM(fileName);
 
-    windW = 2*300;
-    windH = 2*300;
-    glutInitWindowPosition(0, 0); glutInitWindowSize( windW, windH);
+   windW = 2*300;
+   windH = 2*300;
+   glutInitWindowPosition(0, 0); glutInitWindowSize( windW, windH);
 
-    type = GLUT_RGB;
-    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
-    glutInitDisplayMode(type);
+   type = GLUT_RGB;
+   type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
+   glutInitDisplayMode(type);
 
-    if (glutCreateWindow("Copy Test") == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow("Copy Test") == GL_FALSE) {
+      exit(1);
+   }
 
-    gladLoaderLoadGL();
-    Init();
+   gladLoaderLoadGL();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutMouseFunc(Mouse);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    gladLoaderUnloadGL();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutMouseFunc(Mouse);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   gladLoaderUnloadGL();
+   return 0;
 }

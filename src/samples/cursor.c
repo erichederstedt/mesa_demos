@@ -37,114 +37,114 @@ int cursor;
 
 static void Init(void)
 {
-    cursor = 0;
-    glutSetCursor(cursor);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClearIndex(0.0);
+   cursor = 0;
+   glutSetCursor(cursor);
+   glClearColor(0.0, 0.0, 0.0, 0.0);
+   glClearIndex(0.0);
 }
 
 static void Reshape(int width, int height)
 {
 
-    windX = width;
-    windY = height;
-    glViewport(0, 0, windX, windY);
+   windX = width;
+   windY = height;
+   glViewport(0, 0, windX, windY);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0, windX, 0, windY);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   gluOrtho2D(0, windX, 0, windY);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-    case 27:
-        exit(1);
-    case 32:
-        cursor++;
-        if (cursor > 19) {
-            cursor = 0;
-        }
-        glutSetCursor(cursor);
-    }
+   switch (key) {
+   case 27:
+      exit(1);
+   case 32:
+      cursor++;
+      if (cursor > 19) {
+         cursor = 0;
+      }
+      glutSetCursor(cursor);
+   }
 }
 
 static void Draw(void)
 {
 
-    glClear(GL_COLOR_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_POLYGON);
-        SetColor(COLOR_BLACK);
-        glVertex2i(0, 0);
-        SetColor(COLOR_RED);
-        glVertex2i(windX, 0);
-        SetColor(COLOR_GREEN);
-        glVertex2i(windX, windY);
-        SetColor(COLOR_BLUE);
-        glVertex2i(0, windY);
-    glEnd();
+   glBegin(GL_POLYGON);
+      SetColor(COLOR_BLACK);
+      glVertex2i(0, 0);
+      SetColor(COLOR_RED);
+      glVertex2i(windX, 0);
+      SetColor(COLOR_GREEN);
+      glVertex2i(windX, windY);
+      SetColor(COLOR_BLUE);
+      glVertex2i(0, windY);
+   glEnd();
 
-    glFlush();
+   glFlush();
 
-    if (doubleBuffer) {
-        glutSwapBuffers();
-    }
+   if (doubleBuffer) {
+      glutSwapBuffers();
+   }
 }
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
-    rgb = GL_TRUE;
-    doubleBuffer = GL_FALSE;
+   rgb = GL_TRUE;
+   doubleBuffer = GL_FALSE;
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-ci") == 0) {
-            rgb = GL_FALSE;
-        } else if (strcmp(argv[i], "-rgb") == 0) {
-            rgb = GL_TRUE;
-        } else if (strcmp(argv[i], "-sb") == 0) {
-            doubleBuffer = GL_FALSE;
-        } else if (strcmp(argv[i], "-db") == 0) {
-            doubleBuffer = GL_TRUE;
-        } else {
-            printf("%s (Bad option).\n", argv[i]);
-            return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-ci") == 0) {
+         rgb = GL_FALSE;
+      } else if (strcmp(argv[i], "-rgb") == 0) {
+         rgb = GL_TRUE;
+      } else if (strcmp(argv[i], "-sb") == 0) {
+         doubleBuffer = GL_FALSE;
+      } else if (strcmp(argv[i], "-db") == 0) {
+         doubleBuffer = GL_TRUE;
+      } else {
+         printf("%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 int main(int argc, char **argv)
 {
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    windX = 300;
-    windY = 300;
-    glutInitWindowPosition(0, 0); glutInitWindowSize( windX, windY);
+   windX = 300;
+   windY = 300;
+   glutInitWindowPosition(0, 0); glutInitWindowSize( windX, windY);
 
-    windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
-    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
-    glutInitDisplayMode(windType);
+   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
+   glutInitDisplayMode(windType);
 
-    if (glutCreateWindow("Cursor Test") == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow("Cursor Test") == GL_FALSE) {
+      exit(1);
+   }
 
-    InitMap();
+   InitMap();
 
-    Init();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   return 0;
 }

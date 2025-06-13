@@ -44,230 +44,230 @@ float shiftX = 0.0, shiftY = 0.0, shiftZ = 0.0;
 
 static void DrawBitmapString(void *font, const char *string)
 {
-    int i;
+   int i;
 
-    for (i = 0; string[i]; i++)
-        glutBitmapCharacter(font, string[i]);
+   for (i = 0; string[i]; i++)
+      glutBitmapCharacter(font, string[i]);
 }
 
 static void DrawStrokeString(void *font, const char *string)
 {
-    int i;
+   int i;
 
-    for (i = 0; string[i]; i++)
-        glutStrokeCharacter(font, string[i]);
+   for (i = 0; string[i]; i++)
+      glutStrokeCharacter(font, string[i]);
 }
 
 static void Init(void)
 {
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClearIndex(0.0);
+   glClearColor(0.0, 0.0, 0.0, 0.0);
+   glClearIndex(0.0);
 }
 
 static void Reshape(int width, int height)
 {
 
-    glViewport(0, 0, (GLint)width, (GLint)height);
+   glViewport(0, 0, (GLint)width, (GLint)height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-400.0, 400.0, -200.0, 200.0, -400.0, 400.0);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(-400.0, 400.0, -200.0, 200.0, -400.0, 400.0);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key2(int key, int x, int y)
 {
 
-    switch (key) {
-    case GLUT_KEY_LEFT:
-        shiftX -= 20.0;
-        break;
-    case GLUT_KEY_RIGHT:
-        shiftX += 20.0;
-        break;
-    case GLUT_KEY_UP:
-        shiftY += 20.0;
-        break;
-    case GLUT_KEY_DOWN:
-        shiftY -= 20.0;
-        break;
-    default:
-        return;
-    }
+   switch (key) {
+   case GLUT_KEY_LEFT:
+      shiftX -= 20.0;
+      break;
+   case GLUT_KEY_RIGHT:
+      shiftX += 20.0;
+      break;
+   case GLUT_KEY_UP:
+      shiftY += 20.0;
+      break;
+   case GLUT_KEY_DOWN:
+      shiftY -= 20.0;
+      break;
+   default:
+      return;
+   }
 
-    glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-    case 27:
-        exit(1);
+   switch (key) {
+   case 27:
+      exit(1);
 
-    case 'n':
-        shiftZ += 20.0;
-        break;
-    case 'm':
-        shiftZ -= 20.0;
-        break;
+   case 'n':
+      shiftZ += 20.0;
+      break;
+   case 'm':
+      shiftZ -= 20.0;
+      break;
 
-    case 'q':
-        scaleX -= 0.1;
-        if (scaleX < 0.1) {
-            scaleX = 0.1;
-        }
-        break;
-    case 'w':
-        scaleX += 0.1;
-        break;
-    case 'a':
-        scaleY -= 0.1;
-        if (scaleY < 0.1) {
-            scaleY = 0.1;
-        }
-        break;
-    case 's':
-        scaleY += 0.1;
-        break;
-    case 'z':
-        scaleZ -= 0.1;
-        if (scaleZ < 0.1) {
-            scaleZ = 0.1;
-        }
-        break;
-    case 'x':
-        scaleZ += 0.1;
-        break;
+   case 'q':
+      scaleX -= 0.1;
+      if (scaleX < 0.1) {
+         scaleX = 0.1;
+      }
+      break;
+   case 'w':
+      scaleX += 0.1;
+      break;
+   case 'a':
+      scaleY -= 0.1;
+      if (scaleY < 0.1) {
+         scaleY = 0.1;
+      }
+      break;
+   case 's':
+      scaleY += 0.1;
+      break;
+   case 'z':
+      scaleZ -= 0.1;
+      if (scaleZ < 0.1) {
+         scaleZ = 0.1;
+      }
+      break;
+   case 'x':
+      scaleZ += 0.1;
+      break;
 
-    case 'e':
-        angleX -= 5.0;
-        if (angleX < 0.0) {
-            angleX = 360.0 + angleX;
-        }
-        break;
-    case 'r':
-        angleX += 5.0;
-        if (angleX > 360.0) {
-            angleX = angleX - 360.0;
-        }
-        break;
-    case 'd':
-        angleY -= 5.0;
-        if (angleY < 0.0) {
-            angleY = 360.0 + angleY;
-        }
-        break;
-    case 'f':
-        angleY += 5.0;
-        if (angleY > 360.0) {
-            angleY = angleY - 360.0;
-        }
-        break;
-    case 'c':
-        angleZ -= 5.0;
-        if (angleZ < 0.0) {
-            angleZ = 360.0 + angleZ;
-        }
-        break;
-    case 'v':
-        angleZ += 5.0;
-        if (angleZ > 360.0) {
-            angleZ = angleZ - 360.0;
-        }
-        break;
-    default:
-        return;
-    }
+   case 'e':
+      angleX -= 5.0;
+      if (angleX < 0.0) {
+         angleX = 360.0 + angleX;
+      }
+      break;
+   case 'r':
+      angleX += 5.0;
+      if (angleX > 360.0) {
+         angleX = angleX - 360.0;
+      }
+      break;
+   case 'd':
+      angleY -= 5.0;
+      if (angleY < 0.0) {
+         angleY = 360.0 + angleY;
+      }
+      break;
+   case 'f':
+      angleY += 5.0;
+      if (angleY > 360.0) {
+         angleY = angleY - 360.0;
+      }
+      break;
+   case 'c':
+      angleZ -= 5.0;
+      if (angleZ < 0.0) {
+         angleZ = 360.0 + angleZ;
+      }
+      break;
+   case 'v':
+      angleZ += 5.0;
+      if (angleZ > 360.0) {
+         angleZ = angleZ - 360.0;
+      }
+      break;
+   default:
+      return;
+   }
 
-    glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 static void Draw(void)
 {
 
-    glClear(GL_COLOR_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT);
 
-    SetColor(COLOR_WHITE);
+   SetColor(COLOR_WHITE);
 
-    glPushMatrix();
+   glPushMatrix();
 
-    glTranslatef(shiftX, shiftY, shiftZ);
-    glRotatef(angleX, 1.0, 0.0, 0.0);
-    glRotatef(angleY, 0.0, 1.0, 0.0);
-    glRotatef(angleZ, 0.0, 0.0, 1.0);
-    glScalef(scaleX, scaleY, scaleZ);
+   glTranslatef(shiftX, shiftY, shiftZ);
+   glRotatef(angleX, 1.0, 0.0, 0.0);
+   glRotatef(angleY, 0.0, 1.0, 0.0);
+   glRotatef(angleZ, 0.0, 0.0, 1.0);
+   glScalef(scaleX, scaleY, scaleZ);
 
-    glPushMatrix();
-    glRasterPos2f(-390.5, 0.5);
-    DrawBitmapString(GLUT_BITMAP_9_BY_15, string);
-    glPopMatrix();
+   glPushMatrix();
+   glRasterPos2f(-390.5, 0.5);
+   DrawBitmapString(GLUT_BITMAP_9_BY_15, string);
+   glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef(-390.5, -30.5, 0.0);
-    DrawStrokeString(GLUT_STROKE_ROMAN, string);
-    glPopMatrix();
+   glPushMatrix();
+   glTranslatef(-390.5, -30.5, 0.0);
+   DrawStrokeString(GLUT_STROKE_ROMAN, string);
+   glPopMatrix();
 
-    glPopMatrix();
+   glPopMatrix();
 
-    glFlush();
+   glFlush();
 
-    if (doubleBuffer) {
-        glutSwapBuffers();
-    }
+   if (doubleBuffer) {
+      glutSwapBuffers();
+   }
 }
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
-    rgb = GL_TRUE;
-    doubleBuffer = GL_FALSE;
+   rgb = GL_TRUE;
+   doubleBuffer = GL_FALSE;
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-ci") == 0) {
-            rgb = GL_FALSE;
-        } else if (strcmp(argv[i], "-rgb") == 0) {
-            rgb = GL_TRUE;
-        } else if (strcmp(argv[i], "-sb") == 0) {
-            doubleBuffer = GL_FALSE;
-        } else if (strcmp(argv[i], "-db") == 0) {
-            doubleBuffer = GL_TRUE;
-        } else {
-            printf("%s (Bad option).\n", argv[i]);
-            return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-ci") == 0) {
+         rgb = GL_FALSE;
+      } else if (strcmp(argv[i], "-rgb") == 0) {
+         rgb = GL_TRUE;
+      } else if (strcmp(argv[i], "-sb") == 0) {
+         doubleBuffer = GL_FALSE;
+      } else if (strcmp(argv[i], "-db") == 0) {
+         doubleBuffer = GL_TRUE;
+      } else {
+         printf("%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 int main(int argc, char **argv)
 {
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    glutInitWindowPosition(0, 0); glutInitWindowSize( 800, 400);
+   glutInitWindowPosition(0, 0); glutInitWindowSize( 800, 400);
 
-    windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
-    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
-    glutInitDisplayMode(windType);
+   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
+   glutInitDisplayMode(windType);
 
-    if (glutCreateWindow("Font Test") == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow("Font Test") == GL_FALSE) {
+      exit(1);
+   }
 
-    InitMap();
+   InitMap();
 
-    Init();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutSpecialFunc(Key2);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutSpecialFunc(Key2);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   return 0;
 }

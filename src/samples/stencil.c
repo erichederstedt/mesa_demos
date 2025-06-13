@@ -32,112 +32,112 @@
 static void Init(void)
 {
    glShadeModel(GL_FLAT);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+   glClearColor(0.0, 0.0, 0.0, 0.0);
 
-    glClearStencil(0);
-    glStencilMask(1);
-    glEnable(GL_STENCIL_TEST);
+   glClearStencil(0);
+   glStencilMask(1);
+   glEnable(GL_STENCIL_TEST);
 }
 
 static void Reshape(int width, int height)
 {
 
-    glViewport(0, 0, (GLint)width, (GLint)height);
+   glViewport(0, 0, (GLint)width, (GLint)height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-5.0, 5.0, -5.0, 5.0, -5.0, 5.0);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(-5.0, 5.0, -5.0, 5.0, -5.0, 5.0);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-    case 27:
-        exit(1);
-    }
+   switch (key) {
+   case 27:
+      exit(1);
+   }
 }
 
 static void Draw(void)
 {
 
-    glClear(GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 
-    glStencilFunc(GL_ALWAYS, 1, 1);
-    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+   glStencilFunc(GL_ALWAYS, 1, 1);
+   glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
-    glColor3ub(200, 0, 0);
-    glBegin(GL_POLYGON);
-        glVertex3i(-4, -4, 0);
-        glVertex3i( 4, -4, 0);
-        glVertex3i( 0,  4, 0);
-    glEnd();
+   glColor3ub(200, 0, 0);
+   glBegin(GL_POLYGON);
+      glVertex3i(-4, -4, 0);
+      glVertex3i( 4, -4, 0);
+      glVertex3i( 0,  4, 0);
+   glEnd();
 
-    glStencilFunc(GL_EQUAL, 1, 1);
-    glStencilOp(GL_INCR, GL_KEEP, GL_DECR);
+   glStencilFunc(GL_EQUAL, 1, 1);
+   glStencilOp(GL_INCR, GL_KEEP, GL_DECR);
 
-    glColor3ub(0, 200, 0);
-    glBegin(GL_POLYGON);
-        glVertex3i(3, 3, 0);
-        glVertex3i(-3, 3, 0);
-        glVertex3i(-3, -3, 0);
-        glVertex3i(3, -3, 0);
-    glEnd();
+   glColor3ub(0, 200, 0);
+   glBegin(GL_POLYGON);
+      glVertex3i(3, 3, 0);
+      glVertex3i(-3, 3, 0);
+      glVertex3i(-3, -3, 0);
+      glVertex3i(3, -3, 0);
+   glEnd();
 
-    glStencilFunc(GL_EQUAL, 1, 1);
-    glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+   glStencilFunc(GL_EQUAL, 1, 1);
+   glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
 
-    glColor3ub(0, 0, 200);
-    glBegin(GL_POLYGON);
-        glVertex3i(3, 3, 0);
-        glVertex3i(-3, 3, 0);
-        glVertex3i(-3, -3, 0);
-        glVertex3i(3, -3, 0);
-    glEnd();
+   glColor3ub(0, 0, 200);
+   glBegin(GL_POLYGON);
+      glVertex3i(3, 3, 0);
+      glVertex3i(-3, 3, 0);
+      glVertex3i(-3, -3, 0);
+      glVertex3i(3, -3, 0);
+   glEnd();
 
-    glFlush();
+   glFlush();
 }
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-dr") == 0) {
-        } else {
-            printf("%s (Bad option).\n", argv[i]);
-            return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-dr") == 0) {
+      } else {
+         printf("%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 int main(int argc, char **argv)
 {
-    GLenum type;
+   GLenum type;
 
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
+   glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
-    type = GLUT_RGB | GLUT_SINGLE | GLUT_STENCIL;
-    glutInitDisplayMode(type);
+   type = GLUT_RGB | GLUT_SINGLE | GLUT_STENCIL;
+   glutInitDisplayMode(type);
 
-    if (glutCreateWindow("Stencil Test") == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow("Stencil Test") == GL_FALSE) {
+      exit(1);
+   }
 
-    Init();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   return 0;
 }
