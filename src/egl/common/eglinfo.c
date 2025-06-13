@@ -20,6 +20,7 @@
 #include "glinfo_common.h"
 #include "glad/egl.h"
 #include "glad/gl.h"
+#include "uuid.h"
 
 #define MAX_CONFIGS 1000
 #define MAX_MODES 1000
@@ -355,8 +356,6 @@ PrintDeviceExtensions(EGLDeviceEXT d, struct options opts)
 {
    const char *extensions;
 
-   puts("EGL device extensions string:");
-
    extensions = eglQueryDeviceStringEXT(d, EGL_EXTENSIONS);
    if (!extensions)
       return NULL;
@@ -635,7 +634,40 @@ doOneDevice(EGLDeviceEXT d, int i, struct options opts)
 
    printf("Device #%d:\n\n", i);
 
-   PrintDeviceExtensions(d, opts);
+   const char *extensions = PrintDeviceExtensions(d, opts);
+
+   if (extension_supported("EGL_EXT_device_query_name", extensions)) {
+      const char *vendor = eglQueryDeviceStringEXT(d, EGL_VENDOR);
+      printf("EGL device vendor: %s\n", vendor ? vendor : "(null)");
+
+      const char *device_name = eglQueryDeviceStringEXT(d, EGL_RENDERER_EXT);
+      printf("EGL device name: %s\n", device_name ? device_name : "(null)");
+   }
+
+   if (extension_supported("EGL_EXT_device_persistent_id", extensions)) {
+      unsigned char device_uuid[16] = {0};
+      unsigned char driver_uuid[16] = {0};
+      char uuid_string[UUID_STRING_LENGTH] = {0};
+
+      int returned_size = 0;
+
+      /* workaround for GLAD not loading the function */
+      eglQueryDeviceBinaryEXT = (PFNEGLQUERYDEVICEBINARYEXTPROC)
+         eglGetProcAddress("eglQueryDeviceBinaryEXT");
+
+      eglQueryDeviceBinaryEXT(d, EGL_DEVICE_UUID_EXT, 16, device_uuid,
+                              &returned_size);
+      eglQueryDeviceBinaryEXT(d, EGL_DRIVER_UUID_EXT, 16, driver_uuid,
+                              &returned_size);
+
+      uuid_to_string(device_uuid, sizeof(uuid_string), uuid_string);
+      printf("EGL device UUID: %s\n", uuid_string);
+
+      uuid_to_string(driver_uuid, sizeof(uuid_string), uuid_string);
+      printf("EGL driver UUID: %s\n", uuid_string);
+
+      printf("\n");
+   }
 
    /* The EXT version is used here for EGL 1.4 compatibility */
    EGLDisplay disp = eglGetPlatformDisplayEXT(EGL_PLATFORM_DEVICE_EXT,
