@@ -83,40 +83,40 @@ Key(unsigned char key, int x, int y)
    (void) x;
    (void) y;
    switch (key) {
-      case 'p':
-         if (Mode == GL_TRIANGLES)
-            Mode = GL_LINE_LOOP;
-         else
-            Mode = GL_TRIANGLES;
-         break;
-      case 'f':
-         if (PolygonMode == GL_POINT)
-            PolygonMode = GL_LINE;
-         else if (PolygonMode == GL_LINE)
-            PolygonMode = GL_FILL;
-         else
-            PolygonMode = GL_POINT;
-         printf("PolygonMode = 0x%x\n", PolygonMode);
-         break;
-      case 'r':
-         Zrot -= 5.0;
-         break;
-      case 'R':
-         Zrot += 5.0;
-         break;
-      case 'z':
-         Scale *= 1.1;
-         break;
-      case 'Z':
-         Scale /= 1.1;
-         break;
-      case 's':
-         Smooth = !Smooth;
-         break;
-      case 27:
-         glutDestroyWindow(Win);
-         exit(0);
-         break;
+   case 'p':
+      if (Mode == GL_TRIANGLES)
+         Mode = GL_LINE_LOOP;
+      else
+         Mode = GL_TRIANGLES;
+      break;
+   case 'f':
+      if (PolygonMode == GL_POINT)
+         PolygonMode = GL_LINE;
+      else if (PolygonMode == GL_LINE)
+         PolygonMode = GL_FILL;
+      else
+         PolygonMode = GL_POINT;
+      printf("PolygonMode = 0x%x\n", PolygonMode);
+      break;
+   case 'r':
+      Zrot -= 5.0;
+      break;
+   case 'R':
+      Zrot += 5.0;
+      break;
+   case 'z':
+      Scale *= 1.1;
+      break;
+   case 'Z':
+      Scale /= 1.1;
+      break;
+   case 's':
+      Smooth = !Smooth;
+      break;
+   case 27:
+      glutDestroyWindow(Win);
+      exit(0);
+      break;
    }
    glutPostRedisplay();
 }

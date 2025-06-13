@@ -64,23 +64,23 @@ Key(unsigned char key, int x, int y)
    (void) x;
    (void) y;
    switch (key) {
-      case 'a':
-         Anim = !Anim;
-         if (Anim)
-            glutIdleFunc(Idle);
-         else
-            glutIdleFunc(NULL);
-         break;
-      case 'z':
-         Zrot -= step;
-         break;
-      case 'Z':
-         Zrot += step;
-         break;
-      case 27:
-         glutDestroyWindow(Win);
-         exit(0);
-         break;
+   case 'a':
+      Anim = !Anim;
+      if (Anim)
+         glutIdleFunc(Idle);
+      else
+         glutIdleFunc(NULL);
+      break;
+   case 'z':
+      Zrot -= step;
+      break;
+   case 'Z':
+      Zrot += step;
+      break;
+   case 27:
+      glutDestroyWindow(Win);
+      exit(0);
+      break;
    }
    glutPostRedisplay();
 }
@@ -93,18 +93,18 @@ SpecialKey(int key, int x, int y)
    (void) x;
    (void) y;
    switch (key) {
-      case GLUT_KEY_UP:
-         Xrot -= step;
-         break;
-      case GLUT_KEY_DOWN:
-         Xrot += step;
-         break;
-      case GLUT_KEY_LEFT:
-         Yrot -= step;
-         break;
-      case GLUT_KEY_RIGHT:
-         Yrot += step;
-         break;
+   case GLUT_KEY_UP:
+      Xrot -= step;
+      break;
+   case GLUT_KEY_DOWN:
+      Xrot += step;
+      break;
+   case GLUT_KEY_LEFT:
+      Yrot -= step;
+      break;
+   case GLUT_KEY_RIGHT:
+      Yrot += step;
+      break;
    }
    glutPostRedisplay();
 }

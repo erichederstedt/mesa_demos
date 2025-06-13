@@ -52,12 +52,12 @@ static void Reshape(int width, int height)
 
 static void Key(unsigned char key, int x, int y)
 {
-    switch (key) {
-      case 27:
-        exit(1);
-      default:
-        break;
-    }
+   switch (key) {
+   case 27:
+      exit(1);
+   default:
+      break;
+   }
     glutPostRedisplay();
 }
 
@@ -68,18 +68,18 @@ SpecialKey(int key, int x, int y)
    (void) x;
    (void) y;
    switch (key) {
-      case GLUT_KEY_UP:
-         Ypos += step;
-         break;
-      case GLUT_KEY_DOWN:
-         Ypos -= step;
-         break;
-      case GLUT_KEY_LEFT:
-         Xpos -= step;
-         break;
-      case GLUT_KEY_RIGHT:
-         Xpos += step;
-         break;
+   case GLUT_KEY_UP:
+      Ypos += step;
+      break;
+   case GLUT_KEY_DOWN:
+      Ypos -= step;
+      break;
+   case GLUT_KEY_LEFT:
+      Xpos -= step;
+      break;
+   case GLUT_KEY_RIGHT:
+      Xpos += step;
+      break;
    }
    glutPostRedisplay();
 }

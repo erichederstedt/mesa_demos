@@ -139,47 +139,47 @@ static void reshape(int w, int h)
 static void keyboard(unsigned char key, int x, int y)
 {
    switch (key) {
-      case 'n':
-         minZ -= .1;
-         break;
-      case 'N':
-         minZ += .1;
-         break;
-      case 'x':
-         maxZ -= .1;
-         break;
-      case 'X':
-         maxZ += .1;
-         break;
-      case 'c':
-      case 'C':
-         clearVal = 1.0 - clearVal;
-         break;
-      case 'f':
-      case 'F':
-         curFunc = (curFunc + 1) % NUM_FUNCS;
-         break;
-      case 't':
-      case 'T':
-         leftFirst = !leftFirst;
-         break;
-      case ' ':
-         curFunc = 0;
-         clearVal = 1.0;
-         minZ = 0.0;
-         maxZ = 1.0;
-         break;
-      case 'z':
-         curFunc = 2;
-         clearVal = 0.0;
-         minZ = 1.0;
-         maxZ = 0.0;
-         break;
-      case 27:  /*  Escape key  */
-         exit(0);
-         break;
-      default:
-         return;
+   case 'n':
+      minZ -= .1;
+      break;
+   case 'N':
+      minZ += .1;
+      break;
+   case 'x':
+      maxZ -= .1;
+      break;
+   case 'X':
+      maxZ += .1;
+      break;
+   case 'c':
+   case 'C':
+      clearVal = 1.0 - clearVal;
+      break;
+   case 'f':
+   case 'F':
+      curFunc = (curFunc + 1) % NUM_FUNCS;
+      break;
+   case 't':
+   case 'T':
+      leftFirst = !leftFirst;
+      break;
+   case ' ':
+      curFunc = 0;
+      clearVal = 1.0;
+      minZ = 0.0;
+      maxZ = 1.0;
+      break;
+   case 'z':
+      curFunc = 2;
+      clearVal = 0.0;
+      minZ = 1.0;
+      maxZ = 0.0;
+      break;
+   case 27:  /*  Escape key  */
+      exit(0);
+      break;
+   default:
+      return;
    }
    glutPostRedisplay();
 }

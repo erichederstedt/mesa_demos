@@ -59,20 +59,20 @@ static void Reshape(int width, int height)
 
 static void Key(unsigned char key, int x, int y)
 {
-    switch (key) {
-    case 'z':
-       Z += 0.5;
-       break;
-    case 'Z':
-       Z -= 0.5;
-       break;
-    case 27:
-       exit(1);
-    default:
-       return;
-    }
-    printf("Z = %f\n", Z);
-    glutPostRedisplay();
+   switch (key) {
+   case 'z':
+      Z += 0.5;
+      break;
+   case 'Z':
+      Z -= 0.5;
+      break;
+   case 27:
+      exit(1);
+   default:
+      return;
+   }
+   printf("Z = %f\n", Z);
+   glutPostRedisplay();
 }
 
 static void Draw(void)

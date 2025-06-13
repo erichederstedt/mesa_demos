@@ -62,19 +62,19 @@ _mesa_float_to_half(GLfloat val)
          unsigned int exp_val = (unsigned int) (-14 - new_exp); /* 2^-exp_val*/
          e = 0;
          switch (exp_val) {
-            case 0:
-               /* m = 0; - already set */
-               break;
-            case 1: m = 512 + (flt_m >> 14); break;
-            case 2: m = 256 + (flt_m >> 15); break;
-            case 3: m = 128 + (flt_m >> 16); break;
-            case 4: m = 64 + (flt_m >> 17); break;
-            case 5: m = 32 + (flt_m >> 18); break;
-            case 6: m = 16 + (flt_m >> 19); break;
-            case 7: m = 8 + (flt_m >> 20); break;
-            case 8: m = 4 + (flt_m >> 21); break;
-            case 9: m = 2 + (flt_m >> 22); break;
-            case 10: m = 1; break;
+         case 0:
+            /* m = 0; - already set */
+            break;
+         case 1: m = 512 + (flt_m >> 14); break;
+         case 2: m = 256 + (flt_m >> 15); break;
+         case 3: m = 128 + (flt_m >> 16); break;
+         case 4: m = 64 + (flt_m >> 17); break;
+         case 5: m = 32 + (flt_m >> 18); break;
+         case 6: m = 16 + (flt_m >> 19); break;
+         case 7: m = 8 + (flt_m >> 20); break;
+         case 8: m = 4 + (flt_m >> 21); break;
+         case 9: m = 2 + (flt_m >> 22); break;
+         case 10: m = 1; break;
          }
       }
       else if (new_exp > 15) {
@@ -188,9 +188,9 @@ static void Key( unsigned char key, int x, int y )
    (void) x;
    (void) y;
    switch (key) {
-      case 27:
-         exit(0);
-         break;
+   case 27:
+      exit(0);
+      break;
    }
    glutPostRedisplay();
 }

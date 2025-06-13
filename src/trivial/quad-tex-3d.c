@@ -93,17 +93,17 @@ static void Reshape(int width, int height)
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-    case ' ':
-       z += 1.0/SIZE;
-       break;
-      case 27:
-        exit(1);
-      default:
-        return;
-    }
+   switch (key) {
+   case ' ':
+      z += 1.0/SIZE;
+      break;
+   case 27:
+      exit(1);
+   default:
+      return;
+   }
 
-    glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 static void Draw(void)

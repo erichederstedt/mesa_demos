@@ -101,9 +101,9 @@ static void Key( unsigned char key, int x, int y )
    (void) x;
    (void) y;
    switch (key) {
-      case 27:
-         exit(0);
-         break;
+   case 27:
+      exit(0);
+      break;
    }
    glutPostRedisplay();
 }

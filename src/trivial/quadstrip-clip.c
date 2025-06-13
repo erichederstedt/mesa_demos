@@ -53,8 +53,8 @@ static void Key(unsigned char key, int x, int y)
 {
 
    switch (key) {
-      case 27:
-         exit(1);
+   case 27:
+      exit(1);
    }
 
    glutPostRedisplay();

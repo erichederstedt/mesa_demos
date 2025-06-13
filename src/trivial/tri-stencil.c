@@ -47,18 +47,18 @@ static void Reshape(int width, int height)
 static void Key(unsigned char key, int x, int y)
 {
 
-    switch (key) {
-      case 27:
-        printf("Exiting...\n");
-        exit(1);
-      case 'r':
-        printf("Redisplaying...\n");
-        glutPostRedisplay();
-        break;
-      default:
-        printf("No such key '%c'...\n", key);
-        break;
-    }
+   switch (key) {
+   case 27:
+      printf("Exiting...\n");
+      exit(1);
+   case 'r':
+      printf("Redisplaying...\n");
+      glutPostRedisplay();
+      break;
+   default:
+      printf("No such key '%c'...\n", key);
+      break;
+   }
 }
 
 static void Draw(void)

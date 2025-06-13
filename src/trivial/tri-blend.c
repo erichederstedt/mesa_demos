@@ -112,16 +112,16 @@ static void reshape(int w, int h)
 static void keyboard(unsigned char key, int x, int y)
 {
    switch (key) {
-      case 't':
-      case 'T':
-         leftFirst = !leftFirst;
-         glutPostRedisplay();
-         break;
-      case 27:  /*  Escape key  */
-         exit(0);
-         break;
-      default:
-         break;
+   case 't':
+   case 'T':
+      leftFirst = !leftFirst;
+      glutPostRedisplay();
+      break;
+   case 27:  /*  Escape key  */
+      exit(0);
+      break;
+   default:
+      break;
    }
 }
 

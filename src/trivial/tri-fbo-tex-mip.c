@@ -167,19 +167,19 @@ Key(unsigned char key, int x, int y)
    (void) x;
    (void) y;
    switch (key) {
-      case 'a':
-         Anim = !Anim;
-         if (Anim)
-            glutIdleFunc(Idle);
-         else
-            glutIdleFunc(NULL);
-         break;
-      case 's':
-         Rot += 2.0;
-         break;
-      case 27:
-         CleanUp();
-         break;
+   case 'a':
+      Anim = !Anim;
+      if (Anim)
+         glutIdleFunc(Idle);
+      else
+         glutIdleFunc(NULL);
+      break;
+   case 's':
+      Rot += 2.0;
+      break;
+   case 27:
+      CleanUp();
+      break;
    }
    glutPostRedisplay();
 }
