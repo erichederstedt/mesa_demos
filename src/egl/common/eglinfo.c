@@ -351,7 +351,7 @@ PrintDisplayExtensions(EGLDisplay d, struct options opts)
 
 
 static const char *
-PrintDeviceExtensions(EGLDeviceEXT d, EGLBoolean single_line)
+PrintDeviceExtensions(EGLDeviceEXT d, struct options opts)
 {
    const char *extensions;
 
@@ -361,7 +361,11 @@ PrintDeviceExtensions(EGLDeviceEXT d, EGLBoolean single_line)
    if (!extensions)
       return NULL;
 
-   print_extension_list(extensions, single_line);
+   if (opts.mode != Brief) {
+      puts("EGL device extensions string:");
+      print_extension_list(extensions, opts.single_line);
+   }
+
    return extensions;
 }
 
@@ -631,8 +635,7 @@ doOneDevice(EGLDeviceEXT d, int i, struct options opts)
 
    printf("Device #%d:\n\n", i);
 
-   if (opts.mode != Brief)
-      PrintDeviceExtensions(d, opts.single_line);
+   PrintDeviceExtensions(d, opts);
 
    /* The EXT version is used here for EGL 1.4 compatibility */
    EGLDisplay disp = eglGetPlatformDisplayEXT(EGL_PLATFORM_DEVICE_EXT,
