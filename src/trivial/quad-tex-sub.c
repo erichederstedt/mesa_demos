@@ -107,12 +107,12 @@ static void Init(void)
 static void Reshape(int width, int height)
 {
 
-    glViewport(0, 0, (GLint)width, (GLint)height);
+   glViewport(0, 0, (GLint)width, (GLint)height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1.0, 1.0, -1.0, 1.0, -0.5, 1000.0);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(-1.0, 1.0, -1.0, 1.0, -0.5, 1000.0);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key(unsigned char key, int x, int y)

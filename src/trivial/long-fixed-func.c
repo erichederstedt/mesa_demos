@@ -134,21 +134,21 @@ Key(unsigned char key, int x, int y)
 int
 main(int argc, char **argv)
 {
-    GLenum type = GLUT_RGB | GLUT_DOUBLE;
+   GLenum type = GLUT_RGB | GLUT_DOUBLE;
 
-    glutInit(&argc, argv);
-    glutInitWindowPosition(0, 0);
-    glutInitWindowSize( 250, 250);
-    glutInitDisplayMode(type);
-    if (glutCreateWindow(*argv) == GL_FALSE) {
+   glutInit(&argc, argv);
+   glutInitWindowPosition(0, 0);
+   glutInitWindowSize( 250, 250);
+   glutInitDisplayMode(type);
+   if (glutCreateWindow(*argv) == GL_FALSE) {
        exit(1);
-    }
-    gladLoaderLoadGL();
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    Init();
-    glutMainLoop();
-    gladLoaderUnloadGL();
-    return 0;
+   }
+   gladLoaderLoadGL();
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   Init();
+   glutMainLoop();
+   gladLoaderUnloadGL();
+   return 0;
 }

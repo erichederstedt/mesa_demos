@@ -172,21 +172,21 @@ static void Draw( void )
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
-    doubleBuffer = GL_FALSE;
+   doubleBuffer = GL_FALSE;
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-sb") == 0) {
-            doubleBuffer = GL_FALSE;
-        } else if (strcmp(argv[i], "-db") == 0) {
-            doubleBuffer = GL_TRUE;
-        } else {
-            fprintf(stderr, "%s (Bad option).\n", argv[i]);
-            return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-sb") == 0) {
+         doubleBuffer = GL_FALSE;
+      } else if (strcmp(argv[i], "-db") == 0) {
+         doubleBuffer = GL_TRUE;
+      } else {
+         fprintf(stderr, "%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 
@@ -194,32 +194,32 @@ static GLenum Args(int argc, char **argv)
 int
 main( int argc, char *argv[] )
 {
-    GLenum type;
+   GLenum type;
 
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    glutInitWindowPosition(100, 0); glutInitWindowSize( Width, Height );
+   glutInitWindowPosition(100, 0); glutInitWindowSize( Width, Height );
 
-    type = GLUT_RGB;
-    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
-    glutInitDisplayMode(type);
+   type = GLUT_RGB;
+   type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
+   glutInitDisplayMode(type);
 
-    if (glutCreateWindow(argv[0]) == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow(argv[0]) == GL_FALSE) {
+      exit(1);
+   }
 
-    gladLoaderLoadGL();
+   gladLoaderLoadGL();
 
-    Init();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    gladLoaderUnloadGL();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   gladLoaderUnloadGL();
+   return 0;
 }

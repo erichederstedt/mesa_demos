@@ -146,22 +146,22 @@ Draw(void)
 int
 main(int argc, char *argv[])
 {
-    glutInit(&argc, argv);
-    glutInitWindowPosition(100, 0);
-    glutInitWindowSize(Width, Height);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+   glutInit(&argc, argv);
+   glutInitWindowPosition(100, 0);
+   glutInitWindowSize(Width, Height);
+   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
-    if (glutCreateWindow(argv[0]) == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow(argv[0]) == GL_FALSE) {
+      exit(1);
+   }
 
-    gladLoaderLoadGL();
-    Init();
+   gladLoaderLoadGL();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    gladLoaderUnloadGL();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   gladLoaderUnloadGL();
+   return 0;
 }

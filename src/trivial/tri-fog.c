@@ -42,27 +42,27 @@ static void Init(void)
    fprintf(stderr, "GL_VENDOR     = %s\n", (char *) glGetString(GL_VENDOR));
    fflush(stderr);
 
-    glClearColor(0.0, 0.0, 1.0, 0.0);
+   glClearColor(0.0, 0.0, 1.0, 0.0);
 
-    glEnable(GL_FOG);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
-    glFogf(GL_FOG_START, 25);
-    glFogf(GL_FOG_END, 35);
+   glEnable(GL_FOG);
+   glFogi(GL_FOG_MODE, GL_LINEAR);
+   glFogf(GL_FOG_START, 25);
+   glFogf(GL_FOG_END, 35);
 #if 0
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable (GL_BLEND);
+   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   glEnable (GL_BLEND);
 #endif
 }
 
 static void Reshape(int width, int height)
 {
 
-    glViewport(0, 0, (GLint)width, (GLint)height);
+   glViewport(0, 0, (GLint)width, (GLint)height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1.0, 1.0, -1.0, 1.0, -0.5, 1000.0);
-    glMatrixMode(GL_MODELVIEW);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(-1.0, 1.0, -1.0, 1.0, -0.5, 1000.0);
+   glMatrixMode(GL_MODELVIEW);
 }
 
 static void Key(unsigned char key, int x, int y)
@@ -114,48 +114,48 @@ static void Draw(void)
 
 static GLenum Args(int argc, char **argv)
 {
-    GLint i;
+   GLint i;
 
-    doubleBuffer = GL_FALSE;
+   doubleBuffer = GL_FALSE;
 
-    for (i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-sb") == 0) {
-            doubleBuffer = GL_FALSE;
-        } else if (strcmp(argv[i], "-db") == 0) {
-            doubleBuffer = GL_TRUE;
-        } else {
-            fprintf(stderr, "%s (Bad option).\n", argv[i]);
-            return GL_FALSE;
-        }
-    }
-    return GL_TRUE;
+   for (i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-sb") == 0) {
+         doubleBuffer = GL_FALSE;
+      } else if (strcmp(argv[i], "-db") == 0) {
+         doubleBuffer = GL_TRUE;
+      } else {
+         fprintf(stderr, "%s (Bad option).\n", argv[i]);
+         return GL_FALSE;
+      }
+   }
+   return GL_TRUE;
 }
 
 int main(int argc, char **argv)
 {
-    GLenum type;
+   GLenum type;
 
-    glutInit(&argc, argv);
+   glutInit(&argc, argv);
 
-    if (Args(argc, argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (Args(argc, argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    glutInitWindowPosition(100, 0); glutInitWindowSize(Width, Height);
+   glutInitWindowPosition(100, 0); glutInitWindowSize(Width, Height);
 
-    type = GLUT_RGB;
-    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
-    glutInitDisplayMode(type);
+   type = GLUT_RGB;
+   type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
+   glutInitDisplayMode(type);
 
-    if (glutCreateWindow(*argv) == GL_FALSE) {
-        exit(1);
-    }
+   if (glutCreateWindow(*argv) == GL_FALSE) {
+      exit(1);
+   }
 
-    Init();
+   Init();
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-        return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   return 0;
 }

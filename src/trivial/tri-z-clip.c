@@ -12,12 +12,12 @@ static GLboolean ztest = GL_FALSE;
 static void
 Reshape(int width, int height)
 {
-    glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1.0, 1.0, -1.0, 1.0, 2.0, 10.0);
-    glMatrixMode(GL_MODELVIEW);
-    glTranslatef(0, 0, -6.0);
+   glViewport(0, 0, width, height);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(-1.0, 1.0, -1.0, 1.0, 2.0, 10.0);
+   glMatrixMode(GL_MODELVIEW);
+   glTranslatef(0, 0, -6.0);
 }
 
 
@@ -63,15 +63,15 @@ Draw(void)
 int
 main(int argc, char **argv)
 {
-    glutInit(&argc, argv);
-    glutInitWindowPosition(0, 0);
-    glutInitWindowSize(250, 250);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    glutCreateWindow(*argv);
+   glutInit(&argc, argv);
+   glutInitWindowPosition(0, 0);
+   glutInitWindowSize(250, 250);
+   glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
+   glutCreateWindow(*argv);
 
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    glutDisplayFunc(Draw);
-    glutMainLoop();
-    return 0;
+   glutReshapeFunc(Reshape);
+   glutKeyboardFunc(Key);
+   glutDisplayFunc(Draw);
+   glutMainLoop();
+   return 0;
 }

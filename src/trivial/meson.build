@@ -196,10 +196,10 @@ progs = [
 ]
 foreach p : progs
   executable(
-    p, files(p + '.c'),
-    dependencies: [
+   p, files(p + '.c'),
+   dependencies: [
       dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util
-    ],
-    install: true
+   ],
+   install: true
   )
 endforeach
