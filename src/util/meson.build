@@ -9,6 +9,7 @@ files_libutil = files(
   'shaderutil.c',
   'showbuffer.c',
   'trackball.c',
+  'uuid.c'
 )
 
 _deps = [dep_m]
