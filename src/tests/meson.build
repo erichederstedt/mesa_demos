@@ -129,21 +129,10 @@ endif
 foreach pair : glut_progs
   p = pair[0]
   extra_deps = pair[1]
-  executable(
-    p, files(p + '.c'),
-    dependencies: [deps, dep_glut] + extra_deps
-  )
+  executable(p, files(p + '.c'), dependencies: [deps, dep_glut] + extra_deps)
 endforeach
 
-x11_progs = [
-  'auxbuffer',
-  'jkrahntest',
-  'sharedtex',
-  'texobjshare',
-]
+x11_progs = ['auxbuffer', 'jkrahntest', 'sharedtex', 'texobjshare']
 foreach p : x11_progs
-  executable(
-    p, files(p + '.c'),
-    dependencies: [deps, dep_x11, dep_glx]
-  )
+  executable(p, files(p + '.c'), dependencies: [deps, dep_x11, dep_glx])
 endforeach

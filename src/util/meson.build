@@ -20,11 +20,7 @@
 
 inc_util = include_directories('.')
 
-files_libutil = files(
-  'glinfo_common.c',
-  'trackball.c',
-  'matrix.c',
-)
+files_libutil = files('glinfo_common.c', 'matrix.c', 'trackball.c')
 
 if dep_glu.found()
   files_libutil += files('showbuffer.c')

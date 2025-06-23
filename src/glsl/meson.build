@@ -52,34 +52,31 @@ progs = [
   ['vert-tex', []],
   ['vsraytrace', []],
 ]
-base_deps = [
-  dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util
-]
+base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]
   executable(
-    p, files(p + '.c'),
+    p,
+    files(p + '.c'),
     dependencies: base_deps + extra_deps,
-    install: true
+    install: true,
   )
 endforeach
 
 executable(
-  'gsraytrace', files('gsraytrace.cpp'),
-  dependencies: [
-    dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util
-  ],
-  install: true
+  'gsraytrace',
+  files('gsraytrace.cpp'),
+  dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util],
+  install: true,
 )
 
 executable(
-  'samplers_array', files('samplers.c'),
+  'samplers_array',
+  files('samplers.c'),
   c_args: '-DSAMPLERS_ARRAY',
-  dependencies: [
-    dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util
-  ],
-  install: true
+  dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util],
+  install: true,
 )
 
 glsl_data = [
@@ -111,7 +108,4 @@ glsl_data = [
   'toyball.shtest',
 ]
 
-install_data(
-  glsl_data,
-  install_dir: get_option('datadir') / 'mesa-demos'
-)
+install_data(glsl_data, install_dir: get_option('datadir') / 'mesa-demos')

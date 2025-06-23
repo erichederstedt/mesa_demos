@@ -28,11 +28,7 @@ if host_machine.system() == 'windows'
   _libglad_files += files('src/wgl.c')
 endif
 
-_libglad = static_library(
-  'glad',
-  _libglad_files,
-  include_directories: inc_glad
-)
+_libglad = static_library('glad', _libglad_files, include_directories: inc_glad)
 
 idep_glad = declare_dependency(
   link_with: _libglad,

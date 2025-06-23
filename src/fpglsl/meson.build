@@ -19,7 +19,7 @@
 # SOFTWARE.
 
 executable(
-  'fp-tri', files('fp-tri.c'),
-  dependencies: [
-    dep_gl, dep_glu, dep_glut, idep_glad, idep_util, idep_readtex
-  ])
+  'fp-tri',
+  files('fp-tri.c'),
+  dependencies: [dep_gl, dep_glu, dep_glut, idep_glad, idep_util, idep_readtex],
+)

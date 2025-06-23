@@ -41,12 +41,12 @@ if wsi_deps.length() > 0
     'eglut',
     eglut_files,
     dependencies: [dep_egl, wsi_deps],
-    c_args: wsi_args
+    c_args: wsi_args,
   )
 
   idep_eglut = declare_dependency(
     link_with: _libeglut,
-    include_directories: inc_glut
+    include_directories: inc_glut,
   )
 else
   idep_eglut = disabler()

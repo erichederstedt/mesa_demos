@@ -48,13 +48,9 @@ progs = [
   ['tri', []],
   ['wave', []],
 ]
-base_deps = [
-  dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util
-]
+base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]
-  executable(
-    p, files(p + '.c'),
-    dependencies: base_deps + extra_deps)
+  executable(p, files(p + '.c'), dependencies: base_deps + extra_deps)
 endforeach

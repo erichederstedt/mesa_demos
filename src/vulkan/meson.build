@@ -18,10 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-glsl_shaders = files(
-	'gear.frag',
-	'gear.vert',
-)
+glsl_shaders = files('gear.frag', 'gear.vert')
 
 sources = files('vkgears.c', 'wsi/wsi.c')
 
@@ -46,7 +43,7 @@ if is_macos
   sources += files('wsi/metal.m')
   wsi_deps += dependency(
     'appleframeworks',
-    modules : ['AppKit', 'QuartzCore', 'Metal']
+    modules: ['AppKit', 'QuartzCore', 'Metal'],
   )
 endif
 
@@ -59,19 +56,21 @@ endif
 if (dep_wayland.found() or dep_xcb.found() or is_macos or is_windows) and prog_glslang.found()
   _gen = generator(
     prog_glslang,
-    output : '@PLAINNAME@.spv.h',
-    arguments : [ '@INPUT@', '-V', '-x', '-o', '@OUTPUT@' ]
+    output: '@PLAINNAME@.spv.h',
+    arguments: ['@INPUT@', '-V', '-x', '-o', '@OUTPUT@'],
   )
 
   spirv_shaders = _gen.process(glsl_shaders)
 
   executable(
-    'vkgears', files('vkgears.c'), sources,
+    'vkgears',
+    files('vkgears.c'),
+    sources,
     spirv_shaders,
     dependencies: [dep_vulkan, idep_util, wsi_deps],
     c_args: args,
     objc_args: args,
-    install: true
+    install: true,
   )
 endif
 

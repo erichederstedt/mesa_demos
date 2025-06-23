@@ -74,15 +74,14 @@ progs = [
   ['vao_demo', []],
   ['winpos', [idep_readtex]],
 ]
-base_deps = [
-  dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util, dep_winmm
-]
+base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util, dep_winmm]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]
   executable(
-    p, files(p + '.c'),
+    p,
+    files(p + '.c'),
     dependencies: base_deps + extra_deps,
-    install: true
+    install: true,
   )
 endforeach

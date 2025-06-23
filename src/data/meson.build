@@ -32,5 +32,5 @@ install_data(
   'geartrain.dat',
   'isosurf.dat',
   'terrain.dat',
-  install_dir: get_option('datadir') / 'mesa-demos'
+  install_dir: get_option('datadir') / 'mesa-demos',
 )

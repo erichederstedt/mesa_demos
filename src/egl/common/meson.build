@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 executable(
-  'eglinfo', 'eglinfo.c',
+  'eglinfo',
+  'eglinfo.c',
   dependencies: [dep_egl, idep_glad, idep_util],
   include_directories: [inc_glad],
-  install: true
+  install: true,
 )

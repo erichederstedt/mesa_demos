@@ -29,37 +29,34 @@ progs = [
 ]
 foreach p : progs
   executable(
-    p, files(p + '.c'),
-    dependencies: [
-      dep_gles1, dep_egl, dep_m, idep_glad, idep_util, dep_x11
-    ])
+    p,
+    files(p + '.c'),
+    dependencies: [dep_gles1, dep_egl, dep_m, idep_glad, idep_util, dep_x11],
+  )
 endforeach
 
 executable(
-  'clear', files('clear.c'),
+  'clear',
+  files('clear.c'),
   dependencies: [
-      # intentionally not link to dep_gles1
-      dep_egl, dep_m, idep_glad, idep_util, idep_eglut
-  ])
+    # intentionally not link to dep_gles1
+    dep_egl,
+    dep_m,
+    idep_glad,
+    idep_util,
+    idep_eglut,
+  ],
+)
 
-progs = [
-  'drawtex',
-  'gears',
-  'torus',
-  'tri',
-]
+progs = ['drawtex', 'gears', 'torus', 'tri']
 foreach p : progs
   executable(
-    p, files(p + '.c'),
-    dependencies: [
-      dep_gles1, dep_m, idep_glad, idep_util, idep_eglut
-    ])
+    p,
+    files(p + '.c'),
+    dependencies: [dep_gles1, dep_m, idep_glad, idep_util, idep_eglut],
+  )
 endforeach
 
 if host_machine.system() == 'linux'
-executable(
-  'eglfbdev', files('eglfbdev.c'),
-  dependencies: [
-     dep_gles1, dep_egl
-  ])
+  executable('eglfbdev', files('eglfbdev.c'), dependencies: [dep_gles1, dep_egl])
 endif

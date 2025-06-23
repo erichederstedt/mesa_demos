@@ -22,41 +22,48 @@ _deps = [dep_gl, dep_m, idep_util]
 
 if target_machine.system() == 'linux'
   executable(
-    'dmabufshare', files('dmabufshare.c'),
+    'dmabufshare',
+    files('dmabufshare.c'),
     dependencies: [_deps, idep_glad, idep_eglut],
-    install: true
+    install: true,
   )
 endif
 executable(
-  'eglgears', files('eglgears.c'),
+  'eglgears',
+  files('eglgears.c'),
   dependencies: [_deps, dep_glu, idep_eglut],
-  install: true
+  install: true,
 )
 executable(
-  'egltri', files('egltri.c'),
+  'egltri',
+  files('egltri.c'),
   dependencies: [_deps, dep_glu, idep_eglut],
-  install: true
+  install: true,
 )
 executable(
-  'xeglgears', files('xeglgears.c'),
+  'xeglgears',
+  files('xeglgears.c'),
   dependencies: [_deps, dep_glu, dep_egl, dep_x11],
-  install: true
+  install: true,
 )
 executable(
-  'xeglthreads', files('xeglthreads.c'),
+  'xeglthreads',
+  files('xeglthreads.c'),
   dependencies: [_deps, dep_egl, dep_x11],
-  install: true
+  install: true,
 )
 
 executable(
-  'eglkms', 'eglkms.c',
+  'eglkms',
+  'eglkms.c',
   dependencies: [_deps, dep_drm, dep_gbm, dep_egl],
-  install: true
+  install: true,
 )
 
 executable(
-  'peglgears', 'peglgears.c',
+  'peglgears',
+  'peglgears.c',
   dependencies: [dep_gl, dep_glu, dep_egl, dep_m, idep_util],
-  install: true
+  install: true,
 )
 

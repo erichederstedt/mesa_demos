@@ -18,13 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-objview_files = files(
-  'glm.c',
-  'glmdraw.c',
-  'objview.c',
-  'skybox.c',
-)
+objview_files = files('glm.c', 'glmdraw.c', 'objview.c', 'skybox.c')
 executable(
-  'objview', objview_files,
-  dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util, idep_readtex]
+  'objview',
+  objview_files,
+  dependencies: [
+    dep_gl,
+    dep_glu,
+    dep_glut,
+    dep_m,
+    idep_glad,
+    idep_util,
+    idep_readtex,
+  ],
 )
