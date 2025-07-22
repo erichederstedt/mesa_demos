@@ -82,13 +82,13 @@ vertexes are in the same straight line starting in the cube/tetrahedron
 center and crossing the center of each tetrahedron's face. At this point
 it's easy to obtain the bigger angle of the isosceles triangle formed by
 the center of the cube and two opposite vertexes on the same cube face.
-The edges of this triangle have the following lenghts: sqrt(2) for the base
+The edges of this triangle have the following lengths: sqrt(2) for the base
 and sqrt(3)/2 for the other two other edges. So the angle we want is:
      +-----------------------------------------------------------+
      | 2*ARCSIN(sqrt(2)/sqrt(3)) = 109.47122063449069174 degrees |
      +-----------------------------------------------------------+
 For the cube this angle is obvious, but just for formality it can be
-easily obtained because we also know it's isosceles edge lenghts:
+easily obtained because we also know it's isosceles edge lengths:
 sqrt(2)/2 for the base and 1/2 for the other two edges. So the angle we
 want is:
      +-----------------------------------------------------------+

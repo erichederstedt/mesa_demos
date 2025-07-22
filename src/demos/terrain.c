@@ -22,8 +22,8 @@
 #include "glut_wrap.h"
 
 #define heightMnt    450
-#define lenghtXmnt   62
-#define lenghtYmnt   62
+#define lengthXmnt   62
+#define lengthYmnt   62
 
 #define stepXmnt     96.0
 #define stepYmnt     96.0
@@ -112,7 +112,7 @@ reshape(int width, int height)
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
    gluPerspective(50.0, ((GLfloat) width / (GLfloat) height),
-                  lenghtXmnt * stepYmnt * 0.01, lenghtXmnt * stepYmnt * 0.7);
+                  lengthXmnt * stepYmnt * 0.01, lengthXmnt * stepYmnt * 0.7);
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
 }
@@ -140,21 +140,21 @@ clipstrip(float y, float *start, float *end)
       x2 = t2 * v2[0];
    }
 
-   if (((x1 < -(lenghtXmnt * stepXmnt) / 2) && (t2 <= 0.0)) ||
-       ((t1 <= 0.0) && (x2 > (lenghtXmnt * stepXmnt) / 2)) ||
+   if (((x1 < -(lengthXmnt * stepXmnt) / 2) && (t2 <= 0.0)) ||
+       ((t1 <= 0.0) && (x2 > (lengthXmnt * stepXmnt) / 2)) ||
        ((t1 < 0.0) && (t2 < 0.0)))
       return 0;
 
    if ((t1 == 0.0) && (t2 == 0.0)) {
       if ((v1[0] < 0.0) && (v1[1] > 0.0) && (v2[0] < 0.0) && (v2[1] < 0.0)) {
-         *start = -(lenghtXmnt * stepXmnt) / 2;
+         *start = -(lengthXmnt * stepXmnt) / 2;
          *end = stepXmnt;
          return 1;
       }
       else {
          if ((v1[0] > 0.0) && (v1[1] < 0.0) && (v2[0] > 0.0) && (v2[1] > 0.0)) {
             *start = -stepXmnt;
-            *end = (lenghtXmnt * stepXmnt) / 2;
+            *end = (lengthXmnt * stepXmnt) / 2;
             return 1;
          }
          else
@@ -164,16 +164,16 @@ clipstrip(float y, float *start, float *end)
    else {
       if (t2 < 0.0) {
          if (x1 < 0.0)
-            x2 = -(lenghtXmnt * stepXmnt) / 2;
+            x2 = -(lengthXmnt * stepXmnt) / 2;
          else
-            x2 = (lenghtXmnt * stepXmnt) / 2;
+            x2 = (lengthXmnt * stepXmnt) / 2;
       }
 
       if (t1 < 0.0) {
          if (x2 < 0.0)
-            x1 = -(lenghtXmnt * stepXmnt) / 2;
+            x1 = -(lengthXmnt * stepXmnt) / 2;
          else
-            x1 = (lenghtXmnt * stepXmnt) / 2;
+            x1 = (lengthXmnt * stepXmnt) / 2;
       }
    }
 
@@ -184,12 +184,12 @@ clipstrip(float y, float *start, float *end)
    }
 
    x1 -= stepXmnt;
-   if (x1 < -(lenghtXmnt * stepXmnt) / 2)
-      x1 = -(lenghtXmnt * stepXmnt) / 2;
+   if (x1 < -(lengthXmnt * stepXmnt) / 2)
+      x1 = -(lengthXmnt * stepXmnt) / 2;
 
    x2 += stepXmnt;
-   if (x2 > (lenghtXmnt * stepXmnt) / 2)
-      x2 = (lenghtXmnt * stepXmnt) / 2;
+   if (x2 > (lengthXmnt * stepXmnt) / 2)
+      x2 = (lengthXmnt * stepXmnt) / 2;
 
    *start = ((int) (x1 / stepXmnt)) * stepXmnt;
    *end = ((int) (x2 / stepXmnt)) * stepXmnt;
@@ -259,13 +259,13 @@ drawterrain(void)
    glPushMatrix();
    glTranslatef((float) ox * stepXmnt, 0, (float) oy * stepYmnt);
 
-   for (h = 0, k = -(lenghtYmnt * stepYmnt) / 2; h < lenghtYmnt;
+   for (h = 0, k = -(lengthYmnt * stepYmnt) / 2; h < lengthYmnt;
         k += stepYmnt, h++) {
       if (!clipstrip(k, &start, &end))
          continue;
 
       glBegin(GL_TRIANGLE_STRIP); /* I hope that the optimizer will be able to improve this code */
-      for (i = (int) (lenghtXmnt / 2 + start / stepXmnt), j = start; j <= end;
+      for (i = (int) (lengthXmnt / 2 + start / stepXmnt), j = start; j <= end;
            j += stepXmnt, i++) {
          idx = (i * TSCALE + h * 256 * TSCALE + GlobalMnt) & 65535;
          glColor3fv(terraincolor[idx]);
@@ -287,14 +287,14 @@ drawterrain(void)
    glEnable(GL_BLEND);
    glBegin(GL_QUADS);
    glColor4f(0.1, 0.7, 1.0, 0.4);
-   glVertex3f(-(lenghtXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
-              -(lenghtYmnt * stepYmnt) / 2.0);
-   glVertex3f(-(lenghtXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
-              (lenghtYmnt * stepYmnt) / 2.0);
-   glVertex3f((lenghtXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
-              (lenghtYmnt * stepYmnt) / 2.0);
-   glVertex3f((lenghtXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
-              -(lenghtYmnt * stepYmnt) / 2.0);
+   glVertex3f(-(lengthXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
+              -(lengthYmnt * stepYmnt) / 2.0);
+   glVertex3f(-(lengthXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
+              (lengthYmnt * stepYmnt) / 2.0);
+   glVertex3f((lengthXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
+              (lengthYmnt * stepYmnt) / 2.0);
+   glVertex3f((lengthXmnt * stepXmnt) / 2.0, heightMnt * 0.6,
+              -(lengthYmnt * stepYmnt) / 2.0);
    glEnd();
    glDisable(GL_BLEND);
    if (bfcull)
