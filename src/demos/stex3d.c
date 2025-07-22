@@ -446,23 +446,23 @@ Idle(void)
 static void
 SpecialKey(int k, int x, int y)
 {
-  switch (k) {
-  case GLUT_KEY_UP:
-    angx += 5.0;
-    break;
-  case GLUT_KEY_DOWN:
-    angx -= 5.0;
-    break;
-  case GLUT_KEY_LEFT:
-    angy += 5.0;
-    break;
-  case GLUT_KEY_RIGHT:
-    angy -= 5.0;
-    break;
-  default:
-    return;
-  }
-  glutPostRedisplay();
+   switch (k) {
+   case GLUT_KEY_UP:
+      angx += 5.0;
+      break;
+   case GLUT_KEY_DOWN:
+      angx -= 5.0;
+      break;
+   case GLUT_KEY_LEFT:
+      angy += 5.0;
+      break;
+   case GLUT_KEY_RIGHT:
+      angy -= 5.0;
+      break;
+   default:
+      return;
+   }
+   glutPostRedisplay();
 }
 
 

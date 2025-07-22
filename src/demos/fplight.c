@@ -29,7 +29,7 @@ static GLfloat Xrot = 0, Yrot = 0;
 
 
 #define NAMED_PARAMETER4FV(prog, name, v)        \
-  glProgramNamedParameter4fvNV(prog, strlen(name), (const GLubyte *) name, v)
+   glProgramNamedParameter4fvNV(prog, strlen(name), (const GLubyte *) name, v)
 
 
 static void Display( void )
@@ -107,12 +107,12 @@ static void Key( unsigned char key, int x, int y )
    (void) y;
    switch (key) {
      case ' ':
-        Anim = !Anim;
-        if (Anim)
-           glutIdleFunc(Idle);
-        else
-           glutIdleFunc(NULL);
-        break;
+         Anim = !Anim;
+         if (Anim)
+            glutIdleFunc(Idle);
+         else
+            glutIdleFunc(NULL);
+         break;
       case 'x':
          LightPos[0] -= 1.0;
          break;

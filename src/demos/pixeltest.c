@@ -441,9 +441,9 @@ Mouse(int button, int state, int x, int y)
 static void
 processMouseMotion(int x, int y)
 {
-    MouseX = x;
-    MouseY = WinHeight - y;
-    glutPostRedisplay();
+   MouseX = x;
+   MouseY = WinHeight - y;
+   glutPostRedisplay();
 }
 
 static void

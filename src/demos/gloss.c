@@ -250,14 +250,14 @@ MouseMotion(int x, int y)
 static void
 MouseButton(int button, int state, int x, int y)
 {
-  if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-     ButtonDown = GL_TRUE;
-     ButtonX = x;
-     ButtonY = y;
-  }
-  else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
-     ButtonDown = GL_FALSE;
-  }
+   if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+      ButtonDown = GL_TRUE;
+      ButtonX = x;
+      ButtonY = y;
+   }
+   else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+      ButtonDown = GL_FALSE;
+   }
 }
 
 

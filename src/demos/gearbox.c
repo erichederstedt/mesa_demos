@@ -42,117 +42,117 @@ static void
 gear(GLfloat inner_radius, GLfloat outer_radius, GLfloat width,
      GLint teeth, GLfloat tooth_depth)
 {
-  GLint i;
-  GLfloat r0, r1, r2;
-  GLfloat angle, da;
-  GLfloat u, v, len;
+   GLint i;
+   GLfloat r0, r1, r2;
+   GLfloat angle, da;
+   GLfloat u, v, len;
 
-  r0 = inner_radius;
-  r1 = outer_radius - tooth_depth / 2.0;
-  r2 = outer_radius + tooth_depth / 2.0;
+   r0 = inner_radius;
+   r1 = outer_radius - tooth_depth / 2.0;
+   r2 = outer_radius + tooth_depth / 2.0;
 
-  da = 2.0 * M_PI / teeth / 4.0;
+   da = 2.0 * M_PI / teeth / 4.0;
 
-  glShadeModel(GL_FLAT);
+   glShadeModel(GL_FLAT);
 
-  glNormal3f(0.0, 0.0, 1.0);
+   glNormal3f(0.0, 0.0, 1.0);
 
-  /* draw front face */
-  glBegin(GL_QUAD_STRIP);
-  for (i = 0; i <= teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
-    glVertex3f(r0 * cos(angle), r0 * sin(angle), width * 0.5);
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
-    if (i < teeth) {
+   /* draw front face */
+   glBegin(GL_QUAD_STRIP);
+   for (i = 0; i <= teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
       glVertex3f(r0 * cos(angle), r0 * sin(angle), width * 0.5);
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
+      if (i < teeth) {
+         glVertex3f(r0 * cos(angle), r0 * sin(angle), width * 0.5);
+         glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), width * 0.5);
+      }
+   }
+   glEnd();
+
+   /* draw front sides of teeth */
+   glBegin(GL_QUADS);
+   da = 2.0 * M_PI / teeth / 4.0;
+   for (i = 0; i < teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
+
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
+      glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), width * 0.5);
+      glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), width * 0.5);
       glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), width * 0.5);
-    }
-  }
-  glEnd();
+   }
+   glEnd();
 
-  /* draw front sides of teeth */
-  glBegin(GL_QUADS);
-  da = 2.0 * M_PI / teeth / 4.0;
-  for (i = 0; i < teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
+   glNormal3f(0.0, 0.0, -1.0);
 
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
-    glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), width * 0.5);
-    glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), width * 0.5);
-    glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), width * 0.5);
-  }
-  glEnd();
-
-  glNormal3f(0.0, 0.0, -1.0);
-
-  /* draw back face */
-  glBegin(GL_QUAD_STRIP);
-  for (i = 0; i <= teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
-    glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5);
-    if (i < teeth) {
-      glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
+   /* draw back face */
+   glBegin(GL_QUAD_STRIP);
+   for (i = 0; i <= teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
       glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5);
-    }
-  }
-  glEnd();
+      if (i < teeth) {
+         glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
+         glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5);
+      }
+   }
+   glEnd();
 
-  /* draw back sides of teeth */
-  glBegin(GL_QUADS);
-  da = 2.0 * M_PI / teeth / 4.0;
-  for (i = 0; i < teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
+   /* draw back sides of teeth */
+   glBegin(GL_QUADS);
+   da = 2.0 * M_PI / teeth / 4.0;
+   for (i = 0; i < teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
 
-    glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
-    glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), -width * 0.5);
-    glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), -width * 0.5);
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
-  }
-  glEnd();
+      glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
+      glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), -width * 0.5);
+      glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), -width * 0.5);
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
+   }
+   glEnd();
 
-  /* draw outward faces of teeth */
-  glBegin(GL_QUAD_STRIP);
-  for (i = 0; i < teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
+   /* draw outward faces of teeth */
+   glBegin(GL_QUAD_STRIP);
+   for (i = 0; i < teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
 
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
-    glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
-    u = r2 * cos(angle + da) - r1 * cos(angle);
-    v = r2 * sin(angle + da) - r1 * sin(angle);
-    len = sqrt(u * u + v * v);
-    u /= len;
-    v /= len;
-    glNormal3f(v, -u, 0.0);
-    glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), width * 0.5);
-    glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), -width * 0.5);
-    glNormal3f(cos(angle), sin(angle), 0.0);
-    glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), width * 0.5);
-    glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), -width * 0.5);
-    u = r1 * cos(angle + 3 * da) - r2 * cos(angle + 2 * da);
-    v = r1 * sin(angle + 3 * da) - r2 * sin(angle + 2 * da);
-    glNormal3f(v, -u, 0.0);
-    glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), width * 0.5);
-    glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
-    glNormal3f(cos(angle), sin(angle), 0.0);
-  }
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), width * 0.5);
+      glVertex3f(r1 * cos(angle), r1 * sin(angle), -width * 0.5);
+      u = r2 * cos(angle + da) - r1 * cos(angle);
+      v = r2 * sin(angle + da) - r1 * sin(angle);
+      len = sqrt(u * u + v * v);
+      u /= len;
+      v /= len;
+      glNormal3f(v, -u, 0.0);
+      glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), width * 0.5);
+      glVertex3f(r2 * cos(angle + da), r2 * sin(angle + da), -width * 0.5);
+      glNormal3f(cos(angle), sin(angle), 0.0);
+      glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), width * 0.5);
+      glVertex3f(r2 * cos(angle + 2 * da), r2 * sin(angle + 2 * da), -width * 0.5);
+      u = r1 * cos(angle + 3 * da) - r2 * cos(angle + 2 * da);
+      v = r1 * sin(angle + 3 * da) - r2 * sin(angle + 2 * da);
+      glNormal3f(v, -u, 0.0);
+      glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), width * 0.5);
+      glVertex3f(r1 * cos(angle + 3 * da), r1 * sin(angle + 3 * da), -width * 0.5);
+      glNormal3f(cos(angle), sin(angle), 0.0);
+   }
 
-  glVertex3f(r1 * cos(0), r1 * sin(0), width * 0.5);
-  glVertex3f(r1 * cos(0), r1 * sin(0), -width * 0.5);
+   glVertex3f(r1 * cos(0), r1 * sin(0), width * 0.5);
+   glVertex3f(r1 * cos(0), r1 * sin(0), -width * 0.5);
 
-  glEnd();
+   glEnd();
 
-  glShadeModel(GL_SMOOTH);
+   glShadeModel(GL_SMOOTH);
 
-  /* draw inside radius cylinder */
-  glBegin(GL_QUAD_STRIP);
-  for (i = 0; i <= teeth; i++) {
-    angle = i * 2.0 * M_PI / teeth;
-    glNormal3f(-cos(angle), -sin(angle), 0.0);
-    glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5);
-    glVertex3f(r0 * cos(angle), r0 * sin(angle), width * 0.5);
-  }
-  glEnd();
+   /* draw inside radius cylinder */
+   glBegin(GL_QUAD_STRIP);
+   for (i = 0; i <= teeth; i++) {
+      angle = i * 2.0 * M_PI / teeth;
+      glNormal3f(-cos(angle), -sin(angle), 0.0);
+      glVertex3f(r0 * cos(angle), r0 * sin(angle), -width * 0.5);
+      glVertex3f(r0 * cos(angle), r0 * sin(angle), width * 0.5);
+   }
+   glEnd();
 
 }
 
@@ -321,18 +321,18 @@ draw(void)
 static void
 idle(void)
 {
-  static double t0 = -1.;
-  double dt, t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
-  if (t0 < 0.0)
-    t0 = t;
-  dt = t - t0;
-  t0 = t;
+   static double t0 = -1.;
+   double dt, t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
+   if (t0 < 0.0)
+      t0 = t;
+   dt = t - t0;
+   t0 = t;
 
-  /* fmod to prevent overflow */
-  GearRot = fmod(GearRot + 70.0 * dt, 360.0);  /* 70 deg/sec */
-  CubeRot = fmod(CubeRot + 15.0 * dt, 360.0);  /* 15 deg/sec */
+   /* fmod to prevent overflow */
+   GearRot = fmod(GearRot + 70.0 * dt, 360.0);  /* 70 deg/sec */
+   CubeRot = fmod(CubeRot + 15.0 * dt, 360.0);  /* 15 deg/sec */
 
-  glutPostRedisplay();
+   glutPostRedisplay();
 }
 
 
@@ -400,44 +400,44 @@ reshape(int width, int height)
 static void
 init(int argc, char *argv[])
 {
-  static GLfloat pos[4] = {5.0, 5.0, 10.0, 0.0};
-  static GLfloat red[4] = {0.8, 0.1, 0.0, 1.0};
-  static GLfloat green[4] = {0.0, 0.8, 0.2, 1.0};
-  static GLfloat blue[4] = {0.2, 0.2, 1.0, 1.0};
-  GLint i;
+   static GLfloat pos[4] = {5.0, 5.0, 10.0, 0.0};
+   static GLfloat red[4] = {0.8, 0.1, 0.0, 1.0};
+   static GLfloat green[4] = {0.0, 0.8, 0.2, 1.0};
+   static GLfloat blue[4] = {0.2, 0.2, 1.0, 1.0};
+   GLint i;
 
-  glLightfv(GL_LIGHT0, GL_POSITION, pos);
+   glLightfv(GL_LIGHT0, GL_POSITION, pos);
 #if 0
-  glEnable(GL_CULL_FACE);
+   glEnable(GL_CULL_FACE);
 #endif
-  glEnable(GL_LIGHTING);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_DEPTH_TEST);
+   glEnable(GL_LIGHTING);
+   glEnable(GL_LIGHT0);
+   glEnable(GL_DEPTH_TEST);
 
-  /* make the gears */
-  Gear1 = glGenLists(1);
-  glNewList(Gear1, GL_COMPILE);
-  glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, red);
-  gear(1.0, 4.0, 1.0, 20, 0.7);
-  glEndList();
+   /* make the gears */
+   Gear1 = glGenLists(1);
+   glNewList(Gear1, GL_COMPILE);
+   glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, red);
+   gear(1.0, 4.0, 1.0, 20, 0.7);
+   glEndList();
 
-  Gear2 = glGenLists(1);
-  glNewList(Gear2, GL_COMPILE);
-  glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, green);
-  gear(0.5, 2.0, 2.0, 10, 0.7);
-  glEndList();
+   Gear2 = glGenLists(1);
+   glNewList(Gear2, GL_COMPILE);
+   glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, green);
+   gear(0.5, 2.0, 2.0, 10, 0.7);
+   glEndList();
 
-  Gear3 = glGenLists(1);
-  glNewList(Gear3, GL_COMPILE);
-  glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, blue);
-  gear(1.3, 2.0, 0.5, 10, 0.7);
-  glEndList();
+   Gear3 = glGenLists(1);
+   glNewList(Gear3, GL_COMPILE);
+   glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, blue);
+   gear(1.3, 2.0, 0.5, 10, 0.7);
+   glEndList();
 
-  glEnable(GL_NORMALIZE);
+   glEnable(GL_NORMALIZE);
 
-  /* xxx make size dynamic */
-  TexWidth = 256;
-  TexHeight = 256;
+   /* xxx make size dynamic */
+   TexWidth = 256;
+   TexHeight = 256;
 
    glBindTexture(GL_TEXTURE_2D, TexObj);
    glTexImage2D(GL_TEXTURE_2D, 0, IntFormat, TexWidth, TexHeight, 0,
@@ -446,14 +446,14 @@ init(int argc, char *argv[])
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-  for ( i=1; i<argc; i++ ) {
-    if (strcmp(argv[i], "-info")==0) {
-      printf("GL_RENDERER   = %s\n", (char *) glGetString(GL_RENDERER));
-      printf("GL_VERSION    = %s\n", (char *) glGetString(GL_VERSION));
-      printf("GL_VENDOR     = %s\n", (char *) glGetString(GL_VENDOR));
-      printf("GL_EXTENSIONS = %s\n", (char *) glGetString(GL_EXTENSIONS));
-    }
-  }
+   for ( i=1; i<argc; i++ ) {
+      if (strcmp(argv[i], "-info")==0) {
+         printf("GL_RENDERER   = %s\n", (char *) glGetString(GL_RENDERER));
+         printf("GL_VERSION    = %s\n", (char *) glGetString(GL_VERSION));
+         printf("GL_VENDOR     = %s\n", (char *) glGetString(GL_VENDOR));
+         printf("GL_EXTENSIONS = %s\n", (char *) glGetString(GL_EXTENSIONS));
+      }
+   }
 }
 
 

@@ -147,8 +147,8 @@ CleanUp(void)
 static void
 Key(unsigned char key, int x, int y)
 {
-  (void) x;
-  (void) y;
+   (void) x;
+   (void) y;
 
    switch(key) {
    case ' ':
@@ -199,8 +199,8 @@ SpecialKey(int key, int x, int y)
 {
    const GLfloat step = 3.0f;
 
-  (void) x;
-  (void) y;
+   (void) x;
+   (void) y;
 
    switch(key) {
    case GLUT_KEY_UP:

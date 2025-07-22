@@ -99,16 +99,16 @@ static void ModeMenu(int entry)
 static void
 key(unsigned char k, int x, int y)
 {
-  (void) x;
-  (void) y;
-  switch (k) {
-  case 27:  /* Escape */
-    exit(0);
-    break;
-  default:
-    return;
-  }
-  glutPostRedisplay();
+   (void) x;
+   (void) y;
+   switch (k) {
+   case 27:  /* Escape */
+      exit(0);
+      break;
+   default:
+      return;
+   }
+   glutPostRedisplay();
 }
 
 int main( int argc, char *argv[] )

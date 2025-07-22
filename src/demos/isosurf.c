@@ -547,10 +547,10 @@ static void draw_surface( unsigned int with_state )
 
 static void Display(void)
 {
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    draw_surface( state );
-    glFlush();
-    if (doubleBuffer) glutSwapBuffers();
+   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+   draw_surface( state );
+   glFlush();
+   if (doubleBuffer) glutSwapBuffers();
 }
 
 
@@ -595,39 +595,39 @@ static void Benchmark( float xdiff, float ydiff )
 
 static void InitMaterials(void)
 {
-    static float ambient[] = {0.1, 0.1, 0.1, 1.0};
-    static float diffuse[] = {0.5, 1.0, 1.0, 1.0};
-    static float position0[] = {0.0, 0.0, 20.0, 0.0};
-    static float position1[] = {0.0, 0.0, -20.0, 0.0};
-    static float front_mat_shininess[] = {60.0};
-    static float front_mat_specular[] = {0.2, 0.2, 0.2, 1.0};
-    static float front_mat_diffuse[] = {0.5, 0.28, 0.38, 1.0};
-    /*
-    static float back_mat_shininess[] = {60.0};
-    static float back_mat_specular[] = {0.5, 0.5, 0.2, 1.0};
-    static float back_mat_diffuse[] = {1.0, 1.0, 0.2, 1.0};
-    */
-    static float lmodel_ambient[] = {1.0, 1.0, 1.0, 1.0};
-    static float lmodel_twoside[] = {GL_FALSE};
+   static float ambient[] = {0.1, 0.1, 0.1, 1.0};
+   static float diffuse[] = {0.5, 1.0, 1.0, 1.0};
+   static float position0[] = {0.0, 0.0, 20.0, 0.0};
+   static float position1[] = {0.0, 0.0, -20.0, 0.0};
+   static float front_mat_shininess[] = {60.0};
+   static float front_mat_specular[] = {0.2, 0.2, 0.2, 1.0};
+   static float front_mat_diffuse[] = {0.5, 0.28, 0.38, 1.0};
+   /*
+   static float back_mat_shininess[] = {60.0};
+   static float back_mat_specular[] = {0.5, 0.5, 0.2, 1.0};
+   static float back_mat_diffuse[] = {1.0, 1.0, 0.2, 1.0};
+   */
+   static float lmodel_ambient[] = {1.0, 1.0, 1.0, 1.0};
+   static float lmodel_twoside[] = {GL_FALSE};
 
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-    glLightfv(GL_LIGHT0, GL_POSITION, position0);
-    glEnable(GL_LIGHT0);
+   glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+   glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+   glLightfv(GL_LIGHT0, GL_POSITION, position0);
+   glEnable(GL_LIGHT0);
 
-    glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
-    glLightfv(GL_LIGHT1, GL_POSITION, position1);
-    glEnable(GL_LIGHT1);
+   glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
+   glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
+   glLightfv(GL_LIGHT1, GL_POSITION, position1);
+   glEnable(GL_LIGHT1);
 
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-    glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
+   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+   glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
 
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, front_mat_shininess);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, front_mat_specular);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, front_mat_diffuse);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, front_mat_shininess);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, front_mat_specular);
+   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, front_mat_diffuse);
 
-    glPolygonStipple (halftone);
+   glPolygonStipple (halftone);
 }
 
 
@@ -901,7 +901,7 @@ static void Init(int argc, char *argv[])
 
 static void Reshape(int width, int height)
 {
-    glViewport(0, 0, (GLint)width, (GLint)height);
+   glViewport(0, 0, (GLint)width, (GLint)height);
 }
 
 
