@@ -61,7 +61,6 @@ x86_build:
       libgbm-dev
       libgl-dev
       libgles-dev
-      libosmesa6-dev
       libpango1.0-dev
       libpangocairo-1.0-0
       libpng-dev
@@ -133,7 +132,6 @@ build-mingw:
       -Dgles2=disabled
       -Dglvnd=disabled
       -Dlibdrm=disabled
-      -Dosmesa=disabled
       -Dpng=disabled
       -Dvulkan=disabled
       -Dwayland=disabled

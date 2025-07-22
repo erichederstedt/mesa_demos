@@ -27,10 +27,6 @@ if dep_x11.found()
   subdir('xdemos')
 endif
 
-if dep_osmesa.found()
-  subdir('osdemos')
-endif
-
 if dep_vulkan.found()
   subdir('vulkan')
 endif
