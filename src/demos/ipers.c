@@ -151,7 +151,7 @@ inittextures(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_LINEAR);
+                   GL_LINEAR_MIPMAP_LINEAR);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
    /* Sky */
@@ -161,25 +161,25 @@ inittextures(void)
 
    for (y = 0; y < TEX_SKY_HEIGHT; y++)
       for (x = 0; x < TEX_SKY_WIDTH; x++)
-	 if (y < TEX_SKY_HEIGHT / 2) {
-	    fact = y / (GLfloat) (TEX_SKY_HEIGHT / 2);
-	    tsky[y][x][0] =
-	       (GLubyte) (255.0f * (0.1f * fact + 0.3f * (1.0f - fact)));
-	    tsky[y][x][1] =
-	       (GLubyte) (255.0f * (0.2f * fact + 1.0f * (1.0f - fact)));
-	    tsky[y][x][2] = 255;
-	 }
-	 else {
-	    tsky[y][x][0] = tsky[TEX_SKY_HEIGHT - y - 1][x][0];
-	    tsky[y][x][1] = tsky[TEX_SKY_HEIGHT - y - 1][x][1];
-	    tsky[y][x][2] = 255;
-	 }
+         if (y < TEX_SKY_HEIGHT / 2) {
+            fact = y / (GLfloat) (TEX_SKY_HEIGHT / 2);
+            tsky[y][x][0] =
+               (GLubyte) (255.0f * (0.1f * fact + 0.3f * (1.0f - fact)));
+            tsky[y][x][1] =
+               (GLubyte) (255.0f * (0.2f * fact + 1.0f * (1.0f - fact)));
+            tsky[y][x][2] = 255;
+         }
+         else {
+            tsky[y][x][0] = tsky[TEX_SKY_HEIGHT - y - 1][x][0];
+            tsky[y][x][1] = tsky[TEX_SKY_HEIGHT - y - 1][x][1];
+            tsky[y][x][2] = 255;
+         }
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    if (
        (gluerr =
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, TEX_SKY_WIDTH, TEX_SKY_HEIGHT,
-			  GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *) (tsky)))) {
+        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, TEX_SKY_WIDTH, TEX_SKY_HEIGHT,
+                          GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *) (tsky)))) {
       fprintf(stderr, "GLULib%s\n", (char *) gluErrorString(gluerr));
       exit(-1);
    }
@@ -188,7 +188,7 @@ inittextures(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_LINEAR);
+                   GL_LINEAR_MIPMAP_LINEAR);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
@@ -287,24 +287,24 @@ key(unsigned char k, int x, int y)
       break;
    case 'b':
       if (bfcull) {
-	 glDisable(GL_CULL_FACE);
-	 bfcull = 0;
+         glDisable(GL_CULL_FACE);
+         bfcull = 0;
       }
       else {
-	 glEnable(GL_CULL_FACE);
-	 bfcull = 1;
+         glEnable(GL_CULL_FACE);
+         bfcull = 1;
       }
       break;
    case 'p':
       if (poutline) {
-	 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	 poutline = 0;
-	 usetex = 1;
+         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+         poutline = 0;
+         usetex = 1;
       }
       else {
-	 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	 poutline = 1;
-	 usetex = 0;
+         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+         poutline = 1;
+         usetex = 0;
       }
       break;
    }
@@ -363,18 +363,18 @@ printhelp(void)
    printstring(GLUT_BITMAP_TIMES_ROMAN_24, "p - Toggle Wire frame");
    glRasterPos2i(60, 150);
    printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-	       "n - Toggle GL_EXT_rescale_normal extension");
+               "n - Toggle GL_EXT_rescale_normal extension");
    glRasterPos2i(60, 120);
    printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-	       "+/- - Increase/decrease the Object maximum LOD");
+               "+/- - Increase/decrease the Object maximum LOD");
 
    glRasterPos2i(60, 90);
    if (joyavailable)
       printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-		  "j - Toggle jostick control (Joystick control available)");
+                  "j - Toggle jostick control (Joystick control available)");
    else
       printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-		  "(No Joystick control available)");
+                  "(No Joystick control available)");
 }
 
 static void
@@ -392,28 +392,28 @@ dojoy(void)
       joyavailable = 1;
 
       if (max[0] < joy.wXpos)
-	 max[0] = joy.wXpos;
+         max[0] = joy.wXpos;
       if (min[0] > joy.wXpos)
-	 min[0] = joy.wXpos;
+         min[0] = joy.wXpos;
       center[0] = (max[0] + min[0]) / 2;
 
       if (max[1] < joy.wYpos)
-	 max[1] = joy.wYpos;
+         max[1] = joy.wYpos;
       if (min[1] > joy.wYpos)
-	 min[1] = joy.wYpos;
+         min[1] = joy.wYpos;
       center[1] = (max[1] + min[1]) / 2;
 
       if (joyactive) {
-	 if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
-	    alpha -=
-	       2.0 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
-	 if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
-	    beta += 2.0 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
+         if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
+            alpha -=
+               2.0 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
+         if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
+            beta += 2.0 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
 
-	 if (joy.wButtons & JOY_BUTTON1)
-	    v += 0.01;
-	 if (joy.wButtons & JOY_BUTTON2)
-	    v -= 0.01;
+         if (joy.wButtons & JOY_BUTTON1)
+            v += 0.01;
+         if (joy.wButtons & JOY_BUTTON2)
+            v -= 0.01;
       }
    }
    else
@@ -573,8 +573,8 @@ draw(void)
    glPushMatrix();
    calcposobs();
    gluLookAt(obs[0], obs[1], obs[2],
-	     obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
-	     0.0, 0.0, 1.0);
+             obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
+             0.0, 0.0, 1.0);
 
    /* Scene */
    glEnable(GL_DEPTH_TEST);
@@ -617,8 +617,8 @@ draw(void)
    /* Help Screen */
 
    sprintf(frbuf,
-	   "Frame rate: %0.2f   LOD: %d   Tot. poly.: %d   Poly/sec: %.1f",
-	   fr, LODbias, totpoly, totpoly * fr);
+           "Frame rate: %0.2f   LOD: %d   Tot. poly.: %d   Poly/sec: %.1f",
+           fr, LODbias, totpoly, totpoly * fr);
 
    glDisable(GL_TEXTURE_2D);
    glDisable(GL_FOG);
@@ -638,7 +638,7 @@ draw(void)
    printstring(GLUT_BITMAP_HELVETICA_18, frbuf);
    glRasterPos2i(350, 470);
    printstring(GLUT_BITMAP_HELVETICA_10,
-	       "IperS V1.0 Written by David Bucciarelli (tech.hmw@plus.it)");
+               "IperS V1.0 Written by David Bucciarelli (tech.hmw@plus.it)");
 
    if (help)
       printhelp();
@@ -669,7 +669,7 @@ main(int ac, char **av)
    float fogcolor[4] = { 0.7, 0.7, 0.7, 1.0 };
 
    fprintf(stderr,
-	   "IperS V1.0\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
+           "IperS V1.0\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
 
    glutInitWindowSize(WIDTH, HEIGHT);
    glutInit(&ac, av);

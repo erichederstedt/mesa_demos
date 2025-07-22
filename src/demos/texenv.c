@@ -23,8 +23,8 @@
 
 #undef max
 #undef min
-#define max( a, b )	((a) >= (b) ? (a) : (b))
-#define min( a, b )	((a) <= (b) ? (a) : (b))
+#define max( a, b ) ((a) >= (b) ? (a) : (b))
+#define min( a, b ) ((a) <= (b) ? (a) : (b))
 
 GLfloat lightCheck[4] = { 0.7, 0.7, 0.7, 1.0 };
 GLfloat darkCheck[4] = { 0.3, 0.3, 0.3, 1.0 };
@@ -50,12 +50,12 @@ static int Win;
 
 
 struct formatInfo {
-   GLenum	baseFormat;
-   GLenum	internalFormat;
-   char		*name;
+   GLenum baseFormat;
+   GLenum internalFormat;
+   char *name;
 };
 
-#define NUM_LUMINANCE_FORMATS	(sizeof(luminanceFormats) / sizeof(luminanceFormats[0]))
+#define NUM_LUMINANCE_FORMATS (sizeof(luminanceFormats) / sizeof(luminanceFormats[0]))
 struct formatInfo luminanceFormats[] =
 {
    { GL_LUMINANCE, GL_LUMINANCE, "LUMINANCE" },
@@ -65,7 +65,7 @@ struct formatInfo luminanceFormats[] =
    { GL_LUMINANCE, GL_LUMINANCE16, "LUMINANCE16" },
 };
 
-#define NUM_ALPHA_FORMATS	(sizeof(alphaFormats) / sizeof(alphaFormats[0]))
+#define NUM_ALPHA_FORMATS (sizeof(alphaFormats) / sizeof(alphaFormats[0]))
 struct formatInfo alphaFormats[] =
 {
    { GL_ALPHA, GL_ALPHA, "ALPHA" },
@@ -75,7 +75,7 @@ struct formatInfo alphaFormats[] =
    { GL_ALPHA, GL_ALPHA16, "ALPHA16" },
 };
 
-#define NUM_INTENSITY_FORMATS	(sizeof(intensityFormats) / sizeof(intensityFormats[0]))
+#define NUM_INTENSITY_FORMATS (sizeof(intensityFormats) / sizeof(intensityFormats[0]))
 struct formatInfo intensityFormats[] =
 {
    { GL_INTENSITY, GL_INTENSITY, "INTENSITY" },
@@ -85,7 +85,7 @@ struct formatInfo intensityFormats[] =
    { GL_INTENSITY, GL_INTENSITY16, "INTENSITY16" },
 };
 
-#define NUM_LUMINANCE_ALPHA_FORMATS	(sizeof(luminanceAlphaFormats) / sizeof(luminanceAlphaFormats[0]))
+#define NUM_LUMINANCE_ALPHA_FORMATS (sizeof(luminanceAlphaFormats) / sizeof(luminanceAlphaFormats[0]))
 struct formatInfo luminanceAlphaFormats[] =
 {
    { GL_LUMINANCE_ALPHA, GL_LUMINANCE_ALPHA, "LUMINANCE_ALPHA" },
@@ -97,7 +97,7 @@ struct formatInfo luminanceAlphaFormats[] =
    { GL_LUMINANCE_ALPHA, GL_LUMINANCE16_ALPHA16, "LUMINANCE16_ALPHA16" },
 };
 
-#define NUM_RGB_FORMATS		(sizeof(rgbFormats) / sizeof(rgbFormats[0]))
+#define NUM_RGB_FORMATS (sizeof(rgbFormats) / sizeof(rgbFormats[0]))
 struct formatInfo rgbFormats[] =
 {
    { GL_RGB, GL_RGB, "RGB" },
@@ -110,7 +110,7 @@ struct formatInfo rgbFormats[] =
    { GL_RGB, GL_RGB16, "RGB16" },
 };
 
-#define NUM_RGBA_FORMATS	(sizeof(rgbaFormats) / sizeof(rgbaFormats[0]))
+#define NUM_RGBA_FORMATS (sizeof(rgbaFormats) / sizeof(rgbaFormats[0]))
 struct formatInfo rgbaFormats[] =
 {
    { GL_RGBA, GL_RGBA, "RGBA" },
@@ -124,11 +124,11 @@ struct formatInfo rgbaFormats[] =
 };
 
 struct baseFormatInfo {
-   struct	formatInfo *format;
-   int		current, number;
+   struct formatInfo *format;
+   int current, number;
 };
 
-#define NUM_BASE_FORMATS	(sizeof(baseFormats) / sizeof(baseFormats[0]))
+#define NUM_BASE_FORMATS (sizeof(baseFormats) / sizeof(baseFormats[0]))
 int baseFormat;
 struct baseFormatInfo baseFormats[] =
 {
@@ -140,7 +140,7 @@ struct baseFormatInfo baseFormats[] =
    { rgbaFormats, 0, NUM_RGBA_FORMATS },
 };
 
-#define NUM_ENV_COLORS		(sizeof(envColors) / sizeof(envColors[0]))
+#define NUM_ENV_COLORS (sizeof(envColors) / sizeof(envColors[0]))
 int envColor = 0;
 GLfloat envColors[][4] =
 {
@@ -152,8 +152,8 @@ GLfloat envColors[][4] =
 };
 
 struct envModeInfo {
-   GLenum	mode;
-   char		*name;
+   GLenum mode;
+   char *name;
 };
 
 /* allow for run-time check for GL_EXT_texture_env_add */
@@ -191,7 +191,7 @@ static void drawString( const char *string, GLfloat x, GLfloat y,
 }
 
 static void drawStringOutline( const char *string, GLfloat x, GLfloat y,
-			       const GLfloat color[4],
+                               const GLfloat color[4],
                                const GLfloat outline[4] )
 {
    drawString( string, x - 1, y, outline );
@@ -275,24 +275,24 @@ static void special( int key, int x, int y )
    switch ( key ) {
    case GLUT_KEY_DOWN:
       if ( ++baseFormat > NUM_BASE_FORMATS - 1 ) {
-	 baseFormat = 0;
+         baseFormat = 0;
       }
       break;
    case GLUT_KEY_UP:
       if ( --baseFormat < 0 ) {
-	 baseFormat = NUM_BASE_FORMATS - 1;
+         baseFormat = NUM_BASE_FORMATS - 1;
       }
       break;
    case GLUT_KEY_LEFT:
       --baseFormats[baseFormat].current;
       if ( baseFormats[baseFormat].current < 0 ) {
-	 baseFormats[baseFormat].current = baseFormats[baseFormat].number - 1;
+         baseFormats[baseFormat].current = baseFormats[baseFormat].number - 1;
       }
       break;
    case GLUT_KEY_RIGHT:
       ++baseFormats[baseFormat].current;
       if ( baseFormats[baseFormat].current > baseFormats[baseFormat].number - 1 ) {
-	 baseFormats[baseFormat].current = 0;
+         baseFormats[baseFormat].current = 0;
       }
       break;
    default:
@@ -312,13 +312,13 @@ reshape( int w, int h )
 static void loadTexture( int width, int height,
                          const struct formatInfo *format )
 {
-   int		luminanceSize = 0;
-   int		alphaSize = 0;
-   int		rgbSize = 0;
-   GLenum	textureFormat;
-   GLubyte	*texImage, *p;
-   int		elementsPerGroup, elementSize, groupSize, rowSize;
-   int		i, j;
+   int luminanceSize = 0;
+   int alphaSize = 0;
+   int rgbSize = 0;
+   GLenum textureFormat;
+   GLubyte *texImage, *p;
+   int elementsPerGroup, elementSize, groupSize, rowSize;
+   int i, j;
 
    switch ( format->baseFormat ) {
    case GL_LUMINANCE:
@@ -369,106 +369,106 @@ static void loadTexture( int width, int height,
 
       for ( j = 0 ; j < width ; j++ )
       {
-	 if ( luminanceSize > 0 )
-	 {
-	    /**
-	     ** +-----+-----+
-	     ** |     |     |
-	     ** |  W  | LG  |
-	     ** |     |     |
-	     ** +-----+-----+
-	     ** |     |     |
-	     ** | DG  |  B  |
-	     ** |     |     |
-	     ** +-----+-----+
-	     **/
-	    if ( i > height / 2 ) {
-	       if ( j < width / 2 ) {
-		  p[0] = 0xff;
-	       } else {
-		  p[0] = 0xaa;
-	       }
-	    } else {
-	       if ( j < width / 2 ) {
-		  p[0] = 0x55;
-	       } else {
-		  p[0] = 0x00;
-	       }
-	    }
-	    p += elementSize;
-	 }
+         if ( luminanceSize > 0 )
+         {
+            /**
+             ** +-----+-----+
+             ** |     |     |
+             ** |  W  | LG  |
+             ** |     |     |
+             ** +-----+-----+
+             ** |     |     |
+             ** | DG  |  B  |
+             ** |     |     |
+             ** +-----+-----+
+             **/
+            if ( i > height / 2 ) {
+               if ( j < width / 2 ) {
+                  p[0] = 0xff;
+               } else {
+                  p[0] = 0xaa;
+               }
+            } else {
+               if ( j < width / 2 ) {
+                  p[0] = 0x55;
+               } else {
+                  p[0] = 0x00;
+               }
+            }
+            p += elementSize;
+         }
 
-	 if ( rgbSize > 0 )
-	 {
-	    /**
-	     ** +-----+-----+
-	     ** |     |     |
-	     ** |  R  |  G  |
-	     ** |     |     |
-	     ** +-----+-----+
-	     ** |     |     |
-	     ** |  Y  |  B  |
-	     ** |     |     |
-	     ** +-----+-----+
-	     **/
-	    if ( i > height / 2 ) {
-	       if ( j < width / 2 ) {
-		  p[0] = 0xff;
-		  p[1] = 0x00;
-		  p[2] = 0x00;
-	       } else {
-		  p[0] = 0x00;
-		  p[1] = 0xff;
-		  p[2] = 0x00;
-	       }
-	    } else {
-	       if ( j < width / 2 ) {
-		  p[0] = 0xff;
-		  p[1] = 0xff;
-		  p[2] = 0x00;
-	       } else {
-		  p[0] = 0x00;
-		  p[1] = 0x00;
-		  p[2] = 0xff;
-	       }
-	    }
-	    p += 3 * elementSize;
-	 }
+         if ( rgbSize > 0 )
+         {
+            /**
+             ** +-----+-----+
+             ** |     |     |
+             ** |  R  |  G  |
+             ** |     |     |
+             ** +-----+-----+
+             ** |     |     |
+             ** |  Y  |  B  |
+             ** |     |     |
+             ** +-----+-----+
+             **/
+            if ( i > height / 2 ) {
+               if ( j < width / 2 ) {
+                  p[0] = 0xff;
+                  p[1] = 0x00;
+                  p[2] = 0x00;
+               } else {
+                  p[0] = 0x00;
+                  p[1] = 0xff;
+                  p[2] = 0x00;
+               }
+            } else {
+               if ( j < width / 2 ) {
+                  p[0] = 0xff;
+                  p[1] = 0xff;
+                  p[2] = 0x00;
+               } else {
+                  p[0] = 0x00;
+                  p[1] = 0x00;
+                  p[2] = 0xff;
+               }
+            }
+            p += 3 * elementSize;
+         }
 
-	 if ( alphaSize > 0 )
-	 {
-	    /**
-	     ** +-----------+
-	     ** |     W     |
-	     ** |  +-----+  |
-	     ** |  |     |  |
-	     ** |  |  B  |  |
-	     ** |  |     |  |
-	     ** |  +-----+  |
-	     ** |           |
-	     ** +-----------+
-	     **/
-	    int i2 = i - height / 2;
-	    int j2 = j - width / 2;
-	    int h8 = height / 8;
-	    int w8 = width / 8;
-	    if ( -h8 <= i2 && i2 <= h8 && -w8 <= j2 && j2 <= w8 ) {
-	       p[0] = 0x00;
-	    } else if ( -2 * h8 <= i2 && i2 <= 2 * h8 && -2 * w8 <= j2 && j2 <= 2 * w8 ) {
-	       p[0] = 0x55;
-	    } else if ( -3 * h8 <= i2 && i2 <= 3 * h8 && -3 * w8 <= j2 && j2 <= 3 * w8 ) {
-	       p[0] = 0xaa;
-	    } else {
-	       p[0] = 0xff;
-	    }
-	    p += elementSize;
-	 }
+         if ( alphaSize > 0 )
+         {
+            /**
+             ** +-----------+
+             ** |     W     |
+             ** |  +-----+  |
+             ** |  |     |  |
+             ** |  |  B  |  |
+             ** |  |     |  |
+             ** |  +-----+  |
+             ** |           |
+             ** +-----------+
+             **/
+            int i2 = i - height / 2;
+            int j2 = j - width / 2;
+            int h8 = height / 8;
+            int w8 = width / 8;
+            if ( -h8 <= i2 && i2 <= h8 && -w8 <= j2 && j2 <= w8 ) {
+               p[0] = 0x00;
+            } else if ( -2 * h8 <= i2 && i2 <= 2 * h8 && -2 * w8 <= j2 && j2 <= 2 * w8 ) {
+               p[0] = 0x55;
+            } else if ( -3 * h8 <= i2 && i2 <= 3 * h8 && -3 * w8 <= j2 && j2 <= 3 * w8 ) {
+               p[0] = 0xaa;
+            } else {
+               p[0] = 0xff;
+            }
+            p += elementSize;
+         }
       }
    }
 
    glTexImage2D( GL_TEXTURE_2D, 0,
-		 format->internalFormat, width, height, 0,
-		 textureFormat, GL_UNSIGNED_BYTE, texImage );
+                 format->internalFormat, width, height, 0,
+                 textureFormat, GL_UNSIGNED_BYTE, texImage );
 
    free( texImage );
 }
@@ -476,9 +476,9 @@ static void loadTexture( int width, int height,
 static void drawCheck( int w, int h, const GLfloat lightCheck[4],
                        const GLfloat darkCheck[4] )
 {
-   float	dw = 2.0 / w;
-   float	dh = 2.0 / h;
-   int		i, j;
+   float dw = 2.0 / w;
+   float dh = 2.0 / h;
+   int i, j;
 
    for ( i = 0 ; i < w ; i++ ) {
       GLfloat x0 = -1.0 + i * dw;
@@ -487,16 +487,16 @@ static void drawCheck( int w, int h, const GLfloat lightCheck[4],
       glBegin( GL_QUAD_STRIP );
 
       for ( j = 0 ; j <= h ; j++ ) {
-	 GLfloat y = -1.0 + j * dh;
+         GLfloat y = -1.0 + j * dh;
 
-	 if ( (i ^ j) & 1 ) {
-	    glColor4fv( lightCheck );
-	 } else {
-	    glColor4fv( darkCheck );
-	 }
+         if ( (i ^ j) & 1 ) {
+            glColor4fv( lightCheck );
+         } else {
+            glColor4fv( darkCheck );
+         }
 
-	 glVertex2f( x0, y );
-	 glVertex2f( x1, y );
+         glVertex2f( x0, y );
+         glVertex2f( x1, y );
       }
 
       glEnd();
@@ -530,7 +530,7 @@ static const char *lookupFormat( GLint format )
 }
 
 static void drawSample( int x, int y, int w, int h,
-			const struct formatInfo *format,
+                        const struct formatInfo *format,
                         const struct envModeInfo *envMode )
 {
    glViewport( x, y, w, h );
@@ -644,8 +644,8 @@ static void drawSample( int x, int y, int w, int h,
       drawStringOutline( buf, 15, h / 2 - 20, labelLevelColor0, labelLevelColor1 );
 
       sprintf( buf, "  %d / %d / %d / %d / %d / %d",
-	       redSize, greenSize, blueSize, alphaSize,
-	       luminanceSize, intensitySize );
+               redSize, greenSize, blueSize, alphaSize,
+               luminanceSize, intensitySize );
       drawStringOutline( buf, 15, h / 2 - 30, labelLevelColor0, labelLevelColor1 );
 
       end2D();
@@ -654,15 +654,15 @@ static void drawSample( int x, int y, int w, int h,
 
 static void display( void )
 {
-   int		numX = NUM_ENV_MODES, numY = NUM_BASE_FORMATS;
-   float	xBase = (float) winWidth * 0.01;
-   float	xOffset = (winWidth - xBase) / numX;
-   float	xSize = max( xOffset - xBase, 1 );
-   float	yBase = (float) winHeight * 0.01;
-   float	yOffset = (winHeight - yBase) / numY;
-   float	ySize = max( yOffset - yBase, 1 );
-   float	x, y;
-   int		i, j;
+   int numX = NUM_ENV_MODES, numY = NUM_BASE_FORMATS;
+   float xBase = (float) winWidth * 0.01;
+   float xOffset = (winWidth - xBase) / numX;
+   float xSize = max( xOffset - xBase, 1 );
+   float yBase = (float) winHeight * 0.01;
+   float yOffset = (winHeight - yBase) / numY;
+   float ySize = max( yOffset - yBase, 1 );
+   float x, y;
+   int i, j;
 
    glViewport( 0, 0, winWidth, winHeight );
    glDisable( GL_SCISSOR_TEST );
@@ -678,19 +678,19 @@ static void display( void )
       struct formatInfo *format;
 
       if ( i == baseFormat ) {
-	 labelInfoColor = labelColor1;
+         labelInfoColor = labelColor1;
       } else {
-	 labelInfoColor = labelColor0;
+         labelInfoColor = labelColor0;
       }
 
       format = &baseFormats[i].format[baseFormats[i].current];
 
       for ( j = 0 ; j < NUM_ENV_MODES ; j++ ) {
-	 struct envModeInfo *envMode;
+         struct envModeInfo *envMode;
 
-	 envMode = &envModes[j];
-	 drawSample( x, y, xSize, ySize, format, envMode );
-	 x += xOffset;
+         envMode = &envModes[j];
+         drawSample( x, y, xSize, ySize, format, envMode );
+         x += xOffset;
       }
 
       x = xBase;
@@ -740,14 +740,14 @@ int main( int argc, char *argv[] )
 
    for ( i = 1 ; i < argc ; i++ ) {
       if ( !strcmp( "-sb", argv[i] ) ) {
-	 doubleBuffered = GL_FALSE;
+         doubleBuffered = GL_FALSE;
       } else if ( !strcmp( "-db", argv[i] ) ) {
-	 doubleBuffered = GL_TRUE;
+         doubleBuffered = GL_TRUE;
       } else if ( !strcmp( "-info", argv[i] ) ) {
-	 info = GL_TRUE;
+         info = GL_TRUE;
       } else {
-	 usage( argv[0] );
-	 exit( 1 );
+         usage( argv[0] );
+         exit( 1 );
       }
    }
 

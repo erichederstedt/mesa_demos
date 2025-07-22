@@ -149,26 +149,26 @@ setnewpart(part * p)
 
    vinit(v, sin(a) * eject_r * vrnd(), 0.15, cos(a) * eject_r * vrnd());
    vinit(p->p[0], v[0] + vrnd() * ridtri, v[1] + vrnd() * ridtri,
-	 v[2] + vrnd() * ridtri);
+         v[2] + vrnd() * ridtri);
    vinit(p->p[1], v[0] + vrnd() * ridtri, v[1] + vrnd() * ridtri,
-	 v[2] + vrnd() * ridtri);
+         v[2] + vrnd() * ridtri);
    vinit(p->p[2], v[0] + vrnd() * ridtri, v[1] + vrnd() * ridtri,
-	 v[2] + vrnd() * ridtri);
+         v[2] + vrnd() * ridtri);
 
    vinit(p->v, v[0] * eject_vl / (eject_r / 2),
-	 vrnd() * eject_vy + eject_vy / 2, v[2] * eject_vl / (eject_r / 2));
+         vrnd() * eject_vy + eject_vy / 2, v[2] * eject_vl / (eject_r / 2));
 
    c = blu;
 
    vinit4(p->c[0], c[0] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
+          c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
+          c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
    vinit4(p->c[1], c[0] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
+          c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
+          c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
    vinit4(p->c[2], c[0] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
-	  c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
+          c[1] * ((1.0 - RIDCOL) + vrnd() * RIDCOL),
+          c[2] * ((1.0 - RIDCOL) + vrnd() * RIDCOL), 1.0);
 }
 
 static void
@@ -322,10 +322,10 @@ printhelp(void)
    glRasterPos2i(60, 90);
    if (joyavailable)
       printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-		  "j - Toggle jostick control (Joystick control available)");
+                  "j - Toggle jostick control (Joystick control available)");
    else
       printstring(GLUT_BITMAP_TIMES_ROMAN_24,
-		  "(No Joystick control available)");
+                  "(No Joystick control available)");
 }
 
 static void
@@ -343,28 +343,28 @@ dojoy(void)
       joyavailable = 1;
 
       if (max[0] < joy.wXpos)
-	 max[0] = joy.wXpos;
+         max[0] = joy.wXpos;
       if (min[0] > joy.wXpos)
-	 min[0] = joy.wXpos;
+         min[0] = joy.wXpos;
       center[0] = (max[0] + min[0]) / 2;
 
       if (max[1] < joy.wYpos)
-	 max[1] = joy.wYpos;
+         max[1] = joy.wYpos;
       if (min[1] > joy.wYpos)
-	 min[1] = joy.wYpos;
+         min[1] = joy.wYpos;
       center[1] = (max[1] + min[1]) / 2;
 
       if (joyactive) {
-	 if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
-	    alpha +=
-	       2.5 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
-	 if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
-	    beta += 2.5 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
+         if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
+            alpha +=
+               2.5 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
+         if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
+            beta += 2.5 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
 
-	 if (joy.wButtons & JOY_BUTTON1)
-	    v += 0.01;
-	 if (joy.wButtons & JOY_BUTTON2)
-	    v -= 0.01;
+         if (joy.wButtons & JOY_BUTTON1)
+            v += 0.01;
+         if (joy.wButtons & JOY_BUTTON2)
+            v -= 0.01;
       }
    }
    else
@@ -405,8 +405,8 @@ drawfire(void)
    glPushMatrix();
    calcposobs();
    gluLookAt(obs[0], obs[1], obs[2],
-	     obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
-	     0.0, 1.0, 0.0);
+             obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
+             0.0, 1.0, 0.0);
 
    glColor4f(1.0, 1.0, 1.0, 1.0);
 
@@ -459,14 +459,14 @@ drawfire(void)
    if (shadows) {
       glBegin(GL_TRIANGLES);
       for (j = 0; j < np; j++) {
-	 glColor4f(black[0], black[1], black[2], p[j].c[0][3]);
-	 glVertex3f(p[j].p[0][0], 0.1, p[j].p[0][2]);
+         glColor4f(black[0], black[1], black[2], p[j].c[0][3]);
+         glVertex3f(p[j].p[0][0], 0.1, p[j].p[0][2]);
 
-	 glColor4f(black[0], black[1], black[2], p[j].c[1][3]);
-	 glVertex3f(p[j].p[1][0], 0.1, p[j].p[1][2]);
+         glColor4f(black[0], black[1], black[2], p[j].c[1][3]);
+         glVertex3f(p[j].p[1][0], 0.1, p[j].p[1][2]);
 
-	 glColor4f(black[0], black[1], black[2], p[j].c[2][3]);
-	 glVertex3f(p[j].p[2][0], 0.1, p[j].p[2][2]);
+         glColor4f(black[0], black[1], black[2], p[j].c[2][3]);
+         glVertex3f(p[j].p[2][0], 0.1, p[j].p[2][2]);
       }
       glEnd();
    }
@@ -502,7 +502,7 @@ drawfire(void)
    printstring(GLUT_BITMAP_HELVETICA_18, frbuf);
    glRasterPos2i(370, 470);
    printstring(GLUT_BITMAP_HELVETICA_10,
-	       "Fire V1.5 Written by David Bucciarelli (tech.hmw@plus.it)");
+               "Fire V1.5 Written by David Bucciarelli (tech.hmw@plus.it)");
 
    if (help)
       printhelp();
@@ -622,7 +622,7 @@ inittextures(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_LINEAR);
+                   GL_LINEAR_MIPMAP_LINEAR);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
@@ -636,35 +636,35 @@ inittextures(void)
       GLenum format;
       int x, y;
       GLubyte *image = LoadRGBImage(DEMOS_DATA_DIR "tree3.png",
-				    &w, &h, &format);
+                                    &w, &h, &format);
 
       if (!image) {
-	 fprintf(stderr, "Error reading a texture.\n");
-	 exit(-1);
+         fprintf(stderr, "Error reading a texture.\n");
+         exit(-1);
       }
 
       for (y = 0; y < 128; y++)
-	 for (x = 0; x < 128; x++) {
-	    tex[x][y][0] = image[(y + x * 128) * 3];
-	    tex[x][y][1] = image[(y + x * 128) * 3 + 1];
-	    tex[x][y][2] = image[(y + x * 128) * 3 + 2];
-	    if ((tex[x][y][0] == tex[x][y][1]) &&
-		(tex[x][y][1] == tex[x][y][2]) && (tex[x][y][2] == 255))
-	       tex[x][y][3] = 0;
-	    else
-	       tex[x][y][3] = 255;
-	 }
+         for (x = 0; x < 128; x++) {
+            tex[x][y][0] = image[(y + x * 128) * 3];
+            tex[x][y][1] = image[(y + x * 128) * 3 + 1];
+            tex[x][y][2] = image[(y + x * 128) * 3 + 2];
+            if ((tex[x][y][0] == tex[x][y][1]) &&
+                (tex[x][y][1] == tex[x][y][2]) && (tex[x][y][2] == 255))
+               tex[x][y][3] = 0;
+            else
+               tex[x][y][3] = 255;
+         }
 
       if ((gluerr = gluBuild2DMipmaps(GL_TEXTURE_2D, 4, 128, 128, GL_RGBA,
-				      GL_UNSIGNED_BYTE, (GLvoid *) (tex)))) {
-	 fprintf(stderr, "GLULib%s\n", (char *) gluErrorString(gluerr));
-	 exit(-1);
+                                      GL_UNSIGNED_BYTE, (GLvoid *) (tex)))) {
+         fprintf(stderr, "GLULib%s\n", (char *) gluErrorString(gluerr));
+         exit(-1);
       }
    }
    else {
       if (!LoadRGBMipmaps(DEMOS_DATA_DIR "tree2.png", GL_RGBA)) {
-	 fprintf(stderr, "Error reading a texture.\n");
-	 exit(-1);
+         fprintf(stderr, "Error reading a texture.\n");
+         exit(-1);
       }
    }
 
@@ -672,7 +672,7 @@ inittextures(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_LINEAR);
+                   GL_LINEAR_MIPMAP_LINEAR);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -686,12 +686,12 @@ inittree(void)
 
    for (i = 0; i < NUMTREE; i++)
       do {
-	 treepos[i][0] = vrnd() * TREEOUTR * 2.0 - TREEOUTR;
-	 treepos[i][1] = 0.0;
-	 treepos[i][2] = vrnd() * TREEOUTR * 2.0 - TREEOUTR;
-	 dist =
-	    sqrt(treepos[i][0] * treepos[i][0] +
-		 treepos[i][2] * treepos[i][2]);
+         treepos[i][0] = vrnd() * TREEOUTR * 2.0 - TREEOUTR;
+         treepos[i][1] = 0.0;
+         treepos[i][2] = vrnd() * TREEOUTR * 2.0 - TREEOUTR;
+         dist =
+            sqrt(treepos[i][0] * treepos[i][0] +
+                 treepos[i][2] * treepos[i][2]);
       } while ((dist < TREEINR) || (dist > TREEOUTR));
 }
 
@@ -701,7 +701,7 @@ main(int ac, char **av)
    int i;
 
    fprintf(stderr,
-	   "Fire V1.5\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
+           "Fire V1.5\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
 
    /* Default settings */
 

@@ -150,8 +150,8 @@ plot(int x, int y, GLushort color)
             /* draws the pixel centre */
             myImage[x*ZOOM+i][y*ZOOM+j] = 0;
          }
-	 else if ( (i + j == 15) || abs(i - j) == 16 || (i + j == 47) ){
-	    /* draws the pixel diamond, to test diamond exit rule */
+         else if ( (i + j == 15) || abs(i - j) == 16 || (i + j == 47) ){
+            /* draws the pixel diamond, to test diamond exit rule */
             myImage[x*ZOOM+i][y*ZOOM+j] = 0;
          }
          else
@@ -179,42 +179,42 @@ drawMagnifiedView(void)
    case GL_POINT:
       /* Draws bounding point area */
       drawline(X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY-halfwidth,
-	       X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY-halfwidth, 0xffff);
+               X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY-halfwidth, 0xffff);
       drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY-halfwidth,
-	       X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY+halfwidth, 0xffff);
+               X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY+halfwidth, 0xffff);
       drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY+halfwidth,
-	       X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY+halfwidth, 0xffff);
+               X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY+halfwidth, 0xffff);
       drawline(X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY+halfwidth,
-	       X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY-halfwidth, 0xffff);
+               X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY-halfwidth, 0xffff);
       break;
    case GL_LINE:
       /* Draws the actual line on zoomed version */
       drawline(X0+APosX-MouseX, Y0+APosY-MouseY,
-	       X1+APosX-MouseX, Y1+APosY-MouseY, 0);
+               X1+APosX-MouseX, Y1+APosY-MouseY, 0);
 
       /* Draws bounding line area */
       if (fabsf(X0 - X1) >=
-	  fabsf(Y0 - Y1)) {
-	 /* X-MAJOR line */
-	 drawline(X0+APosX-MouseX, Y0+APosY-MouseY+halfwidth,
-		  X1+APosX-MouseX, Y1+APosY-MouseY+halfwidth, 0xffff);
-	 drawline(X0+APosX-MouseX, Y0+APosY-MouseY-halfwidth,
-		  X1+APosX-MouseX, Y1+APosY-MouseY-halfwidth, 0xffff);
-	 drawline(X0+APosX-MouseX, Y0+APosY-MouseY+halfwidth,
-		  X0+APosX-MouseX, Y0+APosY-MouseY-halfwidth, 0xffff);
-	 drawline(X1+APosX-MouseX, Y1+APosY-MouseY+halfwidth,
-		  X1+APosX-MouseX, Y1+APosY-MouseY-halfwidth, 0xffff);
+          fabsf(Y0 - Y1)) {
+         /* X-MAJOR line */
+         drawline(X0+APosX-MouseX, Y0+APosY-MouseY+halfwidth,
+                  X1+APosX-MouseX, Y1+APosY-MouseY+halfwidth, 0xffff);
+         drawline(X0+APosX-MouseX, Y0+APosY-MouseY-halfwidth,
+                  X1+APosX-MouseX, Y1+APosY-MouseY-halfwidth, 0xffff);
+         drawline(X0+APosX-MouseX, Y0+APosY-MouseY+halfwidth,
+                  X0+APosX-MouseX, Y0+APosY-MouseY-halfwidth, 0xffff);
+         drawline(X1+APosX-MouseX, Y1+APosY-MouseY+halfwidth,
+                  X1+APosX-MouseX, Y1+APosY-MouseY-halfwidth, 0xffff);
       }
       else {
-	 /* Y-MAJOR line */
-	 drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY,
-		  X1+APosX-MouseX+halfwidth, Y1+APosY-MouseY, 0xffff);
-	 drawline(X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY,
-		  X1+APosX-MouseX-halfwidth, Y1+APosY-MouseY, 0xffff);
-	 drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY,
-		  X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY, 0xffff);
-	 drawline(X1+APosX-MouseX+halfwidth, Y1+APosY-MouseY,
-		  X1+APosX-MouseX-halfwidth, Y1+APosY-MouseY, 0xffff);
+         /* Y-MAJOR line */
+         drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY,
+                  X1+APosX-MouseX+halfwidth, Y1+APosY-MouseY, 0xffff);
+         drawline(X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY,
+                  X1+APosX-MouseX-halfwidth, Y1+APosY-MouseY, 0xffff);
+         drawline(X0+APosX-MouseX+halfwidth, Y0+APosY-MouseY,
+                  X0+APosX-MouseX-halfwidth, Y0+APosY-MouseY, 0xffff);
+         drawline(X1+APosX-MouseX+halfwidth, Y1+APosY-MouseY,
+                  X1+APosX-MouseX-halfwidth, Y1+APosY-MouseY, 0xffff);
       }
       break;
    }
@@ -253,7 +253,7 @@ Display( void )
    switch (mode) {
    case GL_POINT:
       printf("POINT, (%f, %f), size = %f\n",
-	    X0, Y0, width);
+            X0, Y0, width);
       glPointSize(width);
       glBegin(GL_POINTS);
       glColor3f(.8,0,0);
@@ -262,7 +262,7 @@ Display( void )
       break;
    case GL_LINE:
       printf("LINE, (%f, %f) - (%f, %f), width = %f\n",
-	    X0, Y0, X1, Y1, width);
+            X0, Y0, X1, Y1, width);
       glLineWidth(width);
       glBegin(GL_LINES);
       glColor3f(.8,0,0);
@@ -432,7 +432,7 @@ Mouse(int button, int state, int x, int y)
        x < 160 &&
        y > WinHeight-180)
    {
-	    MouseX = x;
+            MouseX = x;
             MouseY = WinHeight - y;
    }
    glutPostRedisplay();

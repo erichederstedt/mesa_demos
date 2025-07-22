@@ -180,8 +180,8 @@ static void draw_skybox( void )
 
       glBegin(GL_QUADS);
       for ( i = 0 ; i < 24 ; i++ ) {
-	 glTexCoord3fv( & tex_coords[ i * 3 ] );
-	 glVertex3fv  ( & vtx_coords[ i * 3 ] );
+         glTexCoord3fv( & tex_coords[ i * 3 ] );
+         glVertex3fv  ( & vtx_coords[ i * 3 ] );
       }
       glEnd();
    }
@@ -224,9 +224,9 @@ static void draw( void )
 
    if (supportSeamless) {
       if (seamless) {
-	 glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+         glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
       } else {
-	 glDisable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+         glDisable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
       }
    }
    wrap = ClampModes[ClampIndex].mode;
@@ -272,12 +272,12 @@ static void draw( void )
    {
       GLint t = glutGet(GLUT_ELAPSED_TIME);
       if (t - T0 >= 5000) {
-	 GLfloat seconds = (t - T0) / 1000.0;
-	 GLfloat fps = Frames / seconds;
-	 printf("%d frames in %6.3f seconds = %6.3f FPS\n", Frames, seconds, fps);
-	 fflush(stdout);
-	 T0 = t;
-	 Frames = 0;
+         GLfloat seconds = (t - T0) / 1000.0;
+         GLfloat fps = Frames / seconds;
+         printf("%d frames in %6.3f seconds = %6.3f FPS\n", Frames, seconds, fps);
+         fflush(stdout);
+         T0 = t;
+         Frames = 0;
       }
    }
 }
@@ -334,14 +334,14 @@ static void key(unsigned char k, int x, int y)
          set_mode(mode);
          break;
       case 's':
-	 seamless = ! seamless;
-	 printf("Seamless cube map filtering is %sabled\n",
-		(seamless) ? "en" : "dis" );
-	 break;
+         seamless = ! seamless;
+         printf("Seamless cube map filtering is %sabled\n",
+                (seamless) ? "en" : "dis" );
+         break;
       case 'v':
          use_vertex_arrays = ! use_vertex_arrays;
          printf( "Vertex arrays are %sabled\n",
-		 (use_vertex_arrays) ? "en" : "dis" );
+                 (use_vertex_arrays) ? "en" : "dis" );
          break;
       case 'z':
          EyeDist -= 0.5;
@@ -402,12 +402,12 @@ static void init_checkers( void )
 #define CUBE_TEX_SIZE 64
    GLubyte image[CUBE_TEX_SIZE][CUBE_TEX_SIZE][4];
    static const GLubyte colors[6][3] = {
-      { 255,   0,   0 },	/* face 0 - red */
-      {   0, 255, 255 },	/* face 1 - cyan */
-      {   0, 255,   0 },	/* face 2 - green */
-      { 255,   0, 255 },	/* face 3 - purple */
-      {   0,   0, 255 },	/* face 4 - blue */
-      { 255, 255,   0 }		/* face 5 - yellow */
+      { 255,   0,   0 },        /* face 0 - red */
+      {   0, 255, 255 },        /* face 1 - cyan */
+      {   0, 255,   0 },        /* face 2 - green */
+      { 255,   0, 255 },        /* face 3 - purple */
+      {   0,   0, 255 },        /* face 4 - blue */
+      { 255, 255,   0 }         /* face 5 - yellow */
    };
    static const GLenum targets[6] = {
       GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB,
@@ -531,7 +531,7 @@ static void init( GLboolean useImageFiles )
 
    if (!supportFBO && !GLAD_GL_SGIS_generate_mipmap) {
       printf("Sorry, this demo requires GL_EXT_framebuffer_object or "
-	     "GL_SGIS_generate_mipmap\n");
+             "GL_SGIS_generate_mipmap\n");
       exit(0);
    }
 

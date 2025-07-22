@@ -167,7 +167,7 @@ rainParticle::rainParticle()
 }
 
 void rainParticle::setRainingArea(float minx, float miny, float minz,
-				  float maxx, float maxy, float maxz)
+                                  float maxx, float maxy, float maxz)
 {
   vinit(min,minx,miny,minz);
   vinit(max,maxx,maxy,maxz);

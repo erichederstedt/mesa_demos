@@ -53,10 +53,10 @@ make_ball(void)
     for (b = 0.0; b <= 360.0; b += db) {
 
       if (color) {
-	glIndexi(RED);
+        glIndexi(RED);
         glColor3f(1, 0, 0);
       } else {
-	glIndexi(WHITE);
+        glIndexi(WHITE);
         glColor3f(1, 1, 1);
       }
 

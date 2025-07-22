@@ -98,20 +98,20 @@ static GLuint DisplayMode;
 
 
 #define MAT4_MUL(dest_vec, src_mat, src_vec) \
-    "DP4	" dest_vec ".x, " src_mat "[0], " src_vec ";\n" \
-    "DP4	" dest_vec ".y, " src_mat "[1], " src_vec ";\n" \
-    "DP4	" dest_vec ".z, " src_mat "[2], " src_vec ";\n" \
-    "DP4	" dest_vec ".w, " src_mat "[3], " src_vec ";\n"
+    "DP4    " dest_vec ".x, " src_mat "[0], " src_vec ";\n" \
+    "DP4    " dest_vec ".y, " src_mat "[1], " src_vec ";\n" \
+    "DP4    " dest_vec ".z, " src_mat "[2], " src_vec ";\n" \
+    "DP4    " dest_vec ".w, " src_mat "[3], " src_vec ";\n"
 
 #define MAT3_MUL(dest_vec, src_mat, src_vec) \
-    "DP3	" dest_vec ".x, " src_mat "[0], " src_vec ";\n" \
-    "DP3	" dest_vec ".y, " src_mat "[1], " src_vec ";\n" \
-    "DP3	" dest_vec ".z, " src_mat "[2], " src_vec ";\n"
+    "DP3    " dest_vec ".x, " src_mat "[0], " src_vec ";\n" \
+    "DP3    " dest_vec ".y, " src_mat "[1], " src_vec ";\n" \
+    "DP3    " dest_vec ".z, " src_mat "[2], " src_vec ";\n"
 
 #define NORMALIZE(dest, src) \
-    "DP3	" dest ".w, " src ", " src ";\n" \
-    "RSQ	" dest ".w, " dest ".w;\n" \
-    "MUL	" dest ", " src ", " dest ".w;\n"
+    "DP3    " dest ".w, " src ", " src ";\n" \
+    "RSQ    " dest ".w, " dest ".w;\n" \
+    "MUL    " dest ", " src ", " dest ".w;\n"
 
 /**
  * Vertex program for shadow mapping.
@@ -152,19 +152,19 @@ static const char vert_code[] =
     /* Calculate the vector from the vertex to the light in eye
      * coordinates.
      */
-    "SUB	lightVec, lightPos, V;\n"
+    "SUB    lightVec, lightPos, V;\n"
     NORMALIZE("lightVec", "lightVec")
 
     /* Compute diffuse lighting coefficient.
      */
-    "DP3	NdotL.x, n, lightVec;\n"
-    "MAX	NdotL.x, NdotL.x, {0.0};\n"
-    "MIN	NdotL.x, NdotL.x, {1.0};\n"
+    "DP3    NdotL.x, n, lightVec;\n"
+    "MAX    NdotL.x, NdotL.x, {0.0};\n"
+    "MIN    NdotL.x, NdotL.x, {1.0};\n"
 
     /* Accumulate color contributions.
      */
-    "MOV	oColor, diffuseCol;\n"
-    "MAD	oColor.xyz, NdotL.x, diffuseCol, ambientCol;\n"
+    "MOV    oColor, diffuseCol;\n"
+    "MAD    oColor.xyz, NdotL.x, diffuseCol, ambientCol;\n"
     "END\n"
     ;
 
@@ -173,12 +173,12 @@ static const char frag_code[] =
 
     "TEMP   shadow, temp;\n"
 
-    "TXP	shadow, fragment.texcoord[0], texture[0], 2D;\n"
-    "RCP	temp.x, fragment.texcoord[0].w;\n"
-    "MUL	temp.x, temp.x, fragment.texcoord[0].z;\n"
-    "SGE	shadow, shadow.x, temp.x;\n"
-    "MUL	result.color.rgb, fragment.color, shadow.x;\n"
-    "MOV	result.color.a, fragment.color;\n"
+    "TXP    shadow, fragment.texcoord[0], texture[0], 2D;\n"
+    "RCP    temp.x, fragment.texcoord[0].w;\n"
+    "MUL    temp.x, temp.x, fragment.texcoord[0].z;\n"
+    "SGE    shadow, shadow.x, temp.x;\n"
+    "MUL    result.color.rgb, fragment.color, shadow.x;\n"
+    "MOV    result.color.a, fragment.color;\n"
     "END\n"
     ;
 
@@ -188,9 +188,9 @@ static const char frag_shadow_code[] =
 
     "TEMP   shadow;\n"
 
-    "TXP	shadow, fragment.texcoord[0], texture[0], SHADOW2D;\n"
-    "MUL	result.color.rgb, fragment.color, shadow.x;\n"
-    "MOV	result.color.a, fragment.color.a;\n"
+    "TXP    shadow, fragment.texcoord[0], texture[0], SHADOW2D;\n"
+    "MUL    result.color.rgb, fragment.color, shadow.x;\n"
+    "MOV    result.color.a, fragment.color.a;\n"
     "END\n"
     ;
 
@@ -870,7 +870,7 @@ Init(void)
 
    if (!HaveShadow && !HaveFP) {
       printf("Sorry, this demo requires either the GL_ARB_shadow extension "
-	     "or the GL_ARB_fragment_program extension\n");
+             "or the GL_ARB_fragment_program extension\n");
       exit(1);
    }
 

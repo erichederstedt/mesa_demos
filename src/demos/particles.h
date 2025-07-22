@@ -63,7 +63,7 @@ class rainParticle : public particle {
   rainParticle();
 
   static void setRainingArea(float, float, float,
-			     float, float, float);
+                             float, float, float);
   static void setLength(float);
   static float getLength(void) { return partLength; };
 

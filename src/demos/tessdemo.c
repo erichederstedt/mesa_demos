@@ -9,43 +9,43 @@
 #include <string.h>
 #include "glut_wrap.h"
 
-#define MAX_POINTS	256
-#define MAX_CONTOURS	32
-#define MAX_TRIANGLES	256
+#define MAX_POINTS 256
+#define MAX_CONTOURS 32
+#define MAX_TRIANGLES 256
 
 #ifdef GLU_VERSION_1_2
 
 typedef enum{ QUIT, TESSELATE, CLEAR } menu_entries;
 typedef enum{ DEFINE, TESSELATED } mode_type;
 
-static GLsizei		width, height;
-static GLuint		contour_cnt;
-static GLuint		triangle_cnt;
+static GLsizei width, height;
+static GLuint contour_cnt;
+static GLuint triangle_cnt;
 
-static mode_type 	mode;
-static int		menu;
+static mode_type mode;
+static int menu;
 
-static GLuint		list_start;
+static GLuint list_start;
 
-static GLfloat		edge_color[3];
+static GLfloat edge_color[3];
 
 static struct {
-   GLfloat	p[MAX_POINTS][2];
-   GLuint	point_cnt;
+   GLfloat p[MAX_POINTS][2];
+   GLuint point_cnt;
 } contours[MAX_CONTOURS];
 
 static struct {
-   GLsizei	no;
-   GLfloat	p[3][2];
-   GLclampf	color[3][3];
+   GLsizei no;
+   GLfloat p[3][2];
+   GLclampf color[3][3];
 } triangles[MAX_TRIANGLES];
 
 
 
 static void GLAPIENTRY error_callback( GLenum err )
 {
-   int		len, i;
-   char const	*str;
+   int len, i;
+   char const *str;
 
    glColor3f( 0.9, 0.9, 0.9 );
    glRasterPos2i( 5, 5 );
@@ -81,7 +81,7 @@ static void GLAPIENTRY edge_callback( GLenum flag )
 
 static void GLAPIENTRY end_callback(void)
 {
-   GLuint	i;
+   GLuint i;
 
    glBegin( GL_LINES );
 
@@ -89,22 +89,22 @@ static void GLAPIENTRY end_callback(void)
       according to their edge flag. */
    for ( i = 0 ; i < triangle_cnt ; i++ ) {
       glColor3f( triangles[i].color[0][0],
-		 triangles[i].color[0][1],
-		 triangles[i].color[0][2] );
+                 triangles[i].color[0][1],
+                 triangles[i].color[0][2] );
 
       glVertex2f( triangles[i].p[0][0], triangles[i].p[0][1] );
       glVertex2f( triangles[i].p[1][0], triangles[i].p[1][1] );
 
       glColor3f( triangles[i].color[1][0],
-		 triangles[i].color[1][1],
-		 triangles[i].color[1][2] );
+                 triangles[i].color[1][1],
+                 triangles[i].color[1][2] );
 
       glVertex2f( triangles[i].p[1][0], triangles[i].p[1][1] );
       glVertex2f( triangles[i].p[2][0], triangles[i].p[2][1] );
 
       glColor3f( triangles[i].color[2][0],
-		 triangles[i].color[2][1],
-		 triangles[i].color[2][2] );
+                 triangles[i].color[2][1],
+                 triangles[i].color[2][2] );
 
       glVertex2f( triangles[i].p[2][0], triangles[i].p[2][1] );
       glVertex2f( triangles[i].p[0][0], triangles[i].p[0][1] );
@@ -115,8 +115,8 @@ static void GLAPIENTRY end_callback(void)
 
 static void GLAPIENTRY vertex_callback( void *data )
 {
-   GLsizei	no;
-   GLfloat	*p;
+   GLsizei no;
+   GLfloat *p;
 
    p = (GLfloat *) data;
    no = triangles[triangle_cnt].no;
@@ -136,10 +136,10 @@ static void GLAPIENTRY vertex_callback( void *data )
 }
 
 static void GLAPIENTRY combine_callback( GLdouble coords[3],
-				       GLdouble *vertex_data[4],
-				       GLfloat weight[4], void **data )
+                                         GLdouble *vertex_data[4],
+                                         GLfloat weight[4], void **data )
 {
-   GLfloat	*vertex;
+   GLfloat *vertex;
 
    vertex = (GLfloat *) malloc( 2 * sizeof(GLfloat) );
 
@@ -160,9 +160,9 @@ typedef void (GLAPIENTRY *tess_fn)(void);
 
 static void tesse( void )
 {
-   GLUtesselator	*tobj;
-   GLdouble		data[3];
-   GLuint		i, j, point_cnt;
+   GLUtesselator *tobj;
+   GLdouble data[3];
+   GLuint i, j, point_cnt;
 
    list_start = glGenLists( 2 );
 
@@ -203,15 +203,15 @@ static void tesse( void )
       gluBeginPolygon( tobj );
 
       for ( j = 0 ; j <= contour_cnt ; j++ ) {
-	 point_cnt = contours[j].point_cnt;
-	 gluNextContour( tobj, GLU_UNKNOWN );
+         point_cnt = contours[j].point_cnt;
+         gluNextContour( tobj, GLU_UNKNOWN );
 
-	 for ( i = 0 ; i < point_cnt ; i++ ) {
-	    data[0] = (GLdouble)( contours[j].p[i][0] );
-	    data[1] = (GLdouble)( contours[j].p[i][1] );
-	    data[2] = 0.0;
-	    gluTessVertex( tobj, data, contours[j].p[i] );
-	 }
+         for ( i = 0 ; i < point_cnt ; i++ ) {
+            data[0] = (GLdouble)( contours[j].p[i][0] );
+            data[1] = (GLdouble)( contours[j].p[i][1] );
+            data[2] = 0.0;
+            gluTessVertex( tobj, data, contours[j].p[i] );
+         }
       }
 
       gluEndPolygon( tobj );
@@ -226,8 +226,8 @@ static void tesse( void )
 
 static void left_down( int x1, int y1 )
 {
-   GLfloat	P[2];
-   GLuint	point_cnt;
+   GLfloat P[2];
+   GLuint point_cnt;
 
    /* translate GLUT into GL coordinates */
 
@@ -257,7 +257,7 @@ static void left_down( int x1, int y1 )
 
 static void middle_down( int x1, int y1 )
 {
-   GLuint	point_cnt;
+   GLuint point_cnt;
    (void) x1;
    (void) y1;
 
@@ -287,12 +287,12 @@ static void mouse_clicked( int button, int state, int x, int y )
    switch ( button ) {
    case GLUT_LEFT_BUTTON:
       if ( state == GLUT_DOWN ) {
-	 left_down( x, y );
+         left_down( x, y );
       }
       break;
    case GLUT_MIDDLE_BUTTON:
       if ( state == GLUT_DOWN ) {
-	 middle_down( x, y );
+         middle_down( x, y );
       }
       break;
    }
@@ -314,12 +314,12 @@ static void display( void )
       glBegin( GL_LINES );
 
       for ( ii = 0 ; ii < width ; ii += 10 ) {
-	 for ( jj = 0 ; jj < height ; jj += 10 ) {
-	    glVertex2i( 0, jj );
-	    glVertex2i( width, jj );
-	    glVertex2i( ii, height );
-	    glVertex2i( ii, 0 );
-	 }
+         for ( jj = 0 ; jj < height ; jj += 10 ) {
+            glVertex2i( 0, jj );
+            glVertex2i( width, jj );
+            glVertex2i( ii, height );
+            glVertex2i( ii, 0 );
+         }
       }
 
       glEnd();
@@ -327,35 +327,35 @@ static void display( void )
       glColor3f( 1.0, 1.0, 0.0 );
 
       for ( i = 0 ; i <= contour_cnt ; i++ ) {
-	 point_cnt = contours[i].point_cnt;
+         point_cnt = contours[i].point_cnt;
 
-	 glBegin( GL_LINES );
+         glBegin( GL_LINES );
 
-	 switch ( point_cnt ) {
-	 case 0:
-	    break;
-	 case 1:
-	    glVertex2fv( contours[i].p[0] );
-	    glVertex2fv( contours[i].p[0] );
-	    break;
-	 case 2:
-	    glVertex2fv( contours[i].p[0] );
-	    glVertex2fv( contours[i].p[1] );
-	    break;
-	 default:
-	    --point_cnt;
-	    for ( j = 0 ; j < point_cnt ; j++ ) {
-	       glVertex2fv( contours[i].p[j] );
-	       glVertex2fv( contours[i].p[j+1] );
-	    }
-	    if ( contours[i].p[j+1][0] == -1 ) {
-	       glVertex2fv( contours[i].p[0] );
-	       glVertex2fv( contours[i].p[j] );
-	    }
-	    break;
-	 }
+         switch ( point_cnt ) {
+         case 0:
+            break;
+         case 1:
+            glVertex2fv( contours[i].p[0] );
+            glVertex2fv( contours[i].p[0] );
+            break;
+         case 2:
+            glVertex2fv( contours[i].p[0] );
+            glVertex2fv( contours[i].p[1] );
+            break;
+         default:
+            --point_cnt;
+            for ( j = 0 ; j < point_cnt ; j++ ) {
+               glVertex2fv( contours[i].p[j] );
+               glVertex2fv( contours[i].p[j+1] );
+            }
+            if ( contours[i].p[j+1][0] == -1 ) {
+               glVertex2fv( contours[i].p[0] );
+               glVertex2fv( contours[i].p[j] );
+            }
+            break;
+         }
 
-	 glEnd();
+         glEnd();
       }
 
       glFinish();

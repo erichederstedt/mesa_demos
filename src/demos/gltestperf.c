@@ -52,7 +52,7 @@ test01(int size, int num)
    glBegin(GL_POINTS);
    for (y = 0; y < num; y++)
       for (x = 0; x < 480; x++)
-	 glVertex2i(x, x);
+         glVertex2i(x, x);
    glEnd();
 
    return 480 * num;
@@ -83,10 +83,10 @@ test02(int size, int num)
    glBegin(GL_LINES);
    for (y = 0; y < num; y++)
       for (x = 0; x < size; x++) {
-	 glColor3f(0.0, 1.0, y / (float) num);
-	 glVertex2i(0, size - 1);
-	 glColor3f(1.0, 0.0, x / (float) size);
-	 glVertex2i(x, x);
+         glColor3f(0.0, 1.0, y / (float) num);
+         glVertex2i(0, size - 1);
+         glColor3f(1.0, 0.0, x / (float) size);
+         glVertex2i(x, x);
       }
    glEnd();
 
@@ -118,15 +118,15 @@ test03(int size, int num)
    glBegin(GL_TRIANGLES);
    for (y = 0; y < num; y++)
       for (x = 0; x < size; x += 5) {
-	 z = num * size - (y * size + x);
-	 glColor3f(0.0, 1.0, 0.0);
-	 glVertex3i(0, x, z);
+         z = num * size - (y * size + x);
+         glColor3f(0.0, 1.0, 0.0);
+         glVertex3i(0, x, z);
 
-	 glColor3f(1.0, 0.0, x / (float) size);
-	 glVertex3i(size - 1 - x, 0, z);
+         glColor3f(1.0, 0.0, x / (float) size);
+         glVertex3i(size - 1 - x, 0, z);
 
-	 glColor3f(1.0, x / (float) size, 0.0);
-	 glVertex3i(x, size - 1 - x, z);
+         glColor3f(1.0, x / (float) size, 0.0);
+         glVertex3i(x, size - 1 - x, z);
       }
    glEnd();
 
@@ -156,14 +156,14 @@ init_test04(void)
 
    for (y = 0; y < 128; y++)
       for (x = 0; x < 128; x++) {
-	 tex[(x + y * 128) * 3 + 0] = ((x % (128 / 4)) < (128 / 8)) ? 255 : 0;
-	 tex[(x + y * 128) * 3 + 1] = ((y % (128 / 4)) < (128 / 8)) ? 255 : 0;
-	 tex[(x + y * 128) * 3 + 2] = x;
+         tex[(x + y * 128) * 3 + 0] = ((x % (128 / 4)) < (128 / 8)) ? 255 : 0;
+         tex[(x + y * 128) * 3 + 1] = ((y % (128 / 4)) < (128 / 8)) ? 255 : 0;
+         tex[(x + y * 128) * 3 + 2] = x;
       }
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    if ((gluerr = gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 128, 128, GL_RGB,
-				   GL_UNSIGNED_BYTE, (GLvoid *) (&tex[0])))) {
+                                   GL_UNSIGNED_BYTE, (GLvoid *) (&tex[0])))) {
       fprintf(stderr, "GLULib%s\n", (char *) gluErrorString(gluerr));
       exit(-1);
    }
@@ -172,7 +172,7 @@ init_test04(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_NEAREST);
+                   GL_LINEAR_MIPMAP_NEAREST);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -190,18 +190,18 @@ test04(int size, int num)
    glBegin(GL_TRIANGLES);
    for (y = 0; y < num; y++)
       for (x = 0; x < size; x += 5) {
-	 z = num * size - (y * size + x);
-	 glTexCoord2f(1.0, 1.0);
-	 glColor3f(1.0, 0.0, 0.0);
-	 glVertex3i(0, x, z);
+         z = num * size - (y * size + x);
+         glTexCoord2f(1.0, 1.0);
+         glColor3f(1.0, 0.0, 0.0);
+         glVertex3i(0, x, z);
 
-	 glTexCoord2f(0.0, 1.0);
-	 glColor3f(0.0, 1.0, 0.0);
-	 glVertex3i(size - 1 - x, 0, z);
+         glTexCoord2f(0.0, 1.0);
+         glColor3f(0.0, 1.0, 0.0);
+         glVertex3i(size - 1 - x, 0, z);
 
-	 glTexCoord2f(1.0, 0.0);
-	 glColor3f(0.0, 0.0, 1.0);
-	 glVertex3i(x, size - 1 - x, z);
+         glTexCoord2f(1.0, 0.0);
+         glColor3f(0.0, 0.0, 1.0);
+         glVertex3i(x, size - 1 - x, z);
       }
    glEnd();
 
@@ -231,14 +231,14 @@ init_test05(void)
 
    for (y = 0; y < 128; y++)
       for (x = 0; x < 128; x++) {
-	 tex[(x + y * 128) * 3 + 0] = ((x % (128 / 4)) < (128 / 8)) ? 255 : 0;
-	 tex[(x + y * 128) * 3 + 1] = ((y % (128 / 4)) < (128 / 8)) ? 255 : 0;
-	 tex[(x + y * 128) * 3 + 2] = x;
+         tex[(x + y * 128) * 3 + 0] = ((x % (128 / 4)) < (128 / 8)) ? 255 : 0;
+         tex[(x + y * 128) * 3 + 1] = ((y % (128 / 4)) < (128 / 8)) ? 255 : 0;
+         tex[(x + y * 128) * 3 + 2] = x;
       }
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    if ((gluerr = gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 128, 128, GL_RGB,
-				   GL_UNSIGNED_BYTE, (GLvoid *) (&tex[0])))) {
+                                   GL_UNSIGNED_BYTE, (GLvoid *) (&tex[0])))) {
       fprintf(stderr, "GLULib%s\n", (char *) gluErrorString(gluerr));
       exit(-1);
    }
@@ -247,7 +247,7 @@ init_test05(void)
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		   GL_LINEAR_MIPMAP_NEAREST);
+                   GL_LINEAR_MIPMAP_NEAREST);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -405,7 +405,7 @@ dotest0param(benchmark * bmark)
    glPopAttrib();
 
    fprintf(stderr, "Elapsed time for the calibration test (%d): %f\n",
-	   calibnum, dtime);
+           calibnum, dtime);
 
    num = (int) ((BMARKS_TIME / dtime) * calibnum);
 
@@ -434,9 +434,9 @@ dotest0param(benchmark * bmark)
       fprintf(stderr, "Elapsed time for run %d: %f\n", j, dtime);
 
       if (dtime < mintime)
-	 mintime = dtime;
+         mintime = dtime;
       if (dtime > maxtime)
-	 maxtime = dtime;
+         maxtime = dtime;
    }
 
    tottime -= mintime + maxtime;
@@ -446,8 +446,8 @@ dotest0param(benchmark * bmark)
 
    if (bmark->type == 3)
       fprintf(stdout, ", MPixel Fill/sec: %f\n\n",
-	      ((float) numelem * bmark->size[0] * bmark->size[0]) /
-	      (1000000.0f * tottime / 3.0f));
+              ((float) numelem * bmark->size[0] * bmark->size[0]) /
+              (1000000.0f * tottime / 3.0f));
    else
       fprintf(stdout, "\n\n");
 }
@@ -473,21 +473,21 @@ dotest1param(benchmark * bmark)
       dtime = 0.0f;
       calibnum = 0;
       while (dtime < 2.0f) {
-	 bmark->run(bmark->size[j], 1);
-	 glFinish();
-	 etime = glutGet(GLUT_ELAPSED_TIME);
-	 dtime = (etime - stime) / 1000.0f;
-	 calibnum++;
+         bmark->run(bmark->size[j], 1);
+         glFinish();
+         etime = glutGet(GLUT_ELAPSED_TIME);
+         dtime = (etime - stime) / 1000.0f;
+         calibnum++;
       }
       glPopAttrib();
 
       fprintf(stderr, "Elapsed time for the calibration test (%d): %f\n",
-	      calibnum, dtime);
+              calibnum, dtime);
 
       num = (int) ((BMARKS_TIME / dtime) * calibnum);
 
       if (num < 1)
-	 num = 1;
+         num = 1;
 
       fprintf(stderr, "Selected number of benchmark iterations: %d\n", num);
 
@@ -495,37 +495,37 @@ dotest1param(benchmark * bmark)
       maxtime = -HUGE_VAL;
 
       for (numelem = 1, tottime = 0.0, k = 0; k < 5; k++) {
-	 glPushAttrib(GL_ALL_ATTRIB_BITS);
-	 bmark->init();
+         glPushAttrib(GL_ALL_ATTRIB_BITS);
+         bmark->init();
 
-	 stime = glutGet(GLUT_ELAPSED_TIME);
-	 numelem = bmark->run(bmark->size[j], num);
-	 glFinish();
-	 etime = glutGet(GLUT_ELAPSED_TIME);
+         stime = glutGet(GLUT_ELAPSED_TIME);
+         numelem = bmark->run(bmark->size[j], num);
+         glFinish();
+         etime = glutGet(GLUT_ELAPSED_TIME);
 
-	 glPopAttrib();
+         glPopAttrib();
 
-	 dtime = (etime - stime) / 1000.0f;
-	 tottime += dtime;
+         dtime = (etime - stime) / 1000.0f;
+         tottime += dtime;
 
-	 fprintf(stderr, "Elapsed time for run %d: %f\n", k, dtime);
+         fprintf(stderr, "Elapsed time for run %d: %f\n", k, dtime);
 
-	 if (dtime < mintime)
-	    mintime = dtime;
-	 if (dtime > maxtime)
-	    maxtime = dtime;
+         if (dtime < mintime)
+            mintime = dtime;
+         if (dtime > maxtime)
+            maxtime = dtime;
       }
 
       tottime -= mintime + maxtime;
 
       fprintf(stdout, "SIZE=%03d => %f %s/sec", bmark->size[j],
-	      (float) numelem / (tottime / 3.0f), bmark->unit);
+              (float) numelem / (tottime / 3.0f), bmark->unit);
       if (bmark->type == 2)
-	 fprintf(stdout, ", MPixel Fill/sec: %f\n",
-		 ((float) numelem * bmark->size[j] * bmark->size[j] / 2.0f) /
-		 (1000000.0f * tottime / 3.0f));
+         fprintf(stdout, ", MPixel Fill/sec: %f\n",
+                 ((float) numelem * bmark->size[j] * bmark->size[j] / 2.0f) /
+                 (1000000.0f * tottime / 3.0f));
       else
-	 fprintf(stdout, "\n");
+         fprintf(stdout, "\n");
    }
 
    fprintf(stdout, "\n\n");
@@ -549,12 +549,12 @@ display(void)
       switch (bmarks[i].type) {
       case 0:
       case 3:
-	 dotest0param(&bmarks[i]);
-	 break;
+         dotest0param(&bmarks[i]);
+         break;
       case 1:
       case 2:
-	 dotest1param(&bmarks[i]);
-	 break;
+         dotest1param(&bmarks[i]);
+         break;
       }
    }
 

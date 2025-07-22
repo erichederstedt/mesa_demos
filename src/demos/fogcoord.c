@@ -333,7 +333,7 @@ Key( unsigned char key, int x, int y )
          SetFogMode(fogMode);
          break;
       case 'c':
-	 fogCoord = SetFogCoord(fogCoord ^ GL_TRUE);
+         fogCoord = SetFogCoord(fogCoord ^ GL_TRUE);
          break;
       case 't':
          Texture = !Texture;

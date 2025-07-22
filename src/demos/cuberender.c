@@ -299,8 +299,8 @@ CreateCubeTexture(GLint size)
 
    for (face = 0; face < 6; face++) {
       glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, GL_RGBA,
-		   size, size, 0,
-		   GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+                   size, size, 0,
+                   GL_RGBA, GL_UNSIGNED_BYTE, NULL);
    }
 
    CheckError(__LINE__);
@@ -356,13 +356,13 @@ RenderCubeMap(void)
       /* Render color into face of cubemap */
       glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
                                 GL_TEXTURE_CUBE_MAP_POSITIVE_X + face,
-				CubeTexture, 0);
+                                CubeTexture, 0);
 
       status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
       CheckError(__LINE__);
       if (status != GL_FRAMEBUFFER_COMPLETE_EXT) {
-	 fprintf(stderr, "FBO not complete!  status = 0x%04x\n", status);
-	 assert(status == GL_FRAMEBUFFER_COMPLETE_EXT);
+         fprintf(stderr, "FBO not complete!  status = 0x%04x\n", status);
+         assert(status == GL_FRAMEBUFFER_COMPLETE_EXT);
       }
 
       CheckError(__LINE__);

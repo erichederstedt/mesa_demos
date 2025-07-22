@@ -56,70 +56,70 @@ BuildTorus(void)
       theta1 = (float) i *2.0 * M_PI / rings;
       theta2 = (float) (i + 1) * 2.0 * M_PI / rings;
       for (j = 0; j < sides; j++) {
-	 phi1 = (float) j *2.0 * M_PI / sides;
-	 phi2 = (float) (j + 1) * 2.0 * M_PI / sides;
+         phi1 = (float) j *2.0 * M_PI / sides;
+         phi2 = (float) (j + 1) * 2.0 * M_PI / sides;
 
-	 v0[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi1));
-	 v0[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi1));
-	 v0[2] = innerRadius * sin(phi1);
+         v0[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi1));
+         v0[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi1));
+         v0[2] = innerRadius * sin(phi1);
 
-	 v1[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi1));
-	 v1[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi1));
-	 v1[2] = innerRadius * sin(phi1);
-	 v2[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi2));
-	 v2[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi2));
-	 v2[2] = innerRadius * sin(phi2);
+         v1[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi1));
+         v1[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi1));
+         v1[2] = innerRadius * sin(phi1);
+         v2[0] = cos(theta2) * (outerRadius + innerRadius * cos(phi2));
+         v2[1] = -sin(theta2) * (outerRadius + innerRadius * cos(phi2));
+         v2[2] = innerRadius * sin(phi2);
 
-	 v3[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi2));
-	 v3[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi2));
-	 v3[2] = innerRadius * sin(phi2);
+         v3[0] = cos(theta1) * (outerRadius + innerRadius * cos(phi2));
+         v3[1] = -sin(theta1) * (outerRadius + innerRadius * cos(phi2));
+         v3[2] = innerRadius * sin(phi2);
 
-	 n0[0] = cos(theta1) * (cos(phi1));
-	 n0[1] = -sin(theta1) * (cos(phi1));
-	 n0[2] = sin(phi1);
+         n0[0] = cos(theta1) * (cos(phi1));
+         n0[1] = -sin(theta1) * (cos(phi1));
+         n0[2] = sin(phi1);
 
-	 n1[0] = cos(theta2) * (cos(phi1));
-	 n1[1] = -sin(theta2) * (cos(phi1));
-	 n1[2] = sin(phi1);
+         n1[0] = cos(theta2) * (cos(phi1));
+         n1[1] = -sin(theta2) * (cos(phi1));
+         n1[2] = sin(phi1);
 
-	 n2[0] = cos(theta2) * (cos(phi2));
-	 n2[1] = -sin(theta2) * (cos(phi2));
-	 n2[2] = sin(phi2);
+         n2[0] = cos(theta2) * (cos(phi2));
+         n2[1] = -sin(theta2) * (cos(phi2));
+         n2[2] = sin(phi2);
 
-	 n3[0] = cos(theta1) * (cos(phi2));
-	 n3[1] = -sin(theta1) * (cos(phi2));
-	 n3[2] = sin(phi2);
+         n3[0] = cos(theta1) * (cos(phi2));
+         n3[1] = -sin(theta1) * (cos(phi2));
+         n3[2] = sin(phi2);
 
-	 t0[0] = v0[0] * scalFac + 0.5;
-	 t0[1] = v0[1] * scalFac + 0.5;
-	 t0[2] = v0[2] * scalFac + 0.5;
+         t0[0] = v0[0] * scalFac + 0.5;
+         t0[1] = v0[1] * scalFac + 0.5;
+         t0[2] = v0[2] * scalFac + 0.5;
 
-	 t1[0] = v1[0] * scalFac + 0.5;
-	 t1[1] = v1[1] * scalFac + 0.5;
-	 t1[2] = v1[2] * scalFac + 0.5;
+         t1[0] = v1[0] * scalFac + 0.5;
+         t1[1] = v1[1] * scalFac + 0.5;
+         t1[2] = v1[2] * scalFac + 0.5;
 
-	 t2[0] = v2[0] * scalFac + 0.5;
-	 t2[1] = v2[1] * scalFac + 0.5;
-	 t2[2] = v2[2] * scalFac + 0.5;
+         t2[0] = v2[0] * scalFac + 0.5;
+         t2[1] = v2[1] * scalFac + 0.5;
+         t2[2] = v2[2] * scalFac + 0.5;
 
-	 t3[0] = v3[0] * scalFac + 0.5;
-	 t3[1] = v3[1] * scalFac + 0.5;
-	 t3[2] = v3[2] * scalFac + 0.5;
+         t3[0] = v3[0] * scalFac + 0.5;
+         t3[1] = v3[1] * scalFac + 0.5;
+         t3[2] = v3[2] * scalFac + 0.5;
 
-	 glBegin(GL_POLYGON);
-	 glNormal3fv(n3);
-	 glTexCoord3fv(t3);
-	 glVertex3fv(v3);
-	 glNormal3fv(n2);
-	 glTexCoord3fv(t2);
-	 glVertex3fv(v2);
-	 glNormal3fv(n1);
-	 glTexCoord3fv(t1);
-	 glVertex3fv(v1);
-	 glNormal3fv(n0);
-	 glTexCoord3fv(t0);
-	 glVertex3fv(v0);
-	 glEnd();
+         glBegin(GL_POLYGON);
+         glNormal3fv(n3);
+         glTexCoord3fv(t3);
+         glVertex3fv(v3);
+         glNormal3fv(n2);
+         glTexCoord3fv(t2);
+         glVertex3fv(v2);
+         glNormal3fv(n1);
+         glTexCoord3fv(t1);
+         glVertex3fv(v1);
+         glNormal3fv(n0);
+         glTexCoord3fv(t0);
+         glVertex3fv(v0);
+         glEnd();
       }
    }
    glEndList();
@@ -185,7 +185,7 @@ noise3(float vec[3])
    v = at(rx1, ry1, rz0);
    b = lerp(sx, u, v);
 
-   c = lerp(sy, a, b);		/* interpolate in y at lo x */
+   c = lerp(sy, a, b);  /* interpolate in y at lo x */
 
    q = g[b00 + bz1];
    u = at(rx0, ry0, rz1);
@@ -199,9 +199,9 @@ noise3(float vec[3])
    v = at(rx1, ry1, rz1);
    b = lerp(sx, u, v);
 
-   d = lerp(sy, a, b);		/* interpolate in y at hi x */
+   d = lerp(sy, a, b);  /* interpolate in y at hi x */
 
-   return 1.5 * lerp(sz, c, d);	/* interpolate in z */
+   return 1.5 * lerp(sz, c, d);  /* interpolate in z */
 }
 
 static void
@@ -215,14 +215,14 @@ initNoise(void)
    /*srandom(1); */
    srand(1);
    for (i = 0; i < B; i++) {
-      do {			/* Choose uniformly in a cube */
-	 for (j = 0; j < 3; j++)
-	    v[j] = (float) ((rand() % (B + B)) - B) / B;
-	 s = DOT(v, v);
-      } while (s > 1.0);	/* If not in sphere try again */
+      do {  /* Choose uniformly in a cube */
+         for (j = 0; j < 3; j++)
+            v[j] = (float) ((rand() % (B + B)) - B) / B;
+         s = DOT(v, v);
+      } while (s > 1.0);  /* If not in sphere try again */
       s = sqrt(s);
-      for (j = 0; j < 3; j++)	/* Else normalize */
-	 g[i][j] = v[j] / s;
+      for (j = 0; j < 3; j++)  /* Else normalize */
+         g[i][j] = v[j] / s;
    }
 
    /* Create a pseudorandom permutation of [1..B] */
@@ -238,7 +238,7 @@ initNoise(void)
    for (i = 0; i < B + 2; i++) {
       p[B + i] = p[i];
       for (j = 0; j < 3; j++)
-	 g[B + i][j] = g[i][j];
+         g[B + i][j] = g[i][j];
    }
 }
 
@@ -259,7 +259,7 @@ turbulence(float point[3], float lofreq, float hifreq)
       p[1] *= 2.;
       p[2] *= 2.;
    }
-   return t - 0.3;		/* readjust to make mean value = 0.0 */
+   return t - 0.3;  /* readjust to make mean value = 0.0 */
 }
 
 
@@ -280,15 +280,15 @@ create3Dtexture(void)
    for (i = 0; i < tex_width; i++) {
       vec[0] = i;
       for (j = 0; j < tex_height; j++) {
-	 vec[1] = j;
-	 for (k = 0; k < tex_depth; k++) {
-	    vec[2] = k;
-	    tmp = (sin(k * i * j + turbulence(vec, 0.01, 1)) + 1) * 127.5;
-	    *vp++ = 0;
-	    *vp++ = 0;
-	    *vp++ = tmp;
-	    *vp++ = tmp + 128;
-	 }
+         vec[1] = j;
+         for (k = 0; k < tex_depth; k++) {
+            vec[2] = k;
+            tmp = (sin(k * i * j + turbulence(vec, 0.01, 1)) + 1) * 127.5;
+            *vp++ = 0;
+            *vp++ = 0;
+            *vp++ = tmp;
+            *vp++ = tmp + 128;
+         }
       }
    }
 
@@ -302,8 +302,8 @@ create3Dtexture(void)
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA,
-		tex_width, tex_height, tex_depth,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, voxels);
+                tex_width, tex_height, tex_depth,
+                0, GL_RGBA, GL_UNSIGNED_BYTE, voxels);
    if (glGetError() == GL_OUT_OF_MEMORY)
       printf("stex3d: Out of memory allocating %d x %d x %d RGBA texture",
              tex_width, tex_height, tex_depth);
@@ -342,22 +342,22 @@ parseCmdLine(int argc, char **argv)
 
    for (i = 1; i < argc; i++) {
       if (strcmp(argv[i], "-help") == 0) {
-	 printHelp();
-	 return GL_FALSE;
+         printHelp();
+         return GL_FALSE;
       }
       else if (strstr(argv[i], "-w") != NULL) {
-	 tex_width = atoi((argv[i]) + 2);
+         tex_width = atoi((argv[i]) + 2);
       }
       else if (strstr(argv[i], "-h") != NULL) {
-	 tex_height = atoi((argv[i]) + 2);
+         tex_height = atoi((argv[i]) + 2);
       }
       else if (strstr(argv[i], "-d") != NULL) {
-	 tex_depth = atoi((argv[i]) + 2);
+         tex_depth = atoi((argv[i]) + 2);
       }
       else {
-	 printf("%s (Bad option).\n", argv[i]);
-	 printHelp();
-	 return GL_FALSE;
+         printf("%s (Bad option).\n", argv[i]);
+         printHelp();
+         return GL_FALSE;
       }
    }
    if (tex_width == 0 || tex_height == 0 || tex_depth == 0) {
@@ -479,7 +479,7 @@ KeyHandler(unsigned char key, int x, int y)
    switch (key) {
    case 27:
    case 'q':
-   case 'Q':			/* quit game. */
+   case 'Q':  /* quit game. */
       exit(0);
       break;
    case 'z':
@@ -554,15 +554,15 @@ create3Dgradient(void)
 
    for (i = 0; i < tex_depth; i++) {
       for (j = 0; j < tex_height; j++) {
-	 for (k = 0; k < tex_width; k++) {
-	    GLint r = (255 * i) / (tex_depth - 1);
-	    GLint g = (255 * j) / (tex_height - 1);
-	    GLint b = (255 * k) / (tex_width - 1);
-	    *v++ = r;
-	    *v++ = g;
-	    *v++ = b;
-	    *v++ = 255;
-	 }
+         for (k = 0; k < tex_width; k++) {
+            GLint r = (255 * i) / (tex_depth - 1);
+            GLint g = (255 * j) / (tex_height - 1);
+            GLint b = (255 * k) / (tex_width - 1);
+            *v++ = r;
+            *v++ = g;
+            *v++ = b;
+            *v++ = 255;
+         }
       }
    }
 
@@ -575,8 +575,8 @@ create3Dgradient(void)
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA,
-		tex_width, tex_height, tex_depth,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, voxels);
+                tex_width, tex_height, tex_depth,
+                0, GL_RGBA, GL_UNSIGNED_BYTE, voxels);
    if (glGetError() == GL_OUT_OF_MEMORY)
       printf("stex3d: Out of memory allocating %d x %d x %d RGBA texture",
              tex_width, tex_height, tex_depth);
@@ -601,8 +601,8 @@ init(void)
    {
       const char *version = (const char *) glGetString(GL_VERSION);
       if (strncmp(version, "1.0", 3) == 0 || strncmp(version, "1.1", 3) == 0) {
-	 printf("Sorry, OpenGL 1.2 or later is required\n");
-	 exit(1);
+         printf("Sorry, OpenGL 1.2 or later is required\n");
+         exit(1);
       }
    }
    printf("GL_RENDERER: %s\n", (char *) glGetString(GL_RENDERER));

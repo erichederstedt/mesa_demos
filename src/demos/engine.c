@@ -970,9 +970,9 @@ Draw(void)
       glWindowPos2iARB(10, 10);
       PrintString(s);
       if (lit)
-	 glEnable(GL_LIGHTING);
+         glEnable(GL_LIGHTING);
       if (tex)
-	 glEnable(GL_TEXTURE_2D);
+         glEnable(GL_TEXTURE_2D);
    }
 
    /* also print out a periodic fps to stdout.  useful for trying to

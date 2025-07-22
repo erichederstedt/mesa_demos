@@ -38,7 +38,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>       /* for cos(), sin(), and sqrt() */
-#include <stddef.h>	/* for ptrdiff_t, referenced by GL.h when GL_GLEXT_LEGACY defined */
+#include <stddef.h>     /* for ptrdiff_t, referenced by GL.h when GL_GLEXT_LEGACY defined */
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -120,12 +120,12 @@ makeFloorTexture(void)
   for (t = 0; t < 16; t++) {
     for (s = 0; s < 16; s++) {
       if (circles[t][s] == 'x') {
-	/* Nice green. */
+        /* Nice green. */
         loc[0] = 0x1f;
         loc[1] = 0x8f;
         loc[2] = 0x1f;
       } else {
-	/* Light gray. */
+        /* Light gray. */
         loc[0] = 0xaa;
         loc[1] = 0xaa;
         loc[2] = 0xaa;
@@ -416,12 +416,12 @@ redraw(void)
     if (renderReflection) {
       if (stencilReflection) {
         /* We can eliminate the visual "artifact" of seeing the "flipped"
-  	   dinosaur underneath the floor by using stencil.  The idea is
-	   draw the floor without color or depth update but so that
-	   a stencil value of one is where the floor will be.  Later when
-	   rendering the dinosaur reflection, we will only update pixels
-	   with a stencil value of 1 to make sure the reflection only
-	   lives on the floor, not below the floor. */
+           dinosaur underneath the floor by using stencil.  The idea is
+           draw the floor without color or depth update but so that
+           a stencil value of one is where the floor will be.  Later when
+           rendering the dinosaur reflection, we will only update pixels
+           with a stencil value of 1 to make sure the reflection only
+           lives on the floor, not below the floor. */
 
         /* Don't update color or depth. */
         glDisable(GL_DEPTH_TEST);
@@ -450,11 +450,11 @@ redraw(void)
            (the Y=0 plane) to make a relection. */
         glScalef(1.0, -1.0, 1.0);
 
-	/* Reflect the light position. */
+        /* Reflect the light position. */
         glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
         /* To avoid our normals getting reversed and hence botched lighting
-	   on the reflection, turn on normalize.  */
+           on the reflection, turn on normalize.  */
         glEnable(GL_NORMALIZE);
         glCullFace(GL_FRONT);
 
@@ -488,9 +488,9 @@ redraw(void)
 
     if (renderShadow) {
       if (stencilShadow) {
-	/* Draw the floor with stencil value 3.  This helps us only
-	   draw the shadow once per floor pixel (and only on the
-	   floor pixels). */
+        /* Draw the floor with stencil value 3.  This helps us only
+           draw the shadow once per floor pixel (and only on the
+           floor pixels). */
         glEnable(GL_STENCIL_TEST);
         glStencilFunc(GL_ALWAYS, 3, 0xffffffff);
         glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -517,16 +517,16 @@ redraw(void)
       if (stencilShadow) {
 
         /* Now, only render where stencil is set above 2 (ie, 3 where
-	   the top floor is).  Update stencil with 2 where the shadow
-	   gets drawn so we don't redraw (and accidently reblend) the
-	   shadow). */
+           the top floor is).  Update stencil with 2 where the shadow
+           gets drawn so we don't redraw (and accidently reblend) the
+           shadow). */
         glStencilFunc(GL_LESS, 2, 0xffffffff);  /* draw if ==1 */
         glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
       }
 
       /* To eliminate depth buffer artifacts, we use polygon offset
-	 to raise the depth of the projected shadow slightly so
-	 that it does not depth buffer alias with the floor. */
+         to raise the depth of the projected shadow slightly so
+         that it does not depth buffer alias with the floor. */
       if (offsetShadow) {
          switch (polygonOffsetVersion) {
          case EXTENSION:
@@ -549,7 +549,7 @@ redraw(void)
       glColor4f(0.0, 0.0, 0.0, 0.5);
 
       glPushMatrix();
-	/* Project the shadow. */
+        /* Project the shadow. */
         glMultMatrixf((GLfloat *) floorShadow);
         drawDinosaur();
       glPopMatrix();
@@ -585,18 +585,18 @@ redraw(void)
       glRotatef(lightAngle * -180.0 / M_PI, 0, 1, 0);
       glRotatef(atan(lightHeight/12) * 180.0 / M_PI, 0, 0, 1);
       glBegin(GL_TRIANGLE_FAN);
-	glVertex3f(0, 0, 0);
-	glVertex3f(2, 1, 1);
-	glVertex3f(2, -1, 1);
-	glVertex3f(2, -1, -1);
-	glVertex3f(2, 1, -1);
-	glVertex3f(2, 1, 1);
+        glVertex3f(0, 0, 0);
+        glVertex3f(2, 1, 1);
+        glVertex3f(2, -1, 1);
+        glVertex3f(2, -1, -1);
+        glVertex3f(2, 1, -1);
+        glVertex3f(2, 1, 1);
       glEnd();
       /* Draw a white line from light direction. */
       glColor3f(1.0, 1.0, 1.0);
       glBegin(GL_LINES);
-	glVertex3f(0, 0, 0);
-	glVertex3f(5, 0, 0);
+        glVertex3f(0, 0, 0);
+        glVertex3f(5, 0, 0);
       glEnd();
       glEnable(GL_CULL_FACE);
     } else {

@@ -173,8 +173,8 @@ static void drawrain(void)
   glPushMatrix();
   calcposobs();
   gluLookAt(obs[0],obs[1],obs[2],
-	    obs[0]+dir[0],obs[1]+dir[1],obs[2]+dir[2],
-	    0.0,1.0,0.0);
+            obs[0]+dir[0],obs[1]+dir[1],obs[2]+dir[2],
+            0.0,1.0,0.0);
 
   glColor4f(1.0,1.0,1.0,1.0);
 
@@ -296,13 +296,13 @@ static void inittextures(void)
   glBindTexture(GL_TEXTURE_2D,groundid);
 
   if(!(img=LoadRGBImage(DEMOS_DATA_DIR "s128.png",
-			&width,&height,&format))){
-  	fprintf(stderr,"Error reading a texture.\n");
-  	exit(-1);
+                        &width,&height,&format))){
+    fprintf(stderr,"Error reading a texture.\n");
+    exit(-1);
   }
   glPixelStorei(GL_UNPACK_ALIGNMENT,4);
   if((gluerr=(GLenum)gluBuild2DMipmaps(GL_TEXTURE_2D, 3, width, height,GL_RGB,
-			       GL_UNSIGNED_BYTE, (GLvoid *)(img)))) {
+                                       GL_UNSIGNED_BYTE, (GLvoid *)(img)))) {
     fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
     exit(-1);
   }

@@ -46,7 +46,7 @@ static GLint Frames = 0;
 
 #define vequ(a,b) { (a)[0]=(b)[0]; (a)[1]=(b)[1]; (a)[2]=(b)[2]; }
 #define vsub(a,b,c) { (a)[0]=(b)[0]-(c)[0]; (a)[1]=(b)[1]-(c)[1]; (a)[2]=(b)[2]-(c)[2]; }
-#define	dprod(a,b) ((a)[0]*(b)[0]+(a)[1]*(b)[1]+(a)[2]*(b)[2])
+#define dprod(a,b) ((a)[0]*(b)[0]+(a)[1]*(b)[1]+(a)[2]*(b)[2])
 #define vnormalize(a,b) { \
   register float m_norm; \
   m_norm=sqrt((double)dprod((a),(a))); \
@@ -199,22 +199,22 @@ key(unsigned char k, int x, int y)
 
    case 'b':
       if (bfcull) {
-	 glDisable(GL_CULL_FACE);
-	 bfcull = 0;
+         glDisable(GL_CULL_FACE);
+         bfcull = 0;
       }
       else {
-	 glEnable(GL_CULL_FACE);
-	 bfcull = 1;
+         glEnable(GL_CULL_FACE);
+         bfcull = 1;
       }
       break;
    case 'p':
       if (poutline) {
-	 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	 poutline = 0;
+         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+         poutline = 0;
       }
       else {
-	 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	 poutline = 1;
+         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+         poutline = 1;
       }
       break;
    }
@@ -273,25 +273,25 @@ printhelp(void)
    glRasterPos2i(60, 250);
    if (joyavailable)
       printstring(GLUT_BITMAP_HELVETICA_12,
-		  "j - Toggle jostick control (Joystick control available)");
+                  "j - Toggle jostick control (Joystick control available)");
    else
       printstring(GLUT_BITMAP_HELVETICA_12,
-		  "(No Joystick control available)");
+                  "(No Joystick control available)");
 
    glRasterPos2i(60, 230);
    printstring(GLUT_BITMAP_HELVETICA_12,
-	       "To move the light source: s - left,  d - right,  e - far,  x - near,  w - down r - up");
+               "To move the light source: s - left,  d - right,  e - far,  x - near,  w - down r - up");
    glRasterPos2i(60, 210);
    printstring(GLUT_BITMAP_HELVETICA_12,
-	       "To move the mirror sphere: j - left,  k - right,  i - far,  m - near,  u - down o - up");
+               "To move the mirror sphere: j - left,  k - right,  i - far,  m - near,  u - down o - up");
 
    glRasterPos2i(60, 190);
    printstring(GLUT_BITMAP_HELVETICA_12,
-	       "1 - Toggle the plane texture map window");
+               "1 - Toggle the plane texture map window");
 
    glRasterPos2i(60, 170);
    printstring(GLUT_BITMAP_HELVETICA_12,
-	       "2 - Toggle the sphere texture map window");
+               "2 - Toggle the sphere texture map window");
 }
 
 static GLboolean
@@ -313,7 +313,7 @@ seelight(float p[3], float dir[3])
    if (t < EPSILON) {
       t = b + d;
       if (t < EPSILON)
-	 return GL_FALSE;
+         return GL_FALSE;
    }
 
    vsub(dist, lightpos, p);
@@ -341,15 +341,15 @@ colorcheckmap(float ppos[3], float c[3])
    r = 255.0f;
    if (y & 1) {
       if (x & 1)
-	 g = 255.0f;
+         g = 255.0f;
       else
-	 g = 0.0f;
+         g = 0.0f;
    }
    else {
       if (x & 1)
-	 g = 0.0f;
+         g = 0.0f;
       else
-	 g = 255.0f;
+         g = 255.0f;
    }
    b = 0.0f;
 
@@ -397,23 +397,23 @@ updatecheckmap(int slot)
 
    ppos[2] = 0.0f;
    for (y = slot * TEX_CHECK_SLOT_SIZE; y < (slot + 1) * TEX_CHECK_SLOT_SIZE;
-	y++) {
+        y++) {
       ppos[1] = (y / (float) TEX_CHECK_HEIGHT) * BASESIZE - BASESIZE / 2;
 
       for (x = 0; x < TEX_CHECK_WIDTH; x++) {
-	 ppos[0] = (x / (float) TEX_CHECK_WIDTH) * BASESIZE - BASESIZE / 2;
+         ppos[0] = (x / (float) TEX_CHECK_WIDTH) * BASESIZE - BASESIZE / 2;
 
-	 colorcheckmap(ppos, c);
-	 checkmap[y][x][0] = (GLubyte) c[0];
-	 checkmap[y][x][1] = (GLubyte) c[1];
-	 checkmap[y][x][2] = (GLubyte) c[2];
+         colorcheckmap(ppos, c);
+         checkmap[y][x][0] = (GLubyte) c[0];
+         checkmap[y][x][1] = (GLubyte) c[1];
+         checkmap[y][x][2] = (GLubyte) c[2];
       }
    }
 
    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, slot * TEX_CHECK_SLOT_SIZE,
-		   TEX_CHECK_WIDTH, TEX_CHECK_SLOT_SIZE, GL_RGB,
-		   GL_UNSIGNED_BYTE,
-		   &checkmap[slot * TEX_CHECK_SLOT_SIZE][0][0]);
+                   TEX_CHECK_WIDTH, TEX_CHECK_SLOT_SIZE, GL_RGB,
+                   GL_UNSIGNED_BYTE,
+                   &checkmap[slot * TEX_CHECK_SLOT_SIZE][0][0]);
 
 }
 
@@ -427,83 +427,83 @@ updatereflectmap(int slot)
    glBindTexture(GL_TEXTURE_2D, reflectid);
 
    for (y = slot * TEX_REFLECT_SLOT_SIZE;
-	y < (slot + 1) * TEX_REFLECT_SLOT_SIZE; y++)
+        y < (slot + 1) * TEX_REFLECT_SLOT_SIZE; y++)
       for (x = 0; x < TEX_REFLECT_WIDTH; x++) {
-	 ppos[0] = sphere_pos[y][x][0] + objpos[0];
-	 ppos[1] = sphere_pos[y][x][1] + objpos[1];
-	 ppos[2] = sphere_pos[y][x][2] + objpos[2];
+         ppos[0] = sphere_pos[y][x][0] + objpos[0];
+         ppos[1] = sphere_pos[y][x][1] + objpos[1];
+         ppos[2] = sphere_pos[y][x][2] + objpos[2];
 
-	 vsub(norm, ppos, objpos);
-	 vnormalize(norm, norm);
+         vsub(norm, ppos, objpos);
+         vnormalize(norm, norm);
 
-	 vsub(ldir, lightpos, ppos);
-	 vnormalize(ldir, ldir);
-	 vsub(vdir, obs, ppos);
-	 vnormalize(vdir, vdir);
+         vsub(ldir, lightpos, ppos);
+         vnormalize(ldir, ldir);
+         vsub(vdir, obs, ppos);
+         vnormalize(vdir, vdir);
 
-	 rf = 2.0f * dprod(norm, vdir);
-	 if (rf > EPSILON) {
-	    rdir[0] = rf * norm[0] - vdir[0];
-	    rdir[1] = rf * norm[1] - vdir[1];
-	    rdir[2] = rf * norm[2] - vdir[2];
+         rf = 2.0f * dprod(norm, vdir);
+         if (rf > EPSILON) {
+            rdir[0] = rf * norm[0] - vdir[0];
+            rdir[1] = rf * norm[1] - vdir[1];
+            rdir[2] = rf * norm[2] - vdir[2];
 
-	    t = -objpos[2] / rdir[2];
+            t = -objpos[2] / rdir[2];
 
-	    if (t > EPSILON) {
-	       planepos[0] = objpos[0] + t * rdir[0];
-	       planepos[1] = objpos[1] + t * rdir[1];
-	       planepos[2] = 0.0f;
+            if (t > EPSILON) {
+               planepos[0] = objpos[0] + t * rdir[0];
+               planepos[1] = objpos[1] + t * rdir[1];
+               planepos[2] = 0.0f;
 
-	       if (!colorcheckmap(planepos, rcol))
-		  rcol[0] = rcol[1] = rcol[2] = 0.0f;
-	    }
-	    else
-	       rcol[0] = rcol[1] = rcol[2] = 0.0f;
-	 }
-	 else
-	    rcol[0] = rcol[1] = rcol[2] = 0.0f;
+               if (!colorcheckmap(planepos, rcol))
+                  rcol[0] = rcol[1] = rcol[2] = 0.0f;
+            }
+            else
+               rcol[0] = rcol[1] = rcol[2] = 0.0f;
+         }
+         else
+            rcol[0] = rcol[1] = rcol[2] = 0.0f;
 
-	 dfact = 0.1f * dprod(ldir, norm);
+         dfact = 0.1f * dprod(ldir, norm);
 
-	 if (dfact < 0.0f) {
-	    dfact = 0.0f;
-	    kfact = 0.0f;
-	 }
-	 else {
-	    h[0] = 0.5f * (vdir[0] + ldir[0]);
-	    h[1] = 0.5f * (vdir[1] + ldir[1]);
-	    h[2] = 0.5f * (vdir[2] + ldir[2]);
-	    kfact = dprod(h, norm);
+         if (dfact < 0.0f) {
+            dfact = 0.0f;
+            kfact = 0.0f;
+         }
+         else {
+            h[0] = 0.5f * (vdir[0] + ldir[0]);
+            h[1] = 0.5f * (vdir[1] + ldir[1]);
+            h[2] = 0.5f * (vdir[2] + ldir[2]);
+            kfact = dprod(h, norm);
             kfact = pow(kfact, 4.0);
             if (kfact < 1.0e-10)
                kfact = 0.0;
          }
 
-	 r = dfact + kfact;
-	 g = dfact + kfact;
-	 b = dfact + kfact;
+         r = dfact + kfact;
+         g = dfact + kfact;
+         b = dfact + kfact;
 
-	 r *= 255.0f;
-	 g *= 255.0f;
-	 b *= 255.0f;
+         r *= 255.0f;
+         g *= 255.0f;
+         b *= 255.0f;
 
-	 r += rcol[0];
-	 g += rcol[1];
-	 b += rcol[2];
+         r += rcol[0];
+         g += rcol[1];
+         b += rcol[2];
 
-	 r = clamp255(r);
-	 g = clamp255(g);
-	 b = clamp255(b);
+         r = clamp255(r);
+         g = clamp255(g);
+         b = clamp255(b);
 
-	 reflectmap[y][x][0] = (GLubyte) r;
-	 reflectmap[y][x][1] = (GLubyte) g;
-	 reflectmap[y][x][2] = (GLubyte) b;
+         reflectmap[y][x][0] = (GLubyte) r;
+         reflectmap[y][x][1] = (GLubyte) g;
+         reflectmap[y][x][2] = (GLubyte) b;
       }
 
    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, slot * TEX_REFLECT_SLOT_SIZE,
-		   TEX_REFLECT_WIDTH, TEX_REFLECT_SLOT_SIZE, GL_RGB,
-		   GL_UNSIGNED_BYTE,
-		   &reflectmap[slot * TEX_REFLECT_SLOT_SIZE][0][0]);
+                   TEX_REFLECT_WIDTH, TEX_REFLECT_SLOT_SIZE, GL_RGB,
+                   GL_UNSIGNED_BYTE,
+                   &reflectmap[slot * TEX_REFLECT_SLOT_SIZE][0][0]);
 }
 
 static void
@@ -557,28 +557,28 @@ dojoy(void)
       joyavailable = 1;
 
       if (max[0] < joy.wXpos)
-	 max[0] = joy.wXpos;
+         max[0] = joy.wXpos;
       if (min[0] > joy.wXpos)
-	 min[0] = joy.wXpos;
+         min[0] = joy.wXpos;
       center[0] = (max[0] + min[0]) / 2;
 
       if (max[1] < joy.wYpos)
-	 max[1] = joy.wYpos;
+         max[1] = joy.wYpos;
       if (min[1] > joy.wYpos)
-	 min[1] = joy.wYpos;
+         min[1] = joy.wYpos;
       center[1] = (max[1] + min[1]) / 2;
 
       if (joyactive) {
-	 if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
-	    alpha -=
-	       2.5 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
-	 if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
-	    beta += 2.5 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
+         if (fabs(center[0] - (float) joy.wXpos) > 0.1 * (max[0] - min[0]))
+            alpha -=
+               2.5 * (center[0] - (float) joy.wXpos) / (max[0] - min[0]);
+         if (fabs(center[1] - (float) joy.wYpos) > 0.1 * (max[1] - min[1]))
+            beta += 2.5 * (center[1] - (float) joy.wYpos) / (max[1] - min[1]);
 
-	 if (joy.wButtons & JOY_BUTTON1)
-	    v += 0.005;
-	 if (joy.wButtons & JOY_BUTTON2)
-	    v -= 0.005;
+         if (joy.wButtons & JOY_BUTTON1)
+            v += 0.005;
+         if (joy.wButtons & JOY_BUTTON2)
+            v -= 0.005;
       }
    }
    else
@@ -617,8 +617,8 @@ draw(void)
    calcposobs();
 
    gluLookAt(obs[0], obs[1], obs[2],
-	     obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
-	     0.0, 0.0, 1.0);
+             obs[0] + dir[0], obs[1] + dir[1], obs[2] + dir[2],
+             0.0, 0.0, 1.0);
 
    drawbase();
    drawobj();
@@ -704,7 +704,7 @@ draw(void)
    printstring(GLUT_BITMAP_HELVETICA_18, frbuf);
    glRasterPos2i(360, 470);
    printstring(GLUT_BITMAP_HELVETICA_10,
-	       "Ray V1.0 Written by David Bucciarelli (tech.hmw@plus.it)");
+               "Ray V1.0 Written by David Bucciarelli (tech.hmw@plus.it)");
 
    if (help)
       printhelp();
@@ -741,7 +741,7 @@ inittextures(void)
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, TEX_CHECK_WIDTH, TEX_CHECK_HEIGHT,
-		0, GL_RGB, GL_UNSIGNED_BYTE, checkmap);
+                0, GL_RGB, GL_UNSIGNED_BYTE, checkmap);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -759,7 +759,7 @@ inittextures(void)
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, TEX_REFLECT_WIDTH, TEX_REFLECT_HEIGHT,
-		0, GL_RGB, GL_UNSIGNED_BYTE, reflectmap);
+                0, GL_RGB, GL_UNSIGNED_BYTE, reflectmap);
 
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -783,17 +783,17 @@ initspherepos(void)
       beta = M_PI - y * (M_PI / TEX_REFLECT_HEIGHT);
 
       for (x = 0; x < TEX_REFLECT_WIDTH; x++) {
-	 alpha = -x * (2.0f * M_PI / TEX_REFLECT_WIDTH);
+         alpha = -x * (2.0f * M_PI / TEX_REFLECT_WIDTH);
 
-	 sa = sin(alpha);
-	 ca = cos(alpha);
+         sa = sin(alpha);
+         ca = cos(alpha);
 
-	 sb = sin(beta);
-	 cb = cos(beta);
+         sb = sin(beta);
+         cb = cos(beta);
 
-	 sphere_pos[y][x][0] = SPHERE_RADIUS * sa * sb;
-	 sphere_pos[y][x][1] = SPHERE_RADIUS * ca * sb;
-	 sphere_pos[y][x][2] = SPHERE_RADIUS * cb;
+         sphere_pos[y][x][0] = SPHERE_RADIUS * sa * sb;
+         sphere_pos[y][x][1] = SPHERE_RADIUS * ca * sb;
+         sphere_pos[y][x][2] = SPHERE_RADIUS * cb;
       }
    }
 }
@@ -828,7 +828,7 @@ int
 main(int ac, char **av)
 {
    fprintf(stderr,
-	   "Ray V1.0\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
+           "Ray V1.0\nWritten by David Bucciarelli (tech.hmw@plus.it)\n");
 
    /*
       if(!SetPriorityClass(GetCurrentProcess(),REALTIME_PRIORITY_CLASS)) {

@@ -68,7 +68,7 @@ to not waste my time calculating. Following is a table of face radius for
 the regular polyhedra with edge length = 1:
 
     TETRAHEDRON  : 1/(2*sqrt(2))/sqrt(3)
-    CUBE	 : 1/2
+    CUBE         : 1/2
     OCTAHEDRON   : 1/sqrt(6)
     DODECAHEDRON : T^2 * sqrt((T+2)/5) / 2     -> where T=(sqrt(5)+1)/2
     ICOSAHEDRON  : (3*sqrt(3)+sqrt(15))/12
@@ -114,7 +114,7 @@ Why we need ERp? Well, ERp and FRd segments forms a 90 degrees angle,
 completing this triangle, the lesser angle is a half of the angle we are
 looking for, so this angle is:
      +-----------------------------------------------------------+
-     | 2*ARCTAN(ERp/FRd)	 = 63.434948822922009981 degrees |
+     | 2*ARCTAN(ERp/FRd)         = 63.434948822922009981 degrees |
      +-----------------------------------------------------------+
 For the icosahedron we can use the same method used for dodecahedron (well
 the method used for dodecahedron may be used for all regular polyhedra)
@@ -124,7 +124,7 @@ the method used for dodecahedron may be used for all regular polyhedra)
   FRi= (3*sqrt(3)+sqrt(15))/12 = 0.7557613140761707538
 So the angle is:
      +-----------------------------------------------------------+
-     | 2*ARCTAN(ERt/FRi)	 = 41.810314895778596167 degrees |
+     | 2*ARCTAN(ERt/FRi)         = 41.810314895778596167 degrees |
      +-----------------------------------------------------------+
 
 */
@@ -322,26 +322,26 @@ static float MaterialGray[]    =   { 0.2, 0.2, 0.2, 1.0 };
         Xf=(float)(Ri-Ti)*x[Fi] + (float)Ti*x[Fi+1];                                                             \
         Yf=(float)(Ri-Ti)*y[Fi] + (float)Ti*y[Fi+1];                                                             \
         Xa=Xf+0.001; Yb=Yf+0.001;                                                                                \
-	Factor=1-(((Xf2=sqr(Xf))+(Yf2=sqr(Yf)))*AmpVr2);                                                         \
-	Factor1=1-((sqr(Xa)+Yf2)*AmpVr2);                                                                        \
-	Factor2=1-((Xf2+sqr(Yb))*AmpVr2);                                                                        \
+        Factor=1-(((Xf2=sqr(Xf))+(Yf2=sqr(Yf)))*AmpVr2);                                                         \
+        Factor1=1-((sqr(Xa)+Yf2)*AmpVr2);                                                                        \
+        Factor2=1-((Xf2+sqr(Yb))*AmpVr2);                                                                        \
         VertX=Factor*Xf;        VertY=Factor*Yf;        VertZ=Factor*Zf;                                         \
         NeiAX=Factor1*Xa-VertX; NeiAY=Factor1*Yf-VertY; NeiAZ=Factor1*Zf-VertZ;                                  \
         NeiBX=Factor2*Xf-VertX; NeiBY=Factor2*Yb-VertY; NeiBZ=Factor2*Zf-VertZ;                                  \
         glNormal3f(VectMul(NeiAX, NeiAY, NeiAZ, NeiBX, NeiBY, NeiBZ));                                           \
-	glVertex3f(VertX, VertY, VertZ);                                                                         \
+        glVertex3f(VertX, VertY, VertZ);                                                                         \
                                                                                                                  \
         Xf=(float)(Ri-Ti-1)*x[Fi] + (float)Ti*x[Fi+1];                                                           \
         Yf=(float)(Ri-Ti-1)*y[Fi] + (float)Ti*y[Fi+1];                                                           \
         Xa=Xf+0.001; Yb=Yf+0.001;                                                                                \
-	Factor=1-(((Xf2=sqr(Xf))+(Yf2=sqr(Yf)))*AmpVr2);                                                         \
-	Factor1=1-((sqr(Xa)+Yf2)*AmpVr2);                                                                        \
-	Factor2=1-((Xf2+sqr(Yb))*AmpVr2);                                                                        \
+        Factor=1-(((Xf2=sqr(Xf))+(Yf2=sqr(Yf)))*AmpVr2);                                                         \
+        Factor1=1-((sqr(Xa)+Yf2)*AmpVr2);                                                                        \
+        Factor2=1-((Xf2+sqr(Yb))*AmpVr2);                                                                        \
         VertX=Factor*Xf;        VertY=Factor*Yf;        VertZ=Factor*Zf;                                         \
         NeiAX=Factor1*Xa-VertX; NeiAY=Factor1*Yf-VertY; NeiAZ=Factor1*Zf-VertZ;                                  \
         NeiBX=Factor2*Xf-VertX; NeiBY=Factor2*Yb-VertY; NeiBZ=Factor2*Zf-VertZ;                                  \
         glNormal3f(VectMul(NeiAX, NeiAY, NeiAZ, NeiBX, NeiBY, NeiBZ));                                           \
-	glVertex3f(VertX, VertY, VertZ);                                                                         \
+        glVertex3f(VertX, VertY, VertZ);                                                                         \
                                                                                                                  \
       }                                                                                                          \
       Xf=(float)Ri*x[Fi+1];                                                                                      \

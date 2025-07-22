@@ -50,36 +50,36 @@ static void Display( void )
       float vStep = yStep / Height;
       float u, v;
       for (i=0; i<Loops; i++) {
-	 for (y=1.0, v=0.0f; y<Height-yStep; y+=yStep, v+=vStep) {
-	    glBegin(GL_TRIANGLE_STRIP);
-	    for (x=1.0, u=0.0f; x<Width; x+=xStep, u+=uStep) {
-	       glColor3fv(red);
-	       glTexCoord2f(u, v);
-	       glVertex2f(x, y);
-	       glColor3fv(blue);
-	       glTexCoord2f(u, v+vStep);
-	       glVertex2f(x, y+yStep);
-	       triCount += 2;
-	    }
-	    glEnd();
-	    triCount -= 2;
-	 }
+         for (y=1.0, v=0.0f; y<Height-yStep; y+=yStep, v+=vStep) {
+            glBegin(GL_TRIANGLE_STRIP);
+            for (x=1.0, u=0.0f; x<Width; x+=xStep, u+=uStep) {
+               glColor3fv(red);
+               glTexCoord2f(u, v);
+               glVertex2f(x, y);
+               glColor3fv(blue);
+               glTexCoord2f(u, v+vStep);
+               glVertex2f(x, y+yStep);
+               triCount += 2;
+            }
+            glEnd();
+            triCount -= 2;
+         }
       }
    }
    else {
       for (i=0; i<Loops; i++) {
-	 for (y=1.0; y<Height-yStep; y+=yStep) {
-	    glBegin(GL_TRIANGLE_STRIP);
-	    for (x=1.0; x<Width; x+=xStep) {
-	       glColor3fv(red);
-	       glVertex2f(x, y);
-	       glColor3fv(blue);
-	       glVertex2f(x, y+yStep);
-	       triCount += 2;
-	    }
-	    glEnd();
-	    triCount -= 2;
-	 }
+         for (y=1.0; y<Height-yStep; y+=yStep) {
+            glBegin(GL_TRIANGLE_STRIP);
+            for (x=1.0; x<Width; x+=xStep) {
+               glColor3fv(red);
+               glVertex2f(x, y);
+               glColor3fv(blue);
+               glVertex2f(x, y+yStep);
+               triCount += 2;
+            }
+            glEnd();
+            triCount -= 2;
+         }
       }
    }
    glFinish();
@@ -134,10 +134,10 @@ static void LoadTex(int comp, int filter)
    pixels = (GLubyte *) malloc(4*256*256);
    for (y = 0; y < 256; ++y)
       for (x = 0; x < 256; ++x) {
-	 pixels[(y*256+x)*4+0] = (int)(128.5 + 127.0 * cos(0.024544 * x));
-	 pixels[(y*256+x)*4+1] = 255;
-	 pixels[(y*256+x)*4+2] = (int)(128.5 + 127.0 * cos(0.024544 * y));
-	 pixels[(y*256+x)*4+3] = 255;
+         pixels[(y*256+x)*4+0] = (int)(128.5 + 127.0 * cos(0.024544 * x));
+         pixels[(y*256+x)*4+1] = 255;
+         pixels[(y*256+x)*4+2] = (int)(128.5 + 127.0 * cos(0.024544 * y));
+         pixels[(y*256+x)*4+3] = 255;
       }
    glEnable(GL_TEXTURE_2D);
    glTexImage2D(GL_TEXTURE_2D, 0, comp, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
@@ -175,20 +175,20 @@ static void Init( int argc, char *argv[] )
          i++;
       }
       else if (strcmp(argv[i],"-texture")==0)
-	 Texture = 0;
+         Texture = 0;
       else if (strcmp(argv[i],"+texture")==0)
-	 Texture = 1;
+         Texture = 1;
       else if (strcmp(argv[i],"-linear")==0)
-	 filter = GL_NEAREST;
+         filter = GL_NEAREST;
       else if (strcmp(argv[i],"+linear")==0)
-	 filter = GL_LINEAR;
+         filter = GL_LINEAR;
       else if (strcmp(argv[i],"-persp")==0)
-	 glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
       else if (strcmp(argv[i],"+persp")==0)
-	 glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
       else if (strcmp(argv[i],"-comp")==0) {
-	 comp = atoi(argv[i+1]);
-	 i++;
+         comp = atoi(argv[i+1]);
+         i++;
       }
       else
          printf("Unknown option: %s\n", argv[i]);

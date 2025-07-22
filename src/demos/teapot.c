@@ -392,14 +392,14 @@ static void dojoy(void)
 
     if(joyactive) {
       if(fabs(center[0]-(float)joy.wXpos)>0.1*(max[0]-min[0]))
-	alpha-=2.5*(center[0]-(float)joy.wXpos)/(max[0]-min[0]);
+        alpha-=2.5*(center[0]-(float)joy.wXpos)/(max[0]-min[0]);
       if(fabs(center[1]-(float)joy.wYpos)>0.1*(max[1]-min[1]))
-	beta+=2.5*(center[1]-(float)joy.wYpos)/(max[1]-min[1]);
+        beta+=2.5*(center[1]-(float)joy.wYpos)/(max[1]-min[1]);
 
       if(joy.wButtons & JOY_BUTTON1)
-	v+=0.005;
+        v+=0.005;
       if(joy.wButtons & JOY_BUTTON2)
-	v-=0.005;
+        v-=0.005;
     }
   } else
     joyavailable=0;
@@ -433,8 +433,8 @@ static void draw(void)
   calcposobs();
 
   gluLookAt(obs[0],obs[1],obs[2],
-	    obs[0]+dir[0],obs[1]+dir[1],obs[2]+dir[2],
-	    0.0,0.0,1.0);
+            obs[0]+dir[0],obs[1]+dir[1],obs[2]+dir[2],
+            0.0,0.0,1.0);
 
   drawlight1();
   glCallList(basedlist);
@@ -632,7 +632,7 @@ int main(int ac, char **av)
 
   if(!(win=glutCreateWindow("Teapot"))) {
     fprintf(stderr,"Error, couldn't open window\n");
-	return -1;
+    return -1;
   }
 
   reshape(WIDTH,HEIGHT);

@@ -359,9 +359,9 @@ Init( GLboolean ciMode )
 #endif
 
    printf( "GL_OES_read_format %ssupported.  "
-	   "Using type / format = 0x%04x / 0x%04x\n",
-	   (have_read_format) ? "" : "not ",
-	   ReadType, ReadFormat );
+           "Using type / format = 0x%04x / 0x%04x\n",
+           (have_read_format) ? "" : "not ",
+           ReadType, ReadFormat );
 
    printf("Loaded %d by %d image\n", ImgWidth, ImgHeight );
 

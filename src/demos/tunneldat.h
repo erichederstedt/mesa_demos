@@ -1,7 +1,7 @@
 /* Object: skin_13 */
 
 #if defined(_MSC_VER) && defined(_WIN32)
-#pragma warning( disable : 4305 )	/* 'initializing' : truncation from 'const double' to 'float' */
+#pragma warning( disable : 4305 )   /* 'initializing' : truncation from 'const double' to 'float' */
 #endif
 
 static const int striplength_skin_13[] = {
