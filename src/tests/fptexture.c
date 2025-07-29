@@ -7,8 +7,7 @@
 #include <math.h>
 #include "glad/gl.h"
 #include "glut_wrap.h"
-
-#include "../util/readtex.c"
+#include "readtex.h"
 
 
 #define TEXTURE_FILE DEMOS_DATA_DIR "girl.png"

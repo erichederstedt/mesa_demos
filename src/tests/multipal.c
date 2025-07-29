@@ -16,7 +16,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 
-#include "../util/readtex.c"   /* I know, this is a hack. */
+#include "readtex.h"
 
 #define TEXTURE_1_FILE DEMOS_DATA_DIR "tile.png"
 #define TEXTURE_2_FILE DEMOS_DATA_DIR "reflect.png"

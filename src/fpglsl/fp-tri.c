@@ -11,7 +11,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 
-#include "readtex.c"
+#include "readtex.h"
 
 
 #define TEXTURE_FILE DEMOS_DATA_DIR "bw.png"

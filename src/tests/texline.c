@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "glad/gl.h"
 #include "glut_wrap.h"
-#include "../util/readtex.c"   /* I know, this is a hack. */
+#include "readtex.h"
 
 #define TEXTURE_FILE DEMOS_DATA_DIR "girl.png"
 
