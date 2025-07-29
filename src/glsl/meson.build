@@ -60,30 +60,3 @@ executable(
   dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util],
   install: true,
 )
-
-glsl_data = [
-  'blinking-teapot.frag',
-  'blinking-teapot.vert',
-  'CH06-brick.frag',
-  'CH06-brick.vert',
-  'CH11-bumpmap.frag',
-  'CH11-bumpmaptex.frag',
-  'CH11-bumpmap.vert',
-  'CH11-toyball.frag',
-  'CH11-toyball.vert',
-  'CH18-mandel.frag',
-  'CH18-mandel.vert',
-  'convolution.frag',
-  'convolution.vert',
-  'cubemap.frag',
-  'multitex.frag',
-  'multitex.vert',
-  'reflect.vert',
-  'shadowtex.frag',
-  'simple.vert',
-  'simplex-noise.glsl',
-  'skinning.frag',
-  'skinning.vert',
-]
-
-install_data(glsl_data, install_dir: get_option('datadir') / 'mesa-demos')
