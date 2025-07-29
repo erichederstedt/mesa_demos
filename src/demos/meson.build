@@ -18,7 +18,6 @@ progs = [
   ['fbotexture', []],
   ['fire', [idep_readtex]],
   ['fogcoord', []],
-  ['fplight', []],
   ['fslight', []],
   ['gamma', []],
   ['gearbox', []],
