@@ -113,7 +113,7 @@ LoadCompressedImage(const char *file)
     */
    image = LoadRGBImage( file, &ImgWidth, &ImgHeight, &ImgFormat );
    if (!image) {
-      printf("Couldn't read %s\n", IMAGE_FILE);
+      printf("Couldn't read %s\n", file);
       exit(0);
    }
    printf("Image is %d x %d\n", ImgWidth, ImgHeight);

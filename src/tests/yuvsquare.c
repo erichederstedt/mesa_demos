@@ -150,7 +150,7 @@ static void Init( int argc, char *argv[] )
 
    ImageYUV = LoadYUVImage(file, &ImgWidth, &ImgHeight );
    if (!ImageYUV) {
-      printf("Couldn't read %s\n", TEXTURE_FILE);
+      printf("Couldn't read %s\n", file);
       exit(0);
    }
 
@@ -178,7 +178,7 @@ static void Init( int argc, char *argv[] )
 
    ImageRGB = LoadRGBImage(file, &ImgWidth, &ImgHeight, &format );
    if (!ImageRGB) {
-      printf("Couldn't read %s\n", TEXTURE_FILE);
+      printf("Couldn't read %s\n", file);
       exit(0);
    }
 
