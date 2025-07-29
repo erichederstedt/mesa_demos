@@ -41,3 +41,7 @@ install_data(
 
   install_dir: get_option('datadir') / 'mesa-demos',
 )
+
+devenv = environment()
+devenv.set('DEMOS_DATA_DIR', meson.current_source_dir())
+meson.add_devenv(devenv)

@@ -24,7 +24,11 @@ data_file_path(const char *filename)
 {
     static char path[PATH_MAX];
 
-    if (snprintf(path, sizeof(path), "%s/%s", DEMOS_DATA_DIR, filename) < 0) {
+    const char *data_dir = getenv("DEMOS_DATA_DIR");
+    if (!data_dir)
+        data_dir = DEMOS_DEFAULT_DATA_DIR;
+
+    if (snprintf(path, sizeof(path), "%s/%s", data_dir, filename) < 0) {
         perror("snprintf failed");
         abort();
     }

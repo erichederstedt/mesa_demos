@@ -25,7 +25,7 @@ if get_option('with-system-data-files')
   demos_data_dir = get_option('prefix') / get_option('datadir') / 'mesa-demos/'
 endif
 add_project_arguments(
-  '-DDEMOS_DATA_DIR="@0@"'.format(demos_data_dir),
+  '-DDEMOS_DEFAULT_DATA_DIR="@0@"'.format(demos_data_dir),
   language: 'c',
 )
 
