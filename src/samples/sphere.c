@@ -925,13 +925,6 @@ static GLenum Args(int argc, char **argv)
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
-      } else if (strcmp(argv[i], "-f") == 0) {
-         if (i+1 >= argc || argv[i+1][0] == '-') {
-            printf("-f (No file name).\n");
-            return GL_FALSE;
-         } else {
-            imageFileName = argv[++i];
-         }
       } else {
          printf("%s (Bad option).\n", argv[i]);
          return GL_FALSE;
@@ -947,11 +940,6 @@ int main(int argc, char **argv)
    glutInit(&argc, argv);
 
    if (Args(argc, argv) == GL_FALSE) {
-      exit(1);
-   }
-
-   if (imageFileName == 0) {
-      printf("No image file.\n");
       exit(1);
    }
 

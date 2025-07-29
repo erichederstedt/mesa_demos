@@ -17,8 +17,6 @@
 #include "shaderutil.h"
 
 
-static char *FragProgFile = NULL;
-static char *VertProgFile = NULL;
 static GLuint FragShader;
 static GLuint VertShader;
 static GLuint VertProgram;  /* w/out vertex shader */
@@ -128,15 +126,8 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   if (FragProgFile)
-      FragShader = CompileShaderFile(GL_FRAGMENT_SHADER, FragProgFile);
-   else
-      FragShader = CompileShaderText(GL_FRAGMENT_SHADER, fragShaderText);
-
-   if (VertProgFile)
-      VertShader = CompileShaderFile(GL_VERTEX_SHADER, VertProgFile);
-   else
-      VertShader = CompileShaderText(GL_VERTEX_SHADER, vertShaderText);
+   FragShader = CompileShaderText(GL_FRAGMENT_SHADER, fragShaderText);
+   VertShader = CompileShaderText(GL_VERTEX_SHADER, vertShaderText);
 
    VertProgram = LinkShaders(VertShader, 0);
    FragProgram = LinkShaders(0, FragShader);
@@ -155,21 +146,6 @@ Init(void)
 }
 
 
-static void
-ParseOptions(int argc, char *argv[])
-{
-   int i;
-   for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-fs") == 0) {
-         FragProgFile = argv[i+1];
-      }
-      else if (strcmp(argv[i], "-vs") == 0) {
-         VertProgFile = argv[i+1];
-      }
-   }
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -181,7 +157,6 @@ main(int argc, char *argv[])
    glutReshapeFunc(Reshape);
    glutKeyboardFunc(Key);
    glutDisplayFunc(Redisplay);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();

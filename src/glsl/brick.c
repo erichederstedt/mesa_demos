@@ -166,22 +166,6 @@ Init(void)
    glColor3f(1, 0, 0);
 }
 
-
-static void
-ParseOptions(int argc, char *argv[])
-{
-   int i;
-   for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-fs") == 0) {
-         FragProgFile = argv[i+1];
-      }
-      else if (strcmp(argv[i], "-vs") == 0) {
-         VertProgFile = argv[i+1];
-      }
-   }
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -194,7 +178,6 @@ main(int argc, char *argv[])
    glutKeyboardFunc(Key);
    glutSpecialFunc(SpecialKey);
    glutDisplayFunc(Redisplay);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();

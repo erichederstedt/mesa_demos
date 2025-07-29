@@ -29,9 +29,6 @@
 
 static GLint CoordAttrib = 0;
 
-static char *FragProgFile = NULL;
-static char *VertProgFile = NULL;
-
 static GLfloat diffuse[4] = { 0.5f, 0.5f, 1.0f, 1.0f };
 static GLfloat specular[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
 static GLfloat lightPos[4] = { 0.0f, 10.0f, 20.0f, 0.0f };
@@ -465,17 +462,10 @@ Init(void)
    }
 
    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-   if (FragProgFile)
-      ReadShader(fragShader, FragProgFile);
-   else
-      LoadAndCompileShader(fragShader, fragShaderText);
-
+   LoadAndCompileShader(fragShader, fragShaderText);
 
    vertShader = glCreateShader(GL_VERTEX_SHADER);
-   if (VertProgFile)
-      ReadShader(vertShader, VertProgFile);
-   else
-      LoadAndCompileShader(vertShader, vertShaderText);
+   LoadAndCompileShader(vertShader, vertShaderText);
 
    program = glCreateProgram();
    glAttachShader(program, fragShader);
@@ -554,25 +544,6 @@ Init(void)
 }
 
 
-static void
-ParseOptions(int argc, char *argv[])
-{
-   int i;
-   for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-fs") == 0) {
-         FragProgFile = argv[++i];
-      }
-      else if (strcmp(argv[i], "-vs") == 0) {
-         VertProgFile = argv[++i];
-      }
-      else {
-         fprintf(stderr, "unknown option %s\n", argv[i]);
-         break;
-      }
-   }
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -587,7 +558,6 @@ main(int argc, char *argv[])
    glutDisplayFunc(Redisplay);
    if (anim)
       glutIdleFunc(Idle);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();

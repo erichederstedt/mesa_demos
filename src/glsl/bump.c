@@ -309,24 +309,6 @@ Init(void)
 }
 
 
-static void
-ParseOptions(int argc, char *argv[])
-{
-   int i;
-   for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-fs") == 0) {
-         FragProgFile = argv[++i];
-      }
-      else if (strcmp(argv[i], "-vs") == 0) {
-         VertProgFile = argv[++i];
-      }
-      else if (strcmp(argv[i], "-t") == 0) {
-         TextureFile = argv[++i];
-      }
-   }
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -339,7 +321,6 @@ main(int argc, char *argv[])
    glutKeyboardFunc(Key);
    glutSpecialFunc(SpecialKey);
    glutDisplayFunc(Redisplay);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();
