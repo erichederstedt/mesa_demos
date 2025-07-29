@@ -53,7 +53,6 @@ glut_progs = [
   ['mipmap_limits', [idep_readtex]],
   ['mipmap_view', [idep_readtex]],
   ['mipmap_tunnel', []],
-  ['multipal', [idep_readtex]],
   ['multitexarray', []],
   ['multiwindow', []],
   ['no_s3tc', []],

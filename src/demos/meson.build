@@ -31,7 +31,6 @@ progs = [
   ['lodbias', [idep_readtex]],
   ['morph3d', []],
   ['multiarb', [idep_readtex]],
-  ['paltex', []],
   ['pixeltest', []],
   ['pointblast', []],
   ['projtex', [idep_readtex]],
