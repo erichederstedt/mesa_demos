@@ -13,7 +13,6 @@ glut_progs = [
   ['blendxor', [idep_readtex]],
   ['blitfb', []],
   ['bufferobj', []],
-  ['bumpmap', [idep_readtex]],
   ['bug_3050', []],
   ['bug_3101', []],
   ['bug_3195', [idep_readtex]],
