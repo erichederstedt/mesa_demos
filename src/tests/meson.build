@@ -87,8 +87,6 @@ glut_progs = [
   ['texrect', [idep_readtex]],
   ['unfilledclip', []],
   ['viewmemory', []],
-  ['yuvrect', [idep_readtex]],
-  ['yuvsquare', [idep_readtex]],
   ['zbitmap', []],
   ['zcomp', []],
   ['zdrawpix', []],
