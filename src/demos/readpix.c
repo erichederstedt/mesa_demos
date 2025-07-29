@@ -13,8 +13,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "girl.png"
+#include "data.h"
 
 static int ImgWidth, ImgHeight;
 static int WinWidth, WinHeight;
@@ -325,9 +324,10 @@ Init()
    printf("GL_VERSION = %s\n", (char *) glGetString(GL_VERSION));
    printf("GL_RENDERER = %s\n", (char *) glGetString(GL_RENDERER));
 
-   Image = LoadRGBImage( IMAGE_FILE, &ImgWidth, &ImgHeight, &ImgFormat );
+   const char *image_file = data_file_path("girl.png");
+   Image = LoadRGBImage( image_file, &ImgWidth, &ImgHeight, &ImgFormat );
    if (!Image) {
-      printf("Couldn't read %s\n", IMAGE_FILE);
+      printf("Couldn't read %s\n", image_file);
       exit(0);
    }
 

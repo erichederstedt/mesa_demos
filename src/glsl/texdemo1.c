@@ -17,16 +17,9 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "shaderutil.h"
+#include "data.h"
 
 static const char *Demo = "texdemo1";
-
-static const char *ReflectVertFile = DEMOS_DATA_DIR "reflect.vert";
-static const char *CubeFragFile = DEMOS_DATA_DIR "cubemap.frag";
-
-static const char *SimpleVertFile = DEMOS_DATA_DIR "simple.vert";
-static const char *SimpleTexFragFile = DEMOS_DATA_DIR "shadowtex.frag";
-
-static const char *GroundImage = DEMOS_DATA_DIR "tile.png";
 
 static GLuint Program1, Program2;
 
@@ -335,6 +328,7 @@ InitTextures(GLboolean useImageFiles)
       GLenum imgFormat;
       GLubyte *image = NULL;
 
+      const char *GroundImage = data_file_path("tile.png");
       image = LoadRGBImage(GroundImage, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {
          printf("Couldn't read %s\n", GroundImage);
@@ -361,8 +355,8 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 {
    GLuint fragShader, vertShader, program;
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, vertProgFile);
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, fragProgFile);
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path(vertProgFile));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path(fragProgFile));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);
@@ -377,8 +371,8 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 static void
 InitPrograms(void)
 {
-   Program1 = CreateAProgram(ReflectVertFile, CubeFragFile, ReflectUniforms);
-   Program2 = CreateAProgram(SimpleVertFile, SimpleTexFragFile, SimpleUniforms);
+   Program1 = CreateAProgram("reflect.vert", "cubemap.frag", ReflectUniforms);
+   Program2 = CreateAProgram("simple.vert", "shadowtex.frag", SimpleUniforms);
 }
 
 

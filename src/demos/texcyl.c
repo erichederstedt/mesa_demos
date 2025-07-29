@@ -16,8 +16,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "reflect.png"
+#include "data.h"
 
 #define LIT 1
 #define TEXTURED 2
@@ -241,7 +240,7 @@ static void Init( int argc, char *argv[] )
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
-   if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }

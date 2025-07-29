@@ -17,16 +17,14 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "shaderutil.h"
+#include "data.h"
 
 static const char *Demo = "multitex";
 
-static const char *VertFile = DEMOS_DATA_DIR "multitex.vert";
-static const char *FragFile = DEMOS_DATA_DIR "multitex.frag";
-
 static const char *TexFiles[2] =
    {
-      DEMOS_DATA_DIR "tile.png",
-      DEMOS_DATA_DIR "tree2.png"
+      "tile.png",
+      "tree2.png"
    };
 
 
@@ -280,9 +278,10 @@ InitTextures(void)
       GLenum imgFormat;
       GLubyte *image = NULL;
 
-      image = LoadRGBImage(TexFiles[i], &imgWidth, &imgHeight, &imgFormat);
+      const char *path = data_file_path(TexFiles[i]);
+      image = LoadRGBImage(path, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {
-         printf("Couldn't read %s\n", TexFiles[i]);
+         printf("Couldn't read %s\n", path);
          exit(0);
       }
 
@@ -306,8 +305,8 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 {
    GLuint fragShader, vertShader, program;
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, vertProgFile);
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, fragProgFile);
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path(vertProgFile));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path(fragProgFile));
    assert(vertShader);
    program = LinkShaders(vertShader, fragShader);
 
@@ -347,7 +346,7 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 static void
 InitPrograms(void)
 {
-   Program = CreateAProgram(VertFile, FragFile, Uniforms);
+   Program = CreateAProgram("multitex.vert", "multitex.frag", Uniforms);
 }
 
 

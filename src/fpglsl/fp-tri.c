@@ -12,9 +12,8 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
+#include "data.h"
 
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "bw.png"
 
 unsigned show_fps = 0;
 unsigned int frame_cnt = 0;
@@ -251,8 +250,9 @@ static void Init( void )
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
-      printf("Error: couldn't load texture image file %s\n", TEXTURE_FILE);
+   const char *texture_file = data_file_path("bw.png");
+   if (!LoadRGBMipmaps(texture_file, GL_RGB)) {
+      printf("Error: couldn't load texture image file %s\n", texture_file);
       exit(1);
    }
 

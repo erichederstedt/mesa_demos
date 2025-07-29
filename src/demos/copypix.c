@@ -14,8 +14,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "arch.png"
+#include "data.h"
 
 static int ImgWidth, ImgHeight;
 static GLenum ImgFormat;
@@ -216,7 +215,7 @@ static void Usage(void)
 
 int main( int argc, char *argv[] )
 {
-   const char *filename = IMAGE_FILE;
+   const char *filename = data_file_path("arch.png");
 
    glutInitWindowSize( WinWidth, WinHeight );
    glutInit( &argc, argv );

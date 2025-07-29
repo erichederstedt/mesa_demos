@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include "data.h"
 
 enum Filter {
    GAUSSIAN_BLUR,
@@ -39,8 +40,6 @@ struct Texture {
    GLint height;
    GLenum format;
 };
-
-static const char *textureLocation = DEMOS_DATA_DIR "girl2.png";
 
 static GLfloat viewRotx = 0.0, viewRoty = 0.0, viewRotz = 0.0;
 static struct BoundingBox box;
@@ -221,13 +220,13 @@ static void createProgram(const char *vertProgFile,
    program = glCreateProgram();
    if (vertProgFile) {
       vertShader = glCreateShader(GL_VERTEX_SHADER);
-      readShader(vertShader, vertProgFile);
+      readShader(vertShader, data_file_path(vertProgFile));
       glAttachShader(program, vertShader);
    }
 
    if (fragProgFile) {
       fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-      readShader(fragShader, fragProgFile);
+      readShader(fragShader, data_file_path(fragProgFile));
       glAttachShader(program, fragShader);
    }
 
@@ -282,7 +281,7 @@ static void readTexture(const char *filename)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-   data = LoadRGBImage(filename, &texture.width, &texture.height,
+   data = LoadRGBImage(data_file_path(filename), &texture.width, &texture.height,
                        &texture.format);
    if (!data) {
       printf("Error: couldn't load texture image '%s'\n", filename);
@@ -339,8 +338,8 @@ static void init(void)
    fprintf(stderr, "GL_VENDOR     = %s\n", (char *) glGetString(GL_VENDOR));
 
    menuInit();
-   readTexture(textureLocation);
-   createProgram(DEMOS_DATA_DIR "convolution.vert", DEMOS_DATA_DIR "convolution.frag");
+   readTexture("girl2.png");
+   createProgram("convolution.vert", "convolution.frag");
 
    glEnable(GL_TEXTURE_2D);
    glClearColor(1.0, 1.0, 1.0, 1.0);

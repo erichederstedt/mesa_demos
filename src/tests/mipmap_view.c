@@ -15,8 +15,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "arch.png"
+#include "data.h"
 
 #define LEVELS 8
 #define SIZE (1<<LEVELS)
@@ -60,9 +59,10 @@ MipGenTexture( void )
    /* test auto mipmap generation */
    GLint width, height, i;
    GLenum format;
-   GLubyte *image = LoadRGBImage(TEXTURE_FILE, &width, &height, &format);
+   const char *texture_file = data_file_path("arch.png");
+   GLubyte *image = LoadRGBImage(texture_file, &width, &height, &format);
    if (!image) {
-      printf("Error: could not load texture image %s\n", TEXTURE_FILE);
+      printf("Error: could not load texture image %s\n", texture_file);
       exit(1);
    }
    /* resize to TexWidth x TexHeight */

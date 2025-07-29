@@ -14,9 +14,7 @@
 #include <math.h>
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define FILE1 DEMOS_DATA_DIR "bw.png"
-#define FILE2 DEMOS_DATA_DIR "arch.png"
+#include "data.h"
 
 
 static int Win;
@@ -239,15 +237,17 @@ Key(unsigned char key, int x, int y)
 static void
 Init(void)
 {
-   Image[0] = LoadRGBImage(FILE1, &ImgWidth[0], &ImgHeight[0], &ImgFormat[0]);
+   const char *file1 = data_file_path("bw.png");
+   Image[0] = LoadRGBImage(file1, &ImgWidth[0], &ImgHeight[0], &ImgFormat[0]);
    if (!Image[0]) {
-      printf("Couldn't read %s\n", FILE1);
+      printf("Couldn't read %s\n", file1);
       exit(0);
    }
 
-   Image[1] = LoadRGBImage(FILE2, &ImgWidth[1], &ImgHeight[1], &ImgFormat[1]);
+   const char *file2 = data_file_path("arch.png");
+   Image[1] = LoadRGBImage(file2, &ImgWidth[1], &ImgHeight[1], &ImgFormat[1]);
    if (!Image[1]) {
-      printf("Couldn't read %s\n", FILE2);
+      printf("Couldn't read %s\n", file2);
       exit(0);
    }
 

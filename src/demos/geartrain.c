@@ -15,6 +15,7 @@
 #include "glut_wrap.h"
 #include <string.h>
 #include <stdio.h>
+#include "data.h"
 
 #ifndef min
 #define min(x, y) ( x < y ? x : y )
@@ -984,7 +985,7 @@ main (int argc, char *argv[])
      exit (1);
 
    if (argc < 2)
-      file = DEMOS_DATA_DIR "geartrain.dat";
+      file = data_file_path("geartrain.dat");
    else
       file = argv[1];
 

@@ -30,12 +30,11 @@
 #include <stdlib.h>
 #include "glut_wrap.h"
 #include "readtex.h"
+#include "data.h"
 
 
 GLenum doubleBuffer;
 int W = 400, H = 400;
-
-char *imageFileName = DEMOS_DATA_DIR "reflect.png";
 
 float *minFilter, *magFilter, *sWrapMode, *tWrapMode;
 float decal[] = {GL_DECAL};
@@ -662,6 +661,7 @@ static void Init(void)
 
    SetDefaultSettings();
 
+   const char *imageFileName = data_file_path("reflect.png");
    image = LoadRGBImage(imageFileName, &w, &h, &format);
    if (!image) {
       printf("Error: couldn't load %s\n", imageFileName);

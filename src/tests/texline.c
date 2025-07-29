@@ -14,8 +14,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "girl.png"
+#include "data.h"
 
 static GLboolean Antialias = GL_FALSE;
 static GLboolean Animate = GL_FALSE;
@@ -231,7 +230,7 @@ static void Init( int argc, char *argv[] )
          glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-      if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
+      if (!LoadRGBMipmaps(data_file_path("girl.png"), GL_RGB)) {
          printf("Error: couldn't load texture image\n");
          exit(1);
       }

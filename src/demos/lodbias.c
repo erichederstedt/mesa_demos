@@ -20,8 +20,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "girl.png"
+#include "data.h"
 
 static GLfloat Xrot = 0, Yrot = -30, Zrot = 0;
 static GLboolean Anim = GL_TRUE;
@@ -203,13 +202,14 @@ static void Init( void )
    glGenTextures(1, &TexObj);
    glBindTexture(GL_TEXTURE_2D, TexObj);
 
+   const char *texture_file = data_file_path("girl.png");
    if (glutExtensionSupported("GL_SGIS_generate_mipmap")) {
       /* test auto mipmap generation */
       GLint width, height, i;
       GLenum format;
-      GLubyte *image = LoadRGBImage(TEXTURE_FILE, &width, &height, &format);
+      GLubyte *image = LoadRGBImage(texture_file, &width, &height, &format);
       if (!image) {
-         printf("Error: could not load texture image %s\n", TEXTURE_FILE);
+         printf("Error: could not load texture image %s\n", texture_file);
          exit(1);
       }
       /* resize to 256 x 256 */
@@ -240,8 +240,8 @@ static void Init( void )
       }
 
    }
-   else if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
-      printf("Error: could not load texture image %s\n", TEXTURE_FILE);
+   else if (!LoadRGBMipmaps(texture_file, GL_RGB)) {
+      printf("Error: could not load texture image %s\n", texture_file);
       exit(1);
    }
 

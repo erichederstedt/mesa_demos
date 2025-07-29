@@ -35,10 +35,10 @@
 #include "glut_wrap.h"
 #include "showbuffer.h"
 #include "readtex.h"
+#include "data.h"
 
 
 #define DEG2RAD (M_PI / 180.0)
-#define TABLE_TEXTURE DEMOS_DATA_DIR "tile.png"
 #define MAX_OBJECTS 2
 #define INIT_WIDTH 400
 #define INIT_HEIGHT 300
@@ -200,9 +200,11 @@ InitWindow(struct window *w)
    w->table_list = MakeTable();
    MakeObjects(w->objects_list);
 
-   image = LoadRGBImage( TABLE_TEXTURE, &imgWidth, &imgHeight, &imgFormat );
+   const char *table_texture = data_file_path("tile.png");
+
+   image = LoadRGBImage( table_texture, &imgWidth, &imgHeight, &imgFormat );
    if (!image) {
-      printf("Couldn't read %s\n", TABLE_TEXTURE);
+      printf("Couldn't read %s\n", table_texture);
       exit(0);
    }
 

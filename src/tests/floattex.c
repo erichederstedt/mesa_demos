@@ -11,9 +11,8 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "shaderutil.h"
+#include "data.h"
 
-
-static const char *TexFile = DEMOS_DATA_DIR "arch.png";
 
 static const char *FragShaderText =
    "uniform sampler2D tex1; \n"
@@ -111,6 +110,7 @@ InitTexture(void)
    GLfloat *ftex;
    GLint i, t;
 
+   const char *TexFile = data_file_path("arch.png");
    image = LoadRGBImage(TexFile, &imgWidth, &imgHeight, &imgFormat);
    if (!image) {
       printf("Couldn't read %s\n", TexFile);

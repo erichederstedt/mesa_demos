@@ -18,6 +18,7 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "tunneldat.h"
+#include "data.h"
 
 static int WIDTH = 640;
 static int HEIGHT = 480;
@@ -66,7 +67,7 @@ inittextures(void)
    glGenTextures(1, &t1id);
    glBindTexture(GL_TEXTURE_2D, t1id);
 
-   if (!LoadRGBMipmaps(DEMOS_DATA_DIR "tile.png", GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }
@@ -81,7 +82,7 @@ inittextures(void)
    glGenTextures(1, &t2id);
    glBindTexture(GL_TEXTURE_2D, t2id);
 
-   if (!LoadRGBMipmaps(DEMOS_DATA_DIR "bw.png", GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("bw.png"), GL_RGB)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }

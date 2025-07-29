@@ -10,9 +10,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "tree2.png"
-
+#include "data.h"
 
 static float Rot = 0.0;
 static GLboolean Anim = 1;
@@ -291,7 +289,7 @@ static void Init( void )
       }
    }
 
-   t3.data = LoadRGBImage(TEXTURE_FILE, (GLint *)&t3.w, (GLint *)&t3.h, &t3.format);
+   t3.data = LoadRGBImage(data_file_path("tree2.png"), (GLint *)&t3.w, (GLint *)&t3.h, &t3.format);
    t3.size = t3.w * t3.h * ((t3.format == GL_RGB) ? 3 : 4);
    t3.TC = GL_RGBA;
 

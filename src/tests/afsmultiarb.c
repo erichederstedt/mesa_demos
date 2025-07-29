@@ -15,9 +15,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define TEXTURE_1_FILE DEMOS_DATA_DIR "girl.png"
-#define TEXTURE_2_FILE DEMOS_DATA_DIR "reflect.png"
+#include "data.h"
 
 #define TEX0 1
 #define TEX7 8
@@ -266,13 +264,13 @@ static void Init( int argc, char *argv[] )
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
       if (i == 0) {
-         if (!LoadRGBMipmaps(TEXTURE_1_FILE, GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path("girl.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }
       }
       else if (i == 1) {
-         if (!LoadRGBMipmaps(TEXTURE_2_FILE, GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }

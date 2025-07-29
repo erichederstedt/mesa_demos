@@ -20,6 +20,7 @@
 #endif
 
 #include "glut_wrap.h"
+#include "data.h"
 
 #define heightMnt    450
 #define lengthXmnt   62
@@ -549,7 +550,7 @@ loadpic(void)
    GLenum gluerr;
    size_t result;
 
-   if ((FilePic = fopen(DEMOS_DATA_DIR "terrain.dat", "r")) == NULL) {
+   if ((FilePic = fopen(data_file_path("terrain.dat"), "r")) == NULL) {
       fprintf(stderr, "Error loading terrain.dat\n");
       exit(-1);
    }

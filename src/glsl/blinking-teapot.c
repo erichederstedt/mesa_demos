@@ -12,7 +12,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "shaderutil.h"
-
+#include "data.h"
 
 static int mouse_old_x, mouse_old_y;
 static int mouse_buttons = 0;
@@ -63,8 +63,8 @@ init_opengl (void)
      exit(1);
   }
 
-  vshad_id = CompileShaderFile (GL_VERTEX_SHADER, DEMOS_DATA_DIR "blinking-teapot.vert");
-  fshad_id = CompileShaderFile (GL_FRAGMENT_SHADER, DEMOS_DATA_DIR "blinking-teapot.frag");
+  vshad_id = CompileShaderFile (GL_VERTEX_SHADER, data_file_path("blinking-teapot.vert"));
+  fshad_id = CompileShaderFile (GL_FRAGMENT_SHADER, data_file_path("blinking-teapot.frag"));
   prog_id = LinkShaders (vshad_id, fshad_id);
 
   glUseProgram (prog_id);

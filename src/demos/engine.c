@@ -14,11 +14,10 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "trackball.h"
+#include "data.h"
 
 
 #define DEG_TO_RAD(DEG)  ((DEG) * M_PI / 180.0)
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "reflect.png"
 
 /* Target engine speed: */
 const int RPM = 100.0;
@@ -1240,6 +1239,7 @@ void LoadTexture(void)
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
+   const char *texture_file = data_file_path("reflect.png");
    if (convolve) {
 #define FILTER_SIZE 7
       /* use convolution to blur the texture to simulate a dull finish
@@ -1267,9 +1267,9 @@ void LoadTexture(void)
                             FILTER_SIZE, FILTER_SIZE,
                             GL_RGBA, GL_FLOAT, filter);
 
-      img = LoadRGBImage(TEXTURE_FILE, &w, &h, &format);
+      img = LoadRGBImage(texture_file, &w, &h, &format);
       if (!img) {
-         printf("Error: couldn't load texture image file %s\n", TEXTURE_FILE);
+         printf("Error: couldn't load texture image file %s\n", texture_file);
          exit(1);
       }
 
@@ -1278,8 +1278,8 @@ void LoadTexture(void)
       free(img);
    }
    else {
-      if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
-         printf("Error: couldn't load texture image file %s\n", TEXTURE_FILE);
+      if (!LoadRGBMipmaps(texture_file, GL_RGB)) {
+         printf("Error: couldn't load texture image file %s\n", texture_file);
          exit(1);
       }
    }

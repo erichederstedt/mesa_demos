@@ -24,8 +24,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define TEXTURE_FILE DEMOS_DATA_DIR "girl.png"
+#include "data.h"
 
 static GLint BaseLevel = 0, MaxLevel = 9;
 static GLfloat MinLod = -1, MaxLod = 9;
@@ -101,9 +100,10 @@ makeImages(int image)
       /* test auto mipmap generation */
       GLint width, height, i;
       GLenum format;
-      GLubyte *image = LoadRGBImage(TEXTURE_FILE, &width, &height, &format);
+      const char *texture_file = data_file_path("girl.png");
+      GLubyte *image = LoadRGBImage(texture_file, &width, &height, &format);
       if (!image) {
-         printf("Error: could not load texture image %s\n", TEXTURE_FILE);
+         printf("Error: could not load texture image %s\n", texture_file);
          exit(1);
       }
       /* resize */

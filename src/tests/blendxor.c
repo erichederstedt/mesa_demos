@@ -9,8 +9,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "arch.png"
+#include "data.h"
 
 static int ImgWidth, ImgHeight;
 static GLenum ImgFormat;
@@ -159,9 +158,10 @@ Init(void)
    /*
     * Load image and scale if needed.
     */
-   Image = LoadRGBImage(IMAGE_FILE, &ImgWidth, &ImgHeight, &ImgFormat);
+   const char *image_file = data_file_path("arch.png");
+   Image = LoadRGBImage(image_file, &ImgWidth, &ImgHeight, &ImgFormat);
    if (!Image) {
-      printf("Couldn't read %s\n", IMAGE_FILE);
+      printf("Couldn't read %s\n", image_file);
       exit(0);
    }
 

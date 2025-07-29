@@ -15,9 +15,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "shaderutil.h"
-
-static char *FragProgFile = DEMOS_DATA_DIR "skinning.frag";
-static char *VertProgFile = DEMOS_DATA_DIR "skinning.vert";
+#include "data.h"
 
 /* program/shader objects */
 static GLuint fragShader;
@@ -218,8 +216,10 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, VertProgFile);
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, FragProgFile);
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER,
+                                  data_file_path("skinning.vert"));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER,
+                                  data_file_path("skinning.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

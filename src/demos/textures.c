@@ -3,12 +3,14 @@
  */
 
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
+#include "data.h"
 
 #define TEST_CLAMP 0
 #define TEST_MIPMAPS 0
@@ -32,10 +34,10 @@ static float TexPos[MAX_TEXTURES][3];
 static float TexAspect[MAX_TEXTURES];
 
 static const char *DefaultFiles[] = {
-   DEMOS_DATA_DIR "arch.png",
-   DEMOS_DATA_DIR "reflect.png",
-   DEMOS_DATA_DIR "tree2.png",
-   DEMOS_DATA_DIR "tile.png"
+   "arch.png",
+   "reflect.png",
+   "tree2.png",
+   "tile.png"
 };
 
 
@@ -280,7 +282,7 @@ SpecialKey(int key, int x, int y)
 
 
 static void
-LoadTextures(GLuint n, const char *files[])
+LoadTextures(GLuint n, const char *files[], bool use_data_dir)
 {
    GLuint i;
 
@@ -291,6 +293,10 @@ LoadTextures(GLuint n, const char *files[])
    SetTexParams();
 
    for (i = 0; i < n; i++) {
+      const char *path = files[i];
+      if (use_data_dir)
+         path = data_file_path(path);
+
       GLint w, h;
       glBindTexture(GL_TEXTURE_2D, Textures[i]);
 #if TEST_MIPMAPS
@@ -327,7 +333,7 @@ LoadTextures(GLuint n, const char *files[])
          GLenum intFormat = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
          int f;
          GLenum format;
-         GLubyte *img = LoadRGBImage(files[i], &w, &h, &format);
+         GLubyte *img = LoadRGBImage(path, &w, &h, &format);
          GLboolean write_compressed = GL_FALSE;
          GLboolean read_compressed = GL_FALSE;
 
@@ -386,13 +392,13 @@ LoadTextures(GLuint n, const char *files[])
          }
       }
 #else
-      if (!LoadRGBMipmaps2(files[i], GL_TEXTURE_2D, GL_RGB, &w, &h)) {
-         printf("Error: couldn't load %s\n", files[i]);
+      if (!LoadRGBMipmaps2(path, GL_TEXTURE_2D, GL_RGB, &w, &h)) {
+         printf("Error: couldn't load %s\n", path);
          exit(1);
       }
 #endif
       TexAspect[i] = (float) w / (float) h;
-      printf("Loaded %s\n", files[i]);
+      printf("Loaded %s\n", path);
    }
 }
 
@@ -401,9 +407,9 @@ static void
 Init(int argc, const char *argv[])
 {
    if (argc == 1)
-      LoadTextures(4, DefaultFiles);
+      LoadTextures(4, DefaultFiles, true);
    else
-      LoadTextures(argc - 1, argv + 1);
+      LoadTextures(argc - 1, argv + 1, false);
 
    Randomize();
 

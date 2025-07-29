@@ -9,8 +9,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "arch.png"
+#include "data.h"
 
 static int ImgWidth, ImgHeight;
 static GLenum ImgFormat;
@@ -286,7 +285,7 @@ main( int argc, char *argv[] )
    if (argc > 1)
       Init(argv[1]);
    else
-      Init(IMAGE_FILE);
+      Init(data_file_path("arch.png"));
 
    glutMainLoop();
    gladLoaderUnloadGL();

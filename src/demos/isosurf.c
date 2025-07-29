@@ -36,7 +36,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-#define TEXTURE_FILE DEMOS_DATA_DIR "reflect.png"
+#include "data.h"
 
 #define LIT 0x00000001
 #define UNLIT 0x00000002
@@ -870,7 +870,7 @@ static void Init(int argc, char *argv[])
          expand_arrays();
          make_tri_indices();
 
-         if (!LoadRGBMipmaps(TEXTURE_FILE, GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }
@@ -1046,7 +1046,7 @@ int main(int argc, char **argv)
    if (arg_mode & QUIT)
       exit(0);
 
-   read_surface(DEMOS_DATA_DIR "isosurf.dat");
+   read_surface(data_file_path("isosurf.dat"));
 
    glutInitWindowSize(400, 400);
    glutInit( &argc, argv);

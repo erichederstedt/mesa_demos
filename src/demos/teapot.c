@@ -18,6 +18,7 @@
 
 #include "glut_wrap.h"
 #include "readtex.h"
+#include "data.h"
 
 static int WIDTH=640;
 static int HEIGHT=480;
@@ -489,7 +490,7 @@ static void inittextures(void)
    glBindTexture(GL_TEXTURE_2D,t1id);
 
    glPixelStorei(GL_UNPACK_ALIGNMENT,4);
-   if (!LoadRGBMipmaps(DEMOS_DATA_DIR "tile.png", GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB)) {
       fprintf(stderr,"Error reading a texture.\n");
       exit(-1);
    }
@@ -512,7 +513,7 @@ static void inittextures(void)
    glPixelTransferf(GL_BLUE_SCALE, 0.75);
    glPixelTransferf(GL_BLUE_BIAS, 0.25);
 
-   if (!LoadRGBMipmaps(DEMOS_DATA_DIR "bw.png", GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("bw.png"), GL_RGB)) {
       fprintf(stderr,"Error reading a texture.\n");
       exit(-1);
    }

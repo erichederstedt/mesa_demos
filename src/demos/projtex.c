@@ -23,6 +23,7 @@
 #include "glut_wrap.h"
 #include "readtex.h"
 #include "matrix.h"
+#include "data.h"
 
 
 #define MAX_TEX 4
@@ -48,10 +49,10 @@ GLboolean showProjection = GL_TRUE;
 GLboolean linearFilter = GL_TRUE;
 
 char *texFilename[MAX_TEX] = {
-   DEMOS_DATA_DIR "girl.png",
-   DEMOS_DATA_DIR "tile.png",
-   DEMOS_DATA_DIR "bw.png",
-   DEMOS_DATA_DIR "reflect.png"
+   "girl.png",
+   "tile.png",
+   "bw.png",
+   "reflect.png"
 };
 
 
@@ -127,10 +128,11 @@ loadImageTextures(void)
       GLenum imgFormat;
       int i, j;
 
-      printf("loading %s\n", texFilename[tex]);
-      image = LoadRGBImage(texFilename[tex], &imgWidth, &imgHeight, &imgFormat);
+      const char *filename = data_file_path(texFilename[tex]);
+      printf("loading %s\n", filename);
+      image = LoadRGBImage(filename, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {
-         printf("can't find %s\n", texFilename[tex]);
+         printf("can't find %s\n", filename);
          exit(1);
       }
       assert(imgFormat == GL_RGB);

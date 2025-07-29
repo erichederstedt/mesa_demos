@@ -12,10 +12,8 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "shaderutil.h"
+#include "data.h"
 
-
-static char *FragProgFile = DEMOS_DATA_DIR "CH18-mandel.frag";
-static char *VertProgFile = DEMOS_DATA_DIR "CH18-mandel.vert";
 
 /* program/shader objects */
 static GLuint fragShader;
@@ -153,8 +151,8 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, VertProgFile);
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, FragProgFile);
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path("CH18-mandel.vert"));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path("CH18-mandel.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

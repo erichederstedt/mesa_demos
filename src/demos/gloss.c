@@ -27,10 +27,8 @@
 
 #include "readtex.h"
 #include "trackball.h"
+#include "data.h"
 
-
-#define SPECULAR_TEXTURE_FILE DEMOS_DATA_DIR "reflect.png"
-#define BASE_TEXTURE_FILE DEMOS_DATA_DIR "tile.png"
 
 /* Menu items */
 #define DO_SPEC_TEXTURE 1
@@ -367,8 +365,10 @@ static void Init( int argc, char *argv[] )
    glBindTexture(GL_TEXTURE_2D, BaseTexture);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   if (!LoadRGBMipmaps(BASE_TEXTURE_FILE, GL_RGB)) {
-      printf("Error: couldn't load texture image file %s\n", BASE_TEXTURE_FILE);
+
+   const char *base_texture_file = data_file_path("tile.png");
+   if (!LoadRGBMipmaps(base_texture_file, GL_RGB)) {
+      printf("Error: couldn't load texture image file %s\n", base_texture_file);
       exit(1);
    }
 
@@ -380,9 +380,10 @@ static void Init( int argc, char *argv[] )
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
-   if (!LoadRGBMipmaps(SPECULAR_TEXTURE_FILE, GL_RGB)) {
+   const char *specular_texture_file = data_file_path("reflect.png");
+   if (!LoadRGBMipmaps(specular_texture_file, GL_RGB)) {
       printf("Error: couldn't load texture image file %s\n",
-               SPECULAR_TEXTURE_FILE);
+               specular_texture_file);
       exit(1);
    }
 

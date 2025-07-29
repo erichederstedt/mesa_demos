@@ -20,6 +20,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
+#include "data.h"
 
 static int WIDTH = 640;
 static int HEIGHT = 480;
@@ -142,7 +143,7 @@ inittextures(void)
    glGenTextures(1, &t1id);
    glBindTexture(GL_TEXTURE_2D, t1id);
 
-   if (!LoadRGBMipmaps(DEMOS_DATA_DIR "bw.png", 3)) {
+   if (!LoadRGBMipmaps(data_file_path("bw.png"), 3)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }

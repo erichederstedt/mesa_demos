@@ -12,8 +12,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "girl.png"
+#include "data.h"
 
 static GLfloat Zrot = 0;
 
@@ -82,9 +81,10 @@ static void Init( void )
    }
 
 #if 1
-   image = LoadRGBImage( IMAGE_FILE, &imgWidth, &imgHeight, &imgFormat );
+   const char *image_file = data_file_path("girl.png");
+   image = LoadRGBImage( image_file, &imgWidth, &imgHeight, &imgFormat );
    if (!image) {
-      printf("Couldn't read %s\n", IMAGE_FILE);
+      printf("Couldn't read %s\n", image_file);
       exit(0);
    }
 #else

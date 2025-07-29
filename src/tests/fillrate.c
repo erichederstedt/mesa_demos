@@ -13,9 +13,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
-
-#define TEXTURE_1_FILE DEMOS_DATA_DIR "tile.png"
-#define TEXTURE_2_FILE DEMOS_DATA_DIR "reflect.png"
+#include "data.h"
 
 static int Win;
 static int Width = 1010, Height = 1010;
@@ -171,7 +169,7 @@ Init(void)
    glBindTexture(GL_TEXTURE_2D, Textures[0]);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-   if (!LoadRGBMipmaps(TEXTURE_1_FILE, GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }
@@ -179,7 +177,7 @@ Init(void)
    glBindTexture(GL_TEXTURE_2D, Textures[1]);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-   if (!LoadRGBMipmaps(TEXTURE_2_FILE, GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }

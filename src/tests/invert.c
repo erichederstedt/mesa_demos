@@ -22,8 +22,7 @@
 #include "glut_wrap.h"
 
 #include "readtex.h"
-
-#define IMAGE_FILE DEMOS_DATA_DIR "tree3.png"
+#include "data.h"
 
 static int Width = 420;
 static int Height = 150;
@@ -130,10 +129,11 @@ static void Init( void )
 	  "square should look upside-down.\n");
 
 
-   image = LoadRGBImage( IMAGE_FILE, (GLint *) & img_width, (GLint *) & img_height,
+   const char *image_file = data_file_path("tree3.png");
+   image = LoadRGBImage( image_file, (GLint *) & img_width, (GLint *) & img_height,
 			 & img_format );
    if ( image == NULL ) {
-      printf( "Could not open image file \"%s\".\n", IMAGE_FILE );
+      printf( "Could not open image file \"%s\".\n", image_file );
       exit(1);
    }
 

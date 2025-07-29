@@ -15,6 +15,7 @@
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "shaderutil.h"
+#include "data.h"
 
 
 static const char *VertShaderText =
@@ -170,7 +171,7 @@ SpecialKey(int key, int x, int y)
 static void
 Init(void)
 {
-   const char *filename = DEMOS_DATA_DIR "simplex-noise.glsl";
+   const char *filename = data_file_path("simplex-noise.glsl");
    char noiseText[10000];
    FILE *f;
    int len;
