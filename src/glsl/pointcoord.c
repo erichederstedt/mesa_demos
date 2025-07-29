@@ -16,8 +16,6 @@
 
 
 static GLint WinWidth = 300, WinHeight = 300;
-static char *FragProgFile = NULL;
-static char *VertProgFile = NULL;
 static GLuint fragShader;
 static GLuint vertShader;
 static GLuint program;
@@ -181,21 +179,6 @@ Init(void)
 }
 
 
-static void
-ParseOptions(int argc, char *argv[])
-{
-   int i;
-   for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-fs") == 0) {
-         FragProgFile = argv[i+1];
-      }
-      else if (strcmp(argv[i], "-vs") == 0) {
-         VertProgFile = argv[i+1];
-      }
-   }
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -207,7 +190,6 @@ main(int argc, char *argv[])
    glutReshapeFunc(Reshape);
    glutKeyboardFunc(Key);
    glutDisplayFunc(Redisplay);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();

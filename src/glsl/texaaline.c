@@ -337,13 +337,6 @@ Init(void)
 #endif
 }
 
-
-static void
-ParseOptions(int argc, char *argv[])
-{
-}
-
-
 int
 main(int argc, char *argv[])
 {
@@ -355,7 +348,6 @@ main(int argc, char *argv[])
    glutReshapeFunc(Reshape);
    glutKeyboardFunc(Key);
    glutDisplayFunc(Redisplay);
-   ParseOptions(argc, argv);
    Init();
    glutMainLoop();
    gladLoaderUnloadGL();
