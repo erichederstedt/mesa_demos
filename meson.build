@@ -73,22 +73,6 @@ endif
 
 dep_libdecor = null_dep
 if dep_wayland.found()
-  dep_wl_scanner = dependency('wayland-scanner', native: true)
-  prog_wl_scanner = find_program(
-    dep_wl_scanner.get_variable(pkgconfig: 'wayland_scanner'),
-  )
-  if dep_wl_scanner.version().version_compare('>= 1.15')
-    wl_scanner_arg = 'private-code'
-  else
-    wl_scanner_arg = 'code'
-  endif
-  dep_wl_protocols = dependency('wayland-protocols', version: '>= 1.12')
-  wayland_xdg_shell_xml = join_paths(
-    dep_wl_protocols.get_variable(pkgconfig: 'pkgdatadir'),
-    'stable',
-    'xdg-shell',
-    'xdg-shell.xml',
-  )
   dep_libdecor = dependency('libdecor-0', version: '>= 0.1')
 endif
 
