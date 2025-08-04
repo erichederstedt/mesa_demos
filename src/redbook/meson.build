@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 progs = [
-  'aaindex',
   'aapoly',
   'aargb',
   'accanti',
@@ -25,7 +24,6 @@ progs = [
   'feedback',
   'fog',
   'fogcoord',
-  'fogindex',
   'font',
   'hello',
   'image',

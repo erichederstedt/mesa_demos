@@ -117,8 +117,6 @@ static void Init( int argc, char *argv[] )
    for (i=1; i<argc; i++) {
       if (strcmp(argv[i],"+rgb")==0)
          ColorMode = GLUT_RGB;
-      else if (strcmp(argv[i],"+ci")==0)
-         ColorMode = GLUT_INDEX;
       else if (strcmp(argv[i],"-color")==0)
          BufferMask = 0;
       else if (strcmp(argv[i],"+depth")==0)

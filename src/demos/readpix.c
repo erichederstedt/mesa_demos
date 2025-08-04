@@ -318,7 +318,7 @@ Key( unsigned char key, int x, int y )
 
 
 static void
-Init( GLboolean ciMode )
+Init()
 {
    GLboolean have_read_format = GL_FALSE;
 
@@ -329,24 +329,6 @@ Init( GLboolean ciMode )
    if (!Image) {
       printf("Couldn't read %s\n", IMAGE_FILE);
       exit(0);
-   }
-
-   if (ciMode) {
-      /* Convert RGB image to grayscale */
-      GLubyte *indexImage = (GLubyte *) malloc( ImgWidth * ImgHeight );
-      GLint i;
-      for (i=0; i<ImgWidth*ImgHeight; i++) {
-         int gray = Image[i*3] + Image[i*3+1] + Image[i*3+2];
-         indexImage[i] = gray / 3;
-      }
-      free(Image);
-      Image = indexImage;
-      ImgFormat = GL_COLOR_INDEX;
-
-      for (i=0;i<255;i++) {
-         float g = i / 255.0;
-         glutSetColor(i, g, g, g);
-      }
    }
 
 #ifdef GL_OES_read_format
@@ -382,18 +364,11 @@ Init( GLboolean ciMode )
 int
 main( int argc, char *argv[] )
 {
-   GLboolean ciMode = GL_FALSE;
    glutInitWindowSize( 750, 250 );
    glutInit( &argc, argv );
-   if (argc > 1 && strcmp(argv[1], "-ci")==0) {
-      ciMode = GL_TRUE;
-   }
-   if (ciMode)
-      glutInitDisplayMode( GLUT_INDEX | GLUT_DOUBLE );
-   else
-      glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE );
+   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE );
    glutCreateWindow(argv[0]);
-   Init(ciMode);
+   Init();
    glutReshapeFunc( Reshape );
    glutKeyboardFunc( Key );
    glutDisplayFunc( Display );

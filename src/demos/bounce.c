@@ -22,7 +22,6 @@
 #define WHITE 2
 #define CYAN 3
 
-GLboolean IndexMode = GL_FALSE;
 GLuint Ball;
 GLenum Mode;
 GLfloat Zrot = 0.0, Zstep = 180.0;
@@ -195,11 +194,7 @@ int main(int argc, char *argv[])
    glutInitWindowSize(600, 450);
    glutInit(&argc, argv);
 
-   IndexMode = argc > 1 && strcmp(argv[1], "-ci") == 0;
-   if (IndexMode)
-       glutInitDisplayMode(GLUT_INDEX | GLUT_DOUBLE);
-   else
-       glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
    glutCreateWindow("Bounce");
    Ball = make_ball();
@@ -212,12 +207,6 @@ int main(int argc, char *argv[])
    glutReshapeFunc(reshape);
    glutVisibilityFunc(visible);
    glutKeyboardFunc(key);
-
-   if (IndexMode) {
-      glutSetColor(RED, 1.0, 0.0, 0.0);
-      glutSetColor(WHITE, 1.0, 1.0, 1.0);
-      glutSetColor(CYAN, 0.0, 1.0, 1.0);
-   }
 
    glutMainLoop();
    return 0;

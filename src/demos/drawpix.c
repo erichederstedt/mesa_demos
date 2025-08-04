@@ -246,7 +246,7 @@ static void SpecialKey( int key, int x, int y )
 }
 
 
-static void Init( GLboolean ciMode, const char *filename )
+static void Init(const char *filename )
 {
    static const GLfloat fogColor[4] = {0, 1, 0, 0};
 
@@ -257,24 +257,6 @@ static void Init( GLboolean ciMode, const char *filename )
    if (!Image) {
       printf("Couldn't read %s\n", filename);
       exit(0);
-   }
-
-   if (ciMode) {
-      /* Convert RGB image to grayscale */
-      GLubyte *indexImage = (GLubyte *) malloc( ImgWidth * ImgHeight );
-      GLint i;
-      for (i=0; i<ImgWidth*ImgHeight; i++) {
-         int gray = Image[i*3] + Image[i*3+1] + Image[i*3+2];
-         indexImage[i] = gray / 3;
-      }
-      free(Image);
-      Image = indexImage;
-      ImgFormat = GL_COLOR_INDEX;
-
-      for (i=0;i<255;i++) {
-         float g = i / 255.0;
-         glutSetColor(i, g, g, g);
-      }
    }
 
    printf("Loaded %d by %d image\n", ImgWidth, ImgHeight );
@@ -324,29 +306,20 @@ static void Usage(void)
 
 int main( int argc, char *argv[] )
 {
-   GLboolean ciMode = GL_FALSE;
    const char *filename = IMAGE_FILE;
-   int i = 1;
 
    glutInitWindowSize( 500, 400 );
    glutInit( &argc, argv );
 
-   if (argc > i && strcmp(argv[i], "-ci")==0) {
-      ciMode = GL_TRUE;
-      i++;
-   }
-   if (argc > i) {
-      filename = argv[i];
+   if (argc > 1) {
+      filename = argv[1];
    }
 
-   if (ciMode)
-      glutInitDisplayMode( GLUT_INDEX | GLUT_DOUBLE );
-   else
-      glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE);
+   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE);
 
    win = glutCreateWindow(argv[0]);
 
-   Init(ciMode, filename);
+   Init(filename);
    Usage();
 
    glutReshapeFunc( Reshape );
