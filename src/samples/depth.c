@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define CI_OFFSET_1 16
@@ -54,8 +55,6 @@ GLubyte stippleBits[32*4] = {
    0xAA, 0xAA, 0xAA, 0xAA, 0x55, 0x55, 0x55, 0x55,
 };
 
-
-#include "tkmap.c"
 
 static void Init(void)
 {

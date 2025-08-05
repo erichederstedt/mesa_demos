@@ -41,6 +41,7 @@
 #include <string.h>
 #include <math.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 #ifndef RAND_MAX
 #  define RAND_MAX 32767
@@ -59,8 +60,6 @@
 
 
 GLenum doubleBuffer;
-
-#include "tkmap.c"
 
 unsigned char rgb_colors[RINGS][3];
 float dests[RINGS][3];

@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define BLACK 0
@@ -44,8 +45,6 @@
 
 
 GLenum doubleBuffer;
-
-#include "tkmap.c"
 
 float black[3] = {0.0, 0.0, 0.0};
 float white[3] = {1.0, 1.0, 1.0};

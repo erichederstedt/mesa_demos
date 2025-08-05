@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define OPENGL_WIDTH 24
@@ -38,8 +39,6 @@ float angleX = 0.0, angleY = 0.0, angleZ = 0.0;
 float scaleX = 1.0, scaleY = 1.0, scaleZ = 1.0;
 float shiftX = 0.0, shiftY = 0.0, shiftZ = 0.0;
 
-
-#include "tkmap.c"
 
 
 static void DrawBitmapString(void *font, const char *string)

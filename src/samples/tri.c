@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define SOLID 1
@@ -61,8 +62,6 @@ float p0[3] = {-125,-80, 0};
 float p1[3] = {-125, 80, 0};
 float p2[3] = { 172,  0, 0};
 
-
-#include "tkmap.c"
 
 static void Init(void)
 {

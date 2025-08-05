@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define OPENGL_WIDTH 24
@@ -97,8 +98,6 @@ GLubyte logo_bits[] = {
    0x00, 0x66, 0x66,
    0xff, 0x66, 0x66,
 };
-
-#include "tkmap.c"
 
 static void Init(void)
 {

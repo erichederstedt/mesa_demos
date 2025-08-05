@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define PIXEL_CENTER(x) ((long)(x) + 0.5)
@@ -35,8 +36,6 @@ GLubyte OpenGL_bits[] = {
    0x3e, 0x00, 0x00, 0xf8, 0x0c, 0x00,
 };
 
-
-#include "tkmap.c"
 
 static void Init(void)
 {

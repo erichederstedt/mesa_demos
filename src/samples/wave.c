@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 #ifndef PI
 #define PI 3.14159265358979323846
@@ -37,8 +38,6 @@
 
 
 GLenum doubleBuffer;
-
-#include "tkmap.c"
 
 GLint colorIndexes1[3];
 GLint colorIndexes2[3];

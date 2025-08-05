@@ -26,7 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
-
+#include "tkmap.h"
 
 #define PI 3.141592654
 #define BLACK 0
@@ -41,8 +41,6 @@
 #include "loadppm.c"
 
 GLenum doubleBuffer;
-
-#include "tkmap.c"
 
 float black[3] = {
    0.0, 0.0, 0.0

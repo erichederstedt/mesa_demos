@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define CI_OFFSET 16
@@ -48,8 +49,6 @@ float pntD[3] = {
    30.0, 60.0, 0.0
 };
 
-
-#include "tkmap.c"
 
 static void Init(void)
 {

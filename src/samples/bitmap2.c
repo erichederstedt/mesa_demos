@@ -25,6 +25,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define EXP_WIDTH 80
@@ -32,8 +33,6 @@
 
 
 GLenum doubleBuffer, windType;
-
-#include "tkmap.c"
 
 GLenum useLists, abuse;
 GLubyte exp_bits[7][800] = {

@@ -26,14 +26,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 GLenum doubleBuffer, windType;
 int windX, windY;
 int cursor;
 
-
-#include "tkmap.c"
 
 static void Init(void)
 {

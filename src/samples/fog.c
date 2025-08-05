@@ -26,10 +26,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 GLenum doubleBuffer;
-
-#include "tkmap.c"
 
 double plane[4] = {
    1.0, 0.0, -1.0, 0.0

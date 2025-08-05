@@ -26,6 +26,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "glut_wrap.h"
+#include "tkmap.h"
 
 
 #define CI_RED COLOR_RED
@@ -36,8 +37,6 @@
 
 GLenum doubleBuffer, windType;
 GLint windW, windH;
-
-#include "tkmap.c"
 
 GLenum mode;
 GLint size;
