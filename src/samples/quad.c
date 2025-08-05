@@ -40,7 +40,7 @@
 
 #include "loadppm.c"
 
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 #include "tkmap.c"
 
@@ -99,7 +99,6 @@ static void GLAPIENTRY ErrorHandler(GLenum which)
 
 static void Init(void)
 {
-   static GLint colorIndexes[3] = {0, 200, 255};
    static float ambient[] = {0.1, 0.1, 0.1, 1.0};
    static float diffuse[] = {0.5, 1.0, 1.0, 1.0};
    static float position[] = {90.0, 90.0, 150.0, 0.0};
@@ -116,9 +115,6 @@ static void Init(void)
    static float nearest[] = {GL_NEAREST};
    static PPMImage *image;
 
-   if (!rgb) {
-      SetGreyRamp();
-   }
    glClearColor(0.0, 0.0, 0.0, 0.0);
 
    glEnable(GL_DEPTH_TEST);
@@ -137,9 +133,6 @@ static void Init(void)
    glMaterialfv(GL_BACK, GL_SHININESS, back_mat_shininess);
    glMaterialfv(GL_BACK, GL_SPECULAR, back_mat_specular);
    glMaterialfv(GL_BACK, GL_DIFFUSE, back_mat_diffuse);
-   if (!rgb) {
-      glMaterialiv( GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
-   }
 
    glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
@@ -390,15 +383,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -430,15 +418,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Quad Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

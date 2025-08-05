@@ -57,15 +57,12 @@
 #define YELLOWRING 3
 #define GREENRING 4
 
-#define BACKGROUND 8
 
-
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 #include "tkmap.c"
 
 unsigned char rgb_colors[RINGS][3];
-int mapped_colors[RINGS];
 float dests[RINGS][3];
 float offsets[RINGS][3];
 float angs[RINGS];
@@ -148,11 +145,7 @@ static void DrawScene(void)
    gluLookAt(0,0,10, 0,0,0, 0,1,0);
 
    for (i = 0; i < RINGS; i++) {
-      if (rgb) {
-         glColor3ubv(rgb_colors[i]);
-      } else {
-         glIndexi(mapped_colors[i]);
-      }
+      glColor3ubv(rgb_colors[i]);
       glPushMatrix();
       glTranslatef(dests[i][0]+offsets[i][0], dests[i][1]+offsets[i][1],
                      dests[i][2]+offsets[i][2]);
@@ -235,11 +228,6 @@ static void Init(void)
    rgb_colors[GREENRING][1] = 255;
    rgb_colors[YELLOWRING][0] = 255;
    rgb_colors[YELLOWRING][1] = 255;
-   mapped_colors[BLUERING] = COLOR_BLUE;
-   mapped_colors[REDRING] = COLOR_RED;
-   mapped_colors[GREENRING] = COLOR_GREEN;
-   mapped_colors[YELLOWRING] = COLOR_YELLOW;
-   mapped_colors[BLACKRING] = COLOR_BLACK;
 
    dests[BLUERING][0] = -spacing;
    dests[BLUERING][1] = top_y;
@@ -271,31 +259,26 @@ static void Init(void)
    glEnable(GL_DEPTH_TEST);
    glClearDepth(1.0);
 
-   if (rgb) {
-      glClearColor(0.5, 0.5, 0.5, 0.0);
-      glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
-      glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
-      glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);
-      glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-      glEnable(GL_LIGHT0);
+   glClearColor(0.5, 0.5, 0.5, 0.0);
+   glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
+   glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
+   glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);
+   glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+   glEnable(GL_LIGHT0);
 
-      glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lmodel_local);
-      glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
-      glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-      glEnable(GL_LIGHTING);
+   glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lmodel_local);
+   glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE, lmodel_twoside);
+   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+   glEnable(GL_LIGHTING);
 
-      glMaterialfv(GL_FRONT, GL_AMBIENT, bevel_mat_ambient);
-      glMaterialfv(GL_FRONT, GL_SHININESS, bevel_mat_shininess);
-      glMaterialfv(GL_FRONT, GL_SPECULAR, bevel_mat_specular);
-      glMaterialfv(GL_FRONT, GL_DIFFUSE, bevel_mat_diffuse);
+   glMaterialfv(GL_FRONT, GL_AMBIENT, bevel_mat_ambient);
+   glMaterialfv(GL_FRONT, GL_SHININESS, bevel_mat_shininess);
+   glMaterialfv(GL_FRONT, GL_SPECULAR, bevel_mat_specular);
+   glMaterialfv(GL_FRONT, GL_DIFFUSE, bevel_mat_diffuse);
 
-      glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
-      glEnable(GL_COLOR_MATERIAL);
-      glShadeModel(GL_SMOOTH);
-   } else {
-      glClearIndex(BACKGROUND);
-      glShadeModel(GL_FLAT);
-   }
+   glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
+   glEnable(GL_COLOR_MATERIAL);
+   glShadeModel(GL_SMOOTH);
 
    glMatrixMode(GL_PROJECTION);
    gluPerspective(45, 1.33, 0.1, 100.0);
@@ -324,15 +307,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_TRUE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -357,15 +335,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 400, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Olympic") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

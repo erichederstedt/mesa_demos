@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include "glut_wrap.h"
 
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 #include "tkmap.c"
 
@@ -159,15 +159,8 @@ static void Init(void)
    glEnable(GL_FOG);
    glFogi(GL_FOG_MODE, GL_EXP);
    glFogf(GL_FOG_DENSITY, fogDensity);
-   if (rgb) {
-      glFogfv(GL_FOG_COLOR, fog_color);
-      glClearColor(0.8, 0.8, 0.8, 1.0);
-   } else {
-      glFogi(GL_FOG_INDEX, 1<<5);
-      SetFogRamp(5, 3);
-      glClearIndex(128);
-   }
-
+   glFogfv(GL_FOG_COLOR, fog_color);
+   glClearColor(0.8, 0.8, 0.8, 1.0);
    Build_lists();
 }
 
@@ -212,16 +205,12 @@ static void Key(unsigned char key, int x, int y)
    case 27:
       exit(1);
    case 'D':
-      if (rgb) {
-         fogDensity *= 1.10;
-         glFogf(GL_FOG_DENSITY, fogDensity);
-      }
+      fogDensity *= 1.10;
+      glFogf(GL_FOG_DENSITY, fogDensity);
       break;
    case 'd':
-      if (rgb) {
-         fogDensity /= 1.10;
-         glFogf(GL_FOG_DENSITY, fogDensity);
-      }
+      fogDensity /= 1.10;
+      glFogf(GL_FOG_DENSITY, fogDensity);
       break;
    default:
       return;
@@ -257,15 +246,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_TRUE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -290,15 +274,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Fog Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

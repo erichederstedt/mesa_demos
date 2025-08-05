@@ -31,7 +31,7 @@
 #define CI_OFFSET 16
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 
 GLenum mode1, mode2;
 GLint size;
@@ -53,18 +53,10 @@ float pntD[3] = {
 
 static void Init(void)
 {
-   GLint i;
-
    glClearColor(0.0, 0.0, 0.0, 0.0);
 
    glLineStipple(1, 0xF0E0);
    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-   if (!rgb) {
-      for (i = 0; i < 16; i++) {
-         glutSetColor(i+CI_OFFSET, i/15.0, i/15.0, 0.0);
-      }
-   }
 
    mode1 = GL_FALSE;
    mode2 = GL_FALSE;
@@ -112,7 +104,7 @@ static void Key(unsigned char key, int x, int y)
 
 static void Draw(void)
 {
-   GLint ci, i;
+   GLint i;
 
    glClear(GL_COLOR_BUFFER_BIT);
 
@@ -125,11 +117,9 @@ static void Draw(void)
    }
 
    if (mode2) {
-      ci = CI_OFFSET;
       glEnable(GL_LINE_SMOOTH);
       glEnable(GL_BLEND);
    } else {
-      ci = COLOR_YELLOW;
       glDisable(GL_LINE_SMOOTH);
       glDisable(GL_BLEND);
    }
@@ -141,7 +131,7 @@ static void Draw(void)
    for (i = 0; i < 360; i += 5) {
       glRotatef(5.0, 0,0,1);
 
-      (rgb) ? glColor3f(1.0, 1.0, 0.0) : glIndexi(ci);
+      glColor3f(1.0, 1.0, 0.0);
       glBegin(GL_LINE_STRIP);
          glVertex3fv(pntA);
          glVertex3fv(pntB);
@@ -169,15 +159,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_TRUE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -199,15 +184,13 @@ int main(int argc, char **argv)
 
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Line Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

@@ -34,7 +34,7 @@
 #define CI_ANTI_ALIAS_RED 48
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 GLint windW, windH;
 
 #include "tkmap.c"
@@ -48,19 +48,9 @@ float point[3] = {
 
 static void Init(void)
 {
-   GLint i;
-
    glClearColor(0.0, 0.0, 0.0, 0.0);
 
    glBlendFunc(GL_SRC_ALPHA, GL_ZERO);
-
-   if (!rgb) {
-      for (i = 0; i < 16; i++) {
-         glutSetColor(i+CI_ANTI_ALIAS_RED, i/15.0, 0.0, 0.0);
-         glutSetColor(i+CI_ANTI_ALIAS_YELLOW, i/15.0, i/15.0, 0.0);
-         glutSetColor(i+CI_ANTI_ALIAS_GREEN, 0.0, i/15.0, 0.0);
-      }
-   }
 
    mode = GL_FALSE;
    size = 1;
@@ -153,9 +143,9 @@ static void Draw(void)
 
    glPointSize(size);
    if (mode) {
-      (rgb) ? glColor3f(1.0, 0.0, 0.0) : glIndexf(CI_ANTI_ALIAS_RED);
+      glColor3f(1.0, 0.0, 0.0);
    } else {
-      (rgb) ? glColor3f(1.0, 0.0, 0.0) : glIndexf(CI_RED);
+      glColor3f(1.0, 0.0, 0.0);
    }
    glBegin(GL_POINTS);
       glVertex3fv(point);
@@ -181,15 +171,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -213,15 +198,13 @@ int main(int argc, char **argv)
    windH = 300;
    glutInitWindowPosition(0, 0); glutInitWindowSize( windW, windH);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Point Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

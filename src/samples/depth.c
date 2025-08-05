@@ -32,7 +32,7 @@
 #define CI_OFFSET_2 32
 
 
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 GLenum antiAlias, stipple;
 GLubyte stippleBits[32*4] = {
@@ -59,18 +59,8 @@ GLubyte stippleBits[32*4] = {
 
 static void Init(void)
 {
-   GLint i;
-
    glClearColor(0.0, 0.0, 0.0, 0.0);
    glClearIndex(0.0);
-
-   if (!rgb) {
-      for (i = 0; i < 16; i++) {
-         glutSetColor(i+CI_OFFSET_1, 0.0, 0.0, i/15.0);
-         glutSetColor(i+CI_OFFSET_2, 0.0, i/15.0, 0.0);
-      }
-   }
-
    glPolygonStipple(stippleBits);
 
    antiAlias = GL_FALSE;
@@ -109,20 +99,14 @@ static void Key(unsigned char key, int x, int y)
 
 static void Draw(void)
 {
-   GLint ci1, ci2;
-
    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
    if (antiAlias) {
-      ci1 = CI_OFFSET_1;
-      ci2 = CI_OFFSET_2;
       glBlendFunc(GL_SRC_ALPHA, GL_ONE);
       glEnable(GL_BLEND);
       glEnable(GL_POLYGON_SMOOTH);
       glDisable(GL_DEPTH_TEST);
    } else {
-      ci1 = COLOR_BLUE;
-      ci2 = COLOR_GREEN;
       glDisable(GL_BLEND);
       glDisable(GL_POLYGON_SMOOTH);
       glEnable(GL_DEPTH_TEST);
@@ -135,11 +119,11 @@ static void Draw(void)
    }
 
    glBegin(GL_TRIANGLES);
-      (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexi(ci1);
+      glColor3fv(RGBMap[COLOR_BLUE]);
       glVertex3f( 0.9, -0.9, -30.0);
       glVertex3f( 0.9,  0.9, -30.0);
       glVertex3f(-0.9,  0.0, -30.0);
-      (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexi(ci2);
+      glColor3fv(RGBMap[COLOR_GREEN]);
       glVertex3f(-0.9, -0.9, -40.0);
       glVertex3f(-0.9,  0.9, -40.0);
       glVertex3f( 0.9,  0.0, -25.0);
@@ -156,15 +140,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -189,15 +168,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Depth Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

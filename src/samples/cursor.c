@@ -28,7 +28,7 @@
 #include "glut_wrap.h"
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 int windX, windY;
 int cursor;
 
@@ -98,15 +98,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -130,15 +125,13 @@ int main(int argc, char **argv)
    windY = 300;
    glutInitWindowPosition(0, 0); glutInitWindowSize( windX, windY);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Cursor Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

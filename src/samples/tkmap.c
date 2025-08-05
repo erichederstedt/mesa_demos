@@ -24,48 +24,5 @@ static float RGBMap[9][3] = {
 
 static inline void SetColor(int c)
 {
-   if (glutGet(GLUT_WINDOW_RGBA))
-      glColor3fv(RGBMap[c]);
-   else
-      glIndexf(c);
+   glColor3fv(RGBMap[c]);
 }
-
-static void InitMap(void)
-{
-   int i;
-
-   if (rgb)
-      return;
-
-   for (i = 0; i < 9; i++)
-         glutSetColor(i, RGBMap[i][0], RGBMap[i][1], RGBMap[i][2]);
-}
-
-static inline void SetFogRamp(int density, int startIndex)
-{
-   int fogValues, colorValues;
-   int i, j, k;
-   float intensity;
-
-   fogValues = 1 << density;
-   colorValues = 1 << startIndex;
-   for (i = 0; i < colorValues; i++) {
-      for (j = 0; j < fogValues; j++) {
-         k = i * fogValues + j;
-         intensity = (i * fogValues + j * colorValues) / 255.0;
-         glutSetColor(k, intensity, intensity, intensity);
-      }
-   }
-}
-
-static inline void SetGreyRamp(void)
-{
-   int i;
-   float intensity;
-
-   for (i = 0; i < 255; i++) {
-      intensity = i / 255.0;
-      glutSetColor(i, intensity, intensity, intensity);
-   }
-}
-

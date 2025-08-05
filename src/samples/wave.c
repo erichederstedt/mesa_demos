@@ -36,7 +36,7 @@
 #define GETFACET(frame, x, y) (&(theMesh.facets[frame*theMesh.numFacets+(x)+(y)*theMesh.widthX]))
 
 
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 #include "tkmap.c"
 
@@ -140,22 +140,11 @@ static void Animate(void)
             glNormal3fv(facet->normal);
          }
          if (lighting) {
-            if (rgb) {
-               thisColor = facet->color;
-               glColor3fv(facet->color);
-            } else {
-               thisColor = facet->color;
-               glMaterialfv(GL_FRONT_AND_BACK, GL_COLOR_INDEXES,
-                                 facet->color);
-            }
+            thisColor = facet->color;
+            glColor3fv(facet->color);
          } else {
-            if (rgb) {
-               thisColor = facet->color;
-               glColor3fv(facet->color);
-            } else {
-               thisColor = facet->color;
-               glIndexf(facet->color[1]);
-            }
+            thisColor = facet->color;
+            glColor3fv(facet->color);
          }
 
          if (!lastColor || (thisColor[0] != lastColor[0] && smooth)) {
@@ -196,49 +185,6 @@ static void Animate(void)
    glFlush();
    if (doubleBuffer) {
       glutSwapBuffers();
-   }
-}
-
-static void SetColorMap(void)
-{
-   static float green[3] = {0.2, 1.0, 0.2};
-   static float red[3] = {1.0, 0.2, 0.2};
-   float *color = 0, percent;
-   GLint *indexes = 0, entries, i, j;
-
-   entries = glutGet(GLUT_WINDOW_COLORMAP_SIZE);
-
-   colorIndexes1[0] = 1;
-   colorIndexes1[1] = 1 + (GLint)((entries - 1) * 0.3);
-   colorIndexes1[2] = (GLint)((entries - 1) * 0.5);
-   colorIndexes2[0] = 1 + (GLint)((entries - 1) * 0.5);
-   colorIndexes2[1] = 1 + (GLint)((entries - 1) * 0.8);
-   colorIndexes2[2] = entries - 1;
-
-   for (i = 0; i < 2; i++) {
-      switch (i) {
-   case 0:
-         color = green;
-         indexes = colorIndexes1;
-         break;
-   case 1:
-         color = red;
-         indexes = colorIndexes2;
-         break;
-      }
-
-      for (j = indexes[0]; j < indexes[1]; j++) {
-         percent = 0.2 + 0.8 * (j - indexes[0]) /
-                      (float)(indexes[1] - indexes[0]);
-         glutSetColor(j, percent*color[0], percent*color[1],
-                      percent*color[2]);
-      }
-      for (j=indexes[1]; j<=indexes[2]; j++) {
-         percent = (j - indexes[1]) / (float)(indexes[2] - indexes[1]);
-         glutSetColor(j, percent*(1-color[0])+color[0],
-                      percent*(1-color[1])+color[1],
-                      percent*(1-color[2])+color[2]);
-      }
    }
 }
 
@@ -305,25 +251,13 @@ static void InitMesh(void)
          for (j = 0; j < widthY; j++) {
             facet = GETFACET(frameNum, i, j);
             if (((i/checkerSize)%2)^(j/checkerSize)%2) {
-               if (rgb) {
-                  facet->color[0] = 1.0;
-                  facet->color[1] = 0.2;
-                  facet->color[2] = 0.2;
-               } else {
-                  facet->color[0] = colorIndexes1[0];
-                  facet->color[1] = colorIndexes1[1];
-                  facet->color[2] = colorIndexes1[2];
-               }
+               facet->color[0] = 1.0;
+               facet->color[1] = 0.2;
+               facet->color[2] = 0.2;
             } else {
-               if (rgb) {
-                  facet->color[0] = 0.2;
-                  facet->color[1] = 1.0;
-                  facet->color[2] = 0.2;
-               } else {
-                  facet->color[0] = colorIndexes2[0];
-                  facet->color[1] = colorIndexes2[1];
-                  facet->color[2] = colorIndexes2[2];
-               }
+               facet->color[0] = 0.2;
+               facet->color[1] = 1.0;
+               facet->color[2] = 0.2;
             }
             pt1 = GETCOORD(frameNum, i, j)->vertex;
             pt2 = GETCOORD(frameNum, i, j+1)->vertex;
@@ -384,15 +318,9 @@ static void InitMaterials(void)
    glMaterialfv(GL_BACK, GL_SHININESS, back_mat_shininess);
    glMaterialfv(GL_BACK, GL_SPECULAR, back_mat_specular);
    glMaterialfv(GL_BACK, GL_DIFFUSE, back_mat_diffuse);
-   if (rgb) {
-      glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
-   }
 
-   if (rgb) {
-      glEnable(GL_COLOR_MATERIAL);
-   } else {
-      SetColorMap();
-   }
+   glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
+   glEnable(GL_COLOR_MATERIAL);
 }
 
 static void InitTexture(void)
@@ -484,15 +412,11 @@ static void Key(unsigned char key, int x, int y)
       if (lighting) {
          glEnable(GL_LIGHTING);
          glEnable(GL_LIGHT0);
-         if (rgb) {
-            glEnable(GL_COLOR_MATERIAL);
-         }
+         glEnable(GL_COLOR_MATERIAL);
       } else {
          glDisable(GL_LIGHTING);
          glDisable(GL_LIGHT0);
-         if (rgb) {
-            glDisable(GL_COLOR_MATERIAL);
-         }
+         glDisable(GL_COLOR_MATERIAL);
       }
       break;
    case 'd':
@@ -531,7 +455,6 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_TRUE;
    frames = 10;
    widthX = 10;
@@ -540,11 +463,7 @@ static GLenum Args(int argc, char **argv)
    height = 0.2;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -598,15 +517,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Wave Demo") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

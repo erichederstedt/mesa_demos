@@ -31,7 +31,7 @@
 #define EXP_HEIGHT 80
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 
 #include "tkmap.c"
 
@@ -737,15 +737,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -768,15 +763,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0);
    glutInitWindowSize( 300, 300);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Bitmap Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

@@ -33,7 +33,7 @@
 #define POINT 3
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 GLint windW, windH;
 
 GLenum dithering = GL_TRUE;
@@ -66,39 +66,11 @@ float p2[3] = { 172,  0, 0};
 
 static void Init(void)
 {
-   float r, g, b;
-   float percent1, percent2;
-   GLint i, j;
-
    glClearColor(0.0, 0.0, 0.0, 0.0);
 
    glLineStipple(1, 0xF0F0);
 
    glEnable(GL_SCISSOR_TEST);
-
-   if (!rgb) {
-      for (j = 0; j <= 12; j++) {
-         if (j <= 6) {
-            percent1 = j / 6.0;
-            r = 1.0 - 0.8 * percent1;
-            g = 0.2 + 0.8 * percent1;
-            b = 0.2;
-         } else {
-            percent1 = (j - 6) / 6.0;
-            r = 0.2;
-            g = 1.0 - 0.8 * percent1;
-            b = 0.2 + 0.8 * percent1;
-         }
-         glutSetColor(j+18, r, g, b);
-         for (i = 0; i < 16; i++) {
-            percent2 = i / 15.0;
-            glutSetColor(j*16+1+32, r*percent2, g*percent2, b*percent2);
-         }
-      }
-      color1 = 18;
-      color2 = 24;
-      color3 = 30;
-   }
 }
 
 static void Reshape(int width, int height)
@@ -189,19 +161,9 @@ static void Key(unsigned char key, int x, int y)
          glEnable(GL_POLYGON_SMOOTH);
          glEnable(GL_BLEND);
          glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-         if (!rgb) {
-            color1 = 32;
-            color2 = 128;
-            color3 = 224;
-         }
       } else {
          glDisable(GL_POLYGON_SMOOTH);
          glDisable(GL_BLEND);
-         if (!rgb) {
-            color1 = 18;
-            color2 = 24;
-            color3 = 30;
-         }
       }
       break;
    default:
@@ -278,11 +240,11 @@ static void Draw(void)
       EndPrim();
 
       if (showVerticies) {
-         (rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
+         glColor3fv(RGBMap[COLOR_RED]);
          glRectf(p0[0]-2, p0[1]-2, p0[0]+2, p0[1]+2);
-         (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
+         glColor3fv(RGBMap[COLOR_GREEN]);
          glRectf(p1[0]-2, p1[1]-2, p1[0]+2, p1[1]+2);
-         (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
+         glColor3fv(RGBMap[COLOR_BLUE]);
          glRectf(p2[0]-2, p2[1]-2, p2[0]+2, p2[1]+2);
       }
 
@@ -314,11 +276,11 @@ static void Draw(void)
 
    SetColor(COLOR_RED);
    BeginPrim();
-      (rgb) ? glColor3fv(RGBMap[COLOR_RED]) : glIndexf(color1);
+      glColor3fv(RGBMap[COLOR_RED]);
       glVertex3fv(p0);
-      (rgb) ? glColor3fv(RGBMap[COLOR_GREEN]) : glIndexf(color2);
+      glColor3fv(RGBMap[COLOR_GREEN]);
       glVertex3fv(p1);
-      (rgb) ? glColor3fv(RGBMap[COLOR_BLUE]) : glIndexf(color3);
+      glColor3fv(RGBMap[COLOR_BLUE]);
       glVertex3fv(p2);
    EndPrim();
 
@@ -350,15 +312,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -382,15 +339,13 @@ int main(int argc, char **argv)
    windH = 300;
    glutInitWindowPosition(0, 0); glutInitWindowSize( windW, windH);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Triangle Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

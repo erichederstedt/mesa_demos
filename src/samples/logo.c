@@ -43,7 +43,7 @@
 #define BRICKIMAGEHEIGHT 16
 
 
-GLenum rgb, doubleBuffer;
+GLenum doubleBuffer;
 
 #include "tkmap.c"
 
@@ -942,19 +942,6 @@ float tep[7][9][2] = {
 };
 
 
-static void SetUpAntiAliasedGrayScale(void)
-{
-   float color;
-   GLint i, j;
-
-   for (i = 0; i < 16; i++) {
-      color = (2 * i + 1) / 32.0;
-      for (j = 0; j < 16; j++) {
-         glutSetColor(i*16+j, color*j/15.0, color*j/15.0, color*j/15.0);
-      }
-   }
-}
-
 static void BendForward(void)
 {
 
@@ -1301,28 +1288,17 @@ static void Init(void)
 
    glEnable(GL_CLIP_PLANE0);
 
-   if (rgb) {
-      glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
-      glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
-      glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
-      glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
-      glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
-      glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH, CHECKIMAGEHEIGHT, 0,
-                     GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)checkImage);
-      glEnable(GL_TEXTURE_2D);
+   glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, decal);
+   glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeat);
+   glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeat);
+   glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, nearest);
+   glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, nearest);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, CHECKIMAGEWIDTH, CHECKIMAGEHEIGHT, 0,
+                  GL_RGB, GL_UNSIGNED_BYTE, (GLvoid *)checkImage);
+   glEnable(GL_TEXTURE_2D);
 
-      glCullFace(GL_BACK);
-      glEnable(GL_CULL_FACE);
-   } else {
-      SetGreyRamp();
-      /* commented out by BrianP because it's the wrong way to handle a 4-bit visual!
-      if (doubleBuffer) {
-         colorIndexes[1] = 10;
-         colorIndexes[2] = 15;
-      }
-      */
-      glMaterialiv(GL_FRONT_AND_BACK, GL_COLOR_INDEXES, colorIndexes);
-   }
+   glCullFace(GL_BACK);
+   glEnable(GL_CULL_FACE);
 
    BuildLists();
 
@@ -1414,23 +1390,15 @@ static void Key(unsigned char key, int x, int y)
       break;
    case '5':
       glEnable(GL_POLYGON_SMOOTH);
-      if (rgb) {
-         glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-         glEnable(GL_BLEND);
-         glDisable(GL_DEPTH_TEST);
-      } else {
-         SetUpAntiAliasedGrayScale();
-      }
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+      glEnable(GL_BLEND);
+      glDisable(GL_DEPTH_TEST);
       break;
    case '6':
       glDisable(GL_POLYGON_SMOOTH);
-      if (rgb) {
-         glBlendFunc(GL_ONE, GL_ZERO);
-         glDisable(GL_BLEND);
-         glEnable(GL_DEPTH_TEST);
-      } else {
-         SetGreyRamp();
-      }
+      glBlendFunc(GL_ONE, GL_ZERO);
+      glDisable(GL_BLEND);
+      glEnable(GL_DEPTH_TEST);
       break;
 
    case '8':
@@ -1579,15 +1547,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -1612,15 +1575,13 @@ int main(int argc, char **argv)
    glutInitWindowPosition(0, 0); glutInitWindowSize( 300, 300);
 
    type = GLUT_DEPTH;
-   type |= (rgb) ? GLUT_RGB : GLUT_INDEX;
+   type |= GLUT_RGB;
    type |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(type);
 
    if (glutCreateWindow("Logo Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 

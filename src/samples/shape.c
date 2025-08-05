@@ -32,7 +32,7 @@
 #define OPENGL_HEIGHT 13
 
 
-GLenum rgb, doubleBuffer, windType;
+GLenum doubleBuffer, windType;
 GLint objectIndex = 0;
 GLuint bases[20];
 float angleX = 0.0, angleY = 0.0, angleZ = 0.0;
@@ -294,15 +294,10 @@ static GLenum Args(int argc, char **argv)
 {
    GLint i;
 
-   rgb = GL_TRUE;
    doubleBuffer = GL_FALSE;
 
    for (i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-ci") == 0) {
-         rgb = GL_FALSE;
-      } else if (strcmp(argv[i], "-rgb") == 0) {
-         rgb = GL_TRUE;
-      } else if (strcmp(argv[i], "-sb") == 0) {
+      if (strcmp(argv[i], "-sb") == 0) {
          doubleBuffer = GL_FALSE;
       } else if (strcmp(argv[i], "-db") == 0) {
          doubleBuffer = GL_TRUE;
@@ -324,15 +319,13 @@ int main(int argc, char **argv)
 
    glutInitWindowPosition(0, 0); glutInitWindowSize( 400, 400);
 
-   windType = (rgb) ? GLUT_RGB : GLUT_INDEX;
+   windType = GLUT_RGB;
    windType |= (doubleBuffer) ? GLUT_DOUBLE : GLUT_SINGLE;
    glutInitDisplayMode(windType);
 
    if (glutCreateWindow("Font Test") == GL_FALSE) {
       exit(1);
    }
-
-   InitMap();
 
    Init();
 
