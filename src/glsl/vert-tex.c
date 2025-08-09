@@ -2,6 +2,7 @@
  * Vertex shader texture sampling test.
  * Brian Paul
  * 2 Dec 2008
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

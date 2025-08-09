@@ -3,6 +3,7 @@
  *
  * Brian Paul
  * 26 Jan 2006
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdio.h>

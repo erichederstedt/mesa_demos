@@ -10,6 +10,7 @@
  * Based on the original demo by:
  * Brian Paul
  * 17 April 2003
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

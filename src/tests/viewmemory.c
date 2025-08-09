@@ -8,6 +8,7 @@
  *
  * Brian Paul
  * June 2011
+ * SPDX-License-Identifier: MIT
  */
 
 #define GL_GLEXT_PROTOTYPES

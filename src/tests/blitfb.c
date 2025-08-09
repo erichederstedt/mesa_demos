@@ -2,6 +2,7 @@
  * Test glFramebufferBlit()
  * Brian Paul
  * 27 Oct 2009
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

@@ -3,6 +3,7 @@
  * A simple variation could be used for sprite points.
  * Brian Paul
  * 29 July 2007
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

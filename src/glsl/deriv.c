@@ -5,6 +5,7 @@
  *
  * NOTE: resize the window to observe how the partial derivatives of
  * the texcoords change.
+ * SPDX-License-Identifier: MIT
  */
 
 

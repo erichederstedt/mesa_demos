@@ -29,6 +29,8 @@
  * Z-buffered pbuffer configs.  BUT, they DO have DOUBLE-buffered, RGBA,
  * Z-buffered pbuffers.  Note how we try four different fbconfig attribute
  * lists below!
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 

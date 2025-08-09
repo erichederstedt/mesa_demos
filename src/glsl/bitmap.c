@@ -2,6 +2,7 @@
  * Implement glRasterPos + glBitmap with textures + shaders.
  * Brian Paul
  * 14 May 2007
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

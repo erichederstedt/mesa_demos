@@ -2,6 +2,7 @@
  * Test NPOT textures with the GL_ARB_texture_non_power_of_two extension.
  * Brian Paul
  * 2 July 2003
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

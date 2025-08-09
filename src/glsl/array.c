@@ -2,6 +2,7 @@
  * Test variable array indexing in a vertex shader.
  * Brian Paul
  * 17 April 2009
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

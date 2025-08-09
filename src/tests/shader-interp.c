@@ -3,6 +3,7 @@
  * interpolated value.
  * Brian Paul
  * 22 March 2011
+ * SPDX-License-Identifier: MIT
  */
 
 

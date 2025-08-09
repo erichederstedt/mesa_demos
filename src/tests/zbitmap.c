@@ -2,6 +2,7 @@
  * Test Z values of glBitmap.
  * Brian Paul
  * 19 Feb 2010
+ * SPDX-License-Identifier: MIT
  */
 
 

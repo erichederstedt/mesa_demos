@@ -26,6 +26,7 @@
  *
  * O2 systems seem to support pbuffers well.
  *
+ * SPDX-License-Identifier: MIT
  */
 
 #include <string.h>

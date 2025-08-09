@@ -19,6 +19,7 @@
  *
  * Brian Paul
  * 2 Feb 2016
+ * SPDX-License-Identifier: MIT
  */
 
 

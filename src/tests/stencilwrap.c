@@ -2,6 +2,7 @@
  * This is by no means complete, just a quick check.
  *
  * Brian Paul  30 October 2002
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

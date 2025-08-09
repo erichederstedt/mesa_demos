@@ -3,6 +3,7 @@
  * fragment shader.  They should appear the same.
  * 17 Dec 2008
  * Brian Paul
+ * SPDX-License-Identifier: MIT
  */
 
 

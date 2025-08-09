@@ -2,6 +2,7 @@
  * Test glGetTexImage()
  * Brian Paul
  * 9 June 2009
+ * SPDX-License-Identifier: MIT
  */
 
 

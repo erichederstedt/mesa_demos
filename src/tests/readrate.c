@@ -5,6 +5,7 @@
  *
  * Compile:
  * gcc readrate.c -L/usr/X11R6/lib -lglut -lGLU -lGL -lX11 -o readrate
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

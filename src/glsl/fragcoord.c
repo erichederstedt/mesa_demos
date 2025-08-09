@@ -4,6 +4,7 @@
  *
  * Brian Paul
  * 20 Nov 2008
+ * SPDX-License-Identifier: MIT
  */
 
 

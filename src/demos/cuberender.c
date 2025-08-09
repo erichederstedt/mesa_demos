@@ -3,6 +3,7 @@
  *
  * Brian Paul
  * May 2011
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

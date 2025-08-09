@@ -7,6 +7,7 @@
  * Updated on 5 October 2002
  * Updated again on 3 January 2005 to use GLX 1.3 functions in preference
  * to the GLX_SGIX_fbconfig/pbuffer extensions.
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdio.h>

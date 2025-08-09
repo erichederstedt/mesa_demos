@@ -2,6 +2,7 @@
  * Test linking of multiple compilation units.
  * Brian Paul
  * 28 March 2009
+ * SPDX-License-Identifier: MIT
  */
 
 #include <assert.h>

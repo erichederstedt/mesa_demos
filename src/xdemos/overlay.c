@@ -3,6 +3,7 @@
  *
  * Brian Paul
  * 18 July 2005
+ * SPDX-License-Identifier: MIT
  */
 
 #include <GL/gl.h>

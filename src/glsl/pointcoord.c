@@ -2,6 +2,7 @@
  * Test GLSL 1.20 gl_PointCoord fragment program attribute.
  * Brian Paul
  * 11 Aug 2007
+ * SPDX-License-Identifier: MIT
  */
 
 

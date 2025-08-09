@@ -14,6 +14,7 @@
  *     specular components of light sources enabled.
  *
  * Brian Paul  February 1997
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdio.h>

@@ -2,6 +2,7 @@
  * Test shadow2DRectProj() and shadow2D() functions.
  * Brian Paul
  * 11 April 2007
+ * SPDX-License-Identifier: MIT
  */
 
 #define GL_GLEXT_PROTOTYPES

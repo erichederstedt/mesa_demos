@@ -2,6 +2,7 @@
  * Test packed pixel formats for textures.
  * Brian Paul
  * 12 May 2004
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdio.h>
