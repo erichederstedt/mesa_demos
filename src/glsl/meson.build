@@ -23,7 +23,6 @@ progs = [
   ['points', []],
   ['samplers', []],
   ['shadow_sampler', []],
-  ['shtest', [idep_readtex]],
   ['simplex-noise', []],
   ['skinning', []],
   ['texaaline', []],
@@ -65,7 +64,6 @@ executable(
 glsl_data = [
   'blinking-teapot.frag',
   'blinking-teapot.vert',
-  'brick.shtest',
   'CH06-brick.frag',
   'CH06-brick.vert',
   'CH11-bumpmap.frag',
@@ -78,9 +76,7 @@ glsl_data = [
   'convolution.frag',
   'convolution.vert',
   'cubemap.frag',
-  'mandelbrot.shtest',
   'multitex.frag',
-  'multitex.shtest',
   'multitex.vert',
   'reflect.vert',
   'shadowtex.frag',
@@ -88,7 +84,6 @@ glsl_data = [
   'simplex-noise.glsl',
   'skinning.frag',
   'skinning.vert',
-  'toyball.shtest',
 ]
 
 install_data(glsl_data, install_dir: get_option('datadir') / 'mesa-demos')
