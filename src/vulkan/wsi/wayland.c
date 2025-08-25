@@ -238,7 +238,7 @@ static void init_display()
    assert(!display);
    display = wl_display_connect(NULL);
    if (!display) {
-      fprintf(stderr, "failed to connect to display");
+      fprintf(stderr, "failed to connect to display\n");
       abort();
    }
 
@@ -248,7 +248,7 @@ static void init_display()
    wl_registry_destroy(registry);
 
    if (!compositor) {
-      fprintf(stderr, "failed to bind compositor");
+      fprintf(stderr, "failed to bind compositor\n");
       abort();
    }
 
