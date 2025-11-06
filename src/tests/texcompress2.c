@@ -5,6 +5,7 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "glad/gl.h"
 #include "glut_wrap.h"
 #include "readtex.h"
