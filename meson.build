@@ -136,7 +136,7 @@ if dep_vulkan.found()
 endif
 
 if host_machine.system() == 'darwin'
-  add_project_arguments('-DGL_SILENCE_DEPRECATION', language: 'c')
+  add_project_arguments('-DGL_SILENCE_DEPRECATION', language: ['c', 'cpp'])
 endif
 
 if cc.has_function(
