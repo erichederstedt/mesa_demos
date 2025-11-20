@@ -78,6 +78,7 @@ static AppDelegate *app_delegate;
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
    [NSApp stop:nil];
+   [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)application
