@@ -77,6 +77,7 @@ struct {
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 /* gear data */
+static VkDescriptorPool desc_pool;
 static VkDescriptorSet descriptor_set;
 static VkDeviceMemory ubo_mem;
 static VkDeviceMemory vertex_mem;
@@ -227,6 +228,7 @@ init_vk(const char *wsi_extension)
       error("Invalid device");
 
    physical_device = physical_devices[device_index];
+   free(physical_devices);
 
    vkGetPhysicalDeviceMemoryProperties(physical_device, &mem_props);
 
@@ -1210,6 +1212,9 @@ init_gears()
       NULL,
       &pipeline);
 
+   vkDestroyShaderModule(device, vs_module, NULL);
+   vkDestroyShaderModule(device, fs_module, NULL);
+
 #define MAX_VERTS 10000
    float verts[MAX_VERTS * GEAR_VERTEX_STRIDE];
 
@@ -1248,7 +1253,7 @@ init_gears()
    vkBindBufferMemory(device, ubo_buffer, ubo_mem, 0);
    vkBindBufferMemory(device, vertex_buffer, vertex_mem, 0);
 
-   VkDescriptorPool desc_pool;
+
    const VkDescriptorPoolCreateInfo create_info = {
       .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO,
       .pNext = NULL,
@@ -1272,6 +1277,8 @@ init_gears()
          .descriptorSetCount = 1,
          .pSetLayouts = &set_layout,
       }, &descriptor_set);
+
+   vkDestroyDescriptorSetLayout(device, set_layout, NULL);
 
    vkUpdateDescriptorSets(device, 1,
       (VkWriteDescriptorSet []) {
@@ -1796,6 +1803,23 @@ main(int argc, char *argv[])
          frames = 0;
       }
    }
+
+   vkDeviceWaitIdle(device);
+   free_swapchain_data();
+   vkDestroySwapchainKHR(device, swapchain, NULL);
+   vkDestroyRenderPass(device, render_pass, NULL);
+   vkDestroyCommandPool(device, cmd_pool, NULL);
+   vkDestroySemaphore(device, present_semaphore, NULL);
+   vkDestroyPipeline(device, pipeline, NULL);
+   vkDestroyPipelineLayout(device, pipeline_layout, NULL);
+   vkDestroyDescriptorPool(device, desc_pool, NULL);
+   vkDestroyBuffer(device, ubo_buffer, NULL);
+   vkDestroyBuffer(device, vertex_buffer, NULL);
+   vkFreeMemory(device, ubo_mem, NULL);
+   vkFreeMemory(device, vertex_mem, NULL);
+   vkDestroyDevice(device, NULL);
+   vkDestroySurfaceKHR(instance, surface, NULL);
+   vkDestroyInstance(instance, NULL);
 
    wsi.fini_window();
    wsi.fini_display();
