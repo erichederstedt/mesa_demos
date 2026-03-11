@@ -93,6 +93,7 @@ struct {
 
 static float view_rot[3] = { 20.0, 30.0, 0.0 };
 static bool animate = true;
+static bool quit = false;
 
 static void
 errorv(const char *format, va_list args)
@@ -1515,7 +1516,8 @@ wsi_key_press(bool down, enum wsi_key key) {
       return;
    switch (key) {
       case WSI_KEY_ESC:
-         exit(0);
+         quit = true;
+         break;
       case WSI_KEY_UP:
          view_rot[0] += 5.0;
          break;
@@ -1539,7 +1541,7 @@ wsi_key_press(bool down, enum wsi_key key) {
 static void
 wsi_exit()
 {
-   exit(0);
+   quit = true;
 }
 
 static struct wsi_callbacks wsi_callbacks = {
@@ -1653,7 +1655,7 @@ main(int argc, char *argv[])
    create_swapchain();
    init_gears();
 
-   while (1) {
+   while (!quit) {
       static int frames = 0;
       static double tRot0 = -1.0, tRate0 = -1.0;
 
