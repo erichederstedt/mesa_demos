@@ -328,7 +328,7 @@ InitTextures(GLboolean useImageFiles)
       GLenum imgFormat;
       GLubyte *image = NULL;
 
-      const char *GroundImage = data_file_path("tile.png");
+      const char *GroundImage = data_file_path_static_buf("tile.png");
       image = LoadRGBImage(GroundImage, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {
          printf("Couldn't read %s\n", GroundImage);
@@ -355,8 +355,8 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 {
    GLuint fragShader, vertShader, program;
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path(vertProgFile));
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path(fragProgFile));
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path_static_buf(vertProgFile));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf(fragProgFile));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

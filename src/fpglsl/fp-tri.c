@@ -250,7 +250,7 @@ static void Init( void )
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-   const char *texture_file = data_file_path("bw.png");
+   const char *texture_file = data_file_path_static_buf("bw.png");
    if (!LoadRGBMipmaps(texture_file, GL_RGB)) {
       printf("Error: couldn't load texture image file %s\n", texture_file);
       exit(1);

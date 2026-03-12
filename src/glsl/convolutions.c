@@ -220,13 +220,13 @@ static void createProgram(const char *vertProgFile,
    program = glCreateProgram();
    if (vertProgFile) {
       vertShader = glCreateShader(GL_VERTEX_SHADER);
-      readShader(vertShader, data_file_path(vertProgFile));
+      readShader(vertShader, data_file_path_static_buf(vertProgFile));
       glAttachShader(program, vertShader);
    }
 
    if (fragProgFile) {
       fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-      readShader(fragShader, data_file_path(fragProgFile));
+      readShader(fragShader, data_file_path_static_buf(fragProgFile));
       glAttachShader(program, fragShader);
    }
 
@@ -281,7 +281,7 @@ static void readTexture(const char *filename)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-   data = LoadRGBImage(data_file_path(filename), &texture.width, &texture.height,
+   data = LoadRGBImage(data_file_path_static_buf(filename), &texture.width, &texture.height,
                        &texture.format);
    if (!data) {
       printf("Error: couldn't load texture image '%s'\n", filename);

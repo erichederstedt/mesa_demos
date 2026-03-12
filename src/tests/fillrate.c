@@ -169,7 +169,7 @@ Init(void)
    glBindTexture(GL_TEXTURE_2D, Textures[0]);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-   if (!LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("tile.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }
@@ -177,7 +177,7 @@ Init(void)
    glBindTexture(GL_TEXTURE_2D, Textures[1]);
    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-   if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("reflect.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }

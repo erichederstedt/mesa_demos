@@ -81,7 +81,7 @@ static void Init( void )
    }
 
 #if 1
-   const char *image_file = data_file_path("girl.png");
+   const char *image_file = data_file_path_static_buf("girl.png");
    image = LoadRGBImage( image_file, &imgWidth, &imgHeight, &imgFormat );
    if (!image) {
       printf("Couldn't read %s\n", image_file);

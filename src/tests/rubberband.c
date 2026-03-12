@@ -235,7 +235,7 @@ MouseButton(int button, int state, int x, int y)
 static void
 Init(void)
 {
-   const char *image_file = data_file_path("arch.png");
+   const char *image_file = data_file_path_static_buf("arch.png");
    Image = LoadRGBImage(image_file, &ImgWidth, &ImgHeight, &ImgFormat);
    if (!Image) {
       printf("Couldn't read %s\n", image_file);

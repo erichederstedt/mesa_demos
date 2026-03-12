@@ -1239,7 +1239,7 @@ void LoadTexture(void)
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
-   const char *texture_file = data_file_path("reflect.png");
+   const char *texture_file = data_file_path_static_buf("reflect.png");
    if (convolve) {
 #define FILTER_SIZE 7
       /* use convolution to blur the texture to simulate a dull finish

@@ -232,7 +232,7 @@ Init(void)
       exit(0);
    }
 
-   const char *image_file = data_file_path("girl.png");
+   const char *image_file = data_file_path_static_buf("girl.png");
    Image = LoadRGBImage( image_file, &ImgWidth, &ImgHeight, &ImgFormat );
    if (!Image) {
       printf("Couldn't read %s\n", image_file);

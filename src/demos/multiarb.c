@@ -277,13 +277,13 @@ static void Init( int argc, char *argv[] )
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
       if (i == 0) {
-         if (!LoadRGBMipmaps(data_file_path("girl.png"), GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path_static_buf("girl.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }
       }
       else if (i == 1) {
-         if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path_static_buf("reflect.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }

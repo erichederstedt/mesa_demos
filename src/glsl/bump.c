@@ -250,8 +250,8 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path("CH11-bumpmap.vert"));
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path("CH11-bumpmap.frag"));
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path_static_buf("CH11-bumpmap.vert"));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf("CH11-bumpmap.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);
@@ -280,7 +280,7 @@ Init(void)
    /*
     * As above, but fragment shader also uses a texture map.
     */
-   fragTexShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path("CH11-bumpmaptex.frag"));
+   fragTexShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf("CH11-bumpmaptex.frag"));
    texProgram = LinkShaders(vertShader, fragTexShader);
    glUseProgram(texProgram);
    assert(glIsProgram(texProgram));
@@ -293,7 +293,7 @@ Init(void)
     */
    glGenTextures(1, &Texture);
    glBindTexture(GL_TEXTURE_2D, Texture);
-   LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB);
+   LoadRGBMipmaps(data_file_path_static_buf("tile.png"), GL_RGB);
 
 
    glClearColor(0.4f, 0.4f, 0.8f, 0.0f);

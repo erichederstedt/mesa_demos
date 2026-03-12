@@ -151,8 +151,8 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path("CH18-mandel.vert"));
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path("CH18-mandel.frag"));
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path_static_buf("CH18-mandel.vert"));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf("CH18-mandel.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

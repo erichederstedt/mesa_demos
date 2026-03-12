@@ -870,7 +870,7 @@ static void Init(int argc, char *argv[])
          expand_arrays();
          make_tri_indices();
 
-         if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
+         if (!LoadRGBMipmaps(data_file_path_static_buf("reflect.png"), GL_RGB)) {
             printf("Error: couldn't load texture image\n");
             exit(1);
          }
@@ -1046,7 +1046,7 @@ int main(int argc, char **argv)
    if (arg_mode & QUIT)
       exit(0);
 
-   read_surface(data_file_path("isosurf.dat"));
+   read_surface(data_file_path_static_buf("isosurf.dat"));
 
    glutInitWindowSize(400, 400);
    glutInit( &argc, argv);

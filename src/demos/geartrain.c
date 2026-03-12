@@ -985,7 +985,7 @@ main (int argc, char *argv[])
      exit (1);
 
    if (argc < 2)
-      file = data_file_path("geartrain.dat");
+      file = data_file_path_static_buf("geartrain.dat");
    else
       file = argv[1];
 

@@ -289,7 +289,7 @@ static void Init( void )
       }
    }
 
-   t3.data = LoadRGBImage(data_file_path("tree2.png"), (GLint *)&t3.w, (GLint *)&t3.h, &t3.format);
+   t3.data = LoadRGBImage(data_file_path_static_buf("tree2.png"), (GLint *)&t3.w, (GLint *)&t3.h, &t3.format);
    t3.size = t3.w * t3.h * ((t3.format == GL_RGB) ? 3 : 4);
    t3.TC = GL_RGBA;
 

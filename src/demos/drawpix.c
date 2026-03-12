@@ -305,7 +305,7 @@ static void Usage(void)
 
 int main( int argc, char *argv[] )
 {
-   const char *filename = data_file_path("girl.png");
+   const char *filename = data_file_path_static_buf("girl.png");
 
    glutInitWindowSize( 500, 400 );
    glutInit( &argc, argv );

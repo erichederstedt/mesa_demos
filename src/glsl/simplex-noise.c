@@ -171,7 +171,7 @@ SpecialKey(int key, int x, int y)
 static void
 Init(void)
 {
-   const char *filename = data_file_path("simplex-noise.glsl");
+   const char *filename = data_file_path_static_buf("simplex-noise.glsl");
    char noiseText[10000];
    FILE *f;
    int len;

@@ -217,9 +217,9 @@ Init(void)
       exit(1);
 
    vertShader = CompileShaderFile(GL_VERTEX_SHADER,
-                                  data_file_path("skinning.vert"));
+                                  data_file_path_static_buf("skinning.vert"));
    fragShader = CompileShaderFile(GL_FRAGMENT_SHADER,
-                                  data_file_path("skinning.frag"));
+                                  data_file_path_static_buf("skinning.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

@@ -140,8 +140,8 @@ Init(void)
    if (!ShadersSupported())
       exit(1);
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path("CH06-brick.vert"));
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path("CH06-brick.frag"));
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path_static_buf("CH06-brick.vert"));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf("CH06-brick.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

@@ -278,7 +278,7 @@ InitTextures(void)
       GLenum imgFormat;
       GLubyte *image = NULL;
 
-      const char *path = data_file_path(TexFiles[i]);
+      const char *path = data_file_path_static_buf(TexFiles[i]);
       image = LoadRGBImage(path, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {
          printf("Couldn't read %s\n", path);
@@ -305,8 +305,8 @@ CreateAProgram(const char *vertProgFile, const char *fragProgFile,
 {
    GLuint fragShader, vertShader, program;
 
-   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path(vertProgFile));
-   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path(fragProgFile));
+   vertShader = CompileShaderFile(GL_VERTEX_SHADER, data_file_path_static_buf(vertProgFile));
+   fragShader = CompileShaderFile(GL_FRAGMENT_SHADER, data_file_path_static_buf(fragProgFile));
    assert(vertShader);
    program = LinkShaders(vertShader, fragShader);
 

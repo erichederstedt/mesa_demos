@@ -179,7 +179,7 @@ static void Init( void )
 
    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-   const char *texture_file = data_file_path("girl.png");
+   const char *texture_file = data_file_path_static_buf("girl.png");
    if (glutExtensionSupported("GL_SGIS_generate_mipmap")) {
       /* test auto mipmap generation */
       GLint width, height, i;

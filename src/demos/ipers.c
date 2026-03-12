@@ -143,7 +143,7 @@ inittextures(void)
    glGenTextures(1, &t1id);
    glBindTexture(GL_TEXTURE_2D, t1id);
 
-   if (!LoadRGBMipmaps(data_file_path("bw.png"), 3)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("bw.png"), 3)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }

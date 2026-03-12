@@ -59,7 +59,7 @@ MipGenTexture( void )
    /* test auto mipmap generation */
    GLint width, height, i;
    GLenum format;
-   const char *texture_file = data_file_path("arch.png");
+   const char *texture_file = data_file_path_static_buf("arch.png");
    GLubyte *image = LoadRGBImage(texture_file, &width, &height, &format);
    if (!image) {
       printf("Error: could not load texture image %s\n", texture_file);

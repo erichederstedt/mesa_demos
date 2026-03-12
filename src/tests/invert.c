@@ -129,7 +129,7 @@ static void Init( void )
 	  "square should look upside-down.\n");
 
 
-   const char *image_file = data_file_path("tree3.png");
+   const char *image_file = data_file_path_static_buf("tree3.png");
    image = LoadRGBImage( image_file, (GLint *) & img_width, (GLint *) & img_height,
 			 & img_format );
    if ( image == NULL ) {

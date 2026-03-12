@@ -100,7 +100,7 @@ makeImages(int image)
       /* test auto mipmap generation */
       GLint width, height, i;
       GLenum format;
-      const char *texture_file = data_file_path("girl.png");
+      const char *texture_file = data_file_path_static_buf("girl.png");
       GLubyte *image = LoadRGBImage(texture_file, &width, &height, &format);
       if (!image) {
          printf("Error: could not load texture image %s\n", texture_file);

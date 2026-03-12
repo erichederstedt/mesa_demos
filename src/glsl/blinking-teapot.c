@@ -63,8 +63,8 @@ init_opengl (void)
      exit(1);
   }
 
-  vshad_id = CompileShaderFile (GL_VERTEX_SHADER, data_file_path("blinking-teapot.vert"));
-  fshad_id = CompileShaderFile (GL_FRAGMENT_SHADER, data_file_path("blinking-teapot.frag"));
+  vshad_id = CompileShaderFile (GL_VERTEX_SHADER, data_file_path_static_buf("blinking-teapot.vert"));
+  fshad_id = CompileShaderFile (GL_FRAGMENT_SHADER, data_file_path_static_buf("blinking-teapot.frag"));
   prog_id = LinkShaders (vshad_id, fshad_id);
 
   glUseProgram (prog_id);

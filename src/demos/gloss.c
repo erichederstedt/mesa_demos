@@ -366,7 +366,7 @@ static void Init( int argc, char *argv[] )
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-   const char *base_texture_file = data_file_path("tile.png");
+   const char *base_texture_file = data_file_path_static_buf("tile.png");
    if (!LoadRGBMipmaps(base_texture_file, GL_RGB)) {
       printf("Error: couldn't load texture image file %s\n", base_texture_file);
       exit(1);
@@ -380,7 +380,7 @@ static void Init( int argc, char *argv[] )
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
-   const char *specular_texture_file = data_file_path("reflect.png");
+   const char *specular_texture_file = data_file_path_static_buf("reflect.png");
    if (!LoadRGBMipmaps(specular_texture_file, GL_RGB)) {
       printf("Error: couldn't load texture image file %s\n",
                specular_texture_file);

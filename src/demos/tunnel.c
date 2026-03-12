@@ -67,7 +67,7 @@ inittextures(void)
    glGenTextures(1, &t1id);
    glBindTexture(GL_TEXTURE_2D, t1id);
 
-   if (!LoadRGBMipmaps(data_file_path("tile.png"), GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("tile.png"), GL_RGB)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }
@@ -82,7 +82,7 @@ inittextures(void)
    glGenTextures(1, &t2id);
    glBindTexture(GL_TEXTURE_2D, t2id);
 
-   if (!LoadRGBMipmaps(data_file_path("bw.png"), GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("bw.png"), GL_RGB)) {
       fprintf(stderr, "Error reading a texture.\n");
       exit(-1);
    }

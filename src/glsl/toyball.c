@@ -166,9 +166,9 @@ Init(void)
       exit(1);
 
    vertShader = CompileShaderFile(GL_VERTEX_SHADER,
-                                  data_file_path("CH11-toyball.vert"));
+                                  data_file_path_static_buf("CH11-toyball.vert"));
    fragShader = CompileShaderFile(GL_FRAGMENT_SHADER,
-                                  data_file_path("CH11-toyball.frag"));
+                                  data_file_path_static_buf("CH11-toyball.frag"));
    program = LinkShaders(vertShader, fragShader);
 
    glUseProgram(program);

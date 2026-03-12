@@ -128,7 +128,7 @@ loadImageTextures(void)
       GLenum imgFormat;
       int i, j;
 
-      const char *filename = data_file_path(texFilename[tex]);
+      const char *filename = data_file_path_static_buf(texFilename[tex]);
       printf("loading %s\n", filename);
       image = LoadRGBImage(filename, &imgWidth, &imgHeight, &imgFormat);
       if (!image) {

@@ -295,7 +295,7 @@ LoadTextures(GLuint n, const char *files[], bool use_data_dir)
    for (i = 0; i < n; i++) {
       const char *path = files[i];
       if (use_data_dir)
-         path = data_file_path(path);
+         path = data_file_path_static_buf(path);
 
       GLint w, h;
       glBindTexture(GL_TEXTURE_2D, Textures[i]);

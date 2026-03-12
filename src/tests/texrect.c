@@ -271,7 +271,7 @@ static void Init( int argc, char *argv[] )
       glTexParameteri(GL_TEXTURE_RECTANGLE_NV, GL_TEXTURE_WRAP_T, wrap);
 
       if (i == 0) {
-         const char *texture_0_file = data_file_path("girl.png");
+         const char *texture_0_file = data_file_path_static_buf("girl.png");
          GLubyte *img = LoadRGBImage(texture_0_file, &Width[0], &Height[0],
                                      &Format[0]);
          if (!img) {
@@ -285,7 +285,7 @@ static void Init( int argc, char *argv[] )
                       Format[0], GL_UNSIGNED_BYTE, img);
       }
       else {
-         const char *texture_1_file = data_file_path("reflect.png");
+         const char *texture_1_file = data_file_path_static_buf("reflect.png");
          GLubyte *img = LoadRGBImage(texture_1_file, &Width[1], &Height[1],
                                      &Format[1]);
          if (!img) {

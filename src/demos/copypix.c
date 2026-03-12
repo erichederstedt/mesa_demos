@@ -215,7 +215,7 @@ static void Usage(void)
 
 int main( int argc, char *argv[] )
 {
-   const char *filename = data_file_path("arch.png");
+   const char *filename = data_file_path_static_buf("arch.png");
 
    glutInitWindowSize( WinWidth, WinHeight );
    glutInit( &argc, argv );

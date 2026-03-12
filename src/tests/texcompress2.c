@@ -285,7 +285,7 @@ main( int argc, char *argv[] )
    if (argc > 1)
       Init(argv[1]);
    else
-      Init(data_file_path("arch.png"));
+      Init(data_file_path_static_buf("arch.png"));
 
    glutMainLoop();
    gladLoaderUnloadGL();

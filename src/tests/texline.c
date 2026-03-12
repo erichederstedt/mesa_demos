@@ -230,7 +230,7 @@ static void Init( int argc, char *argv[] )
          glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-      if (!LoadRGBMipmaps(data_file_path("girl.png"), GL_RGB)) {
+      if (!LoadRGBMipmaps(data_file_path_static_buf("girl.png"), GL_RGB)) {
          printf("Error: couldn't load texture image\n");
          exit(1);
       }

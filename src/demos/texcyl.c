@@ -240,7 +240,7 @@ static void Init( int argc, char *argv[] )
    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
    glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
 
-   if (!LoadRGBMipmaps(data_file_path("reflect.png"), GL_RGB)) {
+   if (!LoadRGBMipmaps(data_file_path_static_buf("reflect.png"), GL_RGB)) {
       printf("Error: couldn't load texture image\n");
       exit(1);
    }

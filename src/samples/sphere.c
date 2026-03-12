@@ -661,7 +661,7 @@ static void Init(void)
 
    SetDefaultSettings();
 
-   const char *imageFileName = data_file_path("reflect.png");
+   const char *imageFileName = data_file_path_static_buf("reflect.png");
    image = LoadRGBImage(imageFileName, &w, &h, &format);
    if (!image) {
       printf("Error: couldn't load %s\n", imageFileName);

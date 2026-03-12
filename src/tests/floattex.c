@@ -110,7 +110,7 @@ InitTexture(void)
    GLfloat *ftex;
    GLint i, t;
 
-   const char *TexFile = data_file_path("arch.png");
+   const char *TexFile = data_file_path_static_buf("arch.png");
    image = LoadRGBImage(TexFile, &imgWidth, &imgHeight, &imgFormat);
    if (!image) {
       printf("Couldn't read %s\n", TexFile);

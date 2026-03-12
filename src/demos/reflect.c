@@ -200,7 +200,7 @@ InitWindow(struct window *w)
    w->table_list = MakeTable();
    MakeObjects(w->objects_list);
 
-   const char *table_texture = data_file_path("tile.png");
+   const char *table_texture = data_file_path_static_buf("tile.png");
 
    image = LoadRGBImage( table_texture, &imgWidth, &imgHeight, &imgFormat );
    if (!image) {
