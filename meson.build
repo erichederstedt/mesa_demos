@@ -119,7 +119,7 @@ if not get_option('glut').disabled()
     dep_glut = dependency('glut')
   endif
 else
-  dep_glut = dependency('', required: false)
+  dep_glut = null_dep
 endif
 
 if dep_glut.found() and (dep_glut.type_name() == 'internal' or
