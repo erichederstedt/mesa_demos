@@ -12,14 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "glad/gl.h"
-#include "glut_wrap.h"
 #include "shaderutil.h"
-
-/** time to compile previous shader */
-static GLdouble CompileTime = 0.0;
-
-/** time to linke previous program */
-static GLdouble LinkTime = 0.0;
 
 GLboolean
 ShadersSupported(void)
@@ -37,16 +30,11 @@ CompileShaderText(GLenum shaderType, const char *text)
 {
    GLuint shader;
    GLint stat;
-   GLdouble t0, t1;
 
    shader = glCreateShader(shaderType);
    glShaderSource(shader, 1, (const GLchar **) &text, NULL);
 
-   t0 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
    glCompileShader(shader);
-   t1 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
-
-   CompileTime = t1 - t0;
 
    glGetShaderiv(shader, GL_COMPILE_STATUS, &stat);
    if (!stat) {
@@ -112,7 +100,6 @@ GLuint
 LinkShaders3(GLuint vertShader, GLuint geomShader, GLuint fragShader)
 {
    GLuint program = glCreateProgram();
-   GLdouble t0, t1;
 
    assert(vertShader || fragShader);
 
@@ -123,11 +110,7 @@ LinkShaders3(GLuint vertShader, GLuint geomShader, GLuint fragShader)
    if (fragShader)
       glAttachShader(program, fragShader);
 
-   t0 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
    glLinkProgram(program);
-   t1 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
-
-   LinkTime = t1 - t0;
 
    /* check link */
    {
@@ -151,7 +134,6 @@ LinkShaders3WithGeometryInfo(GLuint vertShader, GLuint geomShader, GLuint fragSh
                              GLint verticesOut, GLenum inputType, GLenum outputType)
 {
   GLuint program = glCreateProgram();
-  GLdouble t0, t1;
 
   assert(vertShader || fragShader);
 
@@ -166,11 +148,7 @@ LinkShaders3WithGeometryInfo(GLuint vertShader, GLuint geomShader, GLuint fragSh
   if (fragShader)
     glAttachShader(program, fragShader);
 
-  t0 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
   glLinkProgram(program);
-  t1 = glutGet(GLUT_ELAPSED_TIME) * 0.001;
-
-  LinkTime = t1 - t0;
 
   /* check link */
   {
@@ -206,20 +184,6 @@ ValidateShaderProgram(GLuint program)
    }
 
    return (GLboolean) stat;
-}
-
-
-GLdouble
-GetShaderCompileTime(void)
-{
-   return CompileTime;
-}
-
-
-GLdouble
-GetShaderLinkTime(void)
-{
-   return LinkTime;
 }
 
 

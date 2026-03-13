@@ -50,12 +50,6 @@ LinkShaders3WithGeometryInfo(GLuint vertShader, GLuint geomShader, GLuint fragSh
 extern GLboolean
 ValidateShaderProgram(GLuint program);
 
-extern GLdouble
-GetShaderCompileTime(void);
-
-extern GLdouble
-GetShaderLinkTime(void);
-
 extern void
 SetUniformValues(GLuint program, struct uniform_info uniforms[]);
 

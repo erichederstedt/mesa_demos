@@ -6,15 +6,12 @@ inc_util = include_directories('.')
 files_libutil = files(
   'glinfo_common.c',
   'matrix.c',
+  'shaderutil.c',
   'showbuffer.c',
   'trackball.c',
 )
 
 _deps = [dep_glu, dep_m]
-if dep_glut.found()
-  files_libutil += files('shaderutil.c')
-  _deps += dep_glut
-endif
 
 _libutil = static_library(
   'util',
