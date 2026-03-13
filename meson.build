@@ -89,6 +89,7 @@ if not dep_glu.found() and host_machine.system() != 'darwin'
     _glu_name,
     has_headers: 'GL/glu.h',
     required: dep_gl.found() and dep_x11.found(),
+    disabler: true,
   )
 endif
 
