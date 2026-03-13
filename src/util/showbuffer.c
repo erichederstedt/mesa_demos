@@ -13,7 +13,6 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include "gl_wrap.h"
 #include "showbuffer.h"
 
 

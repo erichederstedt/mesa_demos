@@ -14,7 +14,7 @@
 #define SHOWBUFFER_H
 
 
-#include "gl_wrap.h"
+#include "glad/gl.h"
 
 
 

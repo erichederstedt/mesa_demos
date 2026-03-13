@@ -3,11 +3,12 @@
 
 inc_util = include_directories('.')
 
-files_libutil = files('glinfo_common.c', 'matrix.c', 'trackball.c')
-
-if dep_glu.found()
-  files_libutil += files('showbuffer.c')
-endif
+files_libutil = files(
+  'glinfo_common.c',
+  'matrix.c',
+  'showbuffer.c',
+  'trackball.c',
+)
 
 _deps = [dep_glu, dep_m]
 if dep_glut.found()
