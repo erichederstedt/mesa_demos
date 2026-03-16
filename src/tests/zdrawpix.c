@@ -15,7 +15,7 @@
 #include <math.h>
 #include "glad/gl.h"
 #include "glut_wrap.h"
-#include "../util/showbuffer.c"
+#include "showbuffer.h"
 
 
 static int Win;
