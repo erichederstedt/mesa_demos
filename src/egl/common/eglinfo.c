@@ -871,8 +871,9 @@ doExtPlatformBase(struct options opts, const char *clientext)
    if (!found_platform_ext)
       return -1;
 
-   if (strstr(clientext, "EGL_EXT_device_enumeration") &&
-       strstr(clientext, "EGL_EXT_platform_device") &&
+   if ((strstr(clientext, "EGL_EXT_device_base") ||
+        (strstr(clientext, "EGL_EXT_device_enumeration") &&
+         strstr(clientext, "EGL_EXT_platform_device"))) &&
        opts.platform == ALL)
       ret += doDevices("Device platform", opts);
 
