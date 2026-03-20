@@ -540,7 +540,7 @@ doOneDisplay(EGLDisplay d, const char *name, struct options opts)
    const char *has_opengl_es = strstr(client_apis, "OpenGL_ES");
    const char *has_openvg = strstr(client_apis, "OpenVG");
 
-   if (has_opengl == has_opengl_es) {
+   if (has_opengl && (has_opengl == has_opengl_es)) {
       int offset = strlen("OpenGL_ES");
       has_opengl = strstr(has_opengl_es + offset, "OpenGL");
    }
