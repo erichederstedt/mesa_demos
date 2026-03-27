@@ -498,10 +498,6 @@ event_loop(void)
 
    struct pollfd pollfds[] = {
       {
-         .fd = wl_display_get_fd(display.display),
-         .events = POLLIN,
-      },
-      {
          .fd = libdecor_get_fd(window.decor_context),
          .events = POLLIN,
       }, {
@@ -533,11 +529,11 @@ event_loop(void)
       else
          pollfds[0].events &= ~POLLOUT; /* successfully flushed */
 
-      unsigned poll_count = 2 + (display.seat.rate > 0);
+      unsigned poll_count = 1 + (display.seat.rate > 0);
       if (poll(pollfds, poll_count, -1) == -1)
          break;
 
-      if ((pollfds[0].revents | pollfds[1].revents) &
+      if ((pollfds[0].revents) &
           (POLLERR | POLLHUP | POLLNVAL))
          break;
 
@@ -548,8 +544,8 @@ event_loop(void)
       }
 
       if (pollfds[0].revents & POLLIN) {
-         ret = wl_display_dispatch(display.display);
-         if (ret == -1)
+         ret = libdecor_dispatch(window.decor_context, 0);
+         if (ret < 0)
             break;
       }
 
@@ -562,13 +558,6 @@ event_loop(void)
          pollfds[0].events &= ~POLLOUT; /* successfully flushed */
 
       if (pollfds[1].revents & POLLIN) {
-         if (window.open && libdecor_dispatch(window.decor_context, 0) < 0) {
-            ret = 1;
-            break;
-         }
-      }
-
-      if (pollfds[2].revents & POLLIN) {
          uint64_t repeats;
          if (read(display.seat.key_repeat_fd, &repeats, sizeof(repeats)) == 8) {
             for (uint64_t i = 0; i < repeats; i++)
