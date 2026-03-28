@@ -393,12 +393,6 @@ frame_close(struct libdecor_frame *frame, void *user_data)
    struct eglut_window *win = user_data;
    eglutDestroyWindow(win->index);
 
-   // FIXME: eglut does not terminate when all windows are closed.
-   // eglut_x11 dies due to "X connection to $DISPLAY broken".
-   // Since wl_display works fine with all windows closed, terminate ourselves.
-   eglTerminate(_eglut->dpy);
-   fini_display();
-
    window.open = false;
 }
 
@@ -506,7 +500,7 @@ event_loop(void)
       },
    };
 
-   while (_eglut->native_dpy != NULL) {
+   while (window.open) {
       /* If we need to flush but can't, don't do anything at all which could
        * push further events into the socket. */
       if (!(pollfds[0].events & POLLOUT)) {
@@ -565,6 +559,9 @@ event_loop(void)
          }
       }
    }
+
+   eglTerminate(_eglut->dpy);
+   fini_display();
 }
 
 struct eglut_wsi_interface
