@@ -27,6 +27,8 @@ struct display {
    struct wl_compositor *compositor;
    uint32_t mask;
 
+   struct libdecor *decor_context;
+
    struct {
       struct wl_keyboard *keyboard;
       struct xkb_state *xkb_state;
@@ -42,7 +44,6 @@ struct display {
 
 struct window {
    struct wl_surface *surface;
-   struct libdecor *decor_context;
    struct libdecor_frame *frame;
    bool open;
    bool opaque;
@@ -301,6 +302,18 @@ wayland_roundtrip(struct wl_display *display)
 }
 
 static void
+libdecor_error(struct libdecor *context,
+               enum libdecor_error error,
+               const char *message)
+{
+   printf("EGLUT: libdecor error %d due to %s\n", error, message);
+}
+
+static struct libdecor_interface libdecor_interface = {
+   .error = libdecor_error,
+};
+
+static void
 init_display(void)
 {
    struct wl_registry *registry;
@@ -319,11 +332,15 @@ init_display(void)
 
    _eglut->surface_type = EGL_WINDOW_BIT;
    _eglut->redisplay = 1;
+
+   display.decor_context = libdecor_new(display.display,
+					&libdecor_interface);
 }
 
 static void
 fini_display(void)
 {
+   libdecor_unref(display.decor_context);
    if (display.seat.keyboard)
       wl_keyboard_destroy(display.seat.keyboard);
 
@@ -333,19 +350,8 @@ fini_display(void)
    wl_display_flush(_eglut->native_dpy);
    wl_display_disconnect(_eglut->native_dpy);
    _eglut->native_dpy = NULL;
+   fprintf(stderr, ":::: %s:%d %s() - ~\n", __FILE__, __LINE__, __func__);
 }
-
-static void
-libdecor_error(struct libdecor *context,
-               enum libdecor_error error,
-               const char *message)
-{
-   printf("EGLUT: libdecor error %d due to %s\n", error, message);
-}
-
-static struct libdecor_interface libdecor_interface = {
-   .error = libdecor_error,
-};
 
 static void
 frame_configure(struct libdecor_frame *frame,
@@ -432,9 +438,7 @@ init_window(struct eglut_window *win, const char *title,
    win->native.width = w;
    win->native.height = h;
 
-   window.decor_context = libdecor_new(display.display,
-                                       &libdecor_interface);
-   window.frame = libdecor_decorate(window.decor_context,
+   window.frame = libdecor_decorate(display.decor_context,
                                     window.surface,
                                     &frame_interface,
                                     win);
@@ -445,15 +449,14 @@ init_window(struct eglut_window *win, const char *title,
    libdecor_frame_map(window.frame);
 
    libdecor_frame_set_min_content_size(window.frame, 1, 1);
+
+   window.open = true;
 }
 
 static void
 fini_window(struct eglut_window *win)
 {
    wl_egl_window_destroy(win->native.u.window);
-
-   if (window.decor_context)
-      libdecor_unref(window.decor_context);
 }
 
 static void
@@ -486,13 +489,13 @@ event_loop(void)
    int ret;
 
    while (!window.configured) {
-      if (libdecor_dispatch(window.decor_context, 0) < 0)
+      if (libdecor_dispatch(display.decor_context, 0) < 0)
          return;
    }
 
    struct pollfd pollfds[] = {
       {
-         .fd = libdecor_get_fd(window.decor_context),
+         .fd = libdecor_get_fd(display.decor_context),
          .events = POLLIN,
       }, {
          .fd = display.seat.key_repeat_fd,
@@ -538,7 +541,7 @@ event_loop(void)
       }
 
       if (pollfds[0].revents & POLLIN) {
-         ret = libdecor_dispatch(window.decor_context, 0);
+         ret = libdecor_dispatch(display.decor_context, 0);
          if (ret < 0)
             break;
       }
