@@ -457,6 +457,7 @@ static void
 fini_window(struct eglut_window *win)
 {
    wl_egl_window_destroy(win->native.u.window);
+   libdecor_frame_unref(window.frame);
 }
 
 static void
