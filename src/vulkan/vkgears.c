@@ -1707,7 +1707,7 @@ main(int argc, char *argv[])
       vkBeginCommandBuffer(frame_data[frame_index].cmd_buffer,
          &(VkCommandBufferBeginInfo) {
             .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
-            .flags = 0
+            .flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT,
          });
 
       /* projection matrix */
