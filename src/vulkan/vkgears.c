@@ -1719,7 +1719,7 @@ main(int argc, char *argv[])
       buffer_barrier(frame_data[frame_index].cmd_buffer,
          VK_PIPELINE_STAGE_VERTEX_SHADER_BIT,
          VK_PIPELINE_STAGE_TRANSFER_BIT,
-         0, 0,
+         0, VK_ACCESS_TRANSFER_WRITE_BIT,
          ubo_buffer, 0, sizeof(ubo));
 
       vkCmdUpdateBuffer(frame_data[frame_index].cmd_buffer, ubo_buffer, 0,
