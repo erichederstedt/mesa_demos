@@ -1673,15 +1673,19 @@ main(int argc, char *argv[])
 
       static uint32_t frame_index;
       assert(frame_index < ARRAY_SIZE(frame_data));
-      vkWaitForFences(device, 1, &frame_data[frame_index].fence, VK_TRUE,
-                      UINT64_MAX);
+      VkResult result =
+         vkWaitForFences(device, 1, &frame_data[frame_index].fence, VK_TRUE,
+                         UINT64_MAX);
+
+      if (result != VK_SUCCESS)
+         error("Failed to wait for fence!");
+
       vkResetFences(device, 1, &frame_data[frame_index].fence);
 
       uint32_t image_index;
-      VkResult result =
-         vkAcquireNextImageKHR(device, swapchain, UINT64_MAX,
-                               frame_data[frame_index].semaphore,
-                               VK_NULL_HANDLE, &image_index);
+      result = vkAcquireNextImageKHR(device, swapchain, UINT64_MAX,
+                                     frame_data[frame_index].semaphore,
+                                     VK_NULL_HANDLE, &image_index);
       if (result == VK_SUBOPTIMAL_KHR ||
           width != new_width || height != new_height) {
          recreate_swapchain();
