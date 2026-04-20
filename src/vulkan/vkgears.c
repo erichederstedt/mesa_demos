@@ -1278,8 +1278,6 @@ init_gears()
          .pSetLayouts = &set_layout,
       }, &descriptor_set);
 
-   vkDestroyDescriptorSetLayout(device, set_layout, NULL);
-
    vkUpdateDescriptorSets(device, 1,
       (VkWriteDescriptorSet []) {
          {
@@ -1297,6 +1295,8 @@ init_gears()
          }
       },
       0, NULL);
+
+   vkDestroyDescriptorSetLayout(device, set_layout, NULL);
 }
 
 static void
