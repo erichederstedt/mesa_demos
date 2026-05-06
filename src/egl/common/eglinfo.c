@@ -320,7 +320,7 @@ PrintDisplayExtensions(EGLDisplay d, struct options opts)
    if (!extensions)
       return NULL;
 
-   if (strstr(extensions, "EGL_MESA_query_driver")) {
+   if (extension_supported("EGL_MESA_query_driver", extensions)) {
       printf("EGL driver name: %s\n", eglGetDisplayDriverName(d));
    }
 
@@ -534,16 +534,11 @@ doOneDisplay(EGLDisplay d, const char *name, struct options opts)
    PrintDisplayExtensions(d, opts);
 
    int khr_create_context = (maj == 1 && min >= 4) &&
-      strstr(display_exts, "EGL_KHR_create_context") != 0;
+      extension_supported("EGL_KHR_create_context", display_exts) != 0;
 
-   const char *has_opengl = strstr(client_apis, "OpenGL");
-   const char *has_opengl_es = strstr(client_apis, "OpenGL_ES");
-   const char *has_openvg = strstr(client_apis, "OpenVG");
-
-   if (has_opengl && (has_opengl == has_opengl_es)) {
-      int offset = strlen("OpenGL_ES");
-      has_opengl = strstr(has_opengl_es + offset, "OpenGL");
-   }
+   bool has_opengl = extension_supported("OpenGL", client_apis);
+   bool has_opengl_es = extension_supported("OpenGL_ES", client_apis);
+   bool has_openvg = extension_supported("OpenVG", client_apis);
 
    EGLBoolean do_opengl_core =
       (opts.api == OPENGL || opts.api == OPENGL_CORE || opts.api == ALL);
@@ -812,7 +807,7 @@ doExtExplicitDevice(struct options opts, const char *clientext)
          if (!name)
             break;
 
-         if (!strstr(clientext, name))
+         if (!extension_supported(name, clientext))
             break;
 
          for (int k = 0; k < num_devices; k++) {
@@ -857,7 +852,7 @@ doExtPlatformBase(struct options opts, const char *clientext)
          if (!name)
             break;
 
-         if (strstr(clientext, name)) {
+         if (extension_supported(name, clientext)) {
             EGLDisplay d = eglGetPlatformDisplayEXT(platforms[i].platform_enum,
                                                     EGL_DEFAULT_DISPLAY,
                                                     NULL);
@@ -871,9 +866,9 @@ doExtPlatformBase(struct options opts, const char *clientext)
    if (!found_platform_ext)
       return -1;
 
-   if ((strstr(clientext, "EGL_EXT_device_base") ||
-        (strstr(clientext, "EGL_EXT_device_enumeration") &&
-         strstr(clientext, "EGL_EXT_platform_device"))) &&
+   if ((extension_supported("EGL_EXT_device_base", clientext) ||
+        (extension_supported("EGL_EXT_device_enumeration", clientext) &&
+         extension_supported("EGL_EXT_platform_device", clientext))) &&
        opts.platform == ALL)
       ret += doDevices("Device platform", opts);
 
@@ -898,12 +893,12 @@ main(int argc, char *argv[])
       clientext = eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS);
    }
 
-   if (strstr(clientext, "EGL_EXT_explicit_device")) {
+   if (extension_supported("EGL_EXT_explicit_device", clientext)) {
       ret += doExtExplicitDevice(opts, clientext);
    }
 
    int platform_base_ret;
-   if (strstr(clientext, "EGL_EXT_platform_base") &&
+   if (extension_supported("EGL_EXT_platform_base", clientext) &&
        (platform_base_ret = doExtPlatformBase(opts, clientext)) >= 0) {
       ret += platform_base_ret;
    } else {
