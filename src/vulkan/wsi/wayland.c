@@ -233,6 +233,18 @@ static const struct wl_registry_listener registry_listener = {
    registry_handle_global_remove
 };
 
+static void
+libdecor_error(struct libdecor *context,
+               enum libdecor_error error,
+               const char *message)
+{
+   printf("EGLUT: libdecor error %d due to %s\n", error, message);
+}
+
+static struct libdecor_interface libdecor_interface = {
+   .error = libdecor_error,
+};
+
 static void init_display()
 {
    assert(!display);
@@ -252,6 +264,8 @@ static void init_display()
       abort();
    }
 
+   decor_context = libdecor_new(display, &libdecor_interface);
+
    keyboard_data.xkb_context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
 }
 
@@ -261,24 +275,14 @@ fini_display()
    if (keyboard_data.keyboard)
       wl_keyboard_destroy(keyboard_data.keyboard);
 
+   libdecor_unref(decor_context);
+
    wl_seat_destroy(keyboard_data.seat);
    xkb_context_unref(keyboard_data.xkb_context);
    wl_compositor_destroy(compositor);
    wl_display_flush(display);
    wl_display_disconnect(display);
 }
-
-static void
-libdecor_error(struct libdecor *context,
-               enum libdecor_error error,
-               const char *message)
-{
-   printf("EGLUT: libdecor error %d due to %s\n", error, message);
-}
-
-static struct libdecor_interface libdecor_interface = {
-   .error = libdecor_error,
-};
 
 static void
 frame_configure(struct libdecor_frame *frame,
@@ -334,8 +338,6 @@ init_window(const char *title, int width, int height, bool fullscreen)
 
    surface = wl_compositor_create_surface(compositor);
 
-   decor_context = libdecor_new(display,
-                                &libdecor_interface);
    frame = libdecor_decorate(decor_context,
                              surface,
                              &frame_interface,
@@ -356,14 +358,15 @@ init_window(const char *title, int width, int height, bool fullscreen)
       }
    }
 
+   window_open = true;
+
    if (fullscreen)
       libdecor_frame_set_fullscreen(frame, NULL);
 }
 
 static void fini_window()
 {
-   if (decor_context)
-      libdecor_unref(decor_context);
+   libdecor_frame_unref(frame);
 }
 
 
@@ -372,10 +375,6 @@ static bool update_window()
    int ret;
 
    struct pollfd pollfds[] = {
-      {
-         .fd = wl_display_get_fd(display),
-         .events = POLLIN
-      },
       {
          .fd = libdecor_get_fd(decor_context),
          .events = POLLIN,
@@ -386,7 +385,7 @@ static bool update_window()
       },
    };
 
-   while (1) {
+   while (window_open) {
       /* If we need to flush but can't, don't do anything at all which could
        * push further events into the socket. */
       if (!(pollfds[0].events & POLLOUT))
@@ -400,7 +399,7 @@ static bool update_window()
       else
          pollfds[0].events &= ~POLLOUT; /* successfully flushed */
 
-      unsigned poll_count = 2 + (keyboard_data.rate > 0);
+      unsigned poll_count = 1 + (keyboard_data.rate > 0);
       if (poll(pollfds, poll_count, 0.0) == -1)
          break;
 
@@ -414,8 +413,8 @@ static bool update_window()
       }
 
       if (pollfds[0].revents & POLLIN) {
-         ret = wl_display_dispatch(display);
-         if (ret == -1)
+         ret = libdecor_dispatch(decor_context, 0);
+         if (ret < 0)
             break;
       }
 
@@ -428,13 +427,6 @@ static bool update_window()
          pollfds[0].events &= ~POLLOUT; /* successfully flushed */
 
       if (pollfds[1].revents & POLLIN) {
-         if (window_open && libdecor_dispatch(decor_context, 0) < 0) {
-            ret = 1;
-            break;
-         }
-      }
-
-      if (pollfds[2].revents & POLLIN) {
          uint64_t repeats;
          if (read(keyboard_data.keyboard_timer_fd, &repeats, sizeof(repeats)) == 8) {
             for(uint64_t i = 0; i < repeats; i++) {
