@@ -31,7 +31,7 @@ executable(
   ],
 )
 
-progs = ['drawtex', 'gears', 'torus', 'tri']
+progs = ['drawtex', 'gears', 'gears_cl', 'torus', 'tri']
 foreach p : progs
   executable(
     p,
