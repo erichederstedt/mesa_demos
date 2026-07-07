@@ -56,18 +56,27 @@ dep_png = dependency(
 )
 
 dep_drm = dependency('libdrm', required: get_option('libdrm'), disabler: true)
-dep_x11 = dependency('x11, xext', required: get_option('x11'), disabler: true)
-dep_wayland = dependency(
-  'wayland-client, wayland-egl, xkbcommon',
-  required: get_option('wayland'),
-  disabler: true,
+dep_x11 = declare_dependency(
+  dependencies : [
+    dependency('x11', required: get_option('x11'), disabler: true),
+    dependency('xext', required: get_option('x11'), disabler: true),
+  ]
+)
+dep_wayland = declare_dependency(
+  dependencies: [
+    dependency('wayland-client', required: get_option('wayland'), disabler: true),
+    dependency('wayland-egl', required: get_option('wayland'), disabler: true),
+    dependency('xkbcommon', required: get_option('wayland'), disabler: true),
+  ]
 )
 
 if dep_vulkan.found()
-  dep_xcb = dependency(
-    'xcb, xkbcommon, xkbcommon-x11',
-    required: get_option('x11'),
-    disabler: true,
+  dep_xcb = declare_dependency(
+    dependencies: [
+      dependency('xcb', required: get_option('x11'), disabler: true),
+      dependency('xkbcommon', required: get_option('x11'), disabler: true),
+      dependency('xkbcommon-x11', required: get_option('x11'), disabler: true),
+    ]
   )
 endif
 
