@@ -11,7 +11,7 @@ files_libutil = files(
   'trackball.c',
 )
 
-_deps = [dep_glu, dep_m]
+_deps = [dep_m]
 
 _libutil = static_library(
   'util',
@@ -29,7 +29,7 @@ _libreadtex = static_library(
   'readtex',
   files('readtex.c'),
   include_directories: inc_glad,
-  dependencies: _deps + [dep_png],
+  dependencies: _deps + [dep_glu, dep_png],
   build_by_default: false,
 )
 idep_readtex = declare_dependency(
