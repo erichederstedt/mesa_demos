@@ -350,7 +350,6 @@ fini_display(void)
    wl_display_flush(_eglut->native_dpy);
    wl_display_disconnect(_eglut->native_dpy);
    _eglut->native_dpy = NULL;
-   fprintf(stderr, ":::: %s:%d %s() - ~\n", __FILE__, __LINE__, __func__);
 }
 
 static void
