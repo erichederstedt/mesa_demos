@@ -12,7 +12,7 @@ foreach p : progs
   executable(
     p,
     files(p + '.c'),
-    dependencies: [dep_gl, dep_glu, idep_glad, dep_winmm],
+    dependencies: [dep_glu, dep_gl, idep_glad, dep_winmm],
     install: true,
   )
 endforeach

@@ -34,7 +34,7 @@ progs = [
   ['vert-tex', []],
   ['vsraytrace', []],
 ]
-base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util]
+base_deps = [dep_glu, dep_gl, dep_glut, dep_m, idep_glad, idep_util]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]
@@ -49,7 +49,7 @@ endforeach
 executable(
   'gsraytrace',
   files('gsraytrace.cpp'),
-  dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util],
+  dependencies: [dep_glu, dep_gl, dep_glut, dep_m, idep_glad, idep_util],
   install: true,
 )
 
@@ -57,6 +57,6 @@ executable(
   'samplers_array',
   files('samplers.c'),
   c_args: '-DSAMPLERS_ARRAY',
-  dependencies: [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util],
+  dependencies: [dep_glu, dep_gl, dep_glut, dep_m, idep_glad, idep_util],
   install: true,
 )

@@ -4,5 +4,5 @@
 executable(
   'vp-tris',
   files('vp-tris.c'),
-  dependencies: [dep_gl, dep_glu, dep_glut, idep_glad, idep_util],
+  dependencies: [dep_glu, dep_gl, dep_glut, idep_glad, idep_util],
 )

@@ -1,7 +1,7 @@
 # Copyright © 2022 Collabora Ltd
 # SPDX-License-Identifier: MIT
 
-deps = [dep_gl, dep_glu, dep_m, idep_glad, idep_util]
+deps = [dep_glu, dep_gl, dep_m, idep_glad, idep_util]
 
 # glut programs
 glut_progs = [

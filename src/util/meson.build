@@ -30,7 +30,7 @@ _libreadtex = static_library(
   'readtex',
   files('readtex.c'),
   include_directories: inc_glad,
-  dependencies: _deps + [dep_glu, dep_png],
+  dependencies: [dep_glu] + _deps + [dep_png],
   build_by_default: false,
 )
 idep_readtex = declare_dependency(

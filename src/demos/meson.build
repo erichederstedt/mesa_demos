@@ -55,7 +55,7 @@ progs = [
   ['vao_demo', []],
   ['winpos', [idep_readtex]],
 ]
-base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util, dep_winmm]
+base_deps = [dep_glu, dep_gl, dep_glut, dep_m, idep_glad, idep_util, dep_winmm]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]

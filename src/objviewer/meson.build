@@ -6,8 +6,8 @@ executable(
   'objview',
   objview_files,
   dependencies: [
-    dep_gl,
     dep_glu,
+    dep_gl,
     dep_glut,
     dep_m,
     idep_glad,

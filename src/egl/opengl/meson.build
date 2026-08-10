@@ -14,19 +14,19 @@ endif
 executable(
   'eglgears',
   files('eglgears.c'),
-  dependencies: [_deps, dep_glu, idep_eglut],
+  dependencies: [dep_glu, _deps, idep_eglut],
   install: true,
 )
 executable(
   'egltri',
   files('egltri.c'),
-  dependencies: [_deps, dep_glu, idep_eglut],
+  dependencies: [dep_glu, _deps, idep_eglut],
   install: true,
 )
 executable(
   'xeglgears',
   files('xeglgears.c'),
-  dependencies: [_deps, dep_glu, dep_egl, dep_x11],
+  dependencies: [dep_glu, _deps, dep_egl, dep_x11],
   install: true,
 )
 executable(
@@ -46,7 +46,7 @@ executable(
 executable(
   'peglgears',
   'peglgears.c',
-  dependencies: [dep_gl, dep_glu, dep_egl, dep_m, idep_util],
+  dependencies: [dep_glu, dep_gl, dep_egl, dep_m, idep_util],
   install: true,
 )
 

@@ -31,7 +31,7 @@ progs = [
   ['tri', []],
   ['wave', []],
 ]
-base_deps = [dep_gl, dep_glu, dep_glut, dep_m, idep_glad, idep_util]
+base_deps = [dep_glu, dep_gl, dep_glut, dep_m, idep_glad, idep_util]
 foreach pair : progs
   p = pair[0]
   extra_deps = pair[1]
